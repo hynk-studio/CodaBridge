@@ -1,0 +1,17 @@
+{
+  "source": "e20d12358dafe73610023cdda5ad189790d3d8e5",
+  "applicationCorrection": "0f9047aefd52e6619fd2f2c13a29140a7c064541",
+  "artifactSha256": "f019f1f5d98a3559298d27b10938ef98f7b9c36dc9c3a2d824aaba90c80fad4a",
+  "runtime": "Actual built Worker; native workerd fetch; private diagnostic observer; loopback Miniflare",
+  "node": "v25.9.0",
+  "browser": "153.0.8010.12",
+  "model": "gpt-6-astra",
+  "reasoning": "low",
+  "redirect": "manual",
+  "deadlineMs": 20000,
+  "maxOutputTokens": 1800,
+  "maxRoundsPerAction": 4,
+  "isolatedBrowserContext": true,
+  "originalCredentialSourceUnchanged": true,
+  "defaultConfigurationUnchanged": true
+}

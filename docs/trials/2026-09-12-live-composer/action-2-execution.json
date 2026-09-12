@@ -1,0 +1,31 @@
+{
+  "authorizationComment": "5646519739",
+  "source": "e20d12358dafe73610023cdda5ad189790d3d8e5",
+  "artifactSha256": "f019f1f5d98a3559298d27b10938ef98f7b9c36dc9c3a2d824aaba90c80fad4a",
+  "action": 2,
+  "mode": "investigate",
+  "question": "Find the closest real recordings to my currently selected edited block under the normalized interval metric. Exclude its seed and explain the timing differences and limitations.",
+  "status": "finished_authorization_consumed",
+  "consumedAt": "2026-09-12T14:48:21.004Z",
+  "composerSubmissions": 1,
+  "startedAt": "2026-09-12T14:48:21.005Z",
+  "completedAt": "2026-09-12T14:48:34.407Z",
+  "applicationLatencyMs": 13402,
+  "httpStatus": 502,
+  "diagnostics": [
+    {
+      "kind": "PROVIDER_HTTP_RESPONSE",
+      "httpResponseObtained": true,
+      "upstreamStatus": 200
+    },
+    {
+      "kind": "PROVIDER_HTTP_RESPONSE",
+      "httpResponseObtained": true,
+      "upstreamStatus": 200
+    }
+  ],
+  "result": {
+    "status": "failed",
+    "code": "UNSUPPORTED_GENERATED_CONTENT"
+  }
+}

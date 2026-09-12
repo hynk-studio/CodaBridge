@@ -1,0 +1,11 @@
+{
+  "clickAt": "2026-09-12T14:48:20.973Z",
+  "outcomeVisibleAt": "2026-09-12T14:48:34.441Z",
+  "clickToOutcomeMs": 13467,
+  "resourceTiming": {
+    "startTime": 71806.80000001192,
+    "responseEnd": 85217.09999999404,
+    "duration": 13410.299999982119
+  },
+  "composerSubmissionsObserved": 2
+}

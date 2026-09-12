@@ -1,0 +1,389 @@
+{
+  "applied": {
+    "format": "codabridge-project",
+    "version": 1,
+    "draft": {
+      "version": 1,
+      "id": "p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf",
+      "revision": 1,
+      "title": "My first coda",
+      "intention": "",
+      "blocks": [
+        {
+          "id": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+          "times": [
+            0,
+            0.11861678004535148,
+            0.5342403628117914,
+            1.139138321995465,
+            1.3213832199546487,
+            1.5784126984126985
+          ],
+          "spacingAfter": 0.5,
+          "meaning": "",
+          "seed": {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        },
+        {
+          "id": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+          "times": [
+            0,
+            0.14827097505668935,
+            0.6678004535147393,
+            1.4239229024943312,
+            1.651729024943311,
+            1.9730158730158731
+          ],
+          "spacingAfter": 0.5,
+          "meaning": "",
+          "seed": {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        }
+      ],
+      "ancestry": [
+        {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      ]
+    },
+    "activeId": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+    "codebook": [],
+    "savedAnalysis": null,
+    "credits": {
+      "identity": "Human-created · synthetic timing sonification",
+      "meaningToSpermWhales": "unknown",
+      "sources": [
+        {
+          "id": "dswp-1",
+          "dataset": "orrp/DSWP",
+          "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "filename": "1.wav",
+          "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+          "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+          "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+          "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+          "paperUrl": "https://arxiv.org/abs/2512.02206",
+          "acquiredOn": "2026-09-12",
+          "originalOffsetSeconds": 0.3827891156462585,
+          "originalTimes": [
+            0.3827891156462585,
+            0.50140589569161,
+            0.9170294784580499,
+            1.5219274376417233,
+            1.704172335600907,
+            1.9612018140589569
+          ],
+          "annotationStatus": "machine-estimated",
+          "humanReview": "not-performed"
+        }
+      ],
+      "limitations": [
+        "Meaning to sperm whales: unknown. Creator-assigned meaning is personal, not a translation.",
+        "Seed markers are machine estimates, not verified coda boundaries or human-reviewed onsets.",
+        "Timing similarity is descriptive. It does not establish identity, intent, biological naturalness or shared meaning.",
+        "Each block is compared separately in a four-recording catalog. Unequal counts are not aligned or padded.",
+        "Synthetic clicks illustrate timing; they do not reproduce a whale's voice. No wildlife playback use."
+      ]
+    }
+  },
+  "undone": {
+    "format": "codabridge-project",
+    "version": 1,
+    "draft": {
+      "version": 1,
+      "id": "p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf",
+      "revision": 2,
+      "title": "My first coda",
+      "intention": "",
+      "blocks": [
+        {
+          "id": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+          "times": [
+            0,
+            0.11861678004535148,
+            0.5342403628117914,
+            1.139138321995465,
+            1.3213832199546487,
+            1.5784126984126985
+          ],
+          "spacingAfter": 0.5,
+          "meaning": "",
+          "seed": {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        }
+      ],
+      "ancestry": [
+        {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      ]
+    },
+    "activeId": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+    "codebook": [],
+    "savedAnalysis": null,
+    "credits": {
+      "identity": "Human-created · synthetic timing sonification",
+      "meaningToSpermWhales": "unknown",
+      "sources": [
+        {
+          "id": "dswp-1",
+          "dataset": "orrp/DSWP",
+          "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "filename": "1.wav",
+          "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+          "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+          "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+          "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+          "paperUrl": "https://arxiv.org/abs/2512.02206",
+          "acquiredOn": "2026-09-12",
+          "originalOffsetSeconds": 0.3827891156462585,
+          "originalTimes": [
+            0.3827891156462585,
+            0.50140589569161,
+            0.9170294784580499,
+            1.5219274376417233,
+            1.704172335600907,
+            1.9612018140589569
+          ],
+          "annotationStatus": "machine-estimated",
+          "humanReview": "not-performed"
+        }
+      ],
+      "limitations": [
+        "Meaning to sperm whales: unknown. Creator-assigned meaning is personal, not a translation.",
+        "Seed markers are machine estimates, not verified coda boundaries or human-reviewed onsets.",
+        "Timing similarity is descriptive. It does not establish identity, intent, biological naturalness or shared meaning.",
+        "Each block is compared separately in a four-recording catalog. Unequal counts are not aligned or padded.",
+        "Synthetic clicks illustrate timing; they do not reproduce a whale's voice. No wildlife playback use."
+      ]
+    }
+  },
+  "redone": {
+    "format": "codabridge-project",
+    "version": 1,
+    "draft": {
+      "version": 1,
+      "id": "p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf",
+      "revision": 3,
+      "title": "My first coda",
+      "intention": "",
+      "blocks": [
+        {
+          "id": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+          "times": [
+            0,
+            0.11861678004535148,
+            0.5342403628117914,
+            1.139138321995465,
+            1.3213832199546487,
+            1.5784126984126985
+          ],
+          "spacingAfter": 0.5,
+          "meaning": "",
+          "seed": {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        },
+        {
+          "id": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+          "times": [
+            0,
+            0.14827097505668935,
+            0.6678004535147393,
+            1.4239229024943312,
+            1.651729024943311,
+            1.9730158730158731
+          ],
+          "spacingAfter": 0.5,
+          "meaning": "",
+          "seed": {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        }
+      ],
+      "ancestry": [
+        {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      ]
+    },
+    "activeId": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+    "codebook": [],
+    "savedAnalysis": null,
+    "credits": {
+      "identity": "Human-created · synthetic timing sonification",
+      "meaningToSpermWhales": "unknown",
+      "sources": [
+        {
+          "id": "dswp-1",
+          "dataset": "orrp/DSWP",
+          "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "filename": "1.wav",
+          "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+          "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+          "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+          "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+          "paperUrl": "https://arxiv.org/abs/2512.02206",
+          "acquiredOn": "2026-09-12",
+          "originalOffsetSeconds": 0.3827891156462585,
+          "originalTimes": [
+            0.3827891156462585,
+            0.50140589569161,
+            0.9170294784580499,
+            1.5219274376417233,
+            1.704172335600907,
+            1.9612018140589569
+          ],
+          "annotationStatus": "machine-estimated",
+          "humanReview": "not-performed"
+        }
+      ],
+      "limitations": [
+        "Meaning to sperm whales: unknown. Creator-assigned meaning is personal, not a translation.",
+        "Seed markers are machine estimates, not verified coda boundaries or human-reviewed onsets.",
+        "Timing similarity is descriptive. It does not establish identity, intent, biological naturalness or shared meaning.",
+        "Each block is compared separately in a four-recording catalog. Unequal counts are not aligned or padded.",
+        "Synthetic clicks illustrate timing; they do not reproduce a whale's voice. No wildlife playback use."
+      ]
+    }
+  },
+  "selected": {
+    "format": "codabridge-project",
+    "version": 1,
+    "draft": {
+      "version": 1,
+      "id": "p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf",
+      "revision": 3,
+      "title": "My first coda",
+      "intention": "",
+      "blocks": [
+        {
+          "id": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+          "times": [
+            0,
+            0.11861678004535148,
+            0.5342403628117914,
+            1.139138321995465,
+            1.3213832199546487,
+            1.5784126984126985
+          ],
+          "spacingAfter": 0.5,
+          "meaning": "",
+          "seed": {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        },
+        {
+          "id": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+          "times": [
+            0,
+            0.14827097505668935,
+            0.6678004535147393,
+            1.4239229024943312,
+            1.651729024943311,
+            1.9730158730158731
+          ],
+          "spacingAfter": 0.5,
+          "meaning": "",
+          "seed": {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        }
+      ],
+      "ancestry": [
+        {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      ]
+    },
+    "activeId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+    "codebook": [],
+    "savedAnalysis": null,
+    "credits": {
+      "identity": "Human-created · synthetic timing sonification",
+      "meaningToSpermWhales": "unknown",
+      "sources": [
+        {
+          "id": "dswp-1",
+          "dataset": "orrp/DSWP",
+          "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "filename": "1.wav",
+          "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+          "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+          "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+          "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+          "paperUrl": "https://arxiv.org/abs/2512.02206",
+          "acquiredOn": "2026-09-12",
+          "originalOffsetSeconds": 0.3827891156462585,
+          "originalTimes": [
+            0.3827891156462585,
+            0.50140589569161,
+            0.9170294784580499,
+            1.5219274376417233,
+            1.704172335600907,
+            1.9612018140589569
+          ],
+          "annotationStatus": "machine-estimated",
+          "humanReview": "not-performed"
+        }
+      ],
+      "limitations": [
+        "Meaning to sperm whales: unknown. Creator-assigned meaning is personal, not a translation.",
+        "Seed markers are machine estimates, not verified coda boundaries or human-reviewed onsets.",
+        "Timing similarity is descriptive. It does not establish identity, intent, biological naturalness or shared meaning.",
+        "Each block is compared separately in a four-recording catalog. Unequal counts are not aligned or padded.",
+        "Synthetic clicks illustrate timing; they do not reproduce a whale's voice. No wildlife playback use."
+      ]
+    }
+  },
+  "passed": true,
+  "composerSubmissionsObserved": 1
+}

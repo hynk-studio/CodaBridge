@@ -1,0 +1,18 @@
+{
+  "label": "OFFLINE restoration of delivered live-trial creation; no new model event",
+  "ordinaryAccess": {
+    "status": "unavailable",
+    "code": "NOT_CONFIGURED",
+    "message": "Astra investigation is unavailable. Server access has not been enabled for this workspace."
+  },
+  "exportedRevision": 4,
+  "restoredRevision": 5,
+  "contentAndSelectionRestored": true,
+  "codebookAndSavedEvidenceRestored": true,
+  "generatedAnalysis": null,
+  "composerRequests": 0,
+  "investigationRequests": 0,
+  "noFieldAutoplay": true,
+  "syntheticPlaybackStopped": true,
+  "isolatedBrowserContext": true
+}

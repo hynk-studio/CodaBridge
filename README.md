@@ -2,7 +2,7 @@
 
 Hear a real recording. Shape a personal synthetic phrase. Compare its timing and keep your coda.
 
-**MVP-03 Coda Composer is implemented for local Draft review.** Four attributed originals connect to a bounded phrase editor, synthetic click playback, source-aware comparison, personal codebook and WAV/card/project downloads. Real server-side Astra editing and investigation contracts are connected to the UI and tested with visibly labeled provider fixtures. **Default live access remains disabled.** Historical private live successes validate the MVP-02 A/B path only; the new Composer contract has had no paid/live trial or hosted Sites run.
+**MVP-03 Coda Composer is implemented for local Draft review.** Four attributed originals connect to a bounded phrase editor, synthetic click playback, source-aware comparison, personal codebook and WAV/card/project downloads. Real server-side Astra editing and investigation contracts are connected to the UI and tested with visibly labeled provider fixtures. **Default live access remains disabled.** The first private live Composer batch accepted a compound edit and verified Apply/Undo/Redo and downloads; its modified-copy investigation was rejected with `UNSUPPORTED_GENERATED_CONTENT` after upstream HTTP success. Live Composer investigation remains unresolved; no hosted Sites run has occurred.
 
 ## Run locally
 
@@ -42,6 +42,7 @@ The browser checks original bytes before decoding. The server independently reso
 
 - [MVP-03 contract, engineering limits and implementation](docs/MVP_03.md)
 - [MVP-03 review corrections, before/after captures and downloads](docs/MVP_03_REFINEMENT.md)
+- [First live Composer batch: edit passed, investigation rejected](docs/trials/2026-09-12-live-composer/README.md)
 - [MVP-03 verification, running-app capture and downloads](docs/MVP_03_VERIFICATION.md)
 - [Historical live A/B retrieval and unequal-count batch](docs/trials/2026-09-12-live-retrieval-unequal/README.md)
 - [MVP-02 implementation and boundaries](docs/MVP_02.md)
@@ -50,4 +51,4 @@ The browser checks original bytes before decoding. The server independently reso
 - Historical [MVP-01 contract](docs/MVP_01.md) and [verification](docs/VERIFICATION.md)
 - [Parent issue #1](https://github.com/hynk-studio/CodaBridge/issues/1), dependency [Draft PR #2](https://github.com/hynk-studio/CodaBridge/pull/2)
 
-Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. New Composer live compatibility, hosted Sites runtime/delivery and scientific validation remain unverified. Context / Dialogue Lab remains the planned deeper follow-on after this journey works. The parent launch issue remains open. No Site creation/save/deployment, merge, account/database stack, WhAM or dialogue-transfer work is included. Project code licensing remains undecided; third-party licenses remain in force.
+Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. Broader Composer live compatibility, hosted Sites runtime/delivery and scientific validation remain unverified. Context / Dialogue Lab remains the planned deeper follow-on after this journey works. The parent launch issue remains open. No Site creation/save/deployment, merge, account/database stack, WhAM or dialogue-transfer work is included. Project code licensing remains undecided; third-party licenses remain in force.
