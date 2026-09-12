@@ -1,6 +1,43 @@
 # MVP-02 verification
 
-September 12, 2026. Branch `codex/mvp-02-grounded-investigation` starts at PR #2 head `4d09495f9bb31006d310402c8474a94df03d5086`; PR #2 remained open and Draft on final recheck. The new PR is stacked on `codex/mvp-01-listen-compare`. The unrelated, pre-existing root PNG was preserved and excluded from the change.
+September 12, 2026. Existing Draft [PR #3](https://github.com/hynk-studio/CodaBridge/pull/3), branch `codex/mvp-02-grounded-investigation`, remains stacked on PR #2 / `codex/mvp-01-listen-compare` at `4d09495f9bb31006d310402c8474a94df03d5086`. The unrelated, pre-existing root PNG is preserved and excluded from the change.
+
+## Review 5185693873 correction
+
+Starting head: `afdd3fb5d14b56ee996e2b332a951fae83a57970`, matching the reviewed head and remote branch after fetch. [The review](https://github.com/hynk-studio/CodaBridge/pull/3#pullrequestreview-5185693873) identified two local adapter rejections: legitimate numeric source labels and an assistant message accompanying a function call. The correction changes only provider validation, its worker call site, test-only regression fixtures/tests and documentation. No recordings, measurements, production UI, dependencies, configuration or limits changed.
+
+The two regression cases first failed at the reviewed implementation with HTTP 502 instead of 200:
+
+```sh
+node --experimental-strip-types --test --test-name-pattern='accepts supplied numeric|mixed assistant commentary' tests/provider-compatibility.test.ts
+```
+
+After correction, the following checks passed:
+
+| Command | Result |
+| --- | --- |
+| `node --experimental-strip-types --test tests/provider-compatibility.test.ts tests/investigation.test.ts` | **47 passed**: 33 new compatibility cases plus 14 existing investigation cases. |
+| `npm run typecheck` | Passed. |
+| `npm test` | **70 passed**, no failures or skips. |
+| `npm run data:verify` | Four original byte hashes, PCM metadata, source-card hash and deterministic annotations reproduce. |
+| `npm run lint` | Passed. |
+| `npm run build` | Client and actual Worker ESM built; Worker metadata copied. |
+| `npm run test:server-build` | **4 passed**, including mixed output through the compiled adapter and fixture/credential-sentinel exclusion from the client bundle. |
+| `npm run test:browser` | **20 passed**, no retries, across Chromium desktop 1440×1000 and mobile 390×844, retaining 320 px / enlarged-text checks. |
+| `npm run test:browser -- --grep 'mixed provider commentary'` | **2 passed** on the final fixture, with distinct intermediate/final message IDs. The 47 focused cases, typecheck, lint and 4 built-server checks also passed again after that fixture refinement. |
+| `git diff --check` | Passed. |
+
+The realistic test-only transcript contains opaque reasoning, a completed assistant message with `phase: "commentary"`, and one `find_alternatives` call. The actual tool dispatch produces the next request's `function_call_output` before a final structured answer names `11.wav`, `dswp-11`, `7.wav` and the supplied metric version. Tests inspect original replay items and phase, actual retrieval evidence and the final export. Intermediate commentary and opaque reasoning never appear as the final explanation. Browser coverage holds the final response pending, then verifies the visibly unverified final interpretation and export.
+
+Negative cases include unknown numeric filenames/IDs, known-label substring collisions, a forged numeric measurement beside an allowed filename, invented evidence IDs, malformed/refused mixed messages, duplicate/unknown calls and strict arguments. Existing tool-only, no-tool-final, credential protection, byte/deadline/round-limit and failure coverage remains. A deliberately spelled-out numerical assertion is accepted only as unverified prose while deterministic evidence stays unchanged: the lexical restriction does not certify factual correctness. See [the exact checks and limits](MVP_02.md#request-and-evidence-flow).
+
+Official [mixed-output examples](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-4.1), [function calling](https://developers.openai.com/api/docs/guides/function-calling) and [reasoning replay/phase documentation](https://developers.openai.com/api/docs/guides/reasoning) were checked for this correction. Current documentation says `store: false` returns `encrypted_content` by default; no older-behavior workaround was added. These fixtures demonstrate local adapter behavior, **not live Astra compatibility or hosted Sites operation**. The 20-second deadline, 1,800 output tokens per response, four rounds/tool calls and all byte bounds remain unchanged; live latency and output sufficiency are untested.
+
+No credential acquisition, application-model call, Sites creation/save/deployment, public enablement, paid provisioning, merge or force-push occurred. A small authorized real Astra trial, public access/budget decision and hosted Sites verification remain separate. Existing flags are operator acknowledgements, not authentication or a shared spending cap. Earlier staging, manual browser and HTTP observations below are historical evidence from the original MVP-02 implementation, not reruns in this correction.
+
+## Original MVP-02 verification at afdd3fb
+
+The following original implementation record and screenshots are retained for stack continuity. Its earlier counts (37 unit, 3 built-server, 18 browser) are superseded by the correction results above.
 
 ## Outcomes kept separate
 

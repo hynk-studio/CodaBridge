@@ -23,16 +23,19 @@ Host: macOS arm64, Node 25.9.0, npm 11.12.1. Lockfile versions include Vite 8.3.
 
 Current official documentation resolves the intended identifier as **`gpt-6-astra`** and lists Responses, function calling and structured outputs. The adapter requests that exact model at `https://api.openai.com/v1/responses`, with low reasoning effort, strict function schemas, strict JSON output, `parallel_tool_calls: false`, `store: false` and a bounded output-token limit. There is no model/endpoint fallback.
 
-Stateless Responses reasoning items are replayed internally with tool-call outputs as documented. Opaque reasoning, raw responses and errors are never exported or logged. Final text, tool arguments and evidence references are validated independently of the provider's schema enforcement. Provider response IDs, model, timestamp and token counts are copied only when actually returned and structurally valid; missing fields stay absent. Local start/completion timestamps are recorded by the handler, not invented provider run metadata.
+The adapter accepts one bounded completed assistant message alongside one function call. It validates the message envelope and dispatches the actual tool before accepting a later structured final answer. Original response items, including assistant `phase` and opaque reasoning, are replayed internally with the function result. Intermediate text is never promoted to a final explanation. Current reasoning documentation says `store: false` returns `encrypted_content` by default; no speculative legacy `include` parameter was added.
+
+Opaque reasoning, intermediate messages, raw responses and errors are never exported or logged. Final text, tool arguments and evidence references are validated independently of the provider's schema enforcement. Provider response IDs, model, timestamp and token counts are copied only when actually returned and structurally valid; missing fields stay absent. Local start/completion timestamps are recorded by the handler, not invented provider run metadata.
 
 Official sources checked:
 
 - [Astra model](https://developers.openai.com/api/docs/models/gpt-6-astra)
 - [Function calling](https://developers.openai.com/api/docs/guides/function-calling)
+- [Responses mixed assistant-message/function-call example](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-4.1)
 - [Structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs)
 - [Reasoning and stateless replay](https://developers.openai.com/api/docs/guides/reasoning)
 
-No documented identifier/API incompatibility was found. **Actual account entitlement, live model behavior/quality, latency, token consumption and hosted secret injection remain unverified.** A mock transport cannot establish those properties.
+[Review 5185693873](https://github.com/hynk-studio/CodaBridge/pull/3#pullrequestreview-5185693873) identified adapter rejection of documented mixed output and legitimate numeric source labels. Both are corrected with test-only transport fixtures exercising actual dispatch, replay, final validation and export. This demonstrates local handling of the documented response shape, not live Astra compatibility. **Actual account entitlement, strict-schema model behavior, explanation quality, latency, output sufficiency, token consumption and hosted secret injection remain unverified.** The existing 20-second deadline, 1,800-token output budget, four-round/tool-call limits and byte bounds are unchanged.
 
 ## Server access remains disabled
 

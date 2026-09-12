@@ -5,6 +5,9 @@ import type { ProviderTransport } from "../../server/provider.ts";
 import {
   finalOutput,
   happyTransport,
+  identifierExplanation,
+  INTERMEDIATE_TEXT,
+  mixedTransport,
   scriptedTransport,
   TEST_ENV,
 } from "../fixtures/provider.ts";
@@ -40,6 +43,56 @@ async function exportPacket(page: Page) {
   const file = await (await download).path();
   return JSON.parse(await readFile(file!, "utf8"));
 }
+
+test("mixed provider commentary remains pending until the grounded final answer arrives", async ({
+  page,
+}) => {
+  const mock = mixedTransport();
+  let release: () => void = () => {};
+  const gate = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  let awaitingFinal = false;
+  await connectMockTransport(page, async (url, init) => {
+    if (mock.calls.length === 1) {
+      awaitingFinal = true;
+      await gate;
+    }
+    return mock.transport(url, init);
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Investigate selection" }).click();
+  const panel = page.getByRole("region", { name: "Ask about this pair." });
+  try {
+    await expect.poll(() => awaitingFinal).toBe(true);
+    await expect(panel.getByText("Pending", { exact: true })).toBeVisible();
+    await expect(panel.getByText(INTERMEDIATE_TEXT)).toHaveCount(0);
+    await expect(
+      panel.getByText("Investigation completed for the current selection."),
+    ).toHaveCount(0);
+  } finally {
+    release();
+  }
+  await expect(
+    panel.getByText("Investigation completed for the current selection."),
+  ).toBeVisible();
+  await expect(
+    panel.getByText(identifierExplanation().possibleInterpretations[0].text),
+  ).toBeVisible();
+  await expect(
+    panel.getByText(
+      "Generated interpretation is unverified. References show traceability, not proof that a statement is correct.",
+    ),
+  ).toBeVisible();
+  const packet = await exportPacket(page);
+  expect(packet.investigation.execution).toBe("mock-transport-test");
+  expect(packet.investigation.explanation).toEqual(identifierExplanation());
+  expect(JSON.stringify(packet)).not.toContain(INTERMEDIATE_TEXT);
+  expect(JSON.stringify(packet)).not.toContain(
+    "test-opaque-reasoning-do-not-export",
+  );
+  expect(mock.calls).toHaveLength(2);
+});
 
 test("grounded UI completes via mock provider transport and exports actual tool evidence", async ({
   page,

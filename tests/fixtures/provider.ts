@@ -124,3 +124,59 @@ export function happyTransport() {
     finalOutput(explanation("retrieval:dswp-1:2")),
   ]);
 }
+
+export const INTERMEDIATE_TEXT =
+  "I will check the available alternatives before explaining the comparison.";
+
+export function assistantMessage(text: string, phase?: string | null) {
+  return {
+    type: "message",
+    id: "msg_mock_intermediate",
+    role: "assistant",
+    status: "completed",
+    ...(phase === undefined ? {} : { phase }),
+    content: [{ type: "output_text", text, annotations: [] }],
+  };
+}
+
+export function identifierExplanation() {
+  return {
+    possibleInterpretations: [
+      {
+        text: "DSWP / 11.wav (dswp-11) is the closest available alternative to A under normalized-interval-mad v1.0.0. This ranking describes timing only.",
+        evidenceIds: ["retrieval:dswp-1:2", "recording:dswp-11"],
+      },
+    ],
+    limitations: [
+      {
+        text: "The estimated groups in 7.wav do not establish biological coda boundaries. Its unequal count prevents comparison under this metric.",
+        evidenceIds: ["recording:dswp-7", "retrieval:dswp-1:2"],
+      },
+    ],
+  };
+}
+
+export function mixedOutput(
+  message = assistantMessage(INTERMEDIATE_TEXT, "commentary"),
+) {
+  const toolRound = functionOutput();
+  return responsePayload([toolRound.output[0], message, toolRound.output[1]]);
+}
+
+export function mixedTransport() {
+  return scriptedTransport([
+    mixedOutput(),
+    responsePayload(
+      [
+        {
+          ...assistantMessage(
+            JSON.stringify(identifierExplanation()),
+            "final_answer",
+          ),
+          id: "msg_mock_final",
+        },
+      ],
+      1,
+    ),
+  ]);
+}

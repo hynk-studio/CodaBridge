@@ -201,10 +201,7 @@ export function createWorker(
             }
             continue;
           }
-          const explanation = validateExplanation(
-            output.final,
-            new Set(tools.evidence.keys()),
-          );
+          const explanation = validateExplanation(output.final, tools.evidence);
           const result: CompletedInvestigation = {
             status: "completed",
             selectionKey: input.selectionKey,

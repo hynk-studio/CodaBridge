@@ -2,7 +2,14 @@ import { it } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { createWorker as sourceFactory } from "../../server/worker.ts";
-import { happyTransport, requestFor, TEST_ENV } from "../fixtures/provider.ts";
+import {
+  happyTransport,
+  identifierExplanation,
+  INTERMEDIATE_TEXT,
+  mixedTransport,
+  requestFor,
+  TEST_ENV,
+} from "../fixtures/provider.ts";
 
 // Import the actual built ESM, not a source stand-in.
 const artifact = new URL("../../dist/server/index.js", import.meta.url);
@@ -54,6 +61,7 @@ it("client artifact contains no server config, provider adapter or test fixture;
       TEST_ENV.OPENAI_API_KEY,
       "resp_mock_",
       "test-opaque-reasoning",
+      INTERMEDIATE_TEXT,
     ])
       assert.ok(!text.includes(forbidden), `${file} contains ${forbidden}`);
   }
@@ -69,5 +77,21 @@ it("client artifact contains no server config, provider adapter or test fixture;
     (await readFile(artifact, "utf8")).includes(
       "https://api.openai.com/v1/responses",
     ),
+  );
+});
+
+it("built adapter accepts mixed commentary/tool output and supplied numeric source labels", async () => {
+  const mock = mixedTransport();
+  const response = await built
+    .createWorker({ transport: mock.transport })
+    .fetch(requestFor(), TEST_ENV);
+  assert.equal(response.status, 200);
+  const result = await response.json();
+  assert.deepEqual(result.explanation, identifierExplanation());
+  assert.equal(result.execution, "mock-transport-test");
+  assert.equal(mock.calls.length, 2);
+  assert.ok(!JSON.stringify(result).includes(INTERMEDIATE_TEXT));
+  assert.ok(
+    !JSON.stringify(result).includes("test-opaque-reasoning-do-not-export"),
   );
 });
