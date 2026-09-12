@@ -1,0 +1,56 @@
+{
+  "authorizationComment": "5645342982",
+  "source": "bbddfcf268713fc8873cdaaef5534de03fed1f6c",
+  "applicationBaseline": "933ab107459fbff7c0a9e18447b7d5a5dcfe1b7f",
+  "runtime": {
+    "node": "v25.9.0",
+    "miniflare": "5.20260911.0-alpha",
+    "workerd": "1.20260911.1",
+    "compatibilityDate": "2026-09-12",
+    "nativeWorkerFetch": true,
+    "providerTransportOverride": false,
+    "redirect": "manual"
+  },
+  "liveInvestigationsSubmitted": 2,
+  "providerRequestsObserved": 3,
+  "authorizedMaxInvestigations": 2,
+  "authorizedMaxProviderRequests": 8,
+  "usage": {
+    "inputTokens": 12637,
+    "outputTokens": 463,
+    "totalTokens": 13100
+  },
+  "cost": null,
+  "costNote": "No pricing estimate or settled invoice obtained; actual returned usage only.",
+  "case2ReviewedAndSavedBeforeCase3": true,
+  "outcomes": {
+    "2": "completed",
+    "3": "completed"
+  },
+  "retriesOrReplacementLiveInvestigations": 0,
+  "catalogContainsByteIdenticalDuplicates": false,
+  "duplicateExclusionCaveat": "No duplicate candidates existed in this live catalog; actual candidates differ from selected hashes, but duplicate-suppression branch is not independently exercised live.",
+  "downloadDelivery": {
+    "liveInAppDeliveryConfirmed": false,
+    "offlineReplayActualFilesDelivered": true,
+    "replayProviderRequests": 0
+  },
+  "cleanup": {
+    "liveRuntimeStopped": true,
+    "liveBindingsRemoved": true,
+    "liveTabClosed": true,
+    "keepAwakeStopped": true,
+    "replayBrowserAndRuntimeStopped": true,
+    "temporaryHarnessesRemoved": true,
+    "normalPreview": {
+      "httpStatus": 200,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED",
+      "checkedAt": "2026-09-12T10:52:59.134Z"
+    },
+    "normalPreviewStopped": true,
+    "loopbackPortClosed": true,
+    "checkedInFlagsDisabled": true,
+    "originalCredentialSourceUnchanged": true
+  }
+}

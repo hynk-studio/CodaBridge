@@ -1,0 +1,125 @@
+{
+  "authorizationComment": "5645342982",
+  "source": "bbddfcf268713fc8873cdaaef5534de03fed1f6c",
+  "applicationBaseline": "933ab107459fbff7c0a9e18447b7d5a5dcfe1b7f",
+  "artifactSha256": "6857f305a59e2d6e0172d9d105ac1c32a879cdb10ed830eed8d701fb1f33877e",
+  "case": 2,
+  "sourceIds": [
+    "dswp-1",
+    "dswp-2"
+  ],
+  "question": "Find another recording closest to A under the normalized interval metric.",
+  "status": "finished_case_authorization_consumed",
+  "consumedAt": "2026-09-12T10:46:21.598Z",
+  "investigationSubmissions": 1,
+  "diagnostics": [
+    {
+      "kind": "PROVIDER_HTTP_RESPONSE",
+      "httpResponseObtained": true,
+      "upstreamStatus": 200
+    },
+    {
+      "kind": "PROVIDER_HTTP_RESPONSE",
+      "httpResponseObtained": true,
+      "upstreamStatus": 200
+    }
+  ],
+  "completedAt": "2026-09-12T10:46:33.008Z",
+  "applicationLatencyMs": 11404,
+  "applicationResult": {
+    "httpStatus": 200,
+    "status": "completed"
+  },
+  "providerResponses": [
+    {
+      "responseId": "resp_04f6c838f3262ace016aa52d7ebe7887d0a6152e808d17efda",
+      "model": "gpt-6-astra",
+      "createdAt": 1789209982,
+      "usage": {
+        "inputTokens": 2791,
+        "outputTokens": 28,
+        "totalTokens": 2819
+      }
+    },
+    {
+      "responseId": "resp_04f6c838f3262ace016aa52d83fed887d0b7a3c0e96ec0eaa8",
+      "model": "gpt-6-astra",
+      "createdAt": 1789209988,
+      "usage": {
+        "inputTokens": 6986,
+        "outputTokens": 230,
+        "totalTokens": 7216
+      }
+    }
+  ],
+  "label": "LIVE ASTRA \u2014 actual case execution",
+  "outcome": "completed",
+  "acceptanceCriteriaMet": true,
+  "applicationStartedAt": "2026-09-12T10:46:21.606Z",
+  "applicationCompletedAt": "2026-09-12T10:46:33.008Z",
+  "providerRequestCountObserved": 2,
+  "usage": {
+    "inputTokens": 9777,
+    "outputTokens": 258,
+    "totalTokens": 10035
+  },
+  "actions": [
+    {
+      "name": "recording_details",
+      "initiatedBy": "server",
+      "arguments": {
+        "sourceId": "dswp-1"
+      },
+      "evidenceId": "recording:dswp-1"
+    },
+    {
+      "name": "recording_details",
+      "initiatedBy": "server",
+      "arguments": {
+        "sourceId": "dswp-2"
+      },
+      "evidenceId": "recording:dswp-2"
+    },
+    {
+      "name": "compare_selected",
+      "initiatedBy": "server",
+      "arguments": {},
+      "evidenceId": "comparison:dswp-1:dswp-2"
+    },
+    {
+      "name": "find_alternatives",
+      "initiatedBy": "model",
+      "arguments": {
+        "referenceId": "dswp-1",
+        "limit": 1
+      },
+      "evidenceId": "retrieval:dswp-1:1"
+    }
+  ],
+  "modelInitiatedToolActions": 1,
+  "liveBrowser": {
+    "clickAt": "2026-09-12T10:46:21.561Z",
+    "firstAcceptedPacketGeneratedAt": "2026-09-12T10:46:33.014Z",
+    "timing": [
+      {
+        "startEpochMs": 1789209981586.5,
+        "durationMs": 11427.40000000596,
+        "responseEndEpochMs": 1789209993013.9
+      }
+    ],
+    "uiEvidenceSaved": true,
+    "screenshotSaved": true,
+    "downloadButtonClicks": 1,
+    "downloadEventObserved": false,
+    "downloadDeliveryConfirmed": false,
+    "clickToAcceptedUiPacketMs": 11453.0,
+    "timingCaveat": "Click to accepted UI evidence-packet generation, not an exact paint timestamp."
+  },
+  "evidenceIntegrity": {
+    "exactPageInvestigationMatchesAcceptedApplication": true,
+    "allCitedIdsPresent": true,
+    "actualSelectedSourcesVerified": true
+  },
+  "qualityAssessment": "Passed: actual model find_alternatives call, two accepted response receipts, deterministic retrieval match for dswp-11, dswp-7 correctly rejected, correct citations and limitations. No numerical measurement claims added by generated text.",
+  "repeatedLiveSubmission": false
+}
