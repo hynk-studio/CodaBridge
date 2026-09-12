@@ -1,0 +1,28 @@
+{
+  "case": 1,
+  "sourceIds": [
+    "dswp-1",
+    "dswp-2"
+  ],
+  "question": "What differs in the timing of A and B, and what cannot be concluded?",
+  "submittedAt": "2026-09-12T08:04:31.256Z",
+  "latencyToResponseHeadersMs": 12.48699999996461,
+  "applicationHttpStatus": 502,
+  "failure": {
+    "status": "failed",
+    "code": "PROVIDER_FAILURE",
+    "message": "The investigation could not be validated. Listening and comparison remain available."
+  },
+  "acceptedExplanation": null,
+  "actualToolActions": null,
+  "providerResponseIds": null,
+  "returnedModel": null,
+  "usage": null,
+  "providerRequestCount": null,
+  "providerNetworkEventsRecorded": 0,
+  "remainingCases": [
+    2,
+    3
+  ],
+  "evidenceSource": "Current page WebMCP packet after failure; investigation is null. The UI download was requested, but the browser download event timed out."
+}

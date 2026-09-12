@@ -2,6 +2,8 @@
 
 September 12, 2026. Existing Draft [PR #3](https://github.com/hynk-studio/CodaBridge/pull/3), branch `codex/mvp-02-grounded-investigation`, remains stacked on PR #2 / `codex/mvp-01-listen-compare` at `4d09495f9bb31006d310402c8474a94df03d5086`. The unrelated, pre-existing root PNG is preserved and excluded from the change.
 
+**Later authorized private trial:** one real-adapter investigation at `e28bedb` returned `PROVIDER_FAILURE`; cases 2 and 3 were left unrun. Provider request count, returned IDs and usage are unknown. See the [sanitized trial report and evidence](trials/2026-09-12-private-astra/README.md). The no-call statements and mocked checks below remain historical records of the implementation/correction, not the later trial.
+
 ## Review 5185693873 correction
 
 Starting head: `afdd3fb5d14b56ee996e2b332a951fae83a57970`, matching the reviewed head and remote branch after fetch. [The review](https://github.com/hynk-studio/CodaBridge/pull/3#pullrequestreview-5185693873) identified two local adapter rejections: legitimate numeric source labels and an assistant message accompanying a function call. The correction changes only provider validation, its worker call site, test-only regression fixtures/tests and documentation. No recordings, measurements, production UI, dependencies, configuration or limits changed.

@@ -1,6 +1,6 @@
 # Build, model and Sites compatibility
 
-Checked September 12, 2026 for MVP-02. **Local client/Worker build and mocked transport verified. Live Astra and hosted Sites are not tested.**
+Checked September 12, 2026 for MVP-02. **Local client/Worker build and mocked transport verified. An authorized private real-adapter attempt stopped at `PROVIDER_FAILURE`; live Astra compatibility remains unverified and hosted Sites is untested.** See the [separate trial report](trials/2026-09-12-private-astra/README.md).
 
 ## Actual server artifact
 
@@ -39,7 +39,7 @@ Official sources checked:
 
 ## Server access remains disabled
 
-A future explicitly authorized server run must supply all three server-only bindings: `CODABRIDGE_INVESTIGATION_ENABLED` equal to `true`, `CODABRIDGE_ACCESS_REVIEWED` equal to `true`, and `OPENAI_API_KEY`. The second flag is an operator acknowledgement, not an access-control service, spend limiter or proof of review. The repository's local preview deliberately sets both flags to `false`. No enabling configuration or credential was acquired in this task.
+A separately authorized server run must supply all three server-only bindings: `CODABRIDGE_INVESTIGATION_ENABLED` equal to `true`, `CODABRIDGE_ACCESS_REVIEWED` equal to `true`, and `OPENAI_API_KEY`. The second flag is an operator acknowledgement, not an access-control service, spend limiter or proof of review. The repository's local preview deliberately sets both flags to `false`. The original implementation acquired no enabling configuration or credential. The later authorized trial reused an existing environment key only in a temporary loopback runtime; that runtime was stopped and normal disabled availability was verified again.
 
 Development-time credential use must read the existing `OPENAI_API_KEY` from the process environment when separately authorized; never put its value in a source file, `.env`, CLI argument, screenshot, browser configuration or exported evidence. Future hosted binding setup and access/budget controls require their own review before public enablement. A client `VITE_*` key is never appropriate.
 
