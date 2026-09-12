@@ -1,6 +1,11 @@
 // TEST ONLY. No model call and no production import. Exercises the actual server adapter.
 import assert from "node:assert/strict";
-import { createDraft, binding, type Draft } from "../../src/composer/model.ts";
+import {
+  createDraft,
+  binding,
+  applyOperations,
+  type Draft,
+} from "../../src/composer/model.ts";
 import type { ComposerRequest } from "../../src/composer/contract.ts";
 import type { ProviderTransport } from "../../server/provider.ts";
 import { RESPONSES_URL, MODEL } from "../../server/provider.ts";
@@ -30,7 +35,36 @@ export function composerRequest(input: unknown = composerInput()) {
     body: JSON.stringify(input),
   });
 }
-export function composerTransport(edit: "scale" | "duplicate-scale" = "scale") {
+// Constructed regression prose, never recovered output from the failed live trial.
+export const QUANTITATIVE_COMPOSER_PROSE =
+  "Block 2 has a longer first gap than its seed. The first gap is 0.300 seconds. There are 2 eligible examples in the supplied catalog.";
+export const INCORRECT_COMPOSER_PROSE =
+  "Block 2 has a first gap of 99 seconds and 99 eligible examples. The distance is 0.9. The nearest source is dswp-99.";
+
+// Same timing as the saved live creation, with fresh fixture IDs/revision/binding.
+export function modifiedCopyInput(): ComposerRequest {
+  const seed = createDraft("dswp-1");
+  const scaled = applyOperations(seed, [
+    {
+      op: "duplicate_block",
+      blockId: seed.blocks[0].id,
+      newBlockId: "test-copy",
+    },
+    { op: "scale_duration", blockId: "test-copy", factor: 1.25 },
+  ]);
+  const draft = applyOperations(scaled, [
+    { op: "set_gap", blockId: "test-copy", gapIndex: 0, seconds: 0.3 },
+  ]);
+  const input = composerInput("investigate", draft);
+  input.previous = scaled.blocks[1];
+  input.binding = binding(draft, input.activeId, input.previous);
+  return input;
+}
+
+export function composerTransport(
+  edit: "scale" | "duplicate-scale" = "scale",
+  investigationProse?: string,
+) {
   const calls: {
     payload: Record<string, unknown>;
     redirect: RequestRedirect | undefined;
@@ -97,7 +131,9 @@ export function composerTransport(edit: "scale" | "duplicate-scale" = "scale") {
       finalOutput({
         possibleInterpretations: [
           {
-            text: "The returned real examples are ranked by relative spacing of the active synthetic block; the seed remains a separate baseline.",
+            text:
+              investigationProse ??
+              "The returned real examples are ranked by relative spacing of the active synthetic block; the seed remains a separate baseline.",
             evidenceIds: [evidence.result.id],
           },
         ],

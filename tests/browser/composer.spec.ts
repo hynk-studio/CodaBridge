@@ -1,7 +1,12 @@
 import { test, expect, type Page } from "@playwright/test";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { createWorker } from "../../server/worker.ts";
-import { composerTransport } from "../fixtures/composer-provider.ts";
+import {
+  composerTransport,
+  modifiedCopyInput,
+  QUANTITATIVE_COMPOSER_PROSE,
+  INCORRECT_COMPOSER_PROSE,
+} from "../fixtures/composer-provider.ts";
 import {
   TEST_ENV,
   finalOutput,
@@ -12,8 +17,11 @@ import {
   parseProject,
   projectJson,
   STORAGE_KEY,
+  creationEvidence,
 } from "../../src/composer/project.ts";
 import { createDraft, type Draft } from "../../src/composer/model.ts";
+import type { ComposerResult } from "../../src/composer/contract.ts";
+import { recordings } from "../../src/domain/catalog.ts";
 import { eventSchedule, RENDERER } from "../../src/composer/sound.ts";
 
 // Ordinary reruns must never overwrite committed historical verification media.
@@ -34,7 +42,11 @@ async function storedDraft(page: Page): Promise<Draft> {
     STORAGE_KEY,
   );
 }
-async function routeFixture(page: Page, transport: ProviderTransport) {
+async function routeFixture(
+  page: Page,
+  transport: ProviderTransport,
+  onResult?: (response: Response) => void,
+) {
   const worker = createWorker({ transport });
   await page.route("**/api/**", async (route) => {
     const input = route.request();
@@ -46,6 +58,7 @@ async function routeFixture(page: Page, transport: ProviderTransport) {
       }),
       TEST_ENV,
     );
+    if (input.url().endsWith("/api/composer")) onResult?.(response);
     await route.fulfill({
       status: response.status,
       headers: Object.fromEntries(response.headers),
@@ -53,6 +66,190 @@ async function routeFixture(page: Page, transport: ProviderTransport) {
     });
   });
 }
+
+async function modifiedCopy(page: Page) {
+  await seed(page);
+  await page
+    .getByRole("button", { name: "Duplicate block", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Scale duration", exact: true })
+    .click();
+  await page.locator(".gap-editor summary").click();
+  await page.getByLabel("Gap 1 → 2", { exact: true }).fill("0.300");
+  await page.getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
+  const draft = await storedDraft(page);
+  expect(draft.blocks.map((b) => b.times)).toEqual(
+    modifiedCopyInput().draft.blocks.map((b) => b.times),
+  );
+  await page
+    .getByLabel("What would you like to do?", { exact: true })
+    .selectOption("investigate");
+  await page
+    .getByRole("textbox", { name: "Your request", exact: true })
+    .fill(
+      "Find the closest real recordings to my currently selected edited block under the normalized interval metric. Exclude its seed and explain the timing differences and limitations.",
+    );
+  return draft;
+}
+
+for (const [label, prose] of [
+  ["supported", QUANTITATIVE_COMPOSER_PROSE],
+  ["incorrect-limitation", INCORRECT_COMPOSER_PROSE],
+])
+  test(`TEST ONLY numeric Composer prose ${label}: tool loop, unverified UI and separate downloaded evidence`, async ({
+    page,
+  }, info) => {
+    const mock = composerTransport("scale", prose),
+      catalogBefore = structuredClone(recordings);
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(e.message));
+    await routeFixture(page, mock.transport);
+    const before = await modifiedCopy(page),
+      activeId = before.blocks[1].id;
+    const facts = creationEvidence(before, activeId);
+    const comparison = page.getByRole("region", {
+      name: "Compare my creation",
+      exact: true,
+    });
+    const comparisonBefore = await comparison.innerText();
+    const fieldSelection = await page
+      .getByLabel("Select recording B", { exact: true })
+      .inputValue();
+    await page
+      .getByRole("button", { name: "Ask Astra to investigate", exact: true })
+      .click();
+    const visible = page.getByTestId("composer-result");
+    await expect(visible).toContainText(
+      "TEST ONLY · model transport fixture · no live Astra call",
+    );
+    await expect(visible.getByRole("heading")).toHaveText(
+      "Generated interpretation · unverified",
+    );
+    await expect(visible).toContainText(prose);
+    await expect(visible.getByRole("heading")).not.toContainText(
+      /fact.?verified/i,
+    );
+    const result = JSON.parse(
+      (await visible.locator("pre").textContent())!,
+    ) as ComposerResult;
+    expect(result.proposal).toBeNull();
+    expect(result.analysis.blockId).toBe(activeId);
+    expect(result.analysis.matches).toEqual(facts.analysis.matches);
+    expect(result.analysis.eligibleCount).toBe(2);
+    expect(result.actions.at(-1)).toMatchObject({
+      name: "find_creation_alternatives",
+      initiatedBy: "model",
+      arguments: { blockId: activeId, limit: 3 },
+    });
+    expect(mock.calls).toHaveLength(2);
+    expect(JSON.stringify(mock.calls[1].payload.input)).toContain(
+      "function_call_output",
+    );
+    expect(await storedDraft(page)).toEqual(before);
+    expect(await comparison.innerText()).toBe(comparisonBefore);
+    expect(
+      await page.getByLabel("Select recording B", { exact: true }).inputValue(),
+    ).toBe(fieldSelection);
+    await expect(comparison).not.toContainText("dswp-99");
+    await expect(
+      page.getByRole("button", { name: "Apply proposal", exact: true }),
+    ).toHaveCount(0);
+    await page
+      .getByLabel("Include analysis evidence", { exact: false })
+      .check();
+    const delivered = await download(page, "Download project JSON");
+    expect(delivered.filename).toContain(`r${before.revision}-project.json`);
+    const project = parseProject(delivered.bytes.toString());
+    const saved = project.savedAnalysis as {
+      label: string;
+      deterministic: unknown;
+      generated: ComposerResult;
+    };
+    expect(saved.label).toBe("Saved analysis — unverified on reopen");
+    expect(saved.deterministic).toEqual(facts);
+    expect(saved.generated).toEqual(result);
+    expect(project.draft).toEqual(before);
+    expect(project.activeId).toBe(activeId);
+    expect(project.credits).toEqual(
+      parseProject(projectJson(before, [])).credits,
+    );
+    expect(recordings).toEqual(catalogBefore);
+    expect(JSON.stringify(project)).not.toMatch(
+      /test-opaque|encrypted_content|TEST_ONLY_NOT_A_CREDENTIAL|fact-verified/,
+    );
+    const directory = "test-results/composer-numeric-prose";
+    await mkdir(directory, { recursive: true });
+    await visible.screenshot({
+      path: `${directory}/${info.project.name}-TEST-ONLY-${label}.png`,
+    });
+    await copyFile(
+      delivered.path,
+      `${directory}/${info.project.name}-TEST-ONLY-${label}-project.json`,
+    );
+    await page
+      .getByLabel("Open Composer project", { exact: true })
+      .setInputFiles(delivered.path);
+    await expect(
+      page.getByText(
+        "Imported / saved analysis · unverified historical content",
+        { exact: true },
+      ),
+    ).toBeVisible();
+    await expect(visible).toHaveCount(0);
+    expect((await storedDraft(page)).blocks).toEqual(before.blocks);
+    expect(mock.calls).toHaveLength(2);
+    expect(errors).toEqual([]);
+  });
+
+test("late TEST ONLY numeric Composer investigation cannot describe or enter the export of a changed draft", async ({
+  page,
+}) => {
+  const mock = composerTransport("scale", QUANTITATIVE_COMPOSER_PROSE);
+  let release: () => void = () => {},
+    finalWaiting = false,
+    serverAccepted = false;
+  const gate = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  await routeFixture(
+    page,
+    async (url, init) => {
+      const output = await mock.transport(url, init);
+      if (mock.calls.length === 2) {
+        finalWaiting = true;
+        await gate;
+      }
+      return output;
+    },
+    (response) => {
+      serverAccepted = response.status === 200;
+    },
+  );
+  const before = await modifiedCopy(page);
+  await page
+    .getByRole("button", { name: "Ask Astra to investigate", exact: true })
+    .click();
+  await expect.poll(() => finalWaiting).toBe(true);
+  await page.getByLabel("Gap 1 → 2", { exact: true }).fill("0.350");
+  await page.getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
+  const changed = await storedDraft(page);
+  expect(changed.revision).toBeGreaterThan(before.revision);
+  expect(changed.blocks[1].times[1]).toBe(0.35);
+  release();
+  await expect.poll(() => serverAccepted).toBe(true);
+  await expect(page.getByTestId("composer-result")).toHaveCount(0);
+  await page.getByLabel("Include analysis evidence", { exact: false }).check();
+  const delivered = await download(page, "Download project JSON");
+  const project = parseProject(delivered.bytes.toString());
+  expect(project.draft).toEqual(changed);
+  expect(project.savedAnalysis).toMatchObject({
+    generated: null,
+    deterministic: creationEvidence(changed, changed.blocks[1].id),
+  });
+  expect(delivered.bytes.toString()).not.toContain(QUANTITATIVE_COMPOSER_PROSE);
+  expect(mock.calls).toHaveLength(2);
+});
 async function download(page: Page, name: string) {
   const pending = page.waitForEvent("download");
   await page.getByRole("button", { name, exact: true }).click();

@@ -1,5 +1,4 @@
 import { recordings } from "../src/domain/catalog.ts";
-import { METRIC } from "../src/domain/timing.ts";
 import { compareBlock, beforeAfter } from "../src/composer/analysis.ts";
 import {
   applyOperations,
@@ -102,7 +101,7 @@ Return a small concrete proposal for edit mode. Nothing is applied until the use
 For investigation use supplied deterministic evidence and listed tools. Call find_creation_alternatives for a request to find real examples. Search real catalog only, exclude all seed/ancestral IDs and identical bytes, and never flatten a phrase into a biological coda.
 Unequal counts are not comparable: no alignment, padding or truncation. Seed timestamps are machine estimates, not reviewed coda boundaries. Client-submitted previous timing is user-authored, not verified history.
 Do not infer whale translation, identity, intent, emotion, grammar or semantic confidence. Creator meanings remain personal. Keep generated interpretation tentative.
-For investigation final prose cite actual supplied evidence IDs. Authoritative numbers are displayed from deterministic evidence; introduce no numerical measurement claims. You may name exact supplied recording IDs, filenames and metric version labels. No URLs. Include annotation uncertainty, small catalog scope and limitations of timing distance. Citation resolution is traceability, not proof of truth.`;
+For investigation return concise explanations with actual supplied evidence IDs. Quantitative descriptions are allowed when supported by supplied evidence; do not invent measurements, meanings or confidence. Use only supplied recording IDs and filenames. Authoritative displayed measurements, candidate counts and rankings come from deterministic code, never from your narrative. Generated prose remains factually unverified: citation resolution does not verify every statement or source name embedded in free text. No URLs. Include annotation uncertainty, small catalog scope and limitations of timing distance.`;
 
 export function parseComposerRequest(value: unknown): ComposerRequest {
   const v = exact(value, [
@@ -205,22 +204,6 @@ function validateInterpretation(
   evidence: Map<string, ComposerEvidence>,
 ): GeneratedExplanation {
   const v = exact(value, ["possibleInterpretations", "limitations"]);
-  const labels = [
-    ...recordings
-      .filter((r) => evidence.has(`source:${r.id}`))
-      .flatMap((r) => [r.id, r.label, r.source.filename]),
-    `${METRIC.id} v${METRIC.version}`,
-    `${METRIC.name} v${METRIC.version}`,
-    `v${METRIC.version}`,
-  ];
-  const pattern = labels
-    .sort((a, b) => b.length - a.length)
-    .map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-    .join("|");
-  const supplied = new RegExp(
-    `(?<![\\p{L}\\p{N}_.-])(?:${pattern})(?![\\p{L}\\p{N}_-]|\\.[\\p{L}\\p{N}_-])`,
-    "gu",
-  );
   function section(items: unknown) {
     if (!Array.isArray(items) || !items.length || items.length > 4)
       throw new BoundaryError("INVALID_EXPLANATION", 502);
@@ -236,8 +219,9 @@ function validateInterpretation(
       const evidenceIds = row.evidenceIds.map((id) => boundedText(id, 160));
       if (evidenceIds.some((id) => !evidence.has(id)))
         throw new BoundaryError("INVENTED_REFERENCE", 502);
-      // A lexical content restriction only. Not a number parser or factual judge.
-      if (/https?:\/\//i.test(text) || /\d/.test(text.replace(supplied, "")))
+      // Only structured references resolve. Prose (including numbers and source
+      // names) remains unverified and never supplies authoritative measurements.
+      if (/https?:\/\//i.test(text))
         throw new BoundaryError("UNSUPPORTED_GENERATED_CONTENT", 502);
       return { text, evidenceIds: [...new Set(evidenceIds)] };
     });
