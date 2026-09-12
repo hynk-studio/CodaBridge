@@ -2,7 +2,7 @@
 
 Hear a real recording. Shape a personal synthetic phrase. Compare its timing and keep your coda.
 
-**MVP-03 Coda Composer is implemented for local Draft review.** Four attributed originals connect to a bounded phrase editor, synthetic click playback, source-aware comparison, personal codebook and WAV/card/project downloads. Real server-side Astra editing and investigation contracts are connected to the UI and tested with visibly labeled provider fixtures. **Default live access remains disabled.** The first private live Composer batch accepted a compound edit and verified Apply/Undo/Redo and downloads; its modified-copy investigation was rejected with `UNSUPPORTED_GENERATED_CONTENT` after upstream HTTP success. Live Composer investigation remains unresolved; no hosted Sites run has occurred.
+**MVP-03 Coda Composer is implemented for local Draft review.** Four attributed originals connect to a bounded phrase editor, synthetic click playback, source-aware comparison, personal codebook and WAV/card/project downloads. Real server-side Astra editing and investigation contracts are connected to the UI and tested with visibly labeled provider fixtures. **Default live access remains disabled.** The first private live Composer batch accepted a compound edit and verified Apply/Undo/Redo and downloads; its modified-copy investigation was rejected with `UNSUPPORTED_GENERATED_CONTENT` after upstream HTTP success. After the Composer prose correction, one separately authorized investigation of the restored creation passed application/tool-path and case-specific answer-quality checks. Broader live reliability and hosted Sites operation remain unverified.
 
 ## Run locally
 
@@ -44,6 +44,7 @@ The browser checks original bytes before decoding. The server independently reso
 - [Composer quantitative-prose policy and correction checks](docs/MVP_03_NUMERIC_PROSE.md)
 - [MVP-03 review corrections, before/after captures and downloads](docs/MVP_03_REFINEMENT.md)
 - [First live Composer batch: edit passed, investigation rejected](docs/trials/2026-09-12-live-composer/README.md)
+- [Post-correction live Composer investigation: tool path and answer-quality checks passed](docs/trials/2026-09-13-live-composer-investigation/README.md)
 - [MVP-03 verification, running-app capture and downloads](docs/MVP_03_VERIFICATION.md)
 - [Historical live A/B retrieval and unequal-count batch](docs/trials/2026-09-12-live-retrieval-unequal/README.md)
 - [MVP-02 implementation and boundaries](docs/MVP_02.md)

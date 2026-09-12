@@ -1,0 +1,90 @@
+{
+  "label": "LIVE ASTRA — one restored-creation investigation, no replay",
+  "source": "aa250a98607a61bd9892fd6d9aa0d251fd5ca933",
+  "files": [
+    {
+      "name": "LIVE-ASTRA-outcome.png",
+      "bytes": 446583,
+      "sha256": "7fc9dd7b22b3799667403f7a83e29d5e9cf598582487f8627f5d072473f358b4"
+    },
+    {
+      "name": "README.md",
+      "bytes": 12116,
+      "sha256": "f9b05dc860e9615f569f96916529ce400d0a0162752432ec5160875f8a216087"
+    },
+    {
+      "name": "accepted-result.json",
+      "bytes": 26334,
+      "sha256": "e8a89b0c39a67c694ce56907bc15e330e6c8c7cb6134c04d5a7717e9ee196328"
+    },
+    {
+      "name": "assessment.json",
+      "bytes": 5033,
+      "sha256": "ac0738950272a737801e3ecc1fbc5c84aad3ca20e6888a7e9c0a82e7c0792aa5"
+    },
+    {
+      "name": "cleanup.json",
+      "bytes": 526,
+      "sha256": "4989be5e1d55fc441cf24da5ee20ce9f2a616dcc05c8eb76baca42f846a0245e"
+    },
+    {
+      "name": "creation-project.json",
+      "bytes": 42816,
+      "sha256": "b6cf8e9e14e86b74eb3925fd32f2bbc964e885e167d1ef5f363cbc130a2a8f06"
+    },
+    {
+      "name": "download.json",
+      "bytes": 1913,
+      "sha256": "7d19da5861f1a7d3270f62407f2e92155c6eb2ad6879cf7ce950853f83236ddd"
+    },
+    {
+      "name": "execution.json",
+      "bytes": 28079,
+      "sha256": "5dad9a40197f18b83b599aff1c3ade5f49ce68df4317079dff4100a22dcab5d8"
+    },
+    {
+      "name": "input.json",
+      "bytes": 3210,
+      "sha256": "38c7587cae66366d1226fde347acdadf1027a125914cf986a22e2b69a6f65464"
+    },
+    {
+      "name": "preparation.json",
+      "bytes": 1237,
+      "sha256": "eb2d18d4de0cc9a71c5e13eff98cc4724415177b77e2cc53b0a937925a49838f"
+    },
+    {
+      "name": "recomputed-before.json",
+      "bytes": 3121,
+      "sha256": "52b417a9354df78328619cdf1e76af7b744c8f59748e9ef71753bc7b1d80bf22"
+    },
+    {
+      "name": "restoration.json",
+      "bytes": 455,
+      "sha256": "9b715f47339fd4487037b6d6e060594264e146b8eddac8115f5425a930488a09"
+    },
+    {
+      "name": "runtime-cleanup.json",
+      "bytes": 279,
+      "sha256": "43024adc83c0760ac91958c6acd60d95adf1304338748a294032438d594ea91c"
+    },
+    {
+      "name": "setup-without-submission.json",
+      "bytes": 280,
+      "sha256": "6731a95dd23fd616811b7ea8c9487e11bad011eb8e5f27efcb56d587e9e774be"
+    },
+    {
+      "name": "submission.json",
+      "bytes": 1941,
+      "sha256": "d09b807591669f83fb1593a58b448b63735eb5539d6fb2a4bd0acd78b400fdf2"
+    },
+    {
+      "name": "ui-observation.json",
+      "bytes": 421,
+      "sha256": "ec64bb32d837cec5d4bac58f4676e5a324759d9c6707fa3562dcb7971e003219"
+    }
+  ],
+  "privacyShapeCheck": "passed",
+  "screenshotsVisuallyInspected": true,
+  "modelSubmissions": 1,
+  "observedProviderRequests": 2
+}

@@ -1,0 +1,31 @@
+{
+  "authorization": "https://github.com/hynk-studio/CodaBridge/pull/5#issuecomment-5647779910",
+  "source": "aa250a98607a61bd9892fd6d9aa0d251fd5ca933",
+  "productionCorrection": "5703cfd94905c97c10996936409d28a680b7e103",
+  "preparedAt": "2026-09-12T18:26:07.936Z",
+  "inputFile": "docs/trials/2026-09-12-live-composer/creation-project.json",
+  "activeId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+  "question": "Find the closest real recordings to my currently selected edited block under the normalized interval metric. Exclude its seed and explain the timing differences and limitations.",
+  "submissionConsumed": false,
+  "artifactSha256": "5847d674d35cda724f4fca03ffa463d54ddc6e13bd7fd6bbdfbb3f4f2bbf6dd5",
+  "runtime": {
+    "node": "v25.9.0",
+    "miniflare": "5.20260911.0-alpha",
+    "workerd": "1.20260911.1",
+    "compatibilityDate": "2026-09-12"
+  },
+  "preflight": {
+    "build": "passed",
+    "dataVerification": "passed",
+    "builtWorkerTestsPassed": 14,
+    "credentialsExcluded": true
+  },
+  "transport": "default native Worker fetch; no override; manual redirects",
+  "limits": {
+    "model": "gpt-6-astra",
+    "reasoning": "low",
+    "deadlineMs": 20000,
+    "maxOutputTokens": 1800,
+    "providerRounds": 4
+  }
+}
