@@ -1,0 +1,34 @@
+# Working on CodaBridge
+
+## Read first
+
+Read README.md, issue #1, and docs/MVP_01.md before implementation. Work only in hynk-studio/CodaBridge. GitHub is the source of truth.
+
+## Working style
+
+- ChatGPT plans and reviews; Codex implements and tests. Continue the assigned implementation branch/PR rather than creating a competing version.
+- After the one-time README bootstrap, use PRs for source changes. Do not merge, force-push, deploy, or modify unrelated projects unless explicitly instructed.
+- Make ordinary reversible implementation choices without repeatedly asking for permission. Report concrete blockers with the smallest next action. Fix local build/test failures within the assigned scope; do not import Augnes-style approval machinery, runtime qualification, or Canonical verification.
+- Keep documentation short and executable behavior central. Use English for code, public UI, repository documentation, and implementation reports.
+
+## Data and scientific honesty
+
+- Attribute every real recording and retain its source revision/file ID, license, transformations, and byte checksum. Verify actual selected files; a dataset card alone does not identify a particular coda or click annotation.
+- Keep source annotations, machine estimates, and later corrections distinct. Do not claim human review that did not occur.
+- Do not associate clips with speaker identities, dialogue rows, behavior, or meanings without source evidence. Synthetic tests/sonification must be labeled and cannot substitute for real-audio acceptance.
+- Preserve original measurements. Acoustic distance is a named descriptive metric, not translation accuracy, a shared-meaning probability, or a biological category.
+- Future model output must cite existing evidence and cannot overwrite measurements. Never present a fixture, template, or cached answer as a live Astra result.
+
+## Delivery and safety
+
+- Sites is a proposed target. Its creation, activation, saved hosted versions, publication, and paid application-model calls are deferred until explicitly authorized. Local development and compatibility builds are in scope.
+- Do not create fake Sites identifiers or copy another site's hosting linkage. Preserve a genuine linkage when one exists.
+- Keep credentials out of prompts, source, browser bundles, logs, reports, and screenshots. Do not inspect unrelated credential stores. Tests must not call a paid model.
+- Prefer browser computation, a small server boundary, and static curated assets. No accounts, database, object storage, GPU service, or external analytics unless the assigned task demonstrates a need.
+- Keep root project licensing unchanged unless the owner chooses one. Preserve third-party license/attribution notices.
+
+## Verification and reporting
+
+Use the app's normal typecheck, focused unit tests, production build, and browser smoke checks. Record actual commands/results and relevant environment versions. Distinguish local build, browser automation, human listening, Sites build, deployment, and live-model evidence; none implies the others. Report unrun checks and remaining gaps plainly.
+
+A PR closeout should say what works, which recordings and annotations were used, what was tested, what remains, and whether any deployment or model request occurred. No fabricated pass status, uptime, cost, citations, or benchmark result.

@@ -1,0 +1,23 @@
+node_modules/
+dist/
+build/
+.next/
+.output/
+.vinext/
+.wrangler/
+coverage/
+playwright-report/
+test-results/
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.log
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+data/raw/
+.tmp/
+# Do not ignore curated licensed public assets or genuine Sites linkage wholesale.
