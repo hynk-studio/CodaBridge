@@ -1,0 +1,129 @@
+{
+  "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+  "acquiredOn": "2026-09-12",
+  "candidateSubset": "Numeric filenames 1.wav through 6.wav; no archive or bulk download.",
+  "method": "relative-peak-transient-groups",
+  "version": "1.0.0",
+  "parameters": {
+    "envelopeWindowSeconds": 0.002,
+    "relativeThreshold": 0.18,
+    "groupGapSeconds": 0.07
+  },
+  "selectionRule": "First two of this small subset with six grouped peaks and >=0.15 seconds of leading/trailing margin. Product example selection, not biological classification.",
+  "humanListening": "not-performed",
+  "files": [
+    {
+      "filename": "1.wav",
+      "bytes": 193192,
+      "sha256": "8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057",
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "durationSeconds": 2.1898866213151926,
+      "estimatedClickTimesSeconds": [
+        0.3827891156462585,
+        0.50140589569161,
+        0.9170294784580499,
+        1.5219274376417233,
+        1.704172335600907,
+        1.9612018140589569
+      ],
+      "selected": true,
+      "disposition": "Selected: six grouped transient peaks with at least 0.15 seconds before the first and after the last peak."
+    },
+    {
+      "filename": "2.wav",
+      "bytes": 189798,
+      "sha256": "fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417",
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "durationSeconds": 2.15140589569161,
+      "estimatedClickTimesSeconds": [
+        0.44222222222222224,
+        0.9500680272108843,
+        1.3271428571428572,
+        1.4907256235827664,
+        1.6771201814058956,
+        1.9763492063492063
+      ],
+      "selected": true,
+      "disposition": "Selected: six grouped transient peaks with at least 0.15 seconds before the first and after the last peak."
+    },
+    {
+      "filename": "3.wav",
+      "bytes": 183202,
+      "sha256": "7963818cd83259382913911a57b6302c4a730278cee1a63c8b419904c7d955d7",
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "durationSeconds": 2.0766213151927437,
+      "estimatedClickTimesSeconds": [
+        0.15430839002267574,
+        0.5015419501133787,
+        0.6832879818594104,
+        0.8900453514739229,
+        1.2524036281179138,
+        1.4334240362811792,
+        1.5909977324263038,
+        1.7107936507936508
+      ],
+      "selected": false,
+      "disposition": "Not selected: different detected count."
+    },
+    {
+      "filename": "4.wav",
+      "bytes": 186074,
+      "sha256": "3f2bd7d95bf12f3a04f630ef5f3975f68ac454ff824f942d2212326243f2950a",
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "durationSeconds": 2.1091836734693876,
+      "estimatedClickTimesSeconds": [
+        0.5147619047619048,
+        0.9115419501133787,
+        1.0012925170068028,
+        1.2750113378684806,
+        1.5130839002267573,
+        2.027437641723356
+      ],
+      "selected": false,
+      "disposition": "Not selected: detected peak near a file boundary."
+    },
+    {
+      "filename": "5.wav",
+      "bytes": 143976,
+      "sha256": "34553c31a9cb8fa538beeceb16ee41f0c371fc04adec3a586cd30fe64bca72fb",
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "durationSeconds": 1.6318820861678005,
+      "estimatedClickTimesSeconds": [
+        0.1099546485260771,
+        0.6034920634920635,
+        0.7868934240362812,
+        0.979750566893424,
+        1.0934920634920635,
+        1.5854195011337868
+      ],
+      "selected": false,
+      "disposition": "Not selected: detected peak near a file boundary."
+    },
+    {
+      "filename": "6.wav",
+      "bytes": 179002,
+      "sha256": "4686d63ef0a103a54f6c2ee7041de48cc1285785186b6ff1122623e69cc41471",
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "durationSeconds": 2.0290022675736963,
+      "estimatedClickTimesSeconds": [
+        0.04655328798185941,
+        0.24179138321995464,
+        0.5012244897959184,
+        0.7529705215419501,
+        1.2638095238095237,
+        1.3793424036281179,
+        1.5322222222222222,
+        1.7753287981859411,
+        2.013424036281179
+      ],
+      "selected": false,
+      "disposition": "Not selected: different detected count."
+    }
+  ]
+}
