@@ -19,6 +19,12 @@ env -u OPENAI_API_KEY npm run preview
 
 Current `.openai/hosting.json` is `{}`: no CodaBridge Site linkage is provisioned. Existing client/Worker shape is prepared locally; the platform has not saved or deployed either candidate. The [official Sites guide](https://learn.chatgpt.com/docs/sites) places create/save/deploy in ChatGPT web/desktop; saving a version and deploying it are distinct operations. A future handoff must verify account-specific availability, a CodaBridge-specific linkage, intended audience and the exact approved candidate. It must retain absent provider bindings and server-side `NOT_CONFIGURED` responses, then separately test hosted assets, audio, downloads and direct model endpoints. No public URL is claimed here.
 
+## New Lab candidate · Draft review only
+
+[Download current Lab Worker/client ZIP](release/context-lab-candidate/key-free-worker-client.zip) · [exact manifest](release/context-lab-candidate/manifest.json). Source commit **`8cc61f7f240ce007c3263a13721edd2d06550606`**, tree **`527217982f9aee0a7ed95add67e806f3c575052d`**. This separate candidate contains Context Lab and needs review; it does not replace the accepted foundation candidate above. Rebuilt from the committed source with the key excluded; Worker SHA-256 **`1c55d2d7f4f46b224bb6f73a9dff480e4812d17ff3a3f32c0b1a05109db742d9`** matches the tested artifact. ZIP SHA-256 **`2671dea0374cc0133bccee89a6aee53a86425840d478b8e82d142bb6d5c6f08b`**.
+
+Packaging uses an explicit client/server/hosting-metadata allowlist; older ignored root-level static build outputs were excluded. Both ZIPs include the existing default-disabled loopback preview configuration, and neither includes tests, trial data, unpublished creations, dependency directories or credentials. No platform save/deploy operation has run.
+
 ## Five-minute listening pack
 
 [Download listening ZIP](release/listening-pack.zip) · [full attribution, hashes and schedules](release/listening-manifest.json) · [automated delivery/decoding observations](release/listening-verification.json).

@@ -16,6 +16,8 @@ Foundation verification: `npm test` **161 passed**; lint, data verification and 
 
 ## Implementation checks
 
+Executed application source: **`8cc61f7f240ce007c3263a13721edd2d06550606`**, tree **`527217982f9aee0a7ed95add67e806f3c575052d`**. The closeout commit adds only this source binding and its packaged candidate; application files remain at that tested implementation. [Candidate manifest](release/context-lab-candidate/manifest.json) records exact built hashes.
+
 All commands below ran with **`env -u OPENAI_API_KEY`**. No credential store was read. Environment: Node **25.9.0**, npm **11.12.1**, TypeScript **6.0.2**, Vite **8.3.0**, Wrangler **4.131.1**, Playwright **1.63.0**, installed native workerd with compatibility date **2026-09-12**.
 
 | Command | Observed result |

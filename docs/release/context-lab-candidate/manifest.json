@@ -1,0 +1,61 @@
+{
+  "sourceCommit": "8cc61f7f240ce007c3263a13721edd2d06550606",
+  "sourceTree": "527217982f9aee0a7ed95add67e806f3c575052d",
+  "reviewStatus": "New Context Lab Draft candidate; not an accepted hosting release",
+  "build": "env -u OPENAI_API_KEY npm run build",
+  "artifactRoot": "dist",
+  "workerEntry": "server/index.js",
+  "staticAssets": "client",
+  "hostingMetadata": {},
+  "modelBindings": {},
+  "defaultAccess": "NOT_CONFIGURED",
+  "previewConfig": "wrangler.local.json",
+  "previewCommand": "env -u OPENAI_API_KEY WRANGLER_SEND_METRICS=false npx --no-install wrangler dev --local --config wrangler.local.json --ip 127.0.0.1 --port 4174",
+  "files": [
+    {
+      "path": ".openai/hosting.json",
+      "bytes": 3,
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    {
+      "path": "client/assets/index-Br7lXnqZ.css",
+      "bytes": 28995,
+      "sha256": "ac1362fdcf1c0e3a4ff6756d353cb674e5bcf63b869b9e68f8c0249f785365b2"
+    },
+    {
+      "path": "client/assets/index-CpcP7E-9.js",
+      "bytes": 347560,
+      "sha256": "66065b4ba44448b962fce87f42ce4208e3efb7a572b2eed23f7685d24c78c776"
+    },
+    {
+      "path": "client/audio/dswp-1.wav",
+      "bytes": 193192,
+      "sha256": "8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057"
+    },
+    {
+      "path": "client/audio/dswp-11.wav",
+      "bytes": 146562,
+      "sha256": "6e4cc5f55a2ec915b23e05ebfd3bc9e4f13d87956139dc8ac36ea3f1e05a97a3"
+    },
+    {
+      "path": "client/audio/dswp-2.wav",
+      "bytes": 189798,
+      "sha256": "fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417"
+    },
+    {
+      "path": "client/audio/dswp-7.wav",
+      "bytes": 180826,
+      "sha256": "9af722759e0d1125e161b87cb71e01adc026d35b6500d0d62504d2bbe978ce60"
+    },
+    {
+      "path": "client/index.html",
+      "bytes": 651,
+      "sha256": "9b9ba18d545bcbbf7b33518e44a1d84d02fff1a70a0dbedcbaff2600786c240a"
+    },
+    {
+      "path": "server/index.js",
+      "bytes": 97602,
+      "sha256": "1c55d2d7f4f46b224bb6f73a9dff480e4812d17ff3a3f32c0b1a05109db742d9"
+    }
+  ]
+}
