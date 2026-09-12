@@ -1,0 +1,19 @@
+{
+  "parsedProjectMatchesExactFinalDraft": true,
+  "projectRevision": 4,
+  "activeId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+  "generatedAnalysis": null,
+  "deterministicEvidenceRecomputed": true,
+  "exactWavMatchesCurrentRenderer": true,
+  "sampleRate": 48000,
+  "channels": 1,
+  "bitsPerSample": 16,
+  "sampleFrames": 206072,
+  "durationSeconds": 4.293166666666667,
+  "peakAbsolutePcm": 0.046356201171875,
+  "wavSyntheticAttributionAndUnknownMeaningMetadata": true,
+  "cardWidth": 1200,
+  "cardHeight": 768,
+  "phraseEventCount": 12,
+  "humanListening": false
+}

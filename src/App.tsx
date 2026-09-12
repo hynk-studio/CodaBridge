@@ -13,6 +13,8 @@ import { registerEvidenceTool } from "./webmcp.ts";
 import InvestigationPanel from "./InvestigationPanel.tsx";
 import { useInvestigation } from "./useInvestigation.ts";
 import { measuredObservation } from "./domain/observation.ts";
+import Composer, { type ComposerHandle } from "./composer/Composer.tsx";
+import { stopSynthetic } from "./composer/sound.ts";
 
 const seconds = (value: number) => `${value.toFixed(3)} s`;
 
@@ -128,6 +130,8 @@ export default function App() {
   });
   const [view, setView] = useState<ViewMode>("absolute");
   const [downloadStatus, setDownloadStatus] = useState("");
+  const [revealed, setRevealed] = useState(false);
+  const composer = useRef<ComposerHandle>(null);
   const audioElements = useRef(new Map<Side, HTMLAudioElement>());
   const registerAudio = useCallback(
     (side: Side, element: HTMLAudioElement | null) => {
@@ -136,12 +140,15 @@ export default function App() {
     },
     [],
   );
-  const stopAudio = () =>
-    audioElements.current.forEach((element) => element.pause());
+  const stopAudio = useCallback(
+    () => audioElements.current.forEach((element) => element.pause()),
+    [],
+  );
   const select = (side: Side, id: string) => {
     if (!recordings.some((recording) => recording.id === id)) return;
     if (selection[side] === id) return;
     stopAudio();
+    stopSynthetic();
     investigation.cancel(
       "Selection changed. Previous investigation is obsolete; ask about this pair.",
     );
@@ -199,7 +206,7 @@ export default function App() {
       link.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       setDownloadStatus(
-        "Evidence download requested for the current selection.",
+        "Recording-comparison JSON download requested for A/B. Save your Composer project in Keep my coda.",
       );
     } catch (cause) {
       setDownloadStatus(
@@ -221,7 +228,7 @@ export default function App() {
           CodaBridge
         </a>
         <span className="edition">
-          MVP–02 <span> / </span> Listen & investigate
+          Coda Composer <span> / </span> Listen · Make · Keep
         </span>
       </header>
       <main id="workspace">
@@ -229,18 +236,22 @@ export default function App() {
           <div>
             <p className="eyebrow">A small window into sound</p>
             <h1>
-              Can you hear the <em>pattern?</em>
+              Hear a pattern. <em>Make it yours.</em>
             </h1>
             <p>
-              Play two real sperm whale recordings. Compare the spacing between
-              their clicks.
+              Listen to real sperm whale recordings. Shape their timing into a
+              personal, synthetic phrase.
             </p>
           </div>
-          <button className="export-button" onClick={download}>
-            Download evidence <span aria-hidden="true">↓</span>
-          </button>
+          <nav className="intro-actions" aria-label="Listen and create">
+            <a className="entry-listen" href="#listen">
+              Listen to recordings ↓
+            </a>
+            <a href="#composer">Open my Composer →</a>
+            <small>Listen first. Make a version when you’re ready.</small>
+          </nav>
         </div>
-        <div className="workspace-label">
+        <div className="workspace-label" id="listen">
           <span>
             01 <strong>Listen</strong>
           </span>
@@ -258,157 +269,191 @@ export default function App() {
               recordings={recordings}
               onSelect={(id) => select(side, id)}
               registerAudio={registerAudio}
-              onPlay={(element) =>
+              onMake={() =>
+                composer.current?.makeVersion(side === "A" ? a.id : b.id)
+              }
+              onPlay={(element) => {
+                stopSynthetic();
                 audioElements.current.forEach((other) => {
                   if (other !== element) other.pause();
-                })
-              }
+                });
+              }}
             />
           ))}
         </div>
-        <section className="comparison-panel" aria-labelledby="compare-title">
-          <div className="comparison-heading">
-            <div>
-              <p className="eyebrow">02 Compare</p>
-              <h2 id="compare-title">The rhythm, made visible.</h2>
+        <div className="listen-impression">
+          <label>
+            What do you hear? <span>(a personal impression)</span>
+            <input
+              aria-label="My listening impression"
+              maxLength={160}
+              placeholder="Even, uneven, a pause…"
+            />
+          </label>
+          <button
+            className="reveal-measurements"
+            onClick={() => setRevealed((v) => !v)}
+            aria-expanded={revealed}
+            aria-controls="field-measurements"
+          >
+            {revealed ? "Hide measurements" : "Reveal measurements"}
+          </button>
+        </div>
+        <div id="field-measurements" hidden={!revealed}>
+          <section className="comparison-panel" aria-labelledby="compare-title">
+            <div className="comparison-heading">
+              <div>
+                <p className="eyebrow">02 Compare</p>
+                <h2 id="compare-title">The rhythm, made visible.</h2>
+              </div>
+              <fieldset className="view-toggle">
+                <legend className="sr-only">Timing view</legend>
+                {(["absolute", "normalized"] as const).map((mode) => (
+                  <label key={mode} className={view === mode ? "selected" : ""}>
+                    <input
+                      type="radio"
+                      name="view"
+                      value={mode}
+                      checked={view === mode}
+                      onChange={() => {
+                        setView(mode);
+                        setDownloadStatus("");
+                      }}
+                    />
+                    {mode === "absolute" ? "Absolute" : "Normalized"}
+                  </label>
+                ))}
+              </fieldset>
             </div>
-            <fieldset className="view-toggle">
-              <legend className="sr-only">Timing view</legend>
-              {(["absolute", "normalized"] as const).map((mode) => (
-                <label key={mode} className={view === mode ? "selected" : ""}>
-                  <input
-                    type="radio"
-                    name="view"
-                    value={mode}
-                    checked={view === mode}
-                    onChange={() => {
-                      setView(mode);
-                      setDownloadStatus("");
-                    }}
-                  />
-                  {mode === "absolute" ? "Absolute" : "Normalized"}
-                </label>
+            <p className="view-explanation">
+              {view === "absolute"
+                ? "Seconds from each original file’s start. Each dot is a machine-estimated click peak."
+                : "First click = 0, last click = 1. Compare spacing independent of offset and total click span. Audio stays at original speed."}
+            </p>
+            <TimingPlot a={a} b={b} view={view} />
+            <p className="measured-observation">
+              <strong>Measured · not AI-generated</strong>{" "}
+              {measuredObservation(timingInput(a), timingInput(b))}
+            </p>
+            <div className="measurement-strip">
+              {measurements.map((result, index) => (
+                <div key={index} className={index === 0 ? "side-a" : "side-b"}>
+                  <span className="measure-label">
+                    {index === 0 ? "A" : "B"} · Click-span duration
+                  </span>
+                  <strong>
+                    {result.status === "valid"
+                      ? seconds(result.measurements.clickSpanSeconds)
+                      : "Invalid timing"}
+                  </strong>
+                </div>
               ))}
-            </fieldset>
-          </div>
-          <p className="view-explanation">
-            {view === "absolute"
-              ? "Seconds from each original file’s start. Each dot is a machine-estimated click peak."
-              : "First click = 0, last click = 1. Compare spacing independent of offset and total click span. Audio stays at original speed."}
-          </p>
-          <TimingPlot a={a} b={b} view={view} />
-          <p className="measured-observation">
-            <strong>Measured · not AI-generated</strong>{" "}
-            {measuredObservation(timingInput(a), timingInput(b))}
-          </p>
-          <div className="measurement-strip">
-            {measurements.map((result, index) => (
-              <div key={index} className={index === 0 ? "side-a" : "side-b"}>
+              <div className="metric-result" aria-live="polite">
                 <span className="measure-label">
-                  {index === 0 ? "A" : "B"} · Click-span duration
+                  Normalized interval MAD{" "}
+                  <span className="metric-version">v1.0.0</span>
                 </span>
-                <strong>
-                  {result.status === "valid"
-                    ? seconds(result.measurements.clickSpanSeconds)
-                    : "Invalid timing"}
+                <strong data-testid="metric-value">
+                  {comparison.status === "comparable"
+                    ? comparison.value.toFixed(6)
+                    : "Not comparable"}
                 </strong>
               </div>
-            ))}
-            <div className="metric-result" aria-live="polite">
-              <span className="measure-label">
-                Normalized interval MAD{" "}
-                <span className="metric-version">v1.0.0</span>
-              </span>
-              <strong data-testid="metric-value">
-                {comparison.status === "comparable"
-                  ? comparison.value.toFixed(6)
-                  : "Not comparable"}
-              </strong>
             </div>
-          </div>
-          <p className="metric-caption">
-            {comparison.status === "comparable"
-              ? "Mean absolute normalized interval difference. Smaller means closer under this timing metric."
-              : comparison.reason}{" "}
-            {a.id === b.id && (
-              <strong>Same recording selected in A and B.</strong>
-            )}
-          </p>
-          <details className="interval-details" open>
-            <summary>
-              Measured intervals{" "}
-              <span>
-                {view === "absolute" ? "seconds" : "fraction of click span"}
-              </span>
-            </summary>
-            <div
-              className="table-scroll"
-              role="region"
-              aria-label="Interval measurements; scroll horizontally for all intervals"
-              tabIndex={0}
-            >
-              <table>
-                <caption className="sr-only">
-                  Intervals between consecutive estimated clicks
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Click interval</th>
-                    {Array.from({ length: intervalCount }, (_, i) => (
-                      <th scope="col" key={i}>
-                        {i + 1} → {i + 2}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {measurements.map((result, i) => (
-                    <tr key={i}>
-                      <th scope="row">
-                        <span className={i === 0 ? "text-a" : "text-b"}>
-                          {i === 0 ? "A" : "B"}
-                        </span>{" "}
-                        / {i === 0 ? a.source.filename : b.source.filename}
-                      </th>
-                      {result.status === "valid" ? (
-                        Array.from({ length: intervalCount }, (_, index) => {
-                          const values =
-                            view === "absolute"
-                              ? result.measurements.intervalsSeconds
-                              : result.measurements.normalizedIntervals;
-                          return (
-                            <td key={index}>
-                              {values[index] === undefined
-                                ? "—"
-                                : values[index].toFixed(
-                                    view === "absolute" ? 3 : 4,
-                                  )}
-                            </td>
-                          );
-                        })
-                      ) : (
-                        <td>{result.reason}</td>
-                      )}
+            <p className="metric-caption">
+              {comparison.status === "comparable"
+                ? "Mean absolute normalized interval difference. Smaller means closer under this timing metric."
+                : comparison.reason}{" "}
+              {a.id === b.id && (
+                <strong>Same recording selected in A and B.</strong>
+              )}
+            </p>
+            <details className="interval-details">
+              <summary>
+                Measured intervals{" "}
+                <span>
+                  {view === "absolute" ? "seconds" : "fraction of click span"}
+                </span>
+              </summary>
+              <div
+                className="table-scroll"
+                role="region"
+                aria-label="Interval measurements; scroll horizontally for all intervals"
+                tabIndex={0}
+              >
+                <table>
+                  <caption className="sr-only">
+                    Intervals between consecutive estimated clicks
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Click interval</th>
+                      {Array.from({ length: intervalCount }, (_, i) => (
+                        <th scope="col" key={i}>
+                          {i + 1} → {i + 2}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </details>
-        </section>
+                  </thead>
+                  <tbody>
+                    {measurements.map((result, i) => (
+                      <tr key={i}>
+                        <th scope="row">
+                          <span className={i === 0 ? "text-a" : "text-b"}>
+                            {i === 0 ? "A" : "B"}
+                          </span>{" "}
+                          / {i === 0 ? a.source.filename : b.source.filename}
+                        </th>
+                        {result.status === "valid" ? (
+                          Array.from({ length: intervalCount }, (_, index) => {
+                            const values =
+                              view === "absolute"
+                                ? result.measurements.intervalsSeconds
+                                : result.measurements.normalizedIntervals;
+                            return (
+                              <td key={index}>
+                                {values[index] === undefined
+                                  ? "—"
+                                  : values[index].toFixed(
+                                      view === "absolute" ? 3 : 4,
+                                    )}
+                              </td>
+                            );
+                          })
+                        ) : (
+                          <td>{result.reason}</td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          </section>
+        </div>
+        <Composer
+          ref={composer}
+          stopField={stopAudio}
+          fieldSelection={`${selection.A}:${selection.B}`}
+          onExample={(id) => select("B", id)}
+        />
         <div className="bottom-grid">
           <details className="evidence-panel">
             <summary>
               <span>
                 <span className="eyebrow">03 Inspect</span>
-                <strong>Follow the evidence</strong>
+                <strong>Recording-comparison evidence (A/B)</strong>
               </span>
               <span aria-hidden="true">＋</span>
             </summary>
             <p>
               Original timestamps, full source provenance, and unrounded
-              measurements for the current selection.
+              measurements for recordings A and B. This is not a Composer
+              project; save your creation in Keep my coda.
             </p>
+            <button className="recording-export" onClick={download}>
+              Download recording-comparison JSON
+            </button>
             <ul>
               {LIMITATIONS.map((item) => (
                 <li key={item}>{item}</li>

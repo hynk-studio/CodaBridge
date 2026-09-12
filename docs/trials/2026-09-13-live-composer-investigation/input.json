@@ -1,0 +1,62 @@
+{
+  "mode": "investigate",
+  "draft": {
+    "version": 1,
+    "id": "p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf",
+    "revision": 5,
+    "title": "My first coda",
+    "intention": "",
+    "blocks": [
+      {
+        "id": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+        "times": [
+          0,
+          0.11861678004535148,
+          0.5342403628117914,
+          1.139138321995465,
+          1.3213832199546487,
+          1.5784126984126985
+        ],
+        "spacingAfter": 0.5,
+        "meaning": "",
+        "seed": {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      },
+      {
+        "id": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+        "times": [
+          0,
+          0.3,
+          0.8195294784580499,
+          1.575651927437642,
+          1.8034580498866215,
+          2.1247448979591836
+        ],
+        "spacingAfter": 0.5,
+        "meaning": "",
+        "seed": {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      }
+    ],
+    "ancestry": [
+      {
+        "recordingId": "dswp-1",
+        "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "annotationVersion": "1.0.0",
+        "originalOffsetSeconds": 0.3827891156462585
+      }
+    ]
+  },
+  "activeId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+  "previous": null,
+  "binding": "{\"catalogVersion\":\"2.0.0\",\"metric\":{\"id\":\"normalized-interval-mad\",\"version\":\"1.0.0\",\"name\":\"Mean absolute normalized interval difference\",\"unit\":\"dimensionless\",\"interpretation\":\"Smaller means closer under this timing metric.\"},\"draft\":{\"version\":1,\"id\":\"p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf\",\"revision\":5,\"title\":\"My first coda\",\"intention\":\"\",\"blocks\":[{\"id\":\"b-0a826ef7-01b4-4666-bfc3-045d1a08f775\",\"times\":[0,0.11861678004535148,0.5342403628117914,1.139138321995465,1.3213832199546487,1.5784126984126985],\"spacingAfter\":0.5,\"meaning\":\"\",\"seed\":{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}},{\"id\":\"b-e6d3a950-654c-4779-a725-cba95b2d7e01\",\"times\":[0,0.3,0.8195294784580499,1.575651927437642,1.8034580498866215,2.1247448979591836],\"spacingAfter\":0.5,\"meaning\":\"\",\"seed\":{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}}],\"ancestry\":[{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}]},\"activeId\":\"b-e6d3a950-654c-4779-a725-cba95b2d7e01\",\"previous\":null}",
+  "question": "Find the closest real recordings to my currently selected edited block under the normalized interval metric. Exclude its seed and explain the timing differences and limitations."
+}

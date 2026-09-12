@@ -1,0 +1,153 @@
+{
+  "method": "Offline arithmetic from restored timestamps and current pinned catalog, plus Codex manual inspection of the accepted narrative; no evaluator model.",
+  "applicationToolPath": "PASS",
+  "quality": "PASS_FOR_THIS_CASE",
+  "materialDiscrepancies": [],
+  "selectedBlockOrdinal": 2,
+  "selectedBlockId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+  "currentRevision": 5,
+  "restoredContentUnchanged": true,
+  "currentBindingMatches": true,
+  "allStructuredCitationsResolve": true,
+  "recordingEvidenceMatchesPinnedSources": true,
+  "modelInitiatedTool": {
+    "name": "find_creation_alternatives",
+    "initiatedBy": "model",
+    "arguments": {
+      "blockId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+      "limit": 3
+    },
+    "evidenceId": "find_creation_alternatives:b-e6d3a950-654c-4779-a725-cba95b2d7e01:3",
+    "evidenceMatchesRecomputation": true
+  },
+  "replayEvidence": "The unchanged handler dispatches the recorded tool and appends its result/evidence as function_call_output before the next request. Two accepted receipts and the subsequent cited final answer establish this path; raw wire payloads were not retained.",
+  "independentMeasurement": {
+    "markers": 6,
+    "spanSeconds": 2.1247448979591836,
+    "gapsSeconds": [
+      0.3,
+      0.51952947845805,
+      0.756122448979592,
+      0.22780612244897958,
+      0.32128684807256214
+    ],
+    "normalizedGaps": [
+      0.14119342057870093,
+      0.24451381384986864,
+      0.35586504982590955,
+      0.10721575219113938,
+      0.15121196355438152
+    ],
+    "longestGapOrdinal": 3
+  },
+  "independentCatalog": {
+    "total": 4,
+    "candidates": 3,
+    "eligible": 2,
+    "excludedAncestry": [
+      "dswp-1"
+    ],
+    "excludedDuplicates": [],
+    "ranked": [
+      {
+        "sourceId": "dswp-11",
+        "filename": "11.wav",
+        "markers": 6,
+        "spanSeconds": 1.0709523809523809,
+        "gapsSeconds": [
+          0.19999999999999996,
+          0.33390022675736963,
+          0.14709750566893431,
+          0.18018140589569154,
+          0.20977324263038555
+        ],
+        "normalizedGaps": [
+          0.18674966651845262,
+          0.31177877998687253,
+          0.1373520506468484,
+          0.16824408731923177,
+          0.19587541552859478
+        ],
+        "longestGapOrdinal": 2,
+        "normalizedIntervalMad": 0.08740519967162448
+      },
+      {
+        "sourceId": "dswp-2",
+        "filename": "2.wav",
+        "markers": 6,
+        "spanSeconds": 1.534126984126984,
+        "gapsSeconds": [
+          0.507845804988662,
+          0.37707482993197283,
+          0.1635827664399092,
+          0.1863945578231292,
+          0.2992290249433107
+        ],
+        "normalizedGaps": [
+          0.3310324440174414,
+          0.2457911462567438,
+          0.10662922178700757,
+          0.12149878057793213,
+          0.1950484073608751
+        ],
+        "longestGapOrdinal": 1,
+        "normalizedIntervalMad": 0.09969433121556079
+      }
+    ],
+    "rejected": [
+      {
+        "sourceId": "dswp-7",
+        "filename": "7.wav",
+        "markers": 7,
+        "spanSeconds": 1.3155102040816327,
+        "gapsSeconds": [
+          0.2518367346938776,
+          0.25215419501133784,
+          0.13725623582766444,
+          0.3604761904761904,
+          0.14757369614512483,
+          0.16621315192743769
+        ],
+        "normalizedGaps": [
+          0.19143654979832456,
+          0.1916778708587582,
+          0.10433688420036547,
+          0.2740200641224531,
+          0.11217981866446039,
+          0.12634881235563833
+        ],
+        "longestGapOrdinal": 4,
+        "normalizedIntervalMad": null
+      }
+    ]
+  },
+  "narrativeAssessment": {
+    "currentSyntheticBlockAndRevisionCorrect": true,
+    "blockOrdinalClaim": "The answer uses the exact selected stable ID and revision 5; it does not assert a different block ordinal. That ID is block 2.",
+    "numericalValuesAndUnitsMatchDisplayedRounding": true,
+    "candidateEligibleTotalCountsDistinctAndCorrect": true,
+    "rankAndDistancesCorrect": true,
+    "allFreeTextSourceNamesResolve": true,
+    "seedExcluded": true,
+    "unequalCountsNotCompared": true,
+    "longestGapComparisonsCorrect": true,
+    "limitations": "Explicitly states machine estimates/non-human review and detection uncertainty, limited four-recording scope, relative spacing versus duration/context, and no whale meaning/identity/intent/semantic-confidence inference.",
+    "noMaterialUnsupportedClaimsFound": true,
+    "notAutomaticFactualVerification": true
+  },
+  "providerRequestsObserved": 2,
+  "returnedUsage": {
+    "inputTokens": 9179,
+    "outputTokens": 642,
+    "totalTokens": 9821
+  },
+  "export": {
+    "actualDownloadVerified": true,
+    "currentDraftAndActiveId": true,
+    "newAcceptedResultExact": true,
+    "currentDeterministicEvidence": true,
+    "historicalGeneratedNullUnchanged": true,
+    "historicalRevisionNotReused": true
+  },
+  "limits": "One accepted case is not broad model reliability, scientific validity, human listening, or hosting evidence."
+}

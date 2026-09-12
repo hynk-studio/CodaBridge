@@ -69,6 +69,9 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
       .evaluate((element) => (element as HTMLAudioElement).currentTime),
   ).toBeGreaterThan(0);
   const originalMetric = await page.getByTestId("metric-value").textContent();
+  await page
+    .getByRole("button", { name: "Reveal measurements", exact: true })
+    .click();
   expect(Number(originalMetric)).toBeGreaterThan(0);
   await page
     .getByRole("radio", { name: "Absolute", exact: true })
@@ -103,9 +106,13 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
       elements.every((element) => (element as HTMLAudioElement).paused),
     ),
   ).toBe(true);
+  await page.locator(".evidence-panel summary").click();
   const downloadPromise = page.waitForEvent("download");
   await page
-    .getByRole("button", { name: "Download evidence", exact: true })
+    .getByRole("button", {
+      name: "Download recording-comparison JSON",
+      exact: true,
+    })
     .click();
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toBe(
@@ -157,7 +164,9 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/screenshots/${testInfo.project.name}-mvp02-unavailable.png`,
+    path: testInfo.outputPath(
+      `${testInfo.project.name}-legacy-unavailable.png`,
+    ),
     fullPage: true,
   });
   expect(errors).toEqual([]);
@@ -227,8 +236,12 @@ test("an unsupported decoder produces a usable error state", async ({
   await expect(
     page.getByRole("button", { name: "Play recording A", exact: true }),
   ).toBeDisabled();
+  await page.locator(".evidence-panel summary").click();
   await expect(
-    page.getByRole("button", { name: "Download evidence", exact: true }),
+    page.getByRole("button", {
+      name: "Download recording-comparison JSON",
+      exact: true,
+    }),
   ).toBeEnabled();
 });
 

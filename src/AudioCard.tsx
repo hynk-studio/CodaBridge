@@ -62,6 +62,7 @@ export default function AudioCard({
   onSelect,
   onPlay,
   registerAudio,
+  onMake,
 }: {
   side: Side;
   recording: Recording;
@@ -69,6 +70,7 @@ export default function AudioCard({
   onSelect: (id: string) => void;
   onPlay: (element: HTMLAudioElement) => void;
   registerAudio: (side: Side, element: HTMLAudioElement | null) => void;
+  onMake: () => void;
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const mounted = useRef(false);
@@ -281,6 +283,9 @@ export default function AudioCard({
         <span className="estimate-dot" aria-hidden="true" /> Machine-estimated
         markers · no human review
       </div>
+      <button className="make-button" onClick={onMake}>
+        Make my version · {recording.source.filename}
+      </button>
       <details className="source-details">
         <summary>Source & annotation details</summary>
         <p>

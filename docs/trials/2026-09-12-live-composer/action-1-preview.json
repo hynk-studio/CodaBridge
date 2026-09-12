@@ -1,0 +1,63 @@
+{
+  "preview": {
+    "version": 1,
+    "id": "p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf",
+    "revision": 1,
+    "title": "My first coda",
+    "intention": "",
+    "blocks": [
+      {
+        "id": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+        "times": [
+          0,
+          0.11861678004535148,
+          0.5342403628117914,
+          1.139138321995465,
+          1.3213832199546487,
+          1.5784126984126985
+        ],
+        "spacingAfter": 0.5,
+        "meaning": "",
+        "seed": {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      },
+      {
+        "id": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+        "times": [
+          0,
+          0.14827097505668935,
+          0.6678004535147393,
+          1.4239229024943312,
+          1.651729024943311,
+          1.9730158730158731
+        ],
+        "spacingAfter": 0.5,
+        "meaning": "",
+        "seed": {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      }
+    ],
+    "ancestry": [
+      {
+        "recordingId": "dswp-1",
+        "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "annotationVersion": "1.0.0",
+        "originalOffsetSeconds": 0.3827891156462585
+      }
+    ]
+  },
+  "labels": "Duplicate Block 1 (position 1) → New block 2 at position 2.\nScale New block 2 (position 2) ×1.25.",
+  "savedDraftUnchanged": true,
+  "independentSecondBlock": true,
+  "originalUnchanged": true,
+  "gapsScaledBy": 1.25,
+  "normalizedProportionsPreserved": true
+}

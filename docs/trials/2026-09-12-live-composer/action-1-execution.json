@@ -1,0 +1,395 @@
+{
+  "authorizationComment": "5646519739",
+  "source": "e20d12358dafe73610023cdda5ad189790d3d8e5",
+  "artifactSha256": "f019f1f5d98a3559298d27b10938ef98f7b9c36dc9c3a2d824aaba90c80fad4a",
+  "action": 1,
+  "mode": "edit",
+  "question": "Duplicate the selected block once. Make only the new second block 1.25 times as long, preserving its relative gap proportions. Keep the original block unchanged.",
+  "status": "finished_authorization_consumed",
+  "consumedAt": "2026-09-12T14:47:33.813Z",
+  "composerSubmissions": 1,
+  "startedAt": "2026-09-12T14:47:33.814Z",
+  "completedAt": "2026-09-12T14:47:39.173Z",
+  "applicationLatencyMs": 5358,
+  "httpStatus": 200,
+  "diagnostics": [
+    {
+      "kind": "PROVIDER_HTTP_RESPONSE",
+      "httpResponseObtained": true,
+      "upstreamStatus": 200
+    }
+  ],
+  "result": {
+    "status": "completed",
+    "mode": "edit",
+    "binding": "{\"catalogVersion\":\"2.0.0\",\"metric\":{\"id\":\"normalized-interval-mad\",\"version\":\"1.0.0\",\"name\":\"Mean absolute normalized interval difference\",\"unit\":\"dimensionless\",\"interpretation\":\"Smaller means closer under this timing metric.\"},\"draft\":{\"version\":1,\"id\":\"p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf\",\"revision\":0,\"title\":\"My first coda\",\"intention\":\"\",\"blocks\":[{\"id\":\"b-0a826ef7-01b4-4666-bfc3-045d1a08f775\",\"times\":[0,0.11861678004535148,0.5342403628117914,1.139138321995465,1.3213832199546487,1.5784126984126985],\"spacingAfter\":0.5,\"meaning\":\"\",\"seed\":{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}}],\"ancestry\":[{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}]},\"activeId\":\"b-0a826ef7-01b4-4666-bfc3-045d1a08f775\",\"previous\":null}",
+    "execution": "provider",
+    "startedAt": "2026-09-12T14:47:33.816Z",
+    "completedAt": "2026-09-12T14:47:39.171Z",
+    "providerResponses": [
+      {
+        "responseId": "resp_0e138bcba66a852b016aa56606e78487d09ccec9cbdd4045a4",
+        "model": "gpt-6-astra",
+        "createdAt": 1789224454,
+        "usage": {
+          "inputTokens": 2119,
+          "outputTokens": 121,
+          "totalTokens": 2240
+        }
+      }
+    ],
+    "actions": [
+      {
+        "name": "compare_creation",
+        "initiatedBy": "server",
+        "arguments": {
+          "blockId": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775"
+        },
+        "evidenceId": "compare_creation:b-0a826ef7-01b4-4666-bfc3-045d1a08f775"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "source:dswp-1",
+        "kind": "recording",
+        "data": {
+          "id": "dswp-1",
+          "label": "DSWP / 1.wav",
+          "audio": {
+            "path": "/audio/dswp-1.wav",
+            "sha256": "8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057",
+            "bytes": 193192,
+            "durationSeconds": 2.1898866213151926,
+            "sampleRateHz": 44100,
+            "channels": 1,
+            "frames": 96574,
+            "encoding": "WAV / PCM signed 16-bit little-endian",
+            "transformations": []
+          },
+          "source": {
+            "dataset": "orrp/DSWP",
+            "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "filename": "1.wav",
+            "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+            "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+            "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+            "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+            "paperUrl": "https://arxiv.org/abs/2512.02206",
+            "acquiredOn": "2026-09-12"
+          },
+          "annotation": {
+            "status": "machine-estimated",
+            "method": "relative-peak-transient-groups",
+            "version": "1.0.0",
+            "parameters": {
+              "envelopeWindowSeconds": 0.002,
+              "relativeThreshold": 0.18,
+              "groupGapSeconds": 0.07
+            },
+            "timestampOrigin": "original-file-start",
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.1898866213151926
+            },
+            "clickSampleIndices": [
+              16881,
+              22112,
+              40441,
+              67117,
+              75154,
+              86489
+            ],
+            "clickTimesSeconds": [
+              0.3827891156462585,
+              0.50140589569161,
+              0.9170294784580499,
+              1.5219274376417233,
+              1.704172335600907,
+              1.9612018140589569
+            ],
+            "sourceAnnotations": "not-provided",
+            "humanReview": "not-performed",
+            "corrections": [],
+            "limitations": [
+              "Whole-file candidate sequence; biological coda boundaries are unverified.",
+              "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+              "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+            ]
+          }
+        }
+      },
+      {
+        "id": "compare_creation:b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+        "kind": "compare_creation",
+        "data": {
+          "blockId": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+          "measurements": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 1.5784126984126985,
+              "clickSpanSeconds": 1.5784126984126985,
+              "intervalsSeconds": [
+                0.11861678004535148,
+                0.41562358276643996,
+                0.6048979591836735,
+                0.18224489795918375,
+                0.2570294784580498
+              ],
+              "normalizedIntervals": [
+                0.07514940811400989,
+                0.26331743477761177,
+                0.38323181243535226,
+                0.1154608665670613,
+                0.16284047810596478
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.07514940811400989,
+                0.33846684289162166,
+                0.721698655326974,
+                0.8371595218940352,
+                1
+              ]
+            }
+          },
+          "seed": {
+            "sourceId": "dswp-1",
+            "comparison": {
+              "status": "comparable",
+              "metric": {
+                "id": "normalized-interval-mad",
+                "version": "1.0.0",
+                "name": "Mean absolute normalized interval difference",
+                "unit": "dimensionless",
+                "interpretation": "Smaller means closer under this timing metric."
+              },
+              "value": 0
+            },
+            "originalOffsetSeconds": 0.3827891156462585,
+            "spanSeconds": 1.5784126984126985,
+            "currentSpanSeconds": 1.5784126984126985
+          },
+          "previous": null
+        }
+      }
+    ],
+    "analysis": {
+      "blockId": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+      "metric": {
+        "id": "normalized-interval-mad",
+        "version": "1.0.0",
+        "name": "Mean absolute normalized interval difference",
+        "unit": "dimensionless",
+        "interpretation": "Smaller means closer under this timing metric."
+      },
+      "measurements": {
+        "status": "valid",
+        "measurements": {
+          "clickCount": 6,
+          "recordingDurationSeconds": 1.5784126984126985,
+          "clickSpanSeconds": 1.5784126984126985,
+          "intervalsSeconds": [
+            0.11861678004535148,
+            0.41562358276643996,
+            0.6048979591836735,
+            0.18224489795918375,
+            0.2570294784580498
+          ],
+          "normalizedIntervals": [
+            0.07514940811400989,
+            0.26331743477761177,
+            0.38323181243535226,
+            0.1154608665670613,
+            0.16284047810596478
+          ],
+          "normalizedClickPositions": [
+            0,
+            0.07514940811400989,
+            0.33846684289162166,
+            0.721698655326974,
+            0.8371595218940352,
+            1
+          ]
+        }
+      },
+      "seed": {
+        "sourceId": "dswp-1",
+        "comparison": {
+          "status": "comparable",
+          "metric": {
+            "id": "normalized-interval-mad",
+            "version": "1.0.0",
+            "name": "Mean absolute normalized interval difference",
+            "unit": "dimensionless",
+            "interpretation": "Smaller means closer under this timing metric."
+          },
+          "value": 0
+        },
+        "originalOffsetSeconds": 0.3827891156462585,
+        "spanSeconds": 1.5784126984126985,
+        "currentSpanSeconds": 1.5784126984126985
+      },
+      "previous": null,
+      "catalogCount": 4,
+      "candidateCount": 3,
+      "eligibleCount": 2,
+      "excludedIds": [
+        "dswp-1"
+      ],
+      "excludedDuplicates": [],
+      "matches": [
+        {
+          "sourceId": "dswp-11",
+          "comparison": {
+            "status": "comparable",
+            "metric": {
+              "id": "normalized-interval-mad",
+              "version": "1.0.0",
+              "name": "Mean absolute normalized interval difference",
+              "unit": "dimensionless",
+              "interpretation": "Smaller means closer under this timing metric."
+            },
+            "value": 0.09835190471540156
+          }
+        },
+        {
+          "sourceId": "dswp-2",
+          "comparison": {
+            "status": "comparable",
+            "metric": {
+              "id": "normalized-interval-mad",
+              "version": "1.0.0",
+              "name": "Mean absolute normalized interval difference",
+              "unit": "dimensionless",
+              "interpretation": "Smaller means closer under this timing metric."
+            },
+            "value": 0.11765155166768507
+          }
+        }
+      ],
+      "rejected": [
+        {
+          "sourceId": "dswp-7",
+          "comparison": {
+            "status": "not-comparable",
+            "metric": {
+              "id": "normalized-interval-mad",
+              "version": "1.0.0",
+              "name": "Mean absolute normalized interval difference",
+              "unit": "dimensionless",
+              "interpretation": "Smaller means closer under this timing metric."
+            },
+            "code": "UNEQUAL_CLICK_COUNTS",
+            "reason": "Equal click counts are required. No alignment, padding, or truncation is applied."
+          }
+        }
+      ]
+    },
+    "proposal": {
+      "operations": [
+        {
+          "op": "duplicate_block",
+          "blockId": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+          "newBlockId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01"
+        },
+        {
+          "op": "scale_duration",
+          "blockId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+          "factor": 1.25
+        }
+      ],
+      "preview": {
+        "version": 1,
+        "id": "p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf",
+        "revision": 1,
+        "title": "My first coda",
+        "intention": "",
+        "blocks": [
+          {
+            "id": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+            "times": [
+              0,
+              0.11861678004535148,
+              0.5342403628117914,
+              1.139138321995465,
+              1.3213832199546487,
+              1.5784126984126985
+            ],
+            "spacingAfter": 0.5,
+            "meaning": "",
+            "seed": {
+              "recordingId": "dswp-1",
+              "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+              "annotationVersion": "1.0.0",
+              "originalOffsetSeconds": 0.3827891156462585
+            }
+          },
+          {
+            "id": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+            "times": [
+              0,
+              0.14827097505668935,
+              0.6678004535147393,
+              1.4239229024943312,
+              1.651729024943311,
+              1.9730158730158731
+            ],
+            "spacingAfter": 0.5,
+            "meaning": "",
+            "seed": {
+              "recordingId": "dswp-1",
+              "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+              "annotationVersion": "1.0.0",
+              "originalOffsetSeconds": 0.3827891156462585
+            }
+          }
+        ],
+        "ancestry": [
+          {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        ]
+      },
+      "facts": [
+        {
+          "blockId": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+          "beforePosition": 1,
+          "afterPosition": 1,
+          "beforeSpan": 1.5784126984126985,
+          "afterSpan": 1.5784126984126985,
+          "beforeSpacing": 0.5,
+          "afterSpacing": 0.5,
+          "comparison": {
+            "status": "comparable",
+            "metric": {
+              "id": "normalized-interval-mad",
+              "version": "1.0.0",
+              "name": "Mean absolute normalized interval difference",
+              "unit": "dimensionless",
+              "interpretation": "Smaller means closer under this timing metric."
+            },
+            "value": 0
+          }
+        },
+        {
+          "blockId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+          "beforePosition": null,
+          "afterPosition": 2,
+          "beforeSpan": null,
+          "afterSpan": 1.9730158730158731,
+          "beforeSpacing": null,
+          "afterSpacing": 0.5,
+          "comparison": null
+        }
+      ]
+    },
+    "explanation": null
+  }
+}

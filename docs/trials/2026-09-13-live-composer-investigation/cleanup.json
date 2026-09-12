@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-09-12T18:29:41.855Z",
+  "normalPreviewHttpStatus": 200,
+  "normalStatus": "unavailable",
+  "normalCode": "NOT_CONFIGURED",
+  "checkedInFlags": {
+    "CODABRIDGE_INVESTIGATION_ENABLED": "false",
+    "CODABRIDGE_ACCESS_REVIEWED": "false"
+  },
+  "trialOwnedRuntimeAndBrowserClosed": true,
+  "originalCredentialSourceUnchanged": true,
+  "normalPreviewStartedKeyExcludedForCleanup": true,
+  "ordinaryUserWorkPreserved": true,
+  "temporaryHarnessesRemoved": true,
+  "cleanupOwnedNormalPreviewStopped": true
+}

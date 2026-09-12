@@ -1,0 +1,122 @@
+{
+  "kind": "MVP-03 review correction: actual local browser captures/downloads; model media is TEST ONLY",
+  "sourceCommit": "0f9047aefd52e6619fd2f2c13a29140a7c064541",
+  "reviewedHead": "38e473cf656f71e770d0de213f9f9dec6ae78dc5",
+  "review": 5186480731,
+  "environment": {
+    "node": "25.9.0",
+    "platform": "macOS arm64",
+    "playwright": "1.63.0",
+    "wrangler": "4.131.1",
+    "miniflare": "5.20260911.0-alpha",
+    "workerd": "1.20260911.1"
+  },
+  "verification": {
+    "focused": 43,
+    "unitServer": 154,
+    "builtWorker": 13,
+    "browser": 54,
+    "typecheck": "passed",
+    "dataVerification": "passed: four original hashes, PCM, source card and annotations",
+    "lint": "passed",
+    "clientWorkerBuild": "passed",
+    "browserRetries": 0
+  },
+  "liveApplicationModelCalls": 0,
+  "credentialAccess": false,
+  "hostedVerification": false,
+  "defaultStatus": {
+    "status": "unavailable",
+    "code": "NOT_CONFIGURED"
+  },
+  "video": {
+    "name": "TEST-ONLY-running-app.webm",
+    "seconds": 16.64,
+    "width": 1280,
+    "height": 900,
+    "codec": "VP8",
+    "audioTrack": false
+  },
+  "files": [
+    {
+      "name": "TEST-ONLY-composer-result.json",
+      "bytes": 26054,
+      "sha256": "fd4c6440090e08830414ac8ffe8009ff1bb2161ed2a6194c85b1bf22b6a2b1cf"
+    },
+    {
+      "name": "TEST-ONLY-running-app.webm",
+      "bytes": 1772317,
+      "sha256": "23f071d17c3e26c1f88b9f9dc13e826c83455b66bedb8c26cf4febcdd03aab95"
+    },
+    {
+      "name": "creation-card.png",
+      "bytes": 191365,
+      "sha256": "9a2035fddd75f992af029818d3d837a4996b595c2744d5f857c9ca9796bd55f9"
+    },
+    {
+      "name": "creation-project.json",
+      "bytes": 14479,
+      "sha256": "7a566e9235943309cbe404c12519b69c5f169a4228d884c272ef7a0061bda0e8"
+    },
+    {
+      "name": "creation-synthetic-timing.wav",
+      "bytes": 412558,
+      "sha256": "e09dfd26b394ed9d851121cc8f0add5f463e0eefaa786bb570046ba7c415f717"
+    },
+    {
+      "name": "desktop-chromium-TEST-ONLY-proposal.png",
+      "bytes": 169511,
+      "sha256": "fe9c6ce43d46f2a478a1ee293078db146462b2a1cf9fd13969ed59c026e7da67"
+    },
+    {
+      "name": "desktop-chromium-TEST-ONLY-retrieval.png",
+      "bytes": 110780,
+      "sha256": "bf690c62b3d5d53398cd8f228fb4e924f9f6e900d936bb1942103397d247eb2a"
+    },
+    {
+      "name": "desktop-chromium-listen.png",
+      "bytes": 123037,
+      "sha256": "4877e00cf0afe057dea95d781a3551462db17a4bc09950d137d8a72326962a98"
+    },
+    {
+      "name": "desktop-chromium-local-composer.png",
+      "bytes": 740469,
+      "sha256": "e291ed171a84107ea9af69c6de6eefa9ce90f216c6705a6ee319ae8cb1c155fa"
+    },
+    {
+      "name": "desktop-chromium-workbench.png",
+      "bytes": 215672,
+      "sha256": "45c4e1f71cfeb5caab9133a9eabd4c5170ec66ddbdf510cb7f31b2a5e6a8e6b7"
+    },
+    {
+      "name": "download-verification.json",
+      "bytes": 392,
+      "sha256": "588ee6ecd79f39611f40bb8ebb117bba02064ffa03ee70cb2762d2ff7f3f5898"
+    },
+    {
+      "name": "mobile-chromium-TEST-ONLY-proposal.png",
+      "bytes": 127060,
+      "sha256": "27e253a9774e41c550d3fe49b317db2291e99d8ebc13803e0269b08eea6cfc3b"
+    },
+    {
+      "name": "mobile-chromium-TEST-ONLY-retrieval.png",
+      "bytes": 89631,
+      "sha256": "f9fe70fe7f63226f28a57fc3e03a0e7bd640b1e2d6ef08e750c6cb084b1a1c51"
+    },
+    {
+      "name": "mobile-chromium-listen.png",
+      "bytes": 67086,
+      "sha256": "3ad0ca67dfeca4ca0fbad3ff2c55e0a9a914b9e0e8e564f2a2d2eff12ac2d079"
+    },
+    {
+      "name": "mobile-chromium-local-composer.png",
+      "bytes": 603479,
+      "sha256": "285800fc897d173f7ec722368f82b9e405869f452af584fa70963e3a8a8fca3c"
+    },
+    {
+      "name": "mobile-chromium-workbench.png",
+      "bytes": 208524,
+      "sha256": "55385d33198612c867bd2f0664b76a98aa1fac1db68be8725c4ff0dd7a537cf4"
+    }
+  ]
+}

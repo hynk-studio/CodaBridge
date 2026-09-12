@@ -1,0 +1,121 @@
+{
+  "implementationCommit": "4c6b0bc76d9c803501312f0b23b38b008f68c89f",
+  "foundationCommit": "414bce9f6065776d2c4609c163460bfa344a216b",
+  "credentialAccess": false,
+  "hostedValidation": false,
+  "runtime": {
+    "node": "v25.9.0",
+    "playwright": "1.63.0",
+    "wrangler": "4.131.1",
+    "miniflare": "5.20260911.0-alpha",
+    "workerd": "1.20260911.1"
+  },
+  "commands": {
+    "env -u OPENAI_API_KEY npm run typecheck": "passed",
+    "env -u OPENAI_API_KEY npm test": "151 passed",
+    "env -u OPENAI_API_KEY npm run data:verify": "4 originals reproduce",
+    "env -u OPENAI_API_KEY npm run lint": "passed, no findings",
+    "env -u OPENAI_API_KEY npm run build": "client and Worker passed",
+    "env -u OPENAI_API_KEY npm run test:server-build": "13 passed",
+    "env -u OPENAI_API_KEY npm run test:browser": "44 passed; desktop 1440x1000, mobile 390x844, 320px/200% text"
+  },
+  "files": [
+    {
+      "file": "TEST-ONLY-composer-result.json",
+      "bytes": 26418,
+      "sha256": "8e4e77ab3f5aee25037b8553edb1bf90ce942304e552656d5f9a24ea3fcfdf7e",
+      "classification": "TEST ONLY provider fixture; no live model"
+    },
+    {
+      "file": "TEST-ONLY-running-app.webm",
+      "bytes": 1792343,
+      "sha256": "c3a364133292e321efcab66223e5333581fdd9202e974cf613d111345ee8e1fb",
+      "classification": "TEST ONLY provider fixture; no live model"
+    },
+    {
+      "file": "creation-card.png",
+      "bytes": 204840,
+      "sha256": "c90a850f356c5633855624dbb65800a58c4ef0dff994e361f385bc6fc6206f3b",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "creation-project.json",
+      "bytes": 14479,
+      "sha256": "44b1bd6f6babf5dd38b2ff59789e8db068da9c4676c871b76572c553a26a3afd",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "creation-synthetic-timing.wav",
+      "bytes": 412558,
+      "sha256": "e09dfd26b394ed9d851121cc8f0add5f463e0eefaa786bb570046ba7c415f717",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "desktop-chromium-TEST-ONLY-proposal.png",
+      "bytes": 146856,
+      "sha256": "4b7765c3ae2c21fdbfa4830bf24ab09ddc578487c93dc91e99c3e7002ff0677d",
+      "classification": "TEST ONLY provider fixture; no live model"
+    },
+    {
+      "file": "desktop-chromium-TEST-ONLY-retrieval.png",
+      "bytes": 118740,
+      "sha256": "ba01eaf9c4bbd76942b17c4871ed5832cd66b4058c59f3fc4f53e3de1b5f0961",
+      "classification": "TEST ONLY provider fixture; no live model"
+    },
+    {
+      "file": "desktop-chromium-listen.png",
+      "bytes": 122762,
+      "sha256": "9a0df7cd2d652a33f375f9023215af3a82a6c828d8fa2e4e3f584744a5276b5d",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "desktop-chromium-local-composer.png",
+      "bytes": 634201,
+      "sha256": "9e20a76b926d52b3b80d900a7ac476c252effbc2bb997439d5f3c0f4bbe97941",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "desktop-chromium-workbench.png",
+      "bytes": 173493,
+      "sha256": "ba38b50fd93ade8223f4419129a4401b9923a2a384c6458a65dc170ab279dccc",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "download-verification.json",
+      "bytes": 392,
+      "sha256": "588ee6ecd79f39611f40bb8ebb117bba02064ffa03ee70cb2762d2ff7f3f5898",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "mobile-chromium-TEST-ONLY-proposal.png",
+      "bytes": 105824,
+      "sha256": "0214cf9e4c3d36a6854fee9e4c1be35298c6fba29b99be706ff9acac52bafb93",
+      "classification": "TEST ONLY provider fixture; no live model"
+    },
+    {
+      "file": "mobile-chromium-TEST-ONLY-retrieval.png",
+      "bytes": 98670,
+      "sha256": "62cef4d776f575df215fff8c270723ed0025c9ce2d4db17c27d70531d516c582",
+      "classification": "TEST ONLY provider fixture; no live model"
+    },
+    {
+      "file": "mobile-chromium-listen.png",
+      "bytes": 65955,
+      "sha256": "51a55203ba11020a76ad4d5057133e26e14224975dbfff3e4fb64ac15d6546aa",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "mobile-chromium-local-composer.png",
+      "bytes": 516760,
+      "sha256": "1046f5b4f253ad2404d19f0cb486c156b1e948edf8c2c6827a28eacde2043edc",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    },
+    {
+      "file": "mobile-chromium-workbench.png",
+      "bytes": 166491,
+      "sha256": "ef85dc578881403be00b2f78084f77e2a1654964996dd0d1fa32ba9cfaa84e29",
+      "classification": "Actual local application UI or delivered creation; no model call"
+    }
+  ],
+  "liveApplicationModelCalls": 0
+}

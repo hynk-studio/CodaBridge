@@ -2,7 +2,7 @@
 
 ## Read first
 
-Read README.md, issue #1, and docs/MVP_01.md before implementation. Work only in hynk-studio/CodaBridge. GitHub is the source of truth.
+Read README.md, issues #1 and #4, and docs/MVP_03.md before Composer work. docs/MVP_01.md and docs/MVP_02.md describe the preserved foundations. Work only in hynk-studio/CodaBridge. GitHub is the source of truth.
 
 ## Working style
 
@@ -18,6 +18,7 @@ Read README.md, issue #1, and docs/MVP_01.md before implementation. Work only in
 - Do not associate clips with speaker identities, dialogue rows, behavior, or meanings without source evidence. Synthetic tests/sonification must be labeled and cannot substitute for real-audio acceptance.
 - Preserve original measurements. Acoustic distance is a named descriptive metric, not translation accuracy, a shared-meaning probability, or a biological category.
 - Future model output must cite existing evidence and cannot overwrite measurements. Never present a fixture, template, or cached answer as a live Astra result.
+- Composer creations are separate human-authored timing records, never observed catalog recordings. Preserve original offsets/provenance; personal codebook meaning is not animal semantics. Use the centralized deterministic operations, bounds and renderer for UI, provider proposals and exports. Imports are untrusted; saved analysis never establishes live execution.
 
 ## Delivery and safety
 

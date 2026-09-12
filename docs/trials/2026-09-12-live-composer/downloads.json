@@ -1,0 +1,30 @@
+{
+  "source": "e20d12358dafe73610023cdda5ad189790d3d8e5",
+  "revision": 4,
+  "activeId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+  "records": [
+    {
+      "file": "creation-synthetic.wav",
+      "suggestedFilename": "codabridge-synthetic-timing-r4.wav",
+      "bytes": 412518,
+      "sha256": "e196c206fe3315252ae50e389aeb3c35991b18adaa6103820b4fdd5457910c94",
+      "actualBrowserDelivery": true
+    },
+    {
+      "file": "creation-card.png",
+      "suggestedFilename": "codabridge-synthetic-timing-r4-card.png",
+      "bytes": 150130,
+      "sha256": "97dfb67df4e33f54b42ba7d1313eaeab2ea054f2fc8baa85d4494369b2e25722",
+      "actualBrowserDelivery": true
+    },
+    {
+      "file": "creation-project.json",
+      "suggestedFilename": "codabridge-synthetic-timing-r4-project.json",
+      "bytes": 13819,
+      "sha256": "e13890b5529d1c2db8530ebbfad00ebf56b767ac61ef0f3ff61eb5279e2b0bd8",
+      "actualBrowserDelivery": true
+    }
+  ],
+  "parsedProjectMatchesSavedState": true,
+  "composerSubmissionsObserved": 2
+}

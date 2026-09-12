@@ -1,0 +1,207 @@
+{
+  "draft": {
+    "version": 1,
+    "id": "p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf",
+    "revision": 4,
+    "title": "My first coda",
+    "intention": "",
+    "blocks": [
+      {
+        "id": "b-0a826ef7-01b4-4666-bfc3-045d1a08f775",
+        "times": [
+          0,
+          0.11861678004535148,
+          0.5342403628117914,
+          1.139138321995465,
+          1.3213832199546487,
+          1.5784126984126985
+        ],
+        "spacingAfter": 0.5,
+        "meaning": "",
+        "seed": {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      },
+      {
+        "id": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+        "times": [
+          0,
+          0.3,
+          0.8195294784580499,
+          1.575651927437642,
+          1.8034580498866215,
+          2.1247448979591836
+        ],
+        "spacingAfter": 0.5,
+        "meaning": "",
+        "seed": {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      }
+    ],
+    "ancestry": [
+      {
+        "recordingId": "dswp-1",
+        "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "annotationVersion": "1.0.0",
+        "originalOffsetSeconds": 0.3827891156462585
+      }
+    ]
+  },
+  "activeId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+  "previous": {
+    "id": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+    "times": [
+      0,
+      0.14827097505668935,
+      0.6678004535147393,
+      1.4239229024943312,
+      1.651729024943311,
+      1.9730158730158731
+    ],
+    "spacingAfter": 0.5,
+    "meaning": "",
+    "seed": {
+      "recordingId": "dswp-1",
+      "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+      "annotationVersion": "1.0.0",
+      "originalOffsetSeconds": 0.3827891156462585
+    }
+  },
+  "binding": "{\"catalogVersion\":\"2.0.0\",\"metric\":{\"id\":\"normalized-interval-mad\",\"version\":\"1.0.0\",\"name\":\"Mean absolute normalized interval difference\",\"unit\":\"dimensionless\",\"interpretation\":\"Smaller means closer under this timing metric.\"},\"draft\":{\"version\":1,\"id\":\"p-83b105ca-d363-4ed2-a9f7-a5a45af5a2bf\",\"revision\":4,\"title\":\"My first coda\",\"intention\":\"\",\"blocks\":[{\"id\":\"b-0a826ef7-01b4-4666-bfc3-045d1a08f775\",\"times\":[0,0.11861678004535148,0.5342403628117914,1.139138321995465,1.3213832199546487,1.5784126984126985],\"spacingAfter\":0.5,\"meaning\":\"\",\"seed\":{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}},{\"id\":\"b-e6d3a950-654c-4779-a725-cba95b2d7e01\",\"times\":[0,0.3,0.8195294784580499,1.575651927437642,1.8034580498866215,2.1247448979591836],\"spacingAfter\":0.5,\"meaning\":\"\",\"seed\":{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}}],\"ancestry\":[{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}]},\"activeId\":\"b-e6d3a950-654c-4779-a725-cba95b2d7e01\",\"previous\":{\"id\":\"b-e6d3a950-654c-4779-a725-cba95b2d7e01\",\"times\":[0,0.14827097505668935,0.6678004535147393,1.4239229024943312,1.651729024943311,1.9730158730158731],\"spacingAfter\":0.5,\"meaning\":\"\",\"seed\":{\"recordingId\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"annotationVersion\":\"1.0.0\",\"originalOffsetSeconds\":0.3827891156462585}}}",
+  "analysis": {
+    "blockId": "b-e6d3a950-654c-4779-a725-cba95b2d7e01",
+    "metric": {
+      "id": "normalized-interval-mad",
+      "version": "1.0.0",
+      "name": "Mean absolute normalized interval difference",
+      "unit": "dimensionless",
+      "interpretation": "Smaller means closer under this timing metric."
+    },
+    "measurements": {
+      "status": "valid",
+      "measurements": {
+        "clickCount": 6,
+        "recordingDurationSeconds": 2.1247448979591836,
+        "clickSpanSeconds": 2.1247448979591836,
+        "intervalsSeconds": [
+          0.3,
+          0.51952947845805,
+          0.756122448979592,
+          0.22780612244897958,
+          0.32128684807256214
+        ],
+        "normalizedIntervals": [
+          0.14119342057870093,
+          0.24451381384986864,
+          0.35586504982590955,
+          0.10721575219113938,
+          0.15121196355438152
+        ],
+        "normalizedClickPositions": [
+          0,
+          0.14119342057870093,
+          0.3857072344285695,
+          0.7415722842544791,
+          0.8487880364456185,
+          1
+        ]
+      }
+    },
+    "seed": {
+      "sourceId": "dswp-1",
+      "comparison": {
+        "status": "comparable",
+        "metric": {
+          "id": "normalized-interval-mad",
+          "version": "1.0.0",
+          "name": "Mean absolute normalized interval difference",
+          "unit": "dimensionless",
+          "interpretation": "Smaller means closer under this timing metric."
+        },
+        "value": 0.02641760498587641
+      },
+      "originalOffsetSeconds": 0.3827891156462585,
+      "spanSeconds": 1.5784126984126985,
+      "currentSpanSeconds": 2.1247448979591836
+    },
+    "previous": {
+      "comparison": {
+        "status": "comparable",
+        "metric": {
+          "id": "normalized-interval-mad",
+          "version": "1.0.0",
+          "name": "Mean absolute normalized interval difference",
+          "unit": "dimensionless",
+          "interpretation": "Smaller means closer under this timing metric."
+        },
+        "value": 0.02641760498587642
+      },
+      "spanSeconds": 1.9730158730158731,
+      "label": "Previous local revision (user-authored timing)"
+    },
+    "catalogCount": 4,
+    "candidateCount": 3,
+    "eligibleCount": 2,
+    "excludedIds": [
+      "dswp-1"
+    ],
+    "excludedDuplicates": [],
+    "matches": [
+      {
+        "sourceId": "dswp-11",
+        "comparison": {
+          "status": "comparable",
+          "metric": {
+            "id": "normalized-interval-mad",
+            "version": "1.0.0",
+            "name": "Mean absolute normalized interval difference",
+            "unit": "dimensionless",
+            "interpretation": "Smaller means closer under this timing metric."
+          },
+          "value": 0.08740519967162448
+        }
+      },
+      {
+        "sourceId": "dswp-2",
+        "comparison": {
+          "status": "comparable",
+          "metric": {
+            "id": "normalized-interval-mad",
+            "version": "1.0.0",
+            "name": "Mean absolute normalized interval difference",
+            "unit": "dimensionless",
+            "interpretation": "Smaller means closer under this timing metric."
+          },
+          "value": 0.09969433121556079
+        }
+      }
+    ],
+    "rejected": [
+      {
+        "sourceId": "dswp-7",
+        "comparison": {
+          "status": "not-comparable",
+          "metric": {
+            "id": "normalized-interval-mad",
+            "version": "1.0.0",
+            "name": "Mean absolute normalized interval difference",
+            "unit": "dimensionless",
+            "interpretation": "Smaller means closer under this timing metric."
+          },
+          "code": "UNEQUAL_CLICK_COUNTS",
+          "reason": "Equal click counts are required. No alignment, padding, or truncation is applied."
+        }
+      }
+    ]
+  },
+  "originalPreserved": true,
+  "otherGapsPreserved": true,
+  "composerSubmissionsObserved": 1
+}

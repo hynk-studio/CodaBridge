@@ -11,6 +11,7 @@ import {
 import type { Recording } from "../src/domain/types.ts";
 import { createAnalysisTools } from "./tools.ts";
 import type { PrivateProviderObserver } from "./provider-diagnostics.ts";
+import { runComposer, composerFailure } from "./composer.ts";
 import {
   LIMITS,
   requestResponse,
@@ -107,7 +108,7 @@ export function createWorker(
           );
         return json(enabled(env) ? { status: "available" } : unavailable);
       }
-      if (path !== "/api/investigate")
+      if (path !== "/api/investigate" && path !== "/api/composer")
         return json(
           { status: "failed", code: "NOT_FOUND", message: "Unknown endpoint." },
           404,
@@ -144,6 +145,19 @@ export function createWorker(
             .toLowerCase() !== "application/json"
         )
           throw new BoundaryError("CONTENT_TYPE", 415);
+        if (path === "/api/composer") {
+          if (!enabled(env)) return json(unavailable, 503);
+          return json(
+            await runComposer(
+              request,
+              env,
+              transport,
+              controller.signal,
+              !!options.transport,
+              options.onPrivateProviderDiagnostic,
+            ),
+          );
+        }
         const { request: input, selected } = parseRequest(
           await readBoundedJson(
             request,
@@ -235,9 +249,10 @@ export function createWorker(
         }
         throw new BoundaryError("TOOL_ROUND_LIMIT", 502);
       } catch (error) {
+        const normalizedError = composerFailure(error);
         const failure =
-          error instanceof BoundaryError
-            ? error
+          normalizedError instanceof BoundaryError
+            ? normalizedError
             : new BoundaryError("INVESTIGATION_FAILED", 502);
         return json(
           {
