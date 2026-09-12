@@ -16,6 +16,73 @@
   min-height: 44px;
   font-size: 0.9rem;
 }
+.intro-actions {
+  display: grid;
+  gap: 10px;
+  max-width: 270px;
+  flex-shrink: 0;
+}
+.intro-actions a,
+.recording-export {
+  padding: 12px 16px;
+  border: 1px solid #4b6370;
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  background: #182f39;
+  font: inherit;
+  min-height: 44px;
+  text-align: center;
+}
+.intro-actions .entry-listen {
+  background: var(--a);
+  color: #17241b;
+  font-weight: 600;
+  border-color: var(--a);
+}
+.intro-actions a:hover,
+.recording-export:hover {
+  filter: brightness(1.12);
+}
+.intro-actions small {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.number-hint {
+  flex-basis: 100%;
+}
+.quick-edits {
+  margin-top: 10px;
+}
+.edit-invitation {
+  font-size: 0.95rem;
+}
+.timing-change {
+  line-height: 1.65;
+}
+.duration-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+.duration-pair > div {
+  border-left: 2px solid var(--a);
+  padding-left: 12px;
+}
+.duration-pair span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.duration-pair strong {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+}
 .composer button:hover,
 .make-button:hover,
 .reveal-measurements:hover {
@@ -290,7 +357,7 @@
   display: block;
 }
 .baseline-result strong {
-  font-size: 2rem;
+  font-size: 1.35rem;
   font-weight: 500;
   color: var(--a);
   font-variant-numeric: tabular-nums;
@@ -405,13 +472,27 @@
 }
 .coda-card h4 {
   font-family: Georgia, serif;
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: normal;
   margin: 12px 0;
 }
 .coda-card .card-identity {
   color: var(--a);
   font-size: 0.875rem;
+}
+.coda-card .card-intention {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+.coda-card .card-meaning {
+  font-size: 1.1rem;
+  color: var(--a);
+}
+.card-intention small,
+.card-meaning small {
+  display: block;
+  font-size: 0.75rem;
+  margin-top: 6px;
 }
 .coda-card > div {
   border-top: 1px solid #3b555e;
@@ -499,6 +580,13 @@
   }
 }
 @media (max-width: 550px) {
+  .intro-actions {
+    max-width: none;
+    width: 100%;
+  }
+  .duration-pair {
+    grid-template-columns: 1fr;
+  }
   .baseline-result strong {
     font-size: 1.25rem;
   }

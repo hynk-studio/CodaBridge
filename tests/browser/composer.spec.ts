@@ -16,7 +16,8 @@ import {
 import { createDraft, type Draft } from "../../src/composer/model.ts";
 import { eventSchedule, RENDERER } from "../../src/composer/sound.ts";
 
-const outputDirectory = "docs/mvp03/evidence";
+// Ordinary reruns must never overwrite committed historical verification media.
+const outputDirectory = "test-results/composer-review";
 test.use({ video: { mode: "on", size: { width: 1280, height: 900 } } });
 async function seed(page: Page) {
   await page.goto("/");
@@ -66,6 +67,224 @@ async function download(page: Page, name: string) {
   };
 }
 
+for (const field of ["Phrase title", "My intention", "Meaning I assign"]) {
+  const investigation = field === "My intention";
+  test(`sequential ${field} typing is one undo transaction and rejects a pending TEST ONLY ${investigation ? "investigation" : "proposal"}`, async ({
+    page,
+  }) => {
+    const mock = composerTransport();
+    let release: () => void = () => {},
+      started = false;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    await routeFixture(page, async (url, init) => {
+      started = true;
+      await gate;
+      return mock.transport(url, init);
+    });
+    await seed(page);
+    const original = await storedDraft(page);
+    await page
+      .getByRole("button", { name: "Lengthen ×1.25", exact: true })
+      .click();
+    const timed = await storedDraft(page);
+    if (investigation)
+      await page
+        .getByLabel("What would you like to do?", { exact: true })
+        .selectOption("investigate");
+    await page
+      .getByRole("button", {
+        name: investigation
+          ? "Ask Astra to investigate"
+          : "Ask Astra for an edit",
+        exact: true,
+      })
+      .click();
+    await expect.poll(() => started).toBe(true);
+    const input = page.getByLabel(field, { exact: field === "Phrase title" });
+    const oldText = await input.inputValue();
+    await input.focus();
+    await input.press("End");
+    const text =
+      " A thoughtful pause before another small answer in my own code.";
+    expect(text.length).toBeGreaterThan(40);
+    // Key-by-key input (not fill), with an assertion before blur / transaction close.
+    await input.pressSequentially(text[0]);
+    await expect(
+      page.getByRole("button", { name: "Working with this revision…" }),
+    ).toHaveCount(0);
+    await expect(input).toBeFocused();
+    await input.pressSequentially(text.slice(1));
+    await expect(input).toHaveValue(oldText + text);
+    const typed = await storedDraft(page);
+    expect(typed.revision).toBe(timed.revision + text.length);
+    expect(typed.blocks[0].times).toEqual(timed.blocks[0].times);
+    await input.press("Tab"); // End this text transaction.
+    release();
+    await expect.poll(() => mock.calls.length).toBe(investigation ? 2 : 1);
+    await expect(page.getByTestId("composer-result")).toHaveCount(0);
+    await page.getByRole("button", { name: "Undo", exact: true }).click();
+    await expect(input).toHaveValue(oldText);
+    expect((await storedDraft(page)).blocks).toEqual(timed.blocks);
+    await page.getByRole("button", { name: "Undo", exact: true }).click();
+    expect((await storedDraft(page)).blocks).toEqual(original.blocks);
+    await page.getByRole("button", { name: "Redo", exact: true }).click();
+    await page.getByRole("button", { name: "Redo", exact: true }).click();
+    await expect(input).toHaveValue(oldText + text);
+    const redone = await storedDraft(page);
+    expect(redone.blocks).toEqual(typed.blocks);
+    expect(redone.revision).toBeGreaterThan(typed.revision);
+    await page.reload();
+    expect(await storedDraft(page)).toEqual(redone);
+    await expect(input).toHaveValue(oldText + text);
+    await expect(page.getByTestId("composer-result")).toHaveCount(0);
+    expect(mock.calls).toHaveLength(investigation ? 2 : 1);
+  });
+}
+
+test("entry navigation preserves a draft and the secondary download is explicitly A/B evidence", async ({
+  page,
+}) => {
+  const posts: string[] = [];
+  page.on("request", (r) => {
+    if (r.method() === "POST") posts.push(r.url());
+  });
+  await seed(page);
+  await page
+    .getByLabel("Phrase title", { exact: true })
+    .fill("Keep this draft");
+  await page
+    .getByRole("button", { name: "Duplicate block", exact: true })
+    .click();
+  const saved = await storedDraft(page);
+  await page.reload();
+  await page
+    .getByRole("link", { name: "Listen to recordings ↓", exact: true })
+    .click();
+  await page
+    .getByRole("link", { name: "Open my Composer →", exact: true })
+    .click();
+  expect(await storedDraft(page)).toEqual(saved);
+  expect(
+    await page
+      .locator("audio")
+      .evaluateAll((els) => els.every((el) => (el as HTMLAudioElement).paused)),
+  ).toBe(true);
+  await expect(page.getByLabel("Synthetic playback status")).toContainText(
+    "stopped",
+  );
+  await page.locator(".evidence-panel summary").click();
+  await expect(page.locator(".evidence-panel")).toContainText(
+    "This is not a Composer project",
+  );
+  const file = await download(page, "Download recording-comparison JSON");
+  const evidence = JSON.parse(file.bytes.toString());
+  expect(
+    evidence.selection.map((s: { sourceId: string }) => s.sourceId),
+  ).toEqual(["dswp-1", "dswp-2"]);
+  expect(evidence.format).not.toBe("codabridge-project");
+  expect(await storedDraft(page)).toEqual(saved);
+  expect(posts).toEqual([]);
+});
+
+test("selected-block audition uses its own schedule, coordinates playback, and quick edits explain the timing", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const starts: number[] = [];
+    Object.assign(window, { __testAuditions: starts });
+    const start = AudioBufferSourceNode.prototype.start;
+    AudioBufferSourceNode.prototype.start = function (...args) {
+      starts.push(this.buffer!.duration);
+      return start.apply(this, args);
+    };
+  });
+  await seed(page);
+  await page
+    .getByRole("button", { name: "Duplicate block", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Lengthen ×1.25", exact: true })
+    .press("Enter");
+  const draft = await storedDraft(page),
+    block = draft.blocks[1];
+  await expect(page.getByTestId("timing-change")).toContainText(
+    "relative spacing is unchanged",
+  );
+  await expect(page.getByTestId("creation-seed-score")).toHaveText("0.000000");
+  await page.getByLabel("Duration multiplier", { exact: true }).fill("1.5");
+  await expect(page.locator(".number-hint")).toHaveText(
+    "×1.5 multiplies every gap by 1.5. Normalized spacing stays the same.",
+  );
+  const auditions = () =>
+    page.evaluate(
+      () =>
+        (window as unknown as { __testAuditions: number[] }).__testAuditions,
+    );
+  for (const [index, name] of [
+    "Play synthetic seed timing",
+    "Play selected synthetic block",
+    "▶ Play my synthetic phrase",
+  ].entries()) {
+    await page.getByRole("button", { name, exact: true }).click();
+    await expect.poll(async () => (await auditions()).length).toBe(index + 1);
+  }
+  const durations = await auditions();
+  expect(durations[0]).toBeCloseTo(draft.blocks[0].times.at(-1)! + 0.09, 4);
+  expect(durations[1]).toBeCloseTo(block.times.at(-1)! + 0.09, 4);
+  expect(durations[2]).toBeCloseTo(eventSchedule(draft).duration, 4);
+  await page
+    .getByRole("button", { name: "Open first gap +0.05 s", exact: true })
+    .press("Enter");
+  await expect(page.getByLabel("Synthetic playback status")).toContainText(
+    "stopped",
+  );
+  await expect(page.getByTestId("timing-change")).toContainText(
+    "different proportions",
+  );
+  await expect(page.getByTestId("creation-seed-score")).not.toHaveText(
+    "0.000000",
+  );
+  const after = (await storedDraft(page)).blocks[1];
+  expect(after.times[1]).toBeCloseTo(block.times[1] + 0.05, 12);
+  for (let i = 2; i < after.times.length; i++)
+    expect(after.times[i] - after.times[i - 1]).toBeCloseTo(
+      block.times[i] - block.times[i - 1],
+      12,
+    );
+  await page
+    .getByRole("button", { name: "Play selected synthetic block", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Play recording A", exact: true })
+    .click();
+  await expect(page.getByLabel("Synthetic playback status")).toContainText(
+    "stopped",
+  );
+  await page
+    .getByRole("button", { name: "Play selected synthetic block", exact: true })
+    .click();
+  expect(
+    await page
+      .locator("audio")
+      .evaluateAll((els) => els.every((el) => (el as HTMLAudioElement).paused)),
+  ).toBe(true);
+  await page
+    .getByRole("button", { name: "Pause synthetic", exact: true })
+    .click();
+  await expect(page.getByLabel("Synthetic playback status")).toContainText(
+    "paused",
+  );
+  await page
+    .getByRole("button", { name: "Resume synthetic", exact: true })
+    .click();
+  await page.locator(".phrase-block").first().click();
+  await expect(page.getByLabel("Synthetic playback status")).toContainText(
+    "stopped",
+  );
+});
+
 test("local complete journey: field audio, independent edits, playback, comparison, codebook and real downloads", async ({
   page,
 }, info) => {
@@ -82,10 +301,23 @@ test("local complete journey: field audio, independent edits, playback, comparis
       modelCalls.push(request.url());
   });
   page.on("pageerror", (error) => errors.push(error.message));
+  await page.addInitScript(() => {
+    const rows: { text: string; font: string }[] = [];
+    Object.assign(window, { __testCardRows: rows });
+    const fill = CanvasRenderingContext2D.prototype.fillText;
+    CanvasRenderingContext2D.prototype.fillText = function (...args) {
+      rows.push({ text: args[0], font: this.font });
+      return fill.apply(this, args);
+    };
+  });
   await page.goto("/");
   await expect(page.getByLabel("Playback status A")).toHaveText(
     "Ready · source bytes checked",
   );
+  await expect(
+    page.getByRole("navigation", { name: "Listen and create" }),
+  ).toBeVisible();
+  await expect(page.locator(".intro")).not.toContainText("Download");
   await mkdir(outputDirectory, { recursive: true });
   await page.screenshot({
     path: `${outputDirectory}/${info.project.name}-listen.png`,
@@ -157,6 +389,8 @@ test("local complete journey: field audio, independent edits, playback, comparis
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
     "stopped",
   );
+  await expect(page.locator(".gap-editor")).not.toHaveAttribute("open");
+  await page.locator(".gap-editor summary").click();
   await page.getByLabel("Gap 1 → 2", { exact: true }).fill("0.3");
   await page.getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
   const changed = await storedDraft(page);
@@ -189,7 +423,9 @@ test("local complete journey: field audio, independent edits, playback, comparis
   await page
     .getByRole("button", { name: "Save active block to codebook", exact: true })
     .click();
-  await page.getByLabel("Include analysis evidence", { exact: false }).check();
+  await expect(
+    page.getByLabel("Include analysis evidence", { exact: false }),
+  ).not.toBeChecked();
   const current = await storedDraft(page);
   await page.locator(".composer-workbench").screenshot({
     path: `${outputDirectory}/${info.project.name}-workbench.png`,
@@ -197,6 +433,8 @@ test("local complete journey: field audio, independent edits, playback, comparis
   const wav = await download(page, "Download synthetic WAV"),
     card = await download(page, "Download card image"),
     project = await download(page, "Download project JSON");
+  for (const file of [wav, card, project])
+    expect(file.filename).toContain(`-r${current.revision}`);
   expect(wav.filename).toContain("synthetic-timing");
   expect(card.bytes.subarray(0, 8)).toEqual(
     Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
@@ -209,6 +447,39 @@ test("local complete journey: field audio, independent edits, playback, comparis
   expect(restored.codebook[0].meaning).toBe("A little hello");
   expect(project.bytes.toString()).toContain("CC BY 4.0");
   expect(project.bytes.toString()).toContain("synthetic timing sonification");
+  const evidence = restored.savedAnalysis as {
+    deterministic: { draft: Draft; analysis: { metric: unknown } };
+    generated: unknown;
+  };
+  expect(evidence.deterministic.draft).toEqual(current);
+  expect(evidence.deterministic.analysis).toBeTruthy();
+  expect(evidence.generated).toBeNull();
+  const rows = await page.evaluate(
+    () =>
+      (
+        window as unknown as {
+          __testCardRows: { text: string; font: string }[];
+        }
+      ).__testCardRows,
+  );
+  const cardText = rows.map((row) => row.text).join(" ");
+  for (const label of [
+    current.title,
+    current.intention,
+    "A little hello",
+    "Human-created",
+    "synthetic timing sonification",
+    "Meaning to sperm whales: unknown",
+    "DSWP",
+    "CC BY 4.0",
+    `Revision ${current.revision}`,
+    "This image is not playable",
+  ])
+    expect(cardText).toContain(label);
+  expect(rows.find((row) => row.text === current.title)?.font).toContain(
+    "64px",
+  );
+  expect(cardText).not.toContain("MAD v1.0.0");
   // Decode the delivered WAV in the actual browser, not just the RIFF header.
   const decoded = await page.evaluate(async (base64) => {
     const bytes = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
@@ -297,7 +568,7 @@ test("local complete journey: field audio, independent edits, playback, comparis
 test("TEST ONLY running-app co-edit and model-requested retrieval demonstration", async ({
   page,
 }, info) => {
-  const mock = composerTransport();
+  const mock = composerTransport("duplicate-scale");
   await routeFixture(page, mock.transport);
   // Capture-only pacing and overlay. Neither is shipped or changes app behavior.
   const holdForCapture = async (milliseconds = 1200) => {
@@ -327,8 +598,8 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
     .getByLabel("Meaning I assign", { exact: false })
     .fill("Hello, in my own code");
   await page
-    .getByRole("button", { name: "Duplicate block", exact: true })
-    .click();
+    .getByRole("textbox", { name: "Your request", exact: true })
+    .fill("Repeat it and make the second block 1.25 times as long.");
   await holdForCapture();
   const before = await storedDraft(page);
   await page
@@ -340,6 +611,20 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
   );
   expect(await storedDraft(page)).toEqual(before);
   expect(mock.calls).toHaveLength(1);
+  const steps = page.getByRole("list", { name: "Proposed operations" });
+  await expect(steps).toContainText(
+    "Duplicate Block 1 (position 1) → New block 2 at position 2",
+  );
+  await expect(steps).toContainText("Scale New block 2 (position 2) ×1.25");
+  await expect(steps).not.toContainText(/block 0/i);
+  const proposal = JSON.parse(
+    (await page.getByTestId("composer-result").locator("pre").textContent())!,
+  ).proposal;
+  expect(proposal.preview.blocks[0]).toEqual(before.blocks[0]);
+  expect(proposal.preview.blocks[1].times.at(-1)).toBeCloseTo(
+    before.blocks[0].times.at(-1)! * 1.25,
+    12,
+  );
   await holdForCapture(2000);
   await page
     .getByRole("button", { name: "Play synthetic proposal", exact: true })
@@ -355,14 +640,17 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
     .getByRole("button", { name: "Apply proposal", exact: true })
     .click();
   expect((await storedDraft(page)).blocks[1].times.at(-1)).toBeCloseTo(
-    before.blocks[1].times.at(-1)! * 1.25,
+    before.blocks[0].times.at(-1)! * 1.25,
     12,
   );
+  expect((await storedDraft(page)).blocks[0]).toEqual(before.blocks[0]);
   await holdForCapture();
   await page.getByRole("button", { name: "Undo", exact: true }).click();
   expect((await storedDraft(page)).blocks).toEqual(before.blocks);
   await holdForCapture();
   await page.getByRole("button", { name: "Redo", exact: true }).click();
+  await page.locator(".phrase-block").last().click();
+  await page.locator(".gap-editor summary").click();
   await page.getByLabel("Gap 1 → 2", { exact: true }).fill("0.3");
   await page.getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
   await holdForCapture();

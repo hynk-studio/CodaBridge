@@ -51,8 +51,16 @@ async function connectMockTransport(
   });
 }
 async function exportPacket(page: Page) {
+  if (
+    !(await page
+      .getByRole("button", { name: "Download recording-comparison JSON" })
+      .isVisible())
+  )
+    await page.locator(".evidence-panel summary").click();
   const download = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Download evidence" }).click();
+  await page
+    .getByRole("button", { name: "Download recording-comparison JSON" })
+    .click();
   const file = await (await download).path();
   return JSON.parse(await readFile(file!, "utf8"));
 }

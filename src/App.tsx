@@ -206,7 +206,7 @@ export default function App() {
       link.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       setDownloadStatus(
-        "Evidence download requested for the current selection.",
+        "Recording-comparison JSON download requested for A/B. Save your Composer project in Keep my coda.",
       );
     } catch (cause) {
       setDownloadStatus(
@@ -243,9 +243,13 @@ export default function App() {
               personal, synthetic phrase.
             </p>
           </div>
-          <button className="export-button" onClick={download}>
-            Download evidence <span aria-hidden="true">↓</span>
-          </button>
+          <nav className="intro-actions" aria-label="Listen and create">
+            <a className="entry-listen" href="#listen">
+              Listen to recordings ↓
+            </a>
+            <a href="#composer">Open my Composer →</a>
+            <small>Listen first. Make a version when you’re ready.</small>
+          </nav>
         </div>
         <div className="workspace-label" id="listen">
           <span>
@@ -438,14 +442,18 @@ export default function App() {
             <summary>
               <span>
                 <span className="eyebrow">03 Inspect</span>
-                <strong>Follow the evidence</strong>
+                <strong>Recording-comparison evidence (A/B)</strong>
               </span>
               <span aria-hidden="true">＋</span>
             </summary>
             <p>
               Original timestamps, full source provenance, and unrounded
-              measurements for the current selection.
+              measurements for recordings A and B. This is not a Composer
+              project; save your creation in Keep my coda.
             </p>
+            <button className="recording-export" onClick={download}>
+              Download recording-comparison JSON
+            </button>
             <ul>
               {LIMITATIONS.map((item) => (
                 <li key={item}>{item}</li>

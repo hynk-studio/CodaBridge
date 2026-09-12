@@ -30,7 +30,7 @@ export function composerRequest(input: unknown = composerInput()) {
     body: JSON.stringify(input),
   });
 }
-export function composerTransport() {
+export function composerTransport(edit: "scale" | "duplicate-scale" = "scale") {
   const calls: {
     payload: Record<string, unknown>;
     redirect: RequestRedirect | undefined;
@@ -51,9 +51,27 @@ export function composerTransport() {
       return Response.json(
         finalOutput({
           revision: context.draft.revision,
-          operations: [
-            { op: "scale_duration", blockId: context.activeId, factor: 1.25 },
-          ],
+          operations:
+            edit === "duplicate-scale"
+              ? [
+                  {
+                    op: "duplicate_block",
+                    blockId: context.activeId,
+                    newBlockId: "fixture-copy",
+                  },
+                  {
+                    op: "scale_duration",
+                    blockId: "fixture-copy",
+                    factor: 1.25,
+                  },
+                ]
+              : [
+                  {
+                    op: "scale_duration",
+                    blockId: context.activeId,
+                    factor: 1.25,
+                  },
+                ],
         }),
       );
     const toolResult = payload.input.find(

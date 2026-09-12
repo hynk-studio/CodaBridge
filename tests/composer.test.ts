@@ -18,6 +18,11 @@ import {
 } from "../src/composer/model.ts";
 import { compareBlock, beforeAfter } from "../src/composer/analysis.ts";
 import {
+  durationHint,
+  operationLabels,
+  timingChange,
+} from "../src/composer/presentation.ts";
+import {
   parseProject,
   projectJson,
   sourceCredits,
@@ -28,6 +33,97 @@ import {
   renderSamples,
   wavBytes,
 } from "../src/composer/sound.ts";
+
+it("coalesced text preserves the timing transaction and advances every revision", () => {
+  const draft = createDraft("dswp-1");
+  let history: History = { present: draft, past: [], future: [] };
+  history = commitDraft(
+    history,
+    applyOperations(draft, [
+      { op: "scale_duration", blockId: draft.blocks[0].id, factor: 1.25 },
+    ]),
+  );
+  const timing = history.present;
+  for (let i = 0; i < 70; i++) {
+    const prior = history.present;
+    history = commitDraft(
+      history,
+      { ...prior, intention: prior.intention + "a" },
+      i > 0,
+    );
+    assert.equal(history.present.revision, prior.revision + 1);
+    assert.notEqual(
+      binding(history.present, draft.blocks[0].id),
+      binding(prior, draft.blocks[0].id),
+    );
+  }
+  assert.equal(COMPOSER_LIMITS.history, 40);
+  assert.equal(history.past.length, 2);
+  history = travel(history, "undo");
+  assert.equal(history.present.intention, "");
+  assert.deepEqual(history.present.blocks, timing.blocks);
+  history = travel(history, "undo");
+  assert.deepEqual(history.present.blocks, draft.blocks);
+  history = travel(travel(history, "redo"), "redo");
+  assert.equal(history.present.intention.length, 70);
+  assert.deepEqual(history.present.blocks, timing.blocks);
+});
+
+it("proposal labels follow new, moved and removed identities in sequence", () => {
+  const draft = createDraft("dswp-1"),
+    id = draft.blocks[0].id;
+  const labels = operationLabels(draft, [
+    { op: "duplicate_block", blockId: id, newBlockId: "copy" },
+    { op: "scale_duration", blockId: "copy", factor: 1.25 },
+    { op: "move_block", blockId: "copy", toIndex: 0 },
+    { op: "remove_block", blockId: id },
+    { op: "add_seed", sourceId: "dswp-2", newBlockId: "other" },
+    { op: "set_gap", blockId: "other", gapIndex: 0, seconds: 0.3 },
+    { op: "remove_block", blockId: "other" },
+  ]);
+  assert.deepEqual(labels, [
+    "Duplicate Block 1 (position 1) → New block 2 at position 2.",
+    "Scale New block 2 (position 2) ×1.25.",
+    "Move New block 2 from position 2 → 1.",
+    "Remove Block 1 from position 2.",
+    "Add New block 3 from dswp-2 at position 2.",
+    "Set New block 3 (position 2), gap 1 → 2, to 0.3 s.",
+    "Remove New block 3 from position 2.",
+  ]);
+  assert.equal(draft.blocks.length, 1);
+  assert.throws(() =>
+    operationLabels(draft, [{ op: "remove_block", blockId: "absent" }]),
+  );
+});
+
+it("timing descriptions distinguish duration from normalized spacing and use the actual factor", () => {
+  const draft = createDraft("dswp-1"),
+    block = draft.blocks[0];
+  const scaled = applyOperations(draft, [
+    { op: "scale_duration", blockId: block.id, factor: 1.5 },
+  ]);
+  assert.match(
+    timingChange(block, scaled.blocks[0]),
+    /×1.5.*longer; relative spacing is unchanged/,
+  );
+  assert.equal(timingChange(block, block), "The timing is unchanged.");
+  const changed = applyOperations(draft, [
+    {
+      op: "set_gap",
+      blockId: block.id,
+      gapIndex: 0,
+      seconds: block.times[1] + 0.05,
+    },
+  ]);
+  assert.match(timingChange(block, changed.blocks[0]), /different proportions/);
+  assert.match(
+    timingChange(block, seedBlock("dswp-7")),
+    /Different marker counts/,
+  );
+  assert.match(durationHint(0.8), /×0.8 multiplies every gap by 0.8/);
+  assert.match(durationHint(1), /leave timing unchanged/);
+  assert.match(durationHint(NaN), /Choose a duration multiplier/);
+});
 
 it("copies seed timing with stable source/offset and independent duplicated blocks", () => {
   const original = JSON.stringify(recordings),

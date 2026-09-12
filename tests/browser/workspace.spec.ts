@@ -106,9 +106,13 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
       elements.every((element) => (element as HTMLAudioElement).paused),
     ),
   ).toBe(true);
+  await page.locator(".evidence-panel summary").click();
   const downloadPromise = page.waitForEvent("download");
   await page
-    .getByRole("button", { name: "Download evidence", exact: true })
+    .getByRole("button", {
+      name: "Download recording-comparison JSON",
+      exact: true,
+    })
     .click();
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toBe(
@@ -232,8 +236,12 @@ test("an unsupported decoder produces a usable error state", async ({
   await expect(
     page.getByRole("button", { name: "Play recording A", exact: true }),
   ).toBeDisabled();
+  await page.locator(".evidence-panel summary").click();
   await expect(
-    page.getByRole("button", { name: "Download evidence", exact: true }),
+    page.getByRole("button", {
+      name: "Download recording-comparison JSON",
+      exact: true,
+    }),
   ).toBeEnabled();
 });
 

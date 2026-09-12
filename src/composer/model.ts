@@ -384,7 +384,11 @@ export interface History {
   past: Draft[];
   future: Draft[];
 }
-export function commitDraft(history: History, draft: Draft): History {
+export function commitDraft(
+  history: History,
+  draft: Draft,
+  coalesce = false,
+): History {
   const next = parseDraft({ ...draft, revision: history.present.revision + 1 });
   if (
     JSON.stringify({ ...next, revision: 0 }) ===
@@ -393,7 +397,12 @@ export function commitDraft(history: History, draft: Draft): History {
     return history;
   return {
     present: next,
-    past: [...history.past, history.present].slice(-COMPOSER_LIMITS.history),
+    // Only the UI's continuing text transaction uses coalescing. Content and
+    // revision still advance on every change; the first pre-edit snapshot stays.
+    past:
+      coalesce && history.past.length
+        ? history.past
+        : [...history.past, history.present].slice(-COMPOSER_LIMITS.history),
     future: [],
   };
 }

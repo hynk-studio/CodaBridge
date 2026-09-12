@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { flushSync } from "react-dom";
 import { recordings } from "../domain/catalog.ts";
 import { compareTiming } from "../domain/timing.ts";
 import { timingInput } from "../domain/evidence.ts";
@@ -40,6 +41,7 @@ import {
   STORAGE_KEY,
 } from "./project.ts";
 import { SyntheticPlayer, wavBytes } from "./sound.ts";
+import { durationHint, operationLabels, timingChange } from "./presentation.ts";
 import type { ComposerRequest, ComposerResult } from "./contract.ts";
 import "./composer.css";
 
@@ -99,6 +101,7 @@ function NumberEdit({
   max,
   onCommit,
   button = "Set",
+  hint,
 }: {
   label: string;
   value: number;
@@ -106,6 +109,7 @@ function NumberEdit({
   max: number;
   onCommit: (value: number) => void;
   button?: string;
+  hint?: (value: number) => string;
 }) {
   const [text, setText] = useState(String(Number(value.toFixed(6))));
   useEffect(() => setText(String(Number(value.toFixed(6)))), [value]);
@@ -131,6 +135,9 @@ function NumberEdit({
         />
       </label>
       <button type="submit">{button}</button>
+      {hint && (
+        <p className="number-hint">{hint(text.trim() ? Number(text) : NaN)}</p>
+      )}
     </form>
   );
 }
@@ -194,7 +201,12 @@ const Composer = forwardRef<
   const player = useRef<SyntheticPlayer | null>(null);
   const region = useRef<HTMLElement>(null);
   const historyRef = useRef(history);
-  historyRef.current = history;
+  const textTransaction = useRef<string | null>(null);
+  const finishText = useCallback(() => {
+    textTransaction.current = null;
+  }, []);
+  // Mutations update this ref in install/reset. A render may be replayed with
+  // older state; it must not roll back the latest input-event snapshot.
   const draft = history?.present ?? null;
   const active =
     draft?.blocks.find((b) => b.id === activeId) ?? draft?.blocks[0] ?? null;
@@ -212,6 +224,7 @@ const Composer = forwardRef<
     player.current?.stop();
   }, []);
   const install = (next: History, selected = activeId) => {
+    finishText();
     cancel();
     historyRef.current = next;
     setHistory(next);
@@ -234,6 +247,9 @@ const Composer = forwardRef<
   useEffect(() => {
     cancel();
   }, [key, fieldSelection, cancel]);
+  useEffect(() => {
+    finishText();
+  }, [fieldSelection, finishText]);
   useEffect(() => {
     const controller = new AbortController();
     void fetch("/api/investigation/status", { signal: controller.signal })
@@ -280,6 +296,7 @@ const Composer = forwardRef<
     }
   }
   function operate(operations: Operation[]) {
+    finishText();
     attempt(() => {
       const current = historyRef.current;
       if (current)
@@ -289,6 +306,7 @@ const Composer = forwardRef<
     });
   }
   function makeVersion(sourceId: string) {
+    finishText();
     attempt(() => {
       const current = historyRef.current;
       if (!current) {
@@ -315,15 +333,28 @@ const Composer = forwardRef<
   useImperativeHandle(ref, () => ({ makeVersion }));
   function editText(field: "title" | "intention" | "meaning", value: string) {
     attempt(() => {
-      if (!history || !draft || !active) return;
-      const next = structuredClone(draft);
+      const current = historyRef.current;
+      if (!current || !active) return;
+      const transaction = field === "meaning" ? `meaning:${active.id}` : field;
+      const next = structuredClone(current.present);
       if (field === "meaning")
         next.blocks.find((b) => b.id === active.id)!.meaning = value;
       else next[field] = value;
-      install(commitDraft(history, next));
+      const updated = commitDraft(
+        current,
+        next,
+        textTransaction.current === transaction,
+      );
+      if (updated === current) return;
+      // Rapid native input can arrive before a pending render is committed.
+      // Keep this controlled input and its revision current before the next key;
+      // invalidation still runs for every event in a coalesced transaction.
+      flushSync(() => install(updated));
+      textTransaction.current = transaction;
     });
   }
-  async function play(which: "phrase" | "seed" | "preview") {
+  async function play(which: "phrase" | "block" | "seed" | "preview") {
+    finishText();
     if (!draft || !active) return;
     stopField();
     setNotice("");
@@ -335,7 +366,9 @@ const Composer = forwardRef<
               ...draft,
               blocks: [seedBlock(active.seed.recordingId, active.id)],
             }
-          : draft;
+          : which === "block"
+            ? { ...draft, blocks: [active] }
+            : draft;
     if (!selected) return;
     try {
       await player.current?.play(selected);
@@ -344,6 +377,7 @@ const Composer = forwardRef<
     }
   }
   async function ask() {
+    finishText();
     if (!draft || !active || pending || !available || !question.trim()) return;
     cancel();
     const currentGeneration = generation.current,
@@ -407,6 +441,7 @@ const Composer = forwardRef<
     }
   }
   async function exportFile(kind: "wav" | "card" | "json") {
+    finishText();
     if (!draft || !active) return;
     try {
       const stem = fileStem(draft);
@@ -424,13 +459,11 @@ const Composer = forwardRef<
               projectJson(
                 draft,
                 codebook,
-                includeAnalysis
-                  ? {
-                      label: "Saved analysis — unverified on reopen",
-                      deterministic: creationEvidence(draft, active.id),
-                      generated: result,
-                    }
-                  : null,
+                {
+                  label: "Saved analysis — unverified on reopen",
+                  deterministic: creationEvidence(draft, active.id),
+                  generated: includeAnalysis ? result : null,
+                },
                 active.id,
               ),
             ],
@@ -446,6 +479,7 @@ const Composer = forwardRef<
     }
   }
   async function importFile(file: File | undefined) {
+    finishText();
     if (!file) return;
     cancel();
     const token = generation.current;
@@ -480,6 +514,7 @@ const Composer = forwardRef<
     }
   }
   function reuseBlock(block: Block) {
+    finishText();
     attempt(() => {
       const copy = structuredClone(block);
       copy.id = newId();
@@ -558,6 +593,7 @@ const Composer = forwardRef<
                 maxLength={80}
                 value={draft.title}
                 onChange={(e) => editText("title", e.target.value)}
+                onBlur={finishText}
               />
             </label>
             <label>
@@ -566,6 +602,7 @@ const Composer = forwardRef<
                 maxLength={240}
                 value={draft.intention}
                 onChange={(e) => editText("intention", e.target.value)}
+                onBlur={finishText}
                 placeholder="What would you like this phrase to express?"
               />
             </label>
@@ -602,6 +639,7 @@ const Composer = forwardRef<
                   b.id === active.id ? "phrase-block active" : "phrase-block"
                 }
                 onClick={() => {
+                  finishText();
                   cancel();
                   setActiveId(b.id);
                   setExampleId("");
@@ -617,9 +655,16 @@ const Composer = forwardRef<
               </button>
             ))}
           </div>
+          <p className="composer-meta">
+            Patterns show normalized spacing, not duration. Each block fills its
+            own width.
+          </p>
           <div className="composer-actions playback-controls">
             <button className="primary" onClick={() => void play("phrase")}>
               ▶ Play my synthetic phrase
+            </button>
+            <button onClick={() => void play("block")}>
+              Play selected synthetic block
             </button>
             <button onClick={() => void play("seed")}>
               Play synthetic seed timing
@@ -662,15 +707,75 @@ const Composer = forwardRef<
                 block={active}
                 label="Active block normalized marker pattern"
               />
+              <p className="composer-meta">
+                Normalized marker pattern · first marker to last
+              </p>
               <label className="meaning-label">
                 Meaning I assign <span>(optional, creator-authored)</span>
                 <input
                   maxLength={160}
                   value={active.meaning}
                   onChange={(e) => editText("meaning", e.target.value)}
+                  onBlur={finishText}
                   placeholder="A personal label, never a whale translation"
                 />
               </label>
+              <p className="edit-invitation">
+                Try a little more room, or bring the clicks closer.
+              </p>
+              <div className="composer-actions quick-edits">
+                <button
+                  onClick={() =>
+                    operate([
+                      {
+                        op: "scale_duration",
+                        blockId: active.id,
+                        factor: 1.25,
+                      },
+                    ])
+                  }
+                >
+                  Lengthen ×1.25
+                </button>
+                <button
+                  onClick={() =>
+                    operate([
+                      { op: "scale_duration", blockId: active.id, factor: 0.8 },
+                    ])
+                  }
+                >
+                  Shorten ×0.8
+                </button>
+                <button
+                  onClick={() =>
+                    operate([
+                      {
+                        op: "set_gap",
+                        blockId: active.id,
+                        gapIndex: 0,
+                        seconds: active.times[1] + 0.05,
+                      },
+                    ])
+                  }
+                >
+                  Open first gap +0.05 s
+                </button>
+                <button
+                  disabled={active.times[1] - 0.05 < COMPOSER_LIMITS.gapMin}
+                  onClick={() =>
+                    operate([
+                      {
+                        op: "set_gap",
+                        blockId: active.id,
+                        gapIndex: 0,
+                        seconds: active.times[1] - 0.05,
+                      },
+                    ])
+                  }
+                >
+                  Tighten first gap −0.05 s
+                </button>
+              </div>
               <div className="duration-edit">
                 <NumberEdit
                   label="Duration multiplier"
@@ -678,20 +783,17 @@ const Composer = forwardRef<
                   min={COMPOSER_LIMITS.scaleMin}
                   max={COMPOSER_LIMITS.scaleMax}
                   button="Scale duration"
+                  hint={durationHint}
                   onCommit={(factor) =>
                     operate([
                       { op: "scale_duration", blockId: active.id, factor },
                     ])
                   }
                 />
-                <p>
-                  ×1.25 makes every gap 25% longer. Normalized spacing stays the
-                  same.
-                </p>
               </div>
-              <details className="gap-editor" open>
+              <details className="gap-editor">
                 <summary>
-                  Change one gap <span>seconds</span>
+                  Exact gap timing <span>seconds</span>
                 </summary>
                 <p>
                   Later markers move together; other gaps keep their lengths.
@@ -826,15 +928,39 @@ const Composer = forwardRef<
               <p className="composer-meta">
                 Measured locally · active block only
               </p>
+              <p className="timing-change" data-testid="timing-change">
+                Compared with the seed:{" "}
+                {timingChange(
+                  seedBlock(active.seed.recordingId, active.id),
+                  active,
+                )}
+              </p>
+              <div
+                className="duration-pair"
+                aria-label="Seed and selected block durations"
+              >
+                <div>
+                  <span>Synthetic seed timing</span>
+                  <strong>{analysis!.seed.spanSeconds.toFixed(3)} s</strong>
+                </div>
+                <div>
+                  <span>Selected synthetic block</span>
+                  <strong>{span(active).toFixed(3)} s</strong>
+                </div>
+              </div>
+              {previous && (
+                <p className="composer-meta">
+                  Since the previous local revision:{" "}
+                  {timingChange(previous, active)}
+                </p>
+              )}
               <div className="baseline-result">
-                <span>Seed baseline · {analysis!.seed.sourceId}</span>
+                <span>
+                  Normalized interval MAD · seed {analysis!.seed.sourceId}
+                </span>
                 <strong data-testid="creation-seed-score">
                   {score(analysis!.seed.comparison)}
                 </strong>
-                <small>
-                  {analysis!.seed.spanSeconds.toFixed(3)} s seed →{" "}
-                  {span(active).toFixed(3)} s now
-                </small>
               </div>
               <div className="previous-result">
                 <span>Previous local revision</span>
@@ -1000,27 +1126,17 @@ const Composer = forwardRef<
                 {result.proposal && (
                   <>
                     <h4>Proposed edit · your draft is unchanged</h4>
-                    <ul>
-                      {result.proposal.operations.map((op, i) => (
-                        <li key={i}>
-                          {op.op.replaceAll("_", " ")} ·{" "}
-                          {"blockId" in op
-                            ? `block ${draft.blocks.findIndex((b) => b.id === op.blockId) + 1}`
-                            : op.sourceId}
-                          {"factor" in op
-                            ? ` × ${op.factor}`
-                            : "seconds" in op
-                              ? ` → ${op.seconds} s`
-                              : ""}
-                          {"gapIndex" in op
-                            ? ` · gap ${op.gapIndex + 1} → ${op.gapIndex + 2}`
-                            : ""}
-                          {"toIndex" in op
-                            ? ` → position ${op.toIndex + 1}`
-                            : ""}
-                        </li>
-                      ))}
-                    </ul>
+                    <p>
+                      Steps in order. Labels stay with their blocks when
+                      positions change.
+                    </p>
+                    <ol aria-label="Proposed operations">
+                      {operationLabels(draft, result.proposal.operations).map(
+                        (label, i) => (
+                          <li key={i}>{label}</li>
+                        ),
+                      )}
+                    </ol>
                     <p>Deterministic before / after</p>
                     {result.proposal.facts.map((row) => (
                       <div className="preview-fact" key={row.blockId}>
@@ -1107,33 +1223,47 @@ const Composer = forwardRef<
               <div className="coda-card" data-testid="coda-card">
                 <span className="eyebrow">CodaBridge / Coda Card</span>
                 <h4>{draft.title || "Untitled coda"}</h4>
-                <p className="card-identity">{CREATION_IDENTITY}</p>
-                {draft.intention && <p>Creator intention: {draft.intention}</p>}
+                {draft.intention && (
+                  <p className="card-intention">
+                    {draft.intention}
+                    <small>Creator intention</small>
+                  </p>
+                )}
                 {draft.blocks.map((b, i) => (
                   <div key={b.id}>
-                    <span>
-                      Block {i + 1} · {span(b).toFixed(3)} s
-                      {b.meaning
-                        ? ` · Creator-assigned meaning: ${b.meaning}`
-                        : ""}
-                    </span>
+                    {b.meaning && (
+                      <p className="card-meaning">
+                        {b.meaning}
+                        <small>Creator-assigned meaning</small>
+                      </p>
+                    )}
                     <Pattern block={b} label={`Saved phrase block ${i + 1}`} />
+                    <small>
+                      Block {i + 1} · {span(b).toFixed(3)} s · normalized
+                      spacing
+                    </small>
                   </div>
                 ))}
                 <p>
-                  Seed → active block: {analysis!.seed.spanSeconds.toFixed(3)} s
-                  → {span(active).toFixed(3)} s. Normalized MAD{" "}
-                  {score(analysis!.seed.comparison)}.
+                  Selected block:{" "}
+                  {timingChange(
+                    seedBlock(active.seed.recordingId, active.id),
+                    active,
+                  )}
                 </p>
+                <p className="card-identity">{CREATION_IDENTITY}</p>
                 <p className="card-credit">
                   Timing seeds:{" "}
                   {draft.ancestry.map((s) => s.recordingId).join(", ")} · DSWP ·
                   CC BY 4.0
                 </p>
-                <p>Meaning to sperm whales: unknown.</p>
+                <p className="card-identity">
+                  Meaning to sperm whales: unknown.
+                </p>
                 <small>
-                  Machine-estimated seed markers. Timing similarity is not
-                  translation. This image is not playable.
+                  Revision {draft.revision} · This image is not playable. Keep
+                  its WAV + project JSON for sound, measurements and source
+                  details.
                 </small>
               </div>
               <div className="composer-actions">
@@ -1159,6 +1289,11 @@ const Composer = forwardRef<
                 Include analysis evidence in project (saved / unverified on
                 reopen)
               </label>
+              <p className="composer-meta">
+                Project JSON always keeps deterministic measurements, source
+                versions and full limitations. The option adds the current
+                generated result.
+              </p>
             </div>
             <aside className="codebook">
               <h3>My little codebook</h3>
@@ -1169,6 +1304,7 @@ const Composer = forwardRef<
               <button
                 disabled={codebook.length >= COMPOSER_LIMITS.codebook}
                 onClick={() => {
+                  finishText();
                   setCodebook([
                     ...codebook,
                     { ...structuredClone(active), id: newId() },

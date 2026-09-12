@@ -41,6 +41,7 @@ The browser checks original bytes before decoding. The server independently reso
 ## Review and compatibility
 
 - [MVP-03 contract, engineering limits and implementation](docs/MVP_03.md)
+- [MVP-03 review corrections, before/after captures and downloads](docs/MVP_03_REFINEMENT.md)
 - [MVP-03 verification, running-app capture and downloads](docs/MVP_03_VERIFICATION.md)
 - [Historical live A/B retrieval and unequal-count batch](docs/trials/2026-09-12-live-retrieval-unequal/README.md)
 - [MVP-02 implementation and boundaries](docs/MVP_02.md)

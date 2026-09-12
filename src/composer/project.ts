@@ -7,10 +7,12 @@ import {
   fields,
   parseBlock,
   parseDraft,
+  seedBlock,
   type Block,
   type Draft,
 } from "./model.ts";
 import { eventSchedule } from "./sound.ts";
+import { timingChange } from "./presentation.ts";
 
 export const STORAGE_KEY = "codabridge-composer-v1";
 export interface Project {
@@ -171,39 +173,48 @@ export async function cardImage(draft: Draft, activeId: string): Promise<Blob> {
   function line(value: string, size = 25, color = "#eaf1f3") {
     ctx!.font = `${size}px sans-serif`;
     ctx!.fillStyle = color;
-    // Character wrapping also bounds unbroken imported strings; text is never markup.
-    let row = "";
-    for (const character of value) {
-      if (
-        ctx!.measureText(row + character).width > 1060 ||
-        character === "\n"
-      ) {
-        ctx!.fillText(row, 70, y);
-        y += size * 1.35;
+    const writeRow = (row: string) => {
+      ctx!.fillText(row, 70, y);
+      y += size * 1.35;
+    };
+    // Wrap words normally; split only overlong unbroken imported text. Neither
+    // labels nor markup-like strings are interpreted or executed.
+    for (const paragraph of value.split("\n")) {
+      let row = "";
+      for (const word of paragraph.split(/\s+/u)) {
+        const joined = row ? `${row} ${word}` : word;
+        if (ctx!.measureText(joined).width <= 1060) {
+          row = joined;
+          continue;
+        }
+        if (row) writeRow(row);
         row = "";
+        for (const character of word) {
+          if (ctx!.measureText(row + character).width > 1060) {
+            writeRow(row);
+            row = "";
+          }
+          row += character;
+        }
       }
-      if (character !== "\n") row += character;
+      writeRow(row);
     }
-    ctx!.fillText(row, 70, y);
-    y += size * 1.45;
+    y += size * 0.1;
   }
   line("CodaBridge / CODA CARD", 26, "#c4eb91");
   y += 18;
-  line(draft.title || "Untitled coda", 48);
-  line(CREATION_IDENTITY, 25, "#c4eb91");
-  line(
-    `Revision ${draft.revision} · ${draft.blocks.length} blocks · ${eventSchedule(draft).duration.toFixed(3)} s WAV`,
-    23,
-    "#a4b7bf",
-  );
-  if (draft.intention) line(`Creator intention: ${draft.intention}`, 24);
-  y += 15;
+  line(draft.title || "Untitled coda", 64);
+  if (draft.intention) {
+    y += 10;
+    line(draft.intention, 32);
+    line("CREATOR INTENTION", 18, "#a4b7bf");
+  }
+  y += 30;
   for (const [index, block] of draft.blocks.entries()) {
-    line(
-      `BLOCK ${index + 1} · ${block.seed.recordingId} timing seed`,
-      22,
-      "#a4b7bf",
-    );
+    if (block.meaning) {
+      line(block.meaning, 30, "#c4eb91");
+      line("CREATOR-ASSIGNED MEANING", 18, "#a4b7bf");
+    }
     ctx.strokeStyle = "#30444f";
     ctx.beginPath();
     ctx.moveTo(70, y + 15);
@@ -213,52 +224,54 @@ export async function cardImage(draft: Draft, activeId: string): Promise<Blob> {
     for (const t of block.times) {
       ctx.fillStyle = "#c4eb91";
       ctx.beginPath();
-      ctx.arc(80 + (t / duration) * 1020, y + 15, 6, 0, Math.PI * 2);
+      ctx.arc(80 + (t / duration) * 1020, y + 15, 9, 0, Math.PI * 2);
       ctx.fill();
+      ctx.fillRect(79 + (t / duration) * 1020, y - 4, 2, 38);
     }
     y += 50;
     line(
-      `Span ${duration.toFixed(3)} s${index < draft.blocks.length - 1 ? ` · space after ${block.spacingAfter.toFixed(3)} s` : ""}`,
-      21,
+      `Block ${index + 1} · ${duration.toFixed(3)} s · normalized spacing${index < draft.blocks.length - 1 ? ` · ${block.spacingAfter.toFixed(3)} s pause after` : ""}`,
+      20,
+      "#a4b7bf",
     );
-    if (block.meaning) line(`Creator-assigned meaning: ${block.meaning}`, 22);
+    y += 18;
   }
-  y += 12;
-  const comparison = compareBlock(draft, activeId),
-    seed = comparison.seed.comparison;
+  const active = draft.blocks.find((b) => b.id === activeId)!;
   line(
-    `Active block / seed MAD: ${seed.status === "comparable" ? seed.value.toFixed(6) : "not comparable"}`,
-    23,
-  );
-  line(
-    `Seed span ${comparison.seed.spanSeconds.toFixed(3)} s → draft ${comparison.seed.currentSpanSeconds.toFixed(3)} s. ${comparison.eligibleCount} eligible other examples.`,
+    `Selected block / seed: ${timingChange(seedBlock(active.seed.recordingId, active.id), active)}`,
     22,
   );
+  y += 20;
+  ctx.fillStyle = "#30444f";
+  ctx.fillRect(70, y, 1060, 1);
+  y += 35;
+  line(CREATION_IDENTITY, 22, "#c4eb91");
   line(
-    "Normalized interval MAD v1.0.0 / limited four-recording catalog",
+    "Meaning to sperm whales: unknown. Personal labels are not translation.",
     20,
-    "#a4b7bf",
+    "#c4eb91",
   );
   line(
     `Timing source: DSWP (${draft.ancestry.map((s) => s.recordingId).join(", ")}), CC BY 4.0.`,
-    21,
+    20,
+    "#a4b7bf",
   );
   // Exact credits and original offsets also live in the companion project evidence.
   for (const credit of new Set(sourceCredits(draft).map((s) => s.attribution)))
     line(credit, 20, "#a4b7bf");
   line(
-    "Meaning to sperm whales: unknown. Personal labels are not translation.",
-    22,
-    "#c4eb91",
-  );
-  line(
-    "Estimated seed markers; coda boundaries unverified. Timing is not intent or identity.",
-    20,
+    `Revision ${draft.revision} · ${eventSchedule(draft).duration.toFixed(3)} s synthetic WAV · estimated seed timing.`,
+    19,
     "#a4b7bf",
   );
   line(
     "This image is not playable. Keep its synthetic WAV + re-openable project JSON.",
     20,
+    "#a4b7bf",
+  );
+  line(
+    "Full measurements, source versions and limitations accompany the project / evidence.",
+    19,
     "#a4b7bf",
   );
   // Bounded text fits this working canvas; crop to the actual content height.
