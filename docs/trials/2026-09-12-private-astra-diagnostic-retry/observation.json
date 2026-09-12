@@ -1,0 +1,50 @@
+{
+  "authorizationComment": "5644852584",
+  "reviewedSource": "dfee97c742751fd003cded92c1c3477cc1675265",
+  "artifactSha256": "20a34a5fb80519f3a0ba28c2d8a5a264db8e5eb3b559f815e8f514106dcc9d3b",
+  "runtime": {
+    "node": "v25.9.0",
+    "miniflare": "5.20260911.0-alpha",
+    "workerd": "1.20260911.1"
+  },
+  "sourceIds": [
+    "dswp-1",
+    "dswp-2"
+  ],
+  "question": "What differs in the timing of A and B, and what cannot be concluded?",
+  "status": "failed_stop_authorization_consumed",
+  "consumedAt": "2026-09-12T09:02:20.037Z",
+  "diagnostics": [
+    {
+      "kind": "PROVIDER_TRANSPORT_FAILURE",
+      "httpResponseObtained": false
+    }
+  ],
+  "observedAt": "2026-09-12T09:02:20.062Z",
+  "applicationResult": {
+    "httpStatus": 502,
+    "status": "failed",
+    "code": "PROVIDER_FAILURE"
+  },
+  "browserClickAt": "2026-09-12T09:02:19.999Z",
+  "localInvestigationResponsesObserved": 1,
+  "secondInvestigationSubmitted": false,
+  "acceptedExplanation": null,
+  "providerResponses": null,
+  "usage": null,
+  "upstreamRequestsReceived": null,
+  "cleanup": {
+    "trialRuntimeStopped": true,
+    "temporaryLauncherRemoved": true,
+    "trialPortClosedBeforeNormalPreview": true,
+    "normalPreviewHttpStatus": 200,
+    "normalPreviewAvailability": "unavailable",
+    "normalPreviewCode": "NOT_CONFIGURED",
+    "checkedInGatesDisabled": true,
+    "browserTabClosed": true,
+    "keepAwakeLeaseStopped": true,
+    "disabledAccessCheckedAt": "2026-09-12T09:04:49.098114+00:00",
+    "normalPreviewStopped": true,
+    "loopbackPortClosedAtCloseout": true
+  }
+}
