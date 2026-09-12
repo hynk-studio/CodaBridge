@@ -69,6 +69,9 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
       .evaluate((element) => (element as HTMLAudioElement).currentTime),
   ).toBeGreaterThan(0);
   const originalMetric = await page.getByTestId("metric-value").textContent();
+  await page
+    .getByRole("button", { name: "Reveal measurements", exact: true })
+    .click();
   expect(Number(originalMetric)).toBeGreaterThan(0);
   await page
     .getByRole("radio", { name: "Absolute", exact: true })
@@ -157,7 +160,9 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/screenshots/${testInfo.project.name}-mvp02-unavailable.png`,
+    path: testInfo.outputPath(
+      `${testInfo.project.name}-legacy-unavailable.png`,
+    ),
     fullPage: true,
   });
   expect(errors).toEqual([]);

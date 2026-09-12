@@ -1,0 +1,45 @@
+# MVP-03 — Coda Composer
+
+Implementation contract from [issue #4](https://github.com/hynk-studio/CodaBridge/issues/4), extending [launch issue #1](https://github.com/hynk-studio/CodaBridge/issues/1). This slice is stacked on Draft PR #3 / PR #2. Preserve those foundations and all historical trial evidence.
+
+## Connected journey
+
+Listen to an attributed field recording, form a personal impression, reveal timing, make a version, shape and hear a short synthetic phrase, compare its active block with real examples, optionally ask Astra for an edit/investigation, and keep the WAV, Coda Card image and re-openable project JSON. Basic use works without Astra. Context / Dialogue Lab remains the deeper follow-on after this journey, with verified exchange sources and suitable controls; no empty lab or dialogue research program is included here.
+
+## Identity and deterministic editing
+
+`src/composer/model.ts` owns separate `Draft`, `Block`, `SeedRef` and typed operations. Creations never become catalog `Recording` objects. Seed markers are copied and rebased to zero; pinned source references retain their original first-marker offset. Full original timestamps/credit are resolved from the unchanged catalog for evidence/export. Source links identify seeds, not authenticated imported edit histories. Creator titles, intentions and block meanings are personal text; meaning to sperm whales stays unknown.
+
+Central engineering bounds: 1–4 blocks, 2–12 markers each, 30-second phrase span; marker gaps 0.04–5 s, between-block spacing 0.05–5 s, duration factors 0.25–4 per operation, at most eight operations per proposal. These are implementation limits, not whale biology. A scale factor multiplies every gap; setting one gap translates the later marker suffix and preserves other gaps. Spacing belongs to the preceding block and follows that block when reordered; the final block's saved spacing is unused. Duplicate blocks have independent timing and stable new IDs. Validation rejects an entire batch if any step is invalid; a no-op cannot produce a successful proposal. Undo/redo restore content with a new monotonically increasing revision (40 retained edits).
+
+The local codebook holds up to 12 independent blocks with creator labels. Version-one local persistence and project files are bounded to 128 KiB. Storage failures leave editing and file saving usable. Imports reject unknown fields, versions, malformed timing and source mismatches. Credit is rebuilt from the pinned catalog; saved analysis is inert historical JSON, visibly unverified, never a current result or executable proposal. Imports do not autoplay, fetch supplied URLs or contact a model.
+
+## Sound and keeping a creation
+
+`sound.ts` produces one deterministic event schedule and PCM renderer for synthetic seed timing, drafts, previews and WAV export: 48 kHz mono, bounded 12 ms pulses, conservative peak ceiling 0.16, 50 ms lead and 40 ms tail. The phrase limit excludes those 90 ms of renderer framing. Playback uses a pre-rendered AudioBuffer scheduled on the Web Audio clock. Explicit play/pause/resume/stop controls coordinate with field audio, and draft/selection changes stop obsolete playback and close audio resources. Hardware loudness and human listening are separate from automated verification.
+
+The image card is generated from current state using Canvas text and timing marks, with synthetic identity, creator meaning, seed credit, active-block measurements and limitations. It is not the playable asset: accompanying WAV and JSON are explicitly identified. WAV INFO metadata names synthetic timing sonification and seed credit. JSON retains exact editable timing, codebook, resolved source credits and optionally current deterministic/generated evidence. Imported credits are recomputed; imported analysis never establishes live execution.
+
+## Composition-aware comparison
+
+`analysis.ts` applies the existing normalized-interval MAD v1.0.0 to one active block versus its seed, preceding local revision and eligible observed recordings. Uniform scaling preserves normalized spacing; individual-gap edits change it. Unequal counts remain not comparable without alignment, padding or truncation. The seed is a separate baseline. Alternative discovery excludes all retained phrase ancestry, byte-identical seed copies and repeated candidate bytes; ancestry remains after a block is removed. Eligible counts and the four-recording catalog scope are visible. Real-example actions select field recording B explicitly, preserving the phrase without autoplay or model requests. Phrases are never flattened into alleged biological codas.
+
+## Bounded Astra contract
+
+`server/composer.ts` implements `/api/composer`; it is not a chatbot or a fake-success endpoint. Access uses the existing disabled-by-default operator flags/key boundary. Flags do not constitute authentication or a shared spending cap. No credential access or paid application-model request is authorized by MVP-03.
+
+Composer input has an explicit 32 KiB cap, separate from the unchanged 8 KiB legacy A/B cap: at most four small blocks, their source refs, creator text, one optional prior block and an exact canonical binding. The binding includes complete validated draft content/revision, active block, previous timing, catalog and metric versions. The prior block is validated user-authored data, not a trusted historical assertion. Server source resolution and measurements ignore browser-supplied scores/provenance; unknown request fields fail.
+
+Editing uses a distinct strict output schema with typed numeric operation arguments. The seven allowed operations are duration scaling, single-gap edit, spacing, duplicate/remove/reorder and add an allowlisted seed. Provider output cannot change sources, creator meaning, URLs, playback or exports. Server code validates/applies to a temporary copy and returns deterministic before/after facts. The browser recomputes the preview before offering Apply; Apply makes one undoable edit. Editing, undo, import, block/field selection, request changes and cancellation invalidate obsolete responses/proposals. No ordinary control triggers inference.
+
+Investigation tools are `compare_creation`, `creation_before_after` and `find_creation_alternatives`, restricted to the bound active block. Recording evidence resolves server-side; model-requested retrieval is actually dispatched and its result fed back before final explanation acceptance. Assistant commentary and opaque reasoning replay internally but never enter the final explanation/export. Refusals, malformed messages, unknown tools, strict arguments, duplicate call IDs and final evidence-reference checks remain enforced.
+
+The shared provider adapter preserves native Worker fetch, `https://api.openai.com/v1/responses`, `gpt-6-astra`, low reasoning, `store:false`, manual redirects, 20 s deadline, 1,800 output tokens per response, four provider rounds/tool calls and existing byte/output/privacy bounds. A 3xx is failure, never followed. No Node fallback, alternate endpoint/model or retry exists. The trusted server contract parameter selects only Composer instructions/tools/schema; HTTP callers cannot set it. Legacy A/B validation is unchanged.
+
+Generated interpretation is visibly unverified. Cited IDs must resolve to issued evidence. Exact supplied numeric source/metric labels are permitted; remaining ASCII digits and URLs in interpretation prose are rejected. This lexical check does **not** prove truth, catch spelled-out measurements or certify semantic claims. It is not applied to typed numeric edit arguments. Authoritative measurements remain deterministic. No model judge or generalized heuristic classifier is added.
+
+## Evidence and release boundary
+
+See [MVP-03 verification](MVP_03_VERIFICATION.md) for actual commands, runtime captures and delivered files. Test-only provider fixtures exercise real server validation/tools and the UI; native workerd artifact tests intercept outbound fetch in process. They prove local behavior under fixtures, not live Composer compatibility. Prior [live MVP-02 trials](trials/2026-09-12-live-retrieval-unequal/README.md) concern the old A/B contract only. Hosted Sites, new live Composer behavior, public access/shared budgeting, human listening and physical-device coverage require their own validation. No merge, deployment, account changes, WhAM or new recordings are included.
+
+Implementation references: [OpenAI function-calling guide](https://developers.openai.com/api/docs/guides/function-calling) for tool-call/application-result sequencing; [Web Audio recommendation](https://www.w3.org/TR/webaudio-1.0/) for scheduled buffer playback. Neither establishes device or provider compatibility by itself.

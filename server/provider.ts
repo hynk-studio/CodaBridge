@@ -60,7 +60,7 @@ const citedSchema = {
     },
   },
 };
-const explanationSchema = {
+export const explanationSchema = {
   type: "object",
   additionalProperties: false,
   required: ["possibleInterpretations", "limitations"],
@@ -206,22 +206,29 @@ export async function requestResponse(
   signal: AbortSignal,
   transport: ProviderTransport,
   onPrivateProviderDiagnostic?: PrivateProviderObserver,
+  // Trusted server contract only. HTTP input cannot alter provider settings.
+  contract = {
+    instructions: INSTRUCTIONS,
+    tools: ANALYSIS_TOOLS as readonly unknown[],
+    name: "grounded_explanation",
+    schema: explanationSchema as object,
+  },
 ) {
   const body = JSON.stringify({
     model: MODEL,
     store: false,
     reasoning: { effort: "low" },
-    instructions: INSTRUCTIONS,
+    instructions: contract.instructions,
     input,
-    tools: ANALYSIS_TOOLS,
+    tools: contract.tools,
     parallel_tool_calls: false,
     max_output_tokens: LIMITS.outputTokens,
     text: {
       format: {
         type: "json_schema",
-        name: "grounded_explanation",
+        name: contract.name,
         strict: true,
-        schema: explanationSchema,
+        schema: contract.schema,
       },
     },
   });

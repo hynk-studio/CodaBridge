@@ -6,7 +6,10 @@ import type {
   PrivateProviderDiagnostic,
   PrivateProviderObserver,
 } from "../../server/provider-diagnostics.ts";
-import { errorResponse, PRIVATE_SENTINELS } from "../fixtures/provider-errors.ts";
+import {
+  errorResponse,
+  PRIVATE_SENTINELS,
+} from "../fixtures/provider-errors.ts";
 import {
   finalOutput,
   happyTransport,
@@ -23,7 +26,11 @@ async function connectMockTransport(
   deadlineMs?: number,
   onPrivateProviderDiagnostic?: PrivateProviderObserver,
 ) {
-  const worker = createWorker({ transport, deadlineMs, onPrivateProviderDiagnostic });
+  const worker = createWorker({
+    transport,
+    deadlineMs,
+    onPrivateProviderDiagnostic,
+  });
   // Only the provider transport is mocked. Requests still pass through production
   // request parsing, catalog resolution, tools, response validation and receipts.
   await page.route("**/api/**", async (route) => {
@@ -117,8 +124,11 @@ test("grounded UI completes via mock provider transport and exports actual tool 
   });
   await page.goto("/");
   await expect(
-    page.getByText(/Play two real sperm whale recordings/),
+    page.getByText(/Listen to real sperm whale recordings/),
   ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Reveal measurements", exact: true })
+    .click();
   await expect(page.getByText("Measured · not AI-generated")).toBeVisible();
   await page.getByLabel("Start with a question").selectOption({
     label:
@@ -167,7 +177,9 @@ test("grounded UI completes via mock provider transport and exports actual tool 
     ),
   ).toBe(true);
   await panel.screenshot({
-    path: `docs/screenshots/${testInfo.project.name}-mvp02-mocked-investigation.png`,
+    path: testInfo.outputPath(
+      `${testInfo.project.name}-legacy-TEST-ONLY-investigation.png`,
+    ),
   });
   expect(mock.calls).toHaveLength(2);
   expect(external).toEqual([]);
@@ -242,10 +254,16 @@ test("failure and timeout stay explicit and listening remains available", async 
   ).toBeEnabled();
 });
 
-test("private HTTP diagnostic stays outside the public UI, response and downloaded evidence (TEST ONLY transport)", async ({ page }) => {
+test("private HTTP diagnostic stays outside the public UI, response and downloaded evidence (TEST ONLY transport)", async ({
+  page,
+}) => {
   const diagnostics: PrivateProviderDiagnostic[] = [];
-  const mock = scriptedTransport([errorResponse(404, "invalid_request_error", "model_not_found")]);
-  await connectMockTransport(page, mock.transport, undefined, (item) => { diagnostics.push(item); });
+  const mock = scriptedTransport([
+    errorResponse(404, "invalid_request_error", "model_not_found"),
+  ]);
+  await connectMockTransport(page, mock.transport, undefined, (item) => {
+    diagnostics.push(item);
+  });
   await page.goto("/");
   const pending = page.waitForResponse("**/api/investigate");
   await page.getByRole("button", { name: "Investigate selection" }).click();
@@ -254,15 +272,35 @@ test("private HTTP diagnostic stays outside the public UI, response and download
   expect(response.status()).toBe(502);
   expect(result.code).toBe("PROVIDER_FAILURE");
   await expect(page.getByText("Failed", { exact: true })).toBeVisible();
-  await expect(page.getByText(/The investigation could not be validated/)).toBeVisible();
+  await expect(
+    page.getByText(/The investigation could not be validated/),
+  ).toBeVisible();
   const packet = await exportPacket(page);
   expect(packet.investigation).toBeNull();
-  expect(diagnostics).toEqual([{
-    kind: "PROVIDER_HTTP_FAILURE", httpResponseObtained: true, upstreamStatus: 404,
-    errorEnvelopeParseable: true, errorType: "invalid_request_error", errorCode: "model_not_found",
-  }]);
-  const publicContent = JSON.stringify({ result, packet, page: await page.locator("body").innerText() });
-  for (const value of [...PRIVATE_SENTINELS, "PROVIDER_HTTP_FAILURE", "httpResponseObtained", "upstreamStatus", "errorEnvelopeParseable", "model_not_found", "invalid_request_error"])
+  expect(diagnostics).toEqual([
+    {
+      kind: "PROVIDER_HTTP_FAILURE",
+      httpResponseObtained: true,
+      upstreamStatus: 404,
+      errorEnvelopeParseable: true,
+      errorType: "invalid_request_error",
+      errorCode: "model_not_found",
+    },
+  ]);
+  const publicContent = JSON.stringify({
+    result,
+    packet,
+    page: await page.locator("body").innerText(),
+  });
+  for (const value of [
+    ...PRIVATE_SENTINELS,
+    "PROVIDER_HTTP_FAILURE",
+    "httpResponseObtained",
+    "upstreamStatus",
+    "errorEnvelopeParseable",
+    "model_not_found",
+    "invalid_request_error",
+  ])
     expect(publicContent).not.toContain(value);
   for (const value of PRIVATE_SENTINELS)
     expect(JSON.stringify(diagnostics)).not.toContain(value);

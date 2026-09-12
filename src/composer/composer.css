@@ -1,0 +1,561 @@
+.composer {
+  overflow-wrap: anywhere;
+  margin: 30px 0;
+  scroll-margin-top: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+.composer button,
+.make-button,
+.reveal-measurements {
+  border: 1px solid #4b6370;
+  background: #182f39;
+  color: var(--text);
+  border-radius: 6px;
+  padding: 10px 14px;
+  min-height: 44px;
+  font-size: 0.9rem;
+}
+.composer button:hover,
+.make-button:hover,
+.reveal-measurements:hover {
+  background: #28424d;
+}
+.composer button.primary,
+.make-button {
+  background: var(--a);
+  border-color: var(--a);
+  color: #17241b;
+  font-weight: 600;
+}
+.composer button.primary:hover,
+.make-button:hover {
+  background: #def8bd;
+}
+.composer-heading,
+.phrase-toolbar,
+.small-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.composer h3 {
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+.composer h4 {
+  font-size: 1.05rem;
+  margin: 22px 0 8px;
+}
+.composer p {
+  margin: 8px 0;
+}
+.composer label {
+  display: block;
+  font-size: 0.9rem;
+}
+.composer label span,
+.composer-meta,
+.composer-storage,
+.small-heading > span {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.composer input:not([type="checkbox"]):not([type="file"]),
+.composer select,
+.composer textarea {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  background: #0c1b23;
+  border: 1px solid #4b6370;
+  border-radius: 5px;
+  color: var(--text);
+  padding: 9px 10px;
+  font: inherit;
+  margin-top: 7px;
+}
+.composer textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+.composer pre {
+  font-size: 0.8rem;
+  max-height: 360px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #0c1b23;
+  padding: 12px;
+}
+.composer details {
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.composer summary {
+  min-height: 40px;
+  font-size: 0.9rem;
+}
+.composer summary span {
+  color: var(--muted);
+  float: right;
+}
+.file-open {
+  position: relative;
+  padding: 10px 16px;
+  border: 1px solid #4b6370;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.file-open input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-open:focus-within {
+  outline: 3px solid white;
+  outline-offset: 4px;
+}
+.composer-empty {
+  padding: 28px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  margin-top: 22px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 26px;
+  align-items: center;
+}
+.composer-empty .composer-actions {
+  grid-column: 2;
+}
+.empty-pattern {
+  font-size: 3rem;
+  color: var(--a);
+  grid-row: span 2;
+  white-space: nowrap;
+}
+.creation-identity {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--a);
+  margin: 22px 0;
+}
+.creation-identity span:last-child {
+  color: var(--muted);
+}
+.phrase-title {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 24px;
+}
+.phrase-title input {
+  font-size: 1.1rem !important;
+}
+.phrase-toolbar {
+  margin: 22px 0 12px;
+}
+.phrase-toolbar strong {
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+.phrase-toolbar span {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.composer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+.phrase-strip {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0a171e;
+}
+.composer .phrase-block {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+  text-align: left;
+  background: #132831;
+}
+.composer .phrase-block.active {
+  border-color: var(--a);
+  box-shadow: inset 0 0 0 1px var(--a);
+  color: var(--a);
+}
+.phrase-block > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  font-size: 0.9rem;
+}
+.phrase-block small {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.block-pattern {
+  display: block;
+  width: 100%;
+  max-height: 110px;
+  color: var(--a);
+}
+.phrase-block .block-meaning {
+  font-size: 0.8rem;
+  color: var(--muted);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+.composer-workbench {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 20px;
+  margin: 24px 0;
+}
+.block-editor,
+.creation-comparison {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  background: var(--panel);
+  min-width: 0;
+}
+.small-heading {
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.meaning-label {
+  margin: 16px 0;
+}
+.number-edit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 8px;
+}
+.number-edit label {
+  flex: 1 1 120px;
+  min-width: 0;
+}
+.number-edit button {
+  flex-shrink: 0;
+}
+.duration-edit {
+  margin: 24px 0 8px;
+}
+.duration-edit p,
+.gap-editor > p {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.gap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.seed-add {
+  margin: 20px 0;
+}
+.baseline-result {
+  margin: 22px 0 12px;
+  background: #1c343c;
+  border-left: 3px solid var(--a);
+  padding: 16px;
+}
+.baseline-result span,
+.baseline-result strong,
+.baseline-result small,
+.previous-result span,
+.previous-result strong {
+  display: block;
+}
+.baseline-result strong {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--a);
+  font-variant-numeric: tabular-nums;
+}
+.baseline-result small {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.previous-result {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+.previous-result strong {
+  font-weight: 500;
+}
+.alternative-list {
+  padding: 0;
+  list-style: none;
+}
+.alternative-list li {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+.alternative-list li > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.alternative-list li strong {
+  color: var(--b);
+  font-weight: 500;
+}
+.rejected-example {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.rejected-example button {
+  margin-top: 8px;
+}
+.selected-example {
+  padding: 14px;
+  background: #1d343d;
+  border-left: 3px solid var(--b);
+  font-size: 0.9rem;
+}
+.composer-astra {
+  padding: 28px;
+  border: 1px solid #55606e;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 28px;
+  background: linear-gradient(125deg, #152a34, #182632);
+}
+.composer-astra form > label {
+  margin-bottom: 14px;
+}
+.composer-astra > div > p {
+  color: var(--muted);
+}
+.composer-result {
+  grid-column: 1/-1;
+  border-top: 1px solid #50616a;
+  padding-top: 18px;
+}
+.composer-result .result-label {
+  color: #f5d89f;
+  padding: 10px 14px;
+  border: 1px solid #8b7754;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+.preview-fact {
+  display: flex;
+  gap: 20px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+.proposal-patterns {
+  display: flex;
+  gap: 20px;
+}
+.proposal-patterns svg {
+  min-width: 0;
+}
+.citation {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.keep-coda {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 36px;
+  padding-top: 38px;
+}
+.keep-coda > div,
+.codebook {
+  min-width: 0;
+}
+.coda-card {
+  border: 1px solid #536e70;
+  background: linear-gradient(140deg, #19333a, #11242e);
+  border-radius: 8px;
+  padding: 26px;
+  margin: 24px 0;
+  overflow-wrap: anywhere;
+}
+.coda-card h4 {
+  font-family: Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin: 12px 0;
+}
+.coda-card .card-identity {
+  color: var(--a);
+  font-size: 0.875rem;
+}
+.coda-card > div {
+  border-top: 1px solid #3b555e;
+  padding-top: 10px;
+  margin-top: 16px;
+  font-size: 0.875rem;
+}
+.coda-card small,
+.card-credit {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.codebook {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 24px;
+  border-radius: 8px;
+  align-self: start;
+}
+.codebook-row {
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.codebook-row strong,
+.codebook-row span {
+  flex-basis: 100%;
+  overflow-wrap: anywhere;
+}
+.codebook-row span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.include-evidence {
+  display: flex !important;
+  align-items: baseline;
+  gap: 10px;
+}
+.composer-notice {
+  color: #f5d89f;
+  min-height: 24px;
+}
+.make-button {
+  margin: 16px 0 0;
+  width: 100%;
+}
+.listen-impression {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+.listen-impression label {
+  flex: 1;
+  min-width: 230px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.listen-impression input {
+  margin-left: 12px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--text);
+  background: #11252e;
+}
+@media (max-width: 850px) {
+  .composer-workbench,
+  .composer-astra,
+  .keep-coda {
+    grid-template-columns: 1fr;
+  }
+  .composer-heading {
+    align-items: start;
+  }
+  .phrase-strip {
+    flex-wrap: wrap;
+  }
+  .composer .phrase-block {
+    flex-basis: 40%;
+  }
+}
+@media (max-width: 550px) {
+  .baseline-result strong {
+    font-size: 1.25rem;
+  }
+  .edition {
+    overflow-wrap: anywhere;
+  }
+  .composer-heading {
+    flex-direction: column;
+  }
+  .phrase-title {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .composer-empty {
+    display: block;
+    padding: 20px;
+  }
+  .empty-pattern {
+    font-size: 2rem;
+  }
+  .phrase-toolbar {
+    align-items: start;
+    gap: 10px;
+  }
+  .phrase-toolbar .composer-actions {
+    margin-top: 0;
+  }
+  .phrase-strip {
+    padding: 8px;
+  }
+  .composer .phrase-block {
+    padding: 10px;
+  }
+  .phrase-block > span {
+    flex-direction: column;
+  }
+  .block-editor,
+  .creation-comparison,
+  .composer-astra,
+  .codebook {
+    padding: 18px;
+  }
+  .gap-grid {
+    grid-template-columns: 1fr;
+  }
+  .coda-card {
+    padding: 18px;
+  }
+  .listen-impression input {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .composer * {
+    scroll-behavior: auto;
+    transition: none;
+  }
+}

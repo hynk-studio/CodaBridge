@@ -1,8 +1,8 @@
 # CodaBridge
 
-Listen to real sperm whale recordings and compare their estimated click timing.
+Hear a real recording. Shape a personal synthetic phrase. Compare its timing and keep your coda.
 
-**MVP-02 implemented for local review.** Four attributed originals, original-speed playback, waveforms, absolute/normalized timing, deterministic observations, and evidence export work without credentials. A real server-side Astra adapter and grounded investigation UI are implemented. **Live access is disabled; no application-model request or hosted Sites run has been performed.**
+**MVP-03 Coda Composer is implemented for local Draft review.** Four attributed originals connect to a bounded phrase editor, synthetic click playback, source-aware comparison, personal codebook and WAV/card/project downloads. Real server-side Astra editing and investigation contracts are connected to the UI and tested with visibly labeled provider fixtures. **Default live access remains disabled.** Historical private live successes validate the MVP-02 A/B path only; the new Composer contract has had no paid/live trial or hosted Sites run.
 
 ## Run locally
 
@@ -14,7 +14,7 @@ npm run build
 npm run preview
 ```
 
-Open `http://127.0.0.1:4173`. This runs the built Worker and static assets locally in Wrangler/workerd. Investigation correctly shows Unavailable. Listening, selection, comparison and downloads remain usable. Playing one recording pauses the other; normalization changes neither playback speed nor stored timing.
+Open `http://127.0.0.1:4173`. This runs the built Worker and static assets locally in Wrangler/workerd. Listen, reveal the measurements, then choose **Make my version**. Duplicate a block, scale its duration, change one gap, undo, compare field examples and save your files. Astra correctly shows Unavailable. Playback is user-initiated and coordinated across field and synthetic audio. Basic creation, comparison and saving require no credentials. Use `env -u OPENAI_API_KEY` before build/test commands if your shell already has a key.
 
 For UI development, keep that preview running and run `npm run dev` in another terminal. Vite serves `http://127.0.0.1:5173` and proxies `/api` to the preview. Rebuild/restart preview after server changes. Without preview, the development UI reports investigation unavailable.
 
@@ -40,10 +40,13 @@ The browser checks original bytes before decoding. The server independently reso
 
 ## Review and compatibility
 
+- [MVP-03 contract, engineering limits and implementation](docs/MVP_03.md)
+- [MVP-03 verification, running-app capture and downloads](docs/MVP_03_VERIFICATION.md)
+- [Historical live A/B retrieval and unequal-count batch](docs/trials/2026-09-12-live-retrieval-unequal/README.md)
 - [MVP-02 implementation and boundaries](docs/MVP_02.md)
 - [Build, model and Sites compatibility](docs/BUILD_COMPATIBILITY.md)
 - [MVP-02 verification and screenshots](docs/MVP_02_VERIFICATION.md)
 - Historical [MVP-01 contract](docs/MVP_01.md) and [verification](docs/VERIFICATION.md)
 - [Parent issue #1](https://github.com/hynk-studio/CodaBridge/issues/1), dependency [Draft PR #2](https://github.com/hynk-studio/CodaBridge/pull/2)
 
-Public live enablement awaits review of an actual access/budget path. Per-request limits are **not a global spending cap**. Live Astra access, hosted Sites runtime/audio delivery and scientific validation remain unverified. The parent launch issue remains open. No Site creation/save/deployment, merge, account/database stack, WhAM or dialogue-transfer work is included. Project code licensing remains undecided; third-party licenses remain in force.
+Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. New Composer live compatibility, hosted Sites runtime/delivery and scientific validation remain unverified. Context / Dialogue Lab remains the planned deeper follow-on after this journey works. The parent launch issue remains open. No Site creation/save/deployment, merge, account/database stack, WhAM or dialogue-transfer work is included. Project code licensing remains undecided; third-party licenses remain in force.
