@@ -238,7 +238,7 @@ export async function requestResponse(
         },
         body,
         signal,
-        redirect: "error",
+        redirect: "manual",
       }),
       signal,
     );
