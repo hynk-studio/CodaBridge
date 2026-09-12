@@ -68,7 +68,7 @@ it("an incompatible synthetic selection exports its explicit rejection", () => {
   assert.equal("value" in packet.comparison, false);
 });
 
-it("both curated files match their byte hashes, PCM metadata and derived markers", () => {
+it("all curated files match their byte hashes, PCM metadata and derived markers", () => {
   for (const recording of recordings) {
     const bytes = readFileSync(
       new URL(`../public${recording.audio.path}`, import.meta.url),

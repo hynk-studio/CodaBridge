@@ -1,0 +1,44 @@
+{
+  "label": "TEST ONLY — offline download-delivery replay",
+  "browser": "Playwright Chromium (headless)",
+  "browserVersion": "153.0.8010.12",
+  "workerAvailability": {
+    "status": "unavailable",
+    "code": "NOT_CONFIGURED",
+    "message": "Astra investigation is unavailable. Server access has not been enabled for this workspace."
+  },
+  "workerOutboundCalls": 0,
+  "liveProviderRequests": 0,
+  "cases": [
+    {
+      "case": 2,
+      "label": "TEST ONLY — saved-result replay, not a new live model event",
+      "actualDownloadFileDelivered": true,
+      "parsedJsonValid": true,
+      "selectedSourcesMatch": true,
+      "acceptedInvestigationMatchesExactly": true,
+      "comparisonMatchesLivePacket": true,
+      "originalReceiptAndTimestampsPreserved": true,
+      "replayExportGeneratedAt": "2026-09-12T10:51:41.610Z",
+      "downloadButtonClicks": 1,
+      "replayedApplicationResponses": 1,
+      "providerRequests": 0,
+      "nonLocalAttempts": 0
+    },
+    {
+      "case": 3,
+      "label": "TEST ONLY — saved-result replay, not a new live model event",
+      "actualDownloadFileDelivered": true,
+      "parsedJsonValid": true,
+      "selectedSourcesMatch": true,
+      "acceptedInvestigationMatchesExactly": true,
+      "comparisonMatchesLivePacket": true,
+      "originalReceiptAndTimestampsPreserved": true,
+      "replayExportGeneratedAt": "2026-09-12T10:51:41.955Z",
+      "downloadButtonClicks": 1,
+      "replayedApplicationResponses": 1,
+      "providerRequests": 0,
+      "nonLocalAttempts": 0
+    }
+  ]
+}

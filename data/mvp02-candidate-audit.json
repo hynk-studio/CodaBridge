@@ -1,0 +1,129 @@
+{
+  "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+  "acquiredOn": "2026-09-12",
+  "method": "relative-peak-transient-groups",
+  "version": "1.0.0",
+  "parameters": {
+    "envelopeWindowSeconds": 0.002,
+    "relativeThreshold": 0.18,
+    "groupGapSeconds": 0.07
+  },
+  "files": [
+    {
+      "filename": "7.wav",
+      "bytes": 180826,
+      "sha256": "9af722759e0d1125e161b87cb71e01adc026d35b6500d0d62504d2bbe978ce60",
+      "durationSeconds": 2.0496825396825398,
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "estimatedClickTimesSeconds": [
+        0.24936507936507937,
+        0.5012018140589569,
+        0.7533560090702948,
+        0.8906122448979592,
+        1.2510884353741496,
+        1.3986621315192744,
+        1.5648752834467121
+      ],
+      "eligible": true,
+      "disposition": "selected"
+    },
+    {
+      "filename": "8.wav",
+      "bytes": 176504,
+      "sha256": "4b3920f37285333bc6e9b81031e3f1aeb9986c7ee062108aa9e2565a4d04a429",
+      "durationSeconds": 2.0006802721088435,
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "estimatedClickTimesSeconds": [
+        0.05521541950113379,
+        0.21766439909297053,
+        0.5012244897959184,
+        0.8585260770975057,
+        1.2043083900226756,
+        1.35,
+        1.5264625850340137
+      ],
+      "eligible": false,
+      "disposition": "rejected-edge-margin"
+    },
+    {
+      "filename": "9.wav",
+      "bytes": 188314,
+      "sha256": "9123cf33126340ca7f198b93380424e48b9d06e42a611bfbb54c551d32bb959a",
+      "durationSeconds": 2.1345804988662134,
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "estimatedClickTimesSeconds": [
+        0.50140589569161,
+        0.8909977324263039,
+        1.3026077097505668,
+        1.5424489795918368,
+        2.0477324263038548
+      ],
+      "eligible": false,
+      "disposition": "rejected-edge-margin"
+    },
+    {
+      "filename": "10.wav",
+      "bytes": 193830,
+      "sha256": "37a44b6717f7ede67d700916b4799775f188ff54fd75002dcba50b740d369e01",
+      "durationSeconds": 2.1971201814058956,
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "estimatedClickTimesSeconds": [
+        0.367437641723356,
+        0.5014512471655329,
+        0.9139002267573696,
+        1.3154648526077097,
+        1.507845804988662,
+        1.6987074829931972,
+        1.9077324263038549
+      ],
+      "eligible": true,
+      "disposition": "eligible-not-selected-two-addition-limit"
+    },
+    {
+      "filename": "11.wav",
+      "bytes": 146562,
+      "sha256": "6e4cc5f55a2ec915b23e05ebfd3bc9e4f13d87956139dc8ac36ea3f1e05a97a3",
+      "durationSeconds": 1.6612018140589568,
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "estimatedClickTimesSeconds": [
+        0.30131519274376417,
+        0.5013151927437641,
+        0.8352154195011338,
+        0.9823129251700681,
+        1.1624943310657596,
+        1.3722675736961452
+      ],
+      "eligible": true,
+      "disposition": "selected"
+    },
+    {
+      "filename": "12.wav",
+      "bytes": 148202,
+      "sha256": "5f6a2c3a012c7ef625063cae7901dcf5c8651965d347488544c655b6e44eba73",
+      "durationSeconds": 1.679795918367347,
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "estimatedClickTimesSeconds": [
+        0.11943310657596372,
+        0.5158503401360545,
+        0.6414512471655329,
+        0.7806122448979592,
+        0.9852607709750567,
+        1.1658049886621316
+      ],
+      "eligible": false,
+      "disposition": "rejected-edge-margin"
+    }
+  ],
+  "eligibilityRule": "At least two estimated groups and at least 0.15 seconds from first/last detected peak to file edges; no verified biological boundary claim.",
+  "selectionRule": "Add the first eligible six-group candidate in this bounded batch (11.wav), plus the first eligible seven-group candidate (7.wav). The second preserves unequal-count and no-match outcomes; it is not comparable to the default pair.",
+  "selectedFiles": [
+    "11.wav",
+    "7.wav"
+  ]
+}

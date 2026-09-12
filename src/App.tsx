@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import AudioCard from "./AudioCard.tsx";
-import data from "./data/recordings.json";
+import { recordings } from "./domain/catalog.ts";
 import type { Recording, Side, ViewMode } from "./domain/types.ts";
 import {
   buildEvidence,
@@ -10,9 +10,10 @@ import {
 } from "./domain/evidence.ts";
 import { compareTiming, measureTiming } from "./domain/timing.ts";
 import { registerEvidenceTool } from "./webmcp.ts";
-import { investigationAvailability } from "./investigation.ts";
+import InvestigationPanel from "./InvestigationPanel.tsx";
+import { useInvestigation } from "./useInvestigation.ts";
+import { measuredObservation } from "./domain/observation.ts";
 
-const recordings = data as Recording[];
 const seconds = (value: number) => `${value.toFixed(3)} s`;
 
 function TimingPlot({
@@ -139,21 +140,45 @@ export default function App() {
     audioElements.current.forEach((element) => element.pause());
   const select = (side: Side, id: string) => {
     if (!recordings.some((recording) => recording.id === id)) return;
+    if (selection[side] === id) return;
     stopAudio();
+    investigation.cancel(
+      "Selection changed. Previous investigation is obsolete; ask about this pair.",
+    );
     setSelection((current) => ({ ...current, [side]: id }));
     setDownloadStatus("");
   };
   const a = recordings.find((recording) => recording.id === selection.A)!;
   const b = recordings.find((recording) => recording.id === selection.B)!;
+  const investigation = useInvestigation(a, b);
   const comparison = compareTiming(timingInput(a), timingInput(b));
   const measurements = [a, b].map((recording) =>
     measureTiming(timingInput(recording)),
   );
-  const currentEvidence = buildEvidence(a, b, view);
+  const intervalCount = Math.max(
+    ...measurements.map((result) =>
+      result.status === "valid"
+        ? result.measurements.intervalsSeconds.length
+        : 0,
+    ),
+  );
+  const currentEvidence = buildEvidence(
+    a,
+    b,
+    view,
+    undefined,
+    investigation.result,
+  );
   const evidenceRef = useRef(currentEvidence);
   useEffect(() => {
-    evidenceRef.current = buildEvidence(a, b, view);
-  }, [a, b, view]);
+    evidenceRef.current = buildEvidence(
+      a,
+      b,
+      view,
+      undefined,
+      investigation.result,
+    );
+  }, [a, b, view, investigation.result]);
   useEffect(
     () =>
       registerEvidenceTool(document.modelContext, () => evidenceRef.current),
@@ -196,7 +221,7 @@ export default function App() {
           CodaBridge
         </a>
         <span className="edition">
-          MVP–01 <span> / </span> Listen & compare
+          MVP–02 <span> / </span> Listen & investigate
         </span>
       </header>
       <main id="workspace">
@@ -207,8 +232,8 @@ export default function App() {
               Can you hear the <em>pattern?</em>
             </h1>
             <p>
-              Play two real recordings. Compare the spacing between their
-              clicks.
+              Play two real sperm whale recordings. Compare the spacing between
+              their clicks.
             </p>
           </div>
           <button className="export-button" onClick={download}>
@@ -272,6 +297,10 @@ export default function App() {
               : "First click = 0, last click = 1. Compare spacing independent of offset and total click span. Audio stays at original speed."}
           </p>
           <TimingPlot a={a} b={b} view={view} />
+          <p className="measured-observation">
+            <strong>Measured · not AI-generated</strong>{" "}
+            {measuredObservation(timingInput(a), timingInput(b))}
+          </p>
           <div className="measurement-strip">
             {measurements.map((result, index) => (
               <div key={index} className={index === 0 ? "side-a" : "side-b"}>
@@ -325,14 +354,11 @@ export default function App() {
                 <thead>
                   <tr>
                     <th scope="col">Click interval</th>
-                    {measurements[0].status === "valid" &&
-                      measurements[0].measurements.intervalsSeconds.map(
-                        (_, i) => (
-                          <th scope="col" key={i}>
-                            {i + 1} → {i + 2}
-                          </th>
-                        ),
-                      )}
+                    {Array.from({ length: intervalCount }, (_, i) => (
+                      <th scope="col" key={i}>
+                        {i + 1} → {i + 2}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
@@ -345,14 +371,21 @@ export default function App() {
                         / {i === 0 ? a.source.filename : b.source.filename}
                       </th>
                       {result.status === "valid" ? (
-                        (view === "absolute"
-                          ? result.measurements.intervalsSeconds
-                          : result.measurements.normalizedIntervals
-                        ).map((value, index) => (
-                          <td key={index}>
-                            {value.toFixed(view === "absolute" ? 3 : 4)}
-                          </td>
-                        ))
+                        Array.from({ length: intervalCount }, (_, index) => {
+                          const values =
+                            view === "absolute"
+                              ? result.measurements.intervalsSeconds
+                              : result.measurements.normalizedIntervals;
+                          return (
+                            <td key={index}>
+                              {values[index] === undefined
+                                ? "—"
+                                : values[index].toFixed(
+                                    view === "absolute" ? 3 : 4,
+                                  )}
+                            </td>
+                          );
+                        })
                       ) : (
                         <td>{result.reason}</td>
                       )}
@@ -385,17 +418,7 @@ export default function App() {
               {evidenceJson(currentEvidence)}
             </pre>
           </details>
-          <aside className="investigation-panel">
-            <span className="eyebrow">
-              Astra investigation{" "}
-              <span className="unavailable-badge">Unavailable</span>
-            </span>
-            <p>{investigationAvailability.reason}</p>
-            <span className="subtle">
-              Listening and comparison work without credentials. No generated
-              interpretation is shown.
-            </span>
-          </aside>
+          <InvestigationPanel investigation={investigation} />
         </div>
         <p className="download-status" role="status">
           {downloadStatus}

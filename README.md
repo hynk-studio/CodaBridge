@@ -1,19 +1,22 @@
 # CodaBridge
 
-Listen to real sperm-whale recordings and compare their estimated click timing.
+Listen to real sperm whale recordings and compare their estimated click timing.
 
-**MVP-01 implemented for local review.** Two attributed recordings, original-speed playback, sample-derived waveforms, absolute/normalized timing, measured intervals, and JSON evidence export work without credentials. **Astra investigation is unavailable. No Site has been created or deployed.**
+**MVP-02 implemented for local review.** Four attributed originals, original-speed playback, waveforms, absolute/normalized timing, deterministic observations, and evidence export work without credentials. A real server-side Astra adapter and grounded investigation UI are implemented. **Live access is disabled; no application-model request or hosted Sites run has been performed.**
 
-## Run
+## Run locally
 
-Use Node.js **22.18+** (or a newer supported release) and npm. No `.env`, API key, database, or account is needed.
+Use Node.js **22.18+** and npm. No account, API key, or `.env` file is needed for the default workspace.
 
 ```sh
 npm ci
-npm run dev
+npm run build
+npm run preview
 ```
 
-Open `http://127.0.0.1:5173`. Choose recordings A/B, press Play, switch between Absolute and Normalized, inspect sources/measurements, and download the current evidence. Playing one recording pauses the other. Normalization never changes playback speed. Selecting the same file twice gives a labeled self-comparison.
+Open `http://127.0.0.1:4173`. This runs the built Worker and static assets locally in Wrangler/workerd. Investigation correctly shows Unavailable. Listening, selection, comparison and downloads remain usable. Playing one recording pauses the other; normalization changes neither playback speed nor stored timing.
+
+For UI development, keep that preview running and run `npm run dev` in another terminal. Vite serves `http://127.0.0.1:5173` and proxies `/api` to the preview. Rebuild/restart preview after server changes. Without preview, the development UI reports investigation unavailable.
 
 ```sh
 npm run typecheck
@@ -21,32 +24,26 @@ npm test
 npm run data:verify
 npm run lint
 npm run build
-npm run preview
-```
-
-The production preview is `http://127.0.0.1:4173`. `dist/` contains static HTML, JavaScript, CSS, and the two original WAV files. The preview server is for local inspection, not production hosting.
-
-Browser smoke tests against that build:
-
-```sh
-npx playwright install chromium
+npm run test:server-build
 npm run test:browser
 ```
 
-The runner starts/stops its own preview server when one is not running. It checks 1440×1000 desktop and 390×844 mobile, plus 320 px with enlarged text. Reports/traces stay in ignored `playwright-report/` and `test-results/`; runtime screenshots are in `docs/screenshots/`. Unit timings are explicitly synthetic; the app and ordinary browser smoke use real audio.
+Install Playwright Chromium with `npx playwright install chromium` if absent. Browser tests start and stop their own local production preview. Tests inject a mock **provider transport** through the actual handler; fixtures never ship to visitors. Screenshots of that path are labeled **TEST ONLY**, not live Astra evidence.
 
 ## Data and limits
 
-Included originals: `1.wav` and `2.wav` from [orrp/DSWP](https://huggingface.co/datasets/orrp/DSWP), revision `a2e5d6dd02fc60343e1288c33314e14e8b7aa5be`, under **CC BY 4.0**. Credit: Dominica Sperm Whale Project; Orr Paradise and colleagues, *Towards A Translative Model of Sperm Whale Vocalization*, NeurIPS 2025. See [attribution and methods](docs/DATA_METHODS.md) for full credit, exact hashes, selection criteria, and annotation provenance.
+Originals `1.wav`, `2.wav`, `11.wav` and `7.wav` come from [orrp/DSWP](https://huggingface.co/datasets/orrp/DSWP), pinned revision `a2e5d6dd02fc60343e1288c33314e14e8b7aa5be`, under **CC BY 4.0**. Credit: Dominica Sperm Whale Project; Orr Paradise and colleagues, *Towards A Translative Model of Sperm Whale Vocalization*, NeurIPS 2025. [Attribution and methods](docs/DATA_METHODS.md) includes full credit, hashes and selection/annotation provenance.
 
-Each example has six **machine-estimated transient peaks**, not human-reviewed onsets. The selected interval is the entire original clip; biological coda boundaries remain unverified. Timing distance is not a similarity percentage, translation, confidence score, or biological category. Speaker identity and behavioral/dialogue context are not inferred.
+Markers are **machine-estimated transient groups**. Whole files may contain multiple codas, echoes or unrelated transients; they are not verified biological boundaries, speakers or dialogue turns. The existing normalized-interval metric is descriptive, not translation, a similarity percentage or semantic confidence. Unequal counts stay not comparable.
 
-The browser verifies hashes before decoding. Missing, changed, or unsupported audio shows an error with Retry. Precomputed timing remains inspectable when audio is unavailable; evidence does not certify successful playback. The optional WebMCP tool reads current evidence only and is not an AI connection.
+The browser checks original bytes before decoding. The server independently resolves catalog IDs and recomputes measurements. Generated interpretation is separated from those measurements and cites issued evidence IDs; traceability does not establish factual correctness. Selection changes cancel/obsolete previous investigations, including their export.
 
-## Build and review
+## Review and compatibility
 
-- [Build/Sites compatibility](docs/BUILD_COMPATIBILITY.md): portable static output, successful local Sites helper, unverified hosted boundary.
-- [Verification](docs/VERIFICATION.md): executed checks, screenshots, and unrun checks.
-- [MVP-01 contract](docs/MVP_01.md), [parent issue #1](https://github.com/hynk-studio/CodaBridge/issues/1), [Draft PR #2](https://github.com/hynk-studio/CodaBridge/pull/2).
+- [MVP-02 implementation and boundaries](docs/MVP_02.md)
+- [Build, model and Sites compatibility](docs/BUILD_COMPATIBILITY.md)
+- [MVP-02 verification and screenshots](docs/MVP_02_VERIFICATION.md)
+- Historical [MVP-01 contract](docs/MVP_01.md) and [verification](docs/VERIFICATION.md)
+- [Parent issue #1](https://github.com/hynk-studio/CodaBridge/issues/1), dependency [Draft PR #2](https://github.com/hynk-studio/CodaBridge/pull/2)
 
-Future work includes bounded Astra investigation, example retrieval, a larger curated set, and separately authorized hosting verification. The parent launch issue remains open. Project code licensing has not been selected; third-party data and dependencies retain their licenses. No affiliation or endorsement is claimed.
+Public live enablement awaits review of an actual access/budget path. Per-request limits are **not a global spending cap**. Live Astra access, hosted Sites runtime/audio delivery and scientific validation remain unverified. The parent launch issue remains open. No Site creation/save/deployment, merge, account/database stack, WhAM or dialogue-transfer work is included. Project code licensing remains undecided; third-party licenses remain in force.

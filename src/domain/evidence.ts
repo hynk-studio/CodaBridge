@@ -1,13 +1,15 @@
 import type { Recording, ViewMode } from "./types.ts";
 import { compareTiming, measureTiming } from "./timing.ts";
+import { selectionKey } from "./catalog.ts";
+import type { CompletedInvestigation } from "../investigation.ts";
 
 export const LIMITATIONS = [
   "Click positions are machine estimates of transient peaks, not source annotations or human-reviewed click onsets.",
   "Selected intervals may contain multiple codas, echoes, or unrelated transients. Biological coda boundaries are unverified.",
   "The source supplies no per-file speaker identity, recording-system metadata, or behavioral/dialogue context.",
   "Timing distance describes normalized spacing only. It is not a similarity percentage, semantic confidence, or biological category.",
-  "Two curated recordings do not establish population-level findings.",
-  "Astra investigation is not enabled in this build.",
+  "This small curated catalog does not establish population-level findings.",
+  "Generated interpretation, when available, is separate from measured evidence. A valid reference is traceability, not proof of correctness.",
 ] as const;
 
 export function timingInput(recording: Recording) {
@@ -23,12 +25,13 @@ export function buildEvidence(
   b: Recording,
   view: ViewMode,
   generatedAt = new Date().toISOString(),
+  investigation: CompletedInvestigation | null = null,
 ) {
   // Snapshot the current selections. Later UI changes cannot mutate an exported packet.
   return structuredClone({
     format: "codabridge-comparison-evidence",
-    formatVersion: "1.0.0",
-    appVersion: "0.1.0",
+    formatVersion: "2.0.0",
+    appVersion: "0.2.0",
     generatedAt,
     view,
     playback: { rate: 1, normalizationChangesPlayback: false },
@@ -42,6 +45,8 @@ export function buildEvidence(
       result: measureTiming(timingInput(recording)),
     })),
     comparison: compareTiming(timingInput(a), timingInput(b)),
+    investigation:
+      investigation?.selectionKey === selectionKey(a, b) ? investigation : null,
     limitations: [...LIMITATIONS],
   });
 }

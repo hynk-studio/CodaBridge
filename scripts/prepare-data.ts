@@ -15,6 +15,14 @@ const originals = [
     filename: "2.wav",
     sha256: "fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417",
   },
+  {
+    filename: "11.wav",
+    sha256: "6e4cc5f55a2ec915b23e05ebfd3bc9e4f13d87956139dc8ac36ea3f1e05a97a3",
+  },
+  {
+    filename: "7.wav",
+    sha256: "9af722759e0d1125e161b87cb71e01adc026d35b6500d0d62504d2bbe978ce60",
+  },
 ];
 const sha256 = (bytes: Buffer) =>
   createHash("sha256").update(bytes).digest("hex");
@@ -110,7 +118,7 @@ if (process.argv.includes("--check")) {
       "Curated metadata/annotations do not reproduce. Review before running data:prepare.",
     );
   console.log(
-    "PASS: 2 original byte hashes, PCM metadata, source-card hash, and deterministic annotations reproduce.",
+    `PASS: ${originals.length} original byte hashes, PCM metadata, source-card hash, and deterministic annotations reproduce.`,
   );
 } else {
   await writeFile(path, output);

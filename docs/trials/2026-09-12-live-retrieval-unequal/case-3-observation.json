@@ -1,0 +1,101 @@
+{
+  "authorizationComment": "5645342982",
+  "source": "bbddfcf268713fc8873cdaaef5534de03fed1f6c",
+  "applicationBaseline": "933ab107459fbff7c0a9e18447b7d5a5dcfe1b7f",
+  "artifactSha256": "6857f305a59e2d6e0172d9d105ac1c32a879cdb10ed830eed8d701fb1f33877e",
+  "case": 3,
+  "sourceIds": [
+    "dswp-1",
+    "dswp-7"
+  ],
+  "question": "Can this pair be compared with the current normalized interval metric? Explain the limitation.",
+  "status": "finished_case_authorization_consumed",
+  "consumedAt": "2026-09-12T10:48:44.386Z",
+  "investigationSubmissions": 1,
+  "diagnostics": [
+    {
+      "kind": "PROVIDER_HTTP_RESPONSE",
+      "httpResponseObtained": true,
+      "upstreamStatus": 200
+    }
+  ],
+  "completedAt": "2026-09-12T10:48:50.060Z",
+  "applicationLatencyMs": 5670,
+  "applicationResult": {
+    "httpStatus": 200,
+    "status": "completed"
+  },
+  "providerResponses": [
+    {
+      "responseId": "resp_052ac0aee432f940016aa52e0ccfb887d0a99587ecfd185261",
+      "model": "gpt-6-astra",
+      "createdAt": 1789210124,
+      "usage": {
+        "inputTokens": 2860,
+        "outputTokens": 205,
+        "totalTokens": 3065
+      }
+    }
+  ],
+  "label": "LIVE ASTRA \u2014 actual case execution",
+  "outcome": "completed",
+  "acceptanceCriteriaMet": true,
+  "applicationStartedAt": "2026-09-12T10:48:44.390Z",
+  "applicationCompletedAt": "2026-09-12T10:48:50.060Z",
+  "providerRequestCountObserved": 1,
+  "usage": {
+    "inputTokens": 2860,
+    "outputTokens": 205,
+    "totalTokens": 3065
+  },
+  "actions": [
+    {
+      "name": "recording_details",
+      "initiatedBy": "server",
+      "arguments": {
+        "sourceId": "dswp-1"
+      },
+      "evidenceId": "recording:dswp-1"
+    },
+    {
+      "name": "recording_details",
+      "initiatedBy": "server",
+      "arguments": {
+        "sourceId": "dswp-7"
+      },
+      "evidenceId": "recording:dswp-7"
+    },
+    {
+      "name": "compare_selected",
+      "initiatedBy": "server",
+      "arguments": {},
+      "evidenceId": "comparison:dswp-1:dswp-7"
+    }
+  ],
+  "modelInitiatedToolActions": 0,
+  "liveBrowser": {
+    "clickAt": "2026-09-12T10:48:44.345Z",
+    "firstAcceptedPacketGeneratedAt": "2026-09-12T10:48:50.065Z",
+    "timing": [
+      {
+        "startEpochMs": 1789210124381.9,
+        "durationMs": 5682,
+        "responseEndEpochMs": 1789210130063.9
+      }
+    ],
+    "uiEvidenceSaved": true,
+    "screenshotSaved": true,
+    "downloadButtonClicks": 1,
+    "downloadEventObserved": false,
+    "downloadDeliveryConfirmed": false,
+    "clickToAcceptedUiPacketMs": 5720.0,
+    "timingCaveat": "Click to accepted UI evidence-packet generation, not an exact paint timestamp."
+  },
+  "evidenceIntegrity": {
+    "exactPageInvestigationMatchesAcceptedApplication": true,
+    "allCitedIdsPresent": true,
+    "actualSelectedSourcesVerified": true
+  },
+  "qualityAssessment": "Passed: correctly explains UNEQUAL_CLICK_COUNTS with no distance, alignment, padding, truncation or unsupported biological/semantic conclusion. No additional model tool required.",
+  "repeatedLiveSubmission": false
+}

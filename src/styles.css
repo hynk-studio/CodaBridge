@@ -15,6 +15,7 @@
   line-height: 1.5;
   color-scheme: dark;
   --muted: #a4b7bf;
+  --text: #eaf1f3;
   --line: #30444f;
   --a: #c4eb91;
   --b: #a2c4ff;
@@ -54,6 +55,7 @@ button:focus-visible,
 a:focus-visible,
 select:focus-visible,
 input:focus-visible,
+textarea:focus-visible,
 summary:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 5px;
@@ -984,5 +986,146 @@ footer {
 @media (max-width: 620px) {
   .click-number {
     font-size: 26px;
+  }
+}
+
+/* MVP-02 uses the existing palette and panel rhythm. */
+.measured-observation {
+  color: var(--muted);
+  padding: 14px 26px;
+  line-height: 1.6;
+}
+.measured-observation strong {
+  color: var(--text);
+  margin-right: 10px;
+}
+.investigation-panel {
+  min-width: 0;
+}
+.investigation-panel h2 {
+  margin: 16px 0 10px;
+  font-size: 1.65rem;
+}
+.investigation-panel h3 {
+  margin: 24px 0 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.investigation-panel form {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+  min-width: 0;
+}
+.investigation-panel label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.investigation-panel select,
+.investigation-panel textarea {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  color: var(--text);
+  background: #101e27;
+  border: 1px solid #3a4b56;
+  border-radius: 8px;
+  padding: 12px;
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.investigation-panel textarea {
+  resize: vertical;
+}
+.investigation-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.investigation-controls button {
+  border-radius: 7px;
+  padding: 11px 16px;
+  background: #d6ed9a;
+  color: #122020;
+  font: inherit;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.investigation-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.investigation-controls button[type="button"] {
+  color: var(--text);
+  border-color: #53616a;
+  background: transparent;
+}
+.investigation-status {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.investigation-result {
+  border-top: 1px solid #35434c;
+  margin-top: 24px;
+  padding-top: 10px;
+  overflow-wrap: anywhere;
+}
+.investigation-result p,
+.investigation-result li {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+.investigation-result ul,
+.tool-actions {
+  padding-left: 20px;
+}
+.investigation-result li {
+  margin: 8px 0;
+}
+.citation-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+.interpretation-notice,
+.test-notice {
+  border-left: 2px solid #b9cf89;
+  padding-left: 12px;
+}
+.test-notice {
+  color: #d6ed9a;
+}
+.tool-evidence {
+  margin: 12px 0;
+  border: 1px solid #35434c;
+  padding: 12px;
+  border-radius: 6px;
+}
+.tool-evidence summary {
+  font-size: 0.8rem;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.tool-evidence pre {
+  max-height: 300px;
+  max-width: 100%;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+@media (max-width: 620px) {
+  .investigation-panel h2 {
+    font-size: 1.4rem;
+  }
+  .measured-observation strong {
+    display: block;
   }
 }

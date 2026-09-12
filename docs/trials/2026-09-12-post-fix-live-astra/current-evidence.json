@@ -1,0 +1,587 @@
+{
+  "format": "codabridge-comparison-evidence",
+  "formatVersion": "2.0.0",
+  "appVersion": "0.2.0",
+  "generatedAt": "2026-09-12T10:06:00.235Z",
+  "view": "absolute",
+  "playback": {
+    "rate": 1,
+    "normalizationChangesPlayback": false
+  },
+  "selection": [
+    {
+      "side": "A",
+      "sourceId": "dswp-1",
+      "source": {
+        "dataset": "orrp/DSWP",
+        "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "filename": "1.wav",
+        "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+        "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+        "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+        "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+        "paperUrl": "https://arxiv.org/abs/2512.02206",
+        "acquiredOn": "2026-09-12"
+      },
+      "audio": {
+        "path": "/audio/dswp-1.wav",
+        "sha256": "8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057",
+        "bytes": 193192,
+        "durationSeconds": 2.1898866213151926,
+        "sampleRateHz": 44100,
+        "channels": 1,
+        "frames": 96574,
+        "encoding": "WAV / PCM signed 16-bit little-endian",
+        "transformations": []
+      },
+      "annotation": {
+        "status": "machine-estimated",
+        "method": "relative-peak-transient-groups",
+        "version": "1.0.0",
+        "parameters": {
+          "envelopeWindowSeconds": 0.002,
+          "relativeThreshold": 0.18,
+          "groupGapSeconds": 0.07
+        },
+        "timestampOrigin": "original-file-start",
+        "selectedIntervalSeconds": {
+          "start": 0,
+          "end": 2.1898866213151926
+        },
+        "clickSampleIndices": [
+          16881,
+          22112,
+          40441,
+          67117,
+          75154,
+          86489
+        ],
+        "clickTimesSeconds": [
+          0.3827891156462585,
+          0.50140589569161,
+          0.9170294784580499,
+          1.5219274376417233,
+          1.704172335600907,
+          1.9612018140589569
+        ],
+        "sourceAnnotations": "not-provided",
+        "humanReview": "not-performed",
+        "corrections": [],
+        "limitations": [
+          "Whole-file candidate sequence; biological coda boundaries are unverified.",
+          "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+          "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+        ]
+      },
+      "originalTiming": {
+        "durationSeconds": 2.1898866213151926,
+        "clickTimesSeconds": [
+          0.3827891156462585,
+          0.50140589569161,
+          0.9170294784580499,
+          1.5219274376417233,
+          1.704172335600907,
+          1.9612018140589569
+        ],
+        "selectedIntervalSeconds": {
+          "start": 0,
+          "end": 2.1898866213151926
+        }
+      },
+      "result": {
+        "status": "valid",
+        "measurements": {
+          "clickCount": 6,
+          "recordingDurationSeconds": 2.1898866213151926,
+          "clickSpanSeconds": 1.5784126984126985,
+          "intervalsSeconds": [
+            0.11861678004535148,
+            0.41562358276643996,
+            0.6048979591836734,
+            0.18224489795918375,
+            0.2570294784580498
+          ],
+          "normalizedIntervals": [
+            0.07514940811400989,
+            0.26331743477761177,
+            0.3832318124353522,
+            0.1154608665670613,
+            0.16284047810596478
+          ],
+          "normalizedClickPositions": [
+            0,
+            0.07514940811400989,
+            0.33846684289162166,
+            0.721698655326974,
+            0.8371595218940352,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "side": "B",
+      "sourceId": "dswp-2",
+      "source": {
+        "dataset": "orrp/DSWP",
+        "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "filename": "2.wav",
+        "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/2.wav",
+        "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+        "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+        "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+        "paperUrl": "https://arxiv.org/abs/2512.02206",
+        "acquiredOn": "2026-09-12"
+      },
+      "audio": {
+        "path": "/audio/dswp-2.wav",
+        "sha256": "fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417",
+        "bytes": 189798,
+        "durationSeconds": 2.15140589569161,
+        "sampleRateHz": 44100,
+        "channels": 1,
+        "frames": 94877,
+        "encoding": "WAV / PCM signed 16-bit little-endian",
+        "transformations": []
+      },
+      "annotation": {
+        "status": "machine-estimated",
+        "method": "relative-peak-transient-groups",
+        "version": "1.0.0",
+        "parameters": {
+          "envelopeWindowSeconds": 0.002,
+          "relativeThreshold": 0.18,
+          "groupGapSeconds": 0.07
+        },
+        "timestampOrigin": "original-file-start",
+        "selectedIntervalSeconds": {
+          "start": 0,
+          "end": 2.15140589569161
+        },
+        "clickSampleIndices": [
+          19502,
+          41898,
+          58527,
+          65741,
+          73961,
+          87157
+        ],
+        "clickTimesSeconds": [
+          0.44222222222222224,
+          0.9500680272108843,
+          1.3271428571428572,
+          1.4907256235827664,
+          1.6771201814058956,
+          1.9763492063492063
+        ],
+        "sourceAnnotations": "not-provided",
+        "humanReview": "not-performed",
+        "corrections": [],
+        "limitations": [
+          "Whole-file candidate sequence; biological coda boundaries are unverified.",
+          "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+          "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+        ]
+      },
+      "originalTiming": {
+        "durationSeconds": 2.15140589569161,
+        "clickTimesSeconds": [
+          0.44222222222222224,
+          0.9500680272108843,
+          1.3271428571428572,
+          1.4907256235827664,
+          1.6771201814058956,
+          1.9763492063492063
+        ],
+        "selectedIntervalSeconds": {
+          "start": 0,
+          "end": 2.15140589569161
+        }
+      },
+      "result": {
+        "status": "valid",
+        "measurements": {
+          "clickCount": 6,
+          "recordingDurationSeconds": 2.15140589569161,
+          "clickSpanSeconds": 1.534126984126984,
+          "intervalsSeconds": [
+            0.507845804988662,
+            0.37707482993197283,
+            0.1635827664399092,
+            0.1863945578231292,
+            0.2992290249433107
+          ],
+          "normalizedIntervals": [
+            0.3310324440174414,
+            0.2457911462567438,
+            0.10662922178700757,
+            0.12149878057793213,
+            0.1950484073608751
+          ],
+          "normalizedClickPositions": [
+            0,
+            0.3310324440174414,
+            0.5768235902741852,
+            0.6834528120611928,
+            0.804951592639125,
+            1
+          ]
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "status": "comparable",
+    "metric": {
+      "id": "normalized-interval-mad",
+      "version": "1.0.0",
+      "name": "Mean absolute normalized interval difference",
+      "unit": "dimensionless",
+      "interpretation": "Smaller means closer under this timing metric."
+    },
+    "value": 0.11765155166768507
+  },
+  "investigation": {
+    "status": "completed",
+    "selectionKey": "{\"catalogVersion\":\"2.0.0\",\"metric\":{\"id\":\"normalized-interval-mad\",\"version\":\"1.0.0\"},\"selected\":[{\"id\":\"dswp-1\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"audioSha256\":\"8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057\",\"annotationMethod\":\"relative-peak-transient-groups\",\"annotationVersion\":\"1.0.0\"},{\"id\":\"dswp-2\",\"sourceRevision\":\"a2e5d6dd02fc60343e1288c33314e14e8b7aa5be\",\"audioSha256\":\"fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417\",\"annotationMethod\":\"relative-peak-transient-groups\",\"annotationVersion\":\"1.0.0\"}]}",
+    "binding": {
+      "catalogVersion": "2.0.0",
+      "metric": {
+        "id": "normalized-interval-mad",
+        "version": "1.0.0"
+      },
+      "selected": [
+        {
+          "id": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "audioSha256": "8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057",
+          "annotationMethod": "relative-peak-transient-groups",
+          "annotationVersion": "1.0.0"
+        },
+        {
+          "id": "dswp-2",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "audioSha256": "fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417",
+          "annotationMethod": "relative-peak-transient-groups",
+          "annotationVersion": "1.0.0"
+        }
+      ]
+    },
+    "question": "What differs in the timing of A and B, and what cannot be concluded?",
+    "startedAt": "2026-09-12T10:04:07.486Z",
+    "completedAt": "2026-09-12T10:04:15.229Z",
+    "execution": "provider",
+    "providerResponses": [
+      {
+        "responseId": "resp_0596dc5c63be8677016aa52398b4b087d097592c684f01a9c1",
+        "model": "gpt-6-astra",
+        "createdAt": 1789207448,
+        "usage": {
+          "inputTokens": 2795,
+          "outputTokens": 288,
+          "totalTokens": 3083
+        }
+      }
+    ],
+    "actions": [
+      {
+        "name": "recording_details",
+        "initiatedBy": "server",
+        "arguments": {
+          "sourceId": "dswp-1"
+        },
+        "evidenceId": "recording:dswp-1"
+      },
+      {
+        "name": "recording_details",
+        "initiatedBy": "server",
+        "arguments": {
+          "sourceId": "dswp-2"
+        },
+        "evidenceId": "recording:dswp-2"
+      },
+      {
+        "name": "compare_selected",
+        "initiatedBy": "server",
+        "arguments": {},
+        "evidenceId": "comparison:dswp-1:dswp-2"
+      }
+    ],
+    "evidence": [
+      {
+        "kind": "recording",
+        "id": "recording:dswp-1",
+        "recording": {
+          "id": "dswp-1",
+          "label": "DSWP / 1.wav",
+          "audio": {
+            "path": "/audio/dswp-1.wav",
+            "sha256": "8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057",
+            "bytes": 193192,
+            "durationSeconds": 2.1898866213151926,
+            "sampleRateHz": 44100,
+            "channels": 1,
+            "frames": 96574,
+            "encoding": "WAV / PCM signed 16-bit little-endian",
+            "transformations": []
+          },
+          "source": {
+            "dataset": "orrp/DSWP",
+            "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "filename": "1.wav",
+            "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+            "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+            "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+            "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+            "paperUrl": "https://arxiv.org/abs/2512.02206",
+            "acquiredOn": "2026-09-12"
+          },
+          "annotation": {
+            "status": "machine-estimated",
+            "method": "relative-peak-transient-groups",
+            "version": "1.0.0",
+            "parameters": {
+              "envelopeWindowSeconds": 0.002,
+              "relativeThreshold": 0.18,
+              "groupGapSeconds": 0.07
+            },
+            "timestampOrigin": "original-file-start",
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.1898866213151926
+            },
+            "clickSampleIndices": [
+              16881,
+              22112,
+              40441,
+              67117,
+              75154,
+              86489
+            ],
+            "clickTimesSeconds": [
+              0.3827891156462585,
+              0.50140589569161,
+              0.9170294784580499,
+              1.5219274376417233,
+              1.704172335600907,
+              1.9612018140589569
+            ],
+            "sourceAnnotations": "not-provided",
+            "humanReview": "not-performed",
+            "corrections": [],
+            "limitations": [
+              "Whole-file candidate sequence; biological coda boundaries are unverified.",
+              "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+              "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+            ]
+          }
+        },
+        "timing": {
+          "status": "valid",
+          "measurements": {
+            "clickCount": 6,
+            "recordingDurationSeconds": 2.1898866213151926,
+            "clickSpanSeconds": 1.5784126984126985,
+            "intervalsSeconds": [
+              0.11861678004535148,
+              0.41562358276643996,
+              0.6048979591836734,
+              0.18224489795918375,
+              0.2570294784580498
+            ],
+            "normalizedIntervals": [
+              0.07514940811400989,
+              0.26331743477761177,
+              0.3832318124353522,
+              0.1154608665670613,
+              0.16284047810596478
+            ],
+            "normalizedClickPositions": [
+              0,
+              0.07514940811400989,
+              0.33846684289162166,
+              0.721698655326974,
+              0.8371595218940352,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "kind": "recording",
+        "id": "recording:dswp-2",
+        "recording": {
+          "id": "dswp-2",
+          "label": "DSWP / 2.wav",
+          "audio": {
+            "path": "/audio/dswp-2.wav",
+            "sha256": "fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417",
+            "bytes": 189798,
+            "durationSeconds": 2.15140589569161,
+            "sampleRateHz": 44100,
+            "channels": 1,
+            "frames": 94877,
+            "encoding": "WAV / PCM signed 16-bit little-endian",
+            "transformations": []
+          },
+          "source": {
+            "dataset": "orrp/DSWP",
+            "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "filename": "2.wav",
+            "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/2.wav",
+            "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+            "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+            "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+            "paperUrl": "https://arxiv.org/abs/2512.02206",
+            "acquiredOn": "2026-09-12"
+          },
+          "annotation": {
+            "status": "machine-estimated",
+            "method": "relative-peak-transient-groups",
+            "version": "1.0.0",
+            "parameters": {
+              "envelopeWindowSeconds": 0.002,
+              "relativeThreshold": 0.18,
+              "groupGapSeconds": 0.07
+            },
+            "timestampOrigin": "original-file-start",
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.15140589569161
+            },
+            "clickSampleIndices": [
+              19502,
+              41898,
+              58527,
+              65741,
+              73961,
+              87157
+            ],
+            "clickTimesSeconds": [
+              0.44222222222222224,
+              0.9500680272108843,
+              1.3271428571428572,
+              1.4907256235827664,
+              1.6771201814058956,
+              1.9763492063492063
+            ],
+            "sourceAnnotations": "not-provided",
+            "humanReview": "not-performed",
+            "corrections": [],
+            "limitations": [
+              "Whole-file candidate sequence; biological coda boundaries are unverified.",
+              "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+              "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+            ]
+          }
+        },
+        "timing": {
+          "status": "valid",
+          "measurements": {
+            "clickCount": 6,
+            "recordingDurationSeconds": 2.15140589569161,
+            "clickSpanSeconds": 1.534126984126984,
+            "intervalsSeconds": [
+              0.507845804988662,
+              0.37707482993197283,
+              0.1635827664399092,
+              0.1863945578231292,
+              0.2992290249433107
+            ],
+            "normalizedIntervals": [
+              0.3310324440174414,
+              0.2457911462567438,
+              0.10662922178700757,
+              0.12149878057793213,
+              0.1950484073608751
+            ],
+            "normalizedClickPositions": [
+              0,
+              0.3310324440174414,
+              0.5768235902741852,
+              0.6834528120611928,
+              0.804951592639125,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "kind": "comparison",
+        "id": "comparison:dswp-1:dswp-2",
+        "sourceIds": [
+          "dswp-1",
+          "dswp-2"
+        ],
+        "comparison": {
+          "status": "comparable",
+          "metric": {
+            "id": "normalized-interval-mad",
+            "version": "1.0.0",
+            "name": "Mean absolute normalized interval difference",
+            "unit": "dimensionless",
+            "interpretation": "Smaller means closer under this timing metric."
+          },
+          "value": 0.11765155166768507
+        },
+        "observation": "The first estimated interval is 0.119 s in A and 0.508 s in B. It is shorter in A."
+      }
+    ],
+    "explanation": {
+      "possibleInterpretations": [
+        {
+          "text": "The estimated timing patterns differ: A begins with a shorter gap and has its longest gap near the middle, whereas B begins with its longest gap. This suggests a different distribution of pauses within the candidate sequences.",
+          "evidenceIds": [
+            "recording:dswp-1",
+            "recording:dswp-2"
+          ]
+        },
+        {
+          "text": "The sequences have equal estimated marker counts, so their normalized interval patterns are comparable under the supplied metric.",
+          "evidenceIds": [
+            "comparison:dswp-1:dswp-2",
+            "recording:dswp-1",
+            "recording:dswp-2"
+          ]
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Markers are machine-estimated amplitude-peak transient groups, not human-reviewed click onsets. Detection can miss or merge events or count echoes and noise; whole-file sequences may include multiple codas or unrelated transients, and biological coda boundaries are unverified.",
+          "evidenceIds": [
+            "recording:dswp-1",
+            "recording:dswp-2"
+          ]
+        },
+        {
+          "text": "The metric describes differences in relative interval timing, not meaning probabilities or biological categories. It cannot establish translation, intention, speaker identity, dialogue turns, or whether the recordings convey the same message.",
+          "evidenceIds": [
+            "comparison:dswp-1:dswp-2",
+            "recording:dswp-1",
+            "recording:dswp-2"
+          ]
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Click positions are machine estimates of transient peaks, not source annotations or human-reviewed click onsets.",
+    "Selected intervals may contain multiple codas, echoes, or unrelated transients. Biological coda boundaries are unverified.",
+    "The source supplies no per-file speaker identity, recording-system metadata, or behavioral/dialogue context.",
+    "Timing distance describes normalized spacing only. It is not a similarity percentage, semantic confidence, or biological category.",
+    "This small curated catalog does not establish population-level findings.",
+    "Generated interpretation, when available, is separate from measured evidence. A valid reference is traceability, not proof of correctness."
+  ]
+}

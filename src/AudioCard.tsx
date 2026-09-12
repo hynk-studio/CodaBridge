@@ -242,7 +242,7 @@ export default function AudioCard({
           {
             {
               loading: "Loading audio…",
-              ready: "Ready · verified audio",
+              ready: "Ready · source bytes checked",
               starting: "Starting…",
               playing: "Playing",
               paused: "Paused",
