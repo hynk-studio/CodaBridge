@@ -1,0 +1,73 @@
+{
+  "kind": "TEST ONLY Composer quantitative-prose correction; constructed responses, no live Astra call",
+  "sourceCommit": "5703cfd94905c97c10996936409d28a680b7e103",
+  "reviewedBaseline": "c3d55851662b641169c87df2eac43f000767f802",
+  "historicalLiveOutputRecovered": false,
+  "wrongProseCaseIsDeliberatelyIncorrect": true,
+  "node": "v25.9.0",
+  "browser": "Playwright Chromium desktop/mobile emulation",
+  "oldImplementationReproduction": {
+    "cases": 3,
+    "passing": 0,
+    "failing": 3,
+    "httpStatus": 502,
+    "code": "UNSUPPORTED_GENERATED_CONTENT",
+    "fixtureProviderRequestsPerCase": 2
+  },
+  "checks": {
+    "focusedTests": 50,
+    "unitServerTests": 161,
+    "builtWorkerTests": 14,
+    "composerBrowserJourneys": 38,
+    "typecheck": "passed",
+    "lint": "passed",
+    "dataVerification": "passed",
+    "clientAndWorkerBuild": "passed"
+  },
+  "normalAccess": {
+    "status": "unavailable",
+    "code": "NOT_CONFIGURED"
+  },
+  "files": [
+    {
+      "file": "desktop-chromium-TEST-ONLY-incorrect-limitation-project.json",
+      "bytes": 42894,
+      "sha256": "dcf4932824d0497d00f65413e882b3a022d6cb4c989e297d3a3a0fd5aae1eca3"
+    },
+    {
+      "file": "desktop-chromium-TEST-ONLY-incorrect-limitation.png",
+      "bytes": 117615,
+      "sha256": "412d3ff7bc4d15eff5d2eec34a26ec115a246d15254b463338e5b58ee15fdb05"
+    },
+    {
+      "file": "desktop-chromium-TEST-ONLY-supported-project.json",
+      "bytes": 42911,
+      "sha256": "b592d8c429288e7cc45de42b1d42aafe2a0574beb59944f814417fd540395579"
+    },
+    {
+      "file": "desktop-chromium-TEST-ONLY-supported.png",
+      "bytes": 118226,
+      "sha256": "1d76efe3b75901300f17bc296cadad3b8bb59eca90139b25d1b36a457b7361a1"
+    },
+    {
+      "file": "mobile-chromium-TEST-ONLY-incorrect-limitation-project.json",
+      "bytes": 42894,
+      "sha256": "6013d69df02da4043fe8b186795190d0c80759805ced9613fbc1029532ca7320"
+    },
+    {
+      "file": "mobile-chromium-TEST-ONLY-incorrect-limitation.png",
+      "bytes": 97128,
+      "sha256": "9743c15d1e94f3dada4aa6f2ee79312bddd29ee64bc22fb65f1a5ac39dfb7385"
+    },
+    {
+      "file": "mobile-chromium-TEST-ONLY-supported-project.json",
+      "bytes": 42911,
+      "sha256": "0a7234011d31a814722063ad4620ac11ee1c7127c18e8085974340a9fdbc5b6c"
+    },
+    {
+      "file": "mobile-chromium-TEST-ONLY-supported.png",
+      "bytes": 99188,
+      "sha256": "b54a8799da3e32c35faf023ad100126a285bebf31d672c1c0e0a87d74ece711d"
+    }
+  ]
+}

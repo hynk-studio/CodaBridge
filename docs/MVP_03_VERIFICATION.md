@@ -1,5 +1,7 @@
 # MVP-03 local verification
 
+This page preserves the original implementation's verification snapshot. See the subsequent [Composer quantitative-prose correction](MVP_03_NUMERIC_PROSE.md) for the current investigation policy and new regressions. Its constructed examples do not recover or reclassify the later failed live investigation; historical results and artifacts below remain unchanged.
+
 Executed implementation: **`4c6b0bc76d9c803501312f0b23b38b008f68c89f`**. Foundation: `414bce9f6065776d2c4609c163460bfa344a216b` (Draft PR #3, stacked on Draft PR #2). The following evidence commit adds documentation/captures only. All original field data, historical trial reports, TEST ONLY screenshots and the existing PR stack remain unchanged.
 
 ## What works

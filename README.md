@@ -41,6 +41,7 @@ The browser checks original bytes before decoding. The server independently reso
 ## Review and compatibility
 
 - [MVP-03 contract, engineering limits and implementation](docs/MVP_03.md)
+- [Composer quantitative-prose policy and correction checks](docs/MVP_03_NUMERIC_PROSE.md)
 - [MVP-03 review corrections, before/after captures and downloads](docs/MVP_03_REFINEMENT.md)
 - [First live Composer batch: edit passed, investigation rejected](docs/trials/2026-09-12-live-composer/README.md)
 - [MVP-03 verification, running-app capture and downloads](docs/MVP_03_VERIFICATION.md)
