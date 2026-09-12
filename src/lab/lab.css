@@ -1,0 +1,327 @@
+.context-lab {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 36px 0 70px;
+}
+.context-lab[hidden] {
+  display: none;
+}
+.lab-heading,
+.lab-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 28px;
+}
+.lab-heading > div {
+  max-width: 790px;
+}
+.lab-heading h1 {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1.08;
+  margin: 12px 0 20px;
+}
+.lab-heading p {
+  max-width: 740px;
+}
+.context-lab button,
+.context-lab select {
+  min-height: 44px;
+}
+.context-lab button {
+  padding: 10px 16px;
+  border: 1px solid #506570;
+  border-radius: 8px;
+  background: #172c36;
+  color: #eaf1f3;
+  cursor: pointer;
+}
+.context-lab button.primary {
+  background: #d6f699;
+  color: #142323;
+  border-color: #d6f699;
+}
+.context-lab button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.context-lab button[aria-pressed="true"] {
+  border-color: #d6f699;
+  color: #d6f699;
+}
+.context-lab button:focus-visible,
+.context-lab select:focus-visible,
+.context-lab textarea:focus-visible {
+  outline: 3px solid #d6f699;
+  outline-offset: 3px;
+}
+.lab-source-note,
+.lab-caption {
+  color: #acbec7;
+  font-size: 0.91rem;
+}
+.lab-panel {
+  border: 1px solid #354a55;
+  border-radius: 16px;
+  padding: 28px;
+  margin: 26px 0;
+  background: linear-gradient(125deg, #152b35, #101f28);
+}
+.lab-panel h2 {
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+  margin: 6px 0 16px;
+}
+.lab-panel p {
+  line-height: 1.65;
+}
+.reconstruction-label {
+  border-left: 3px solid #d6f699;
+  padding: 10px 14px;
+  background: #1b3439;
+  color: #e0edca;
+}
+.lab-window-controls,
+.lab-audio,
+.lab-neighbors,
+.lab-save > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+.context-lab label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.context-lab select,
+.context-lab textarea {
+  background: #0b1d27;
+  color: #e7f0f2;
+  border: 1px solid #516776;
+  border-radius: 6px;
+  padding: 10px;
+  max-width: 100%;
+  font: inherit;
+}
+.exchange-timeline {
+  width: 100%;
+  height: auto;
+  min-height: 180px;
+  background: #0c1d26;
+  border: 1px solid #34505d;
+  border-radius: 12px;
+}
+.lab-timeline-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.lab-timeline-scroll .exchange-timeline {
+  min-width: 680px;
+  display: block;
+}
+.exchange-timeline text {
+  fill: #afc2cb;
+  font: 18px sans-serif;
+}
+.lab-grid {
+  stroke: #2a424c;
+}
+.lab-track {
+  stroke: #4b6570;
+}
+.exchange-timeline .caller-0 {
+  fill: #a8ead5;
+  stroke: #a8ead5;
+}
+.exchange-timeline .caller-1 {
+  fill: #eeb18d;
+  stroke: #eeb18d;
+}
+.exchange-timeline rect {
+  fill-opacity: 0.07;
+}
+.exchange-timeline .selected-coda rect {
+  fill-opacity: 0.3;
+  stroke-width: 3;
+}
+.exchange-timeline .overlap-band {
+  fill: #dae69d;
+  fill-opacity: 0.1;
+}
+.exchange-timeline .click-mark {
+  stroke-width: 3;
+}
+.lab-audio > div {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #2d4953;
+  border-radius: 8px;
+}
+.lab-selected {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-top: 1px solid #36505b;
+  padding-top: 12px;
+}
+.lab-selected label {
+  align-self: start;
+  flex-direction: column;
+  align-items: start;
+}
+.lab-selected p {
+  margin: 0;
+}
+.lab-panel details {
+  border-top: 1px solid #3b525d;
+  padding: 18px 0 0;
+  margin-top: 20px;
+}
+.lab-panel summary {
+  cursor: pointer;
+  color: #e0e9e9;
+}
+.context-lab pre {
+  background: #091921;
+  padding: 16px;
+  overflow: auto;
+  max-height: 430px;
+  max-width: 100%;
+  font-size: 0.76rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.context-lab li {
+  margin: 10px 0;
+  color: #adbec7;
+  line-height: 1.6;
+}
+.lab-offset {
+  margin: 20px 0 12px;
+}
+.lab-statistics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.lab-statistics > div {
+  border: 1px solid #3c5861;
+  border-radius: 10px;
+  padding: 18px;
+  background: #0a2028;
+}
+.lab-statistics span {
+  display: block;
+  font-size: 0.84rem;
+  color: #b3c7cd;
+  margin-bottom: 12px;
+}
+.lab-statistics strong {
+  color: #d6f699;
+  font-size: clamp(1.3rem, 2.5vw, 2.2rem);
+}
+.lab-measured,
+.control-example {
+  background: #18363a;
+  padding: 14px 18px;
+  border-radius: 9px;
+}
+.control-example > strong {
+  color: #d6f699;
+}
+.lab-table-scroll {
+  overflow: auto;
+  width: 100%;
+  margin: 16px 0;
+}
+.lab-table-scroll table {
+  min-width: 650px;
+  width: 100%;
+}
+.lab-table-scroll th,
+.lab-table-scroll td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #3e5660;
+}
+.lab-ask textarea {
+  width: 100%;
+  min-height: 108px;
+  margin: 8px 0 18px;
+}
+.lab-ask form > label {
+  display: block;
+}
+.lab-result {
+  margin-top: 26px;
+  border-top: 1px solid #45606a;
+  padding-top: 18px;
+}
+.lab-source-details {
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+  color: #a9bcc7;
+}
+.product-navigation {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.product-navigation button {
+  border: 1px solid #47616c;
+  border-radius: 7px;
+  background: #132a34;
+  color: #dfebed;
+  padding: 9px 14px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.product-navigation button[aria-pressed="true"] {
+  background: #d6f699;
+  color: #12232b;
+}
+@media (max-width: 650px) {
+  .lab-heading,
+  .lab-section-heading {
+    display: block;
+  }
+  .lab-heading > button {
+    margin: 8px 0;
+  }
+  .lab-panel {
+    padding: 18px 14px;
+  }
+  .lab-statistics {
+    grid-template-columns: 1fr;
+  }
+  .lab-statistics > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .lab-statistics span {
+    margin: 0;
+    max-width: 55%;
+  }
+  .lab-selected {
+    grid-template-columns: 1fr;
+  }
+  .lab-window-controls {
+    align-items: stretch;
+  }
+  .context-lab {
+    padding-top: 24px;
+  }
+  .exchange-timeline {
+    min-height: 155px;
+  }
+  .lab-source-note {
+    line-height: 1.6;
+  }
+}

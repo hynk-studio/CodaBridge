@@ -1,0 +1,29 @@
+{
+  "boundary": "loopback built Worker, no provider binding",
+  "observations": [
+    {
+      "path": "/api/investigation/status",
+      "httpStatus": 200,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/lab",
+      "httpStatus": 503,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/composer",
+      "httpStatus": 503,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/investigate",
+      "httpStatus": 503,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED"
+    }
+  ]
+}

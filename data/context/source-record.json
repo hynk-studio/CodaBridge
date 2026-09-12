@@ -1,0 +1,89 @@
+{
+  "id": "zenodo-10817697",
+  "version": "sw-combinatoriality",
+  "doi": "10.5281/zenodo.10817697",
+  "recordUrl": "https://zenodo.org/records/10817697",
+  "releaseCommit": "7228c8eed2cc27ddd23b74c51aeccec9d762389e",
+  "acquiredOn": "2026-09-13",
+  "declaredLicense": {
+    "id": "cc-by-4.0"
+  },
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "recordMetadata": {
+    "title": "pratyushasharma/sw-combinatoriality: sw-combinatoriality",
+    "doi": "10.5281/zenodo.10817697",
+    "publication_date": "2024-03-14",
+    "description": "Dataset and Codebase for paper on \"Contextual and Combinatorial Structure in Sperm Whale Vocalisations\"",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Pratyusha Sharma",
+        "affiliation": null
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/pratyushasharma/sw-combinatoriality/tree/sw-combinatoriality",
+        "relation": "isSupplementTo",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "sw-combinatoriality",
+    "resource_type": {
+      "title": "Software",
+      "type": "software"
+    },
+    "license": {
+      "id": "cc-by-4.0"
+    },
+    "relations": {
+      "version": [
+        {
+          "index": 0,
+          "is_last": true,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "10817696"
+          }
+        }
+      ]
+    }
+  },
+  "archive": {
+    "id": "c0b7093b-20d1-4e81-a931-de891372e93c",
+    "key": "pratyushasharma/sw-combinatoriality-sw-combinatoriality.zip",
+    "size": 4879909,
+    "checksum": "md5:ea057337237598b7118fec5713ed3edf",
+    "links": {
+      "self": "https://zenodo.org/api/records/10817697/files/pratyushasharma/sw-combinatoriality-sw-combinatoriality.zip/content"
+    }
+  },
+  "archiveSha256": "3639acbf5f5d3ee9ab4f05befb2aa7df065063820126bfbd872f76c8a4b009cd",
+  "files": [
+    {
+      "archivePath": "pratyushasharma-sw-combinatoriality-7228c8e/data/sperm-whale-dialogues.csv",
+      "bytes": 500380,
+      "sha256": "1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2"
+    },
+    {
+      "archivePath": "pratyushasharma-sw-combinatoriality-7228c8e/code/1-exchange-plot.ipynb",
+      "bytes": 335800,
+      "sha256": "605d94c4bb303826fe2ef58d51e3c7e257bbfe77259a0629cf8185daa2a896a7"
+    },
+    {
+      "archivePath": "pratyushasharma-sw-combinatoriality-7228c8e/code/4-rubato.ipynb",
+      "bytes": 1663470,
+      "sha256": "fb841377d778e6aacc506329fcb157976bc43418ec0e7a66f032bf2b9f906143"
+    },
+    {
+      "archivePath": "pratyushasharma-sw-combinatoriality-7228c8e/README.md",
+      "bytes": 1546,
+      "sha256": "e92924e501fa895ca73089e0a6268e7ba6c916c5be38569e8eafc15e0509e89d"
+    }
+  ],
+  "transformations": [
+    "CSV unchanged; all source rows retained offline.",
+    "Notebook code/markdown cells extracted as text with cell indices; outputs omitted. No notebook or pickle execution."
+  ]
+}

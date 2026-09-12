@@ -1,0 +1,122 @@
+[
+  {
+    "surface": "desktop-chromium",
+    "delivery": "browser download and exact hash",
+    "delivered": [
+      {
+        "file": "01-original-field.wav",
+        "deliveredHashMatches": true,
+        "duration": 2.189875,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.19079455733299255
+      },
+      {
+        "file": "02-synthetic-seed.wav",
+        "deliveredHashMatches": true,
+        "duration": 1.6684166666666667,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.046357616782188416
+      },
+      {
+        "file": "03-uniformly-lengthened.wav",
+        "deliveredHashMatches": true,
+        "duration": 2.0630208333333333,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.046357616782188416
+      },
+      {
+        "file": "04-single-gap-modified.wav",
+        "deliveredHashMatches": true,
+        "duration": 2.21475,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.046357616782188416
+      },
+      {
+        "file": "05-full-phrase.wav",
+        "deliveredHashMatches": true,
+        "duration": 4.293166666666667,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.046357616782188416
+      },
+      {
+        "file": "06-annotated-exchange.wav",
+        "deliveredHashMatches": true,
+        "duration": 60.09,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.04617450386285782
+      }
+    ],
+    "projectRestorationValidated": true,
+    "noAutoplay": true,
+    "playbackOwnershipAndStop": true,
+    "modelCalls": 0,
+    "humanListening": "not performed",
+    "physicalDevice": "not tested"
+  },
+  {
+    "surface": "mobile-chromium",
+    "delivery": "browser download and exact hash",
+    "delivered": [
+      {
+        "file": "01-original-field.wav",
+        "deliveredHashMatches": true,
+        "duration": 2.189875,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.19079455733299255
+      },
+      {
+        "file": "02-synthetic-seed.wav",
+        "deliveredHashMatches": true,
+        "duration": 1.6684166666666667,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.046357616782188416
+      },
+      {
+        "file": "03-uniformly-lengthened.wav",
+        "deliveredHashMatches": true,
+        "duration": 2.0630208333333333,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.046357616782188416
+      },
+      {
+        "file": "04-single-gap-modified.wav",
+        "deliveredHashMatches": true,
+        "duration": 2.21475,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.046357616782188416
+      },
+      {
+        "file": "05-full-phrase.wav",
+        "deliveredHashMatches": true,
+        "duration": 4.293166666666667,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.046357616782188416
+      },
+      {
+        "file": "06-annotated-exchange.wav",
+        "deliveredHashMatches": true,
+        "duration": 60.09,
+        "channels": 1,
+        "decodedRate": 48000,
+        "peak": 0.04617450386285782
+      }
+    ],
+    "projectRestorationValidated": true,
+    "noAutoplay": true,
+    "playbackOwnershipAndStop": true,
+    "modelCalls": 0,
+    "humanListening": "not performed",
+    "physicalDevice": "not tested"
+  }
+]

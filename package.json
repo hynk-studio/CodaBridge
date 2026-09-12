@@ -11,7 +11,7 @@
     "typecheck": "tsc -b",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "test:browser": "playwright test",
-    "data:verify": "node --experimental-strip-types scripts/prepare-data.ts --check",
+    "data:verify": "node --experimental-strip-types scripts/prepare-data.ts --check && node --experimental-strip-types scripts/prepare-context.ts --check",
     "data:prepare": "node --experimental-strip-types scripts/prepare-data.ts",
     "test:server-build": "node --experimental-strip-types --test tests/artifact/*.test.ts"
   },

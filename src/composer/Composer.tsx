@@ -47,6 +47,7 @@ import "./composer.css";
 
 export interface ComposerHandle {
   makeVersion(sourceId: string): void;
+  leave(): void;
 }
 function Pattern({ block, label }: { block: Block; label: string }) {
   return (
@@ -330,7 +331,14 @@ const Composer = forwardRef<
       region.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
-  useImperativeHandle(ref, () => ({ makeVersion }));
+  useImperativeHandle(ref, () => ({
+    makeVersion,
+    leave: () => {
+      finishText();
+      cancel();
+      player.current?.stop();
+    },
+  }));
   function editText(field: "title" | "intention" | "meaning", value: string) {
     attempt(() => {
       const current = historyRef.current;

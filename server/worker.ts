@@ -12,6 +12,7 @@ import type { Recording } from "../src/domain/types.ts";
 import { createAnalysisTools } from "./tools.ts";
 import type { PrivateProviderObserver } from "./provider-diagnostics.ts";
 import { runComposer, composerFailure } from "./composer.ts";
+import { runLab } from "./lab.ts";
 import {
   LIMITS,
   requestResponse,
@@ -108,7 +109,11 @@ export function createWorker(
           );
         return json(enabled(env) ? { status: "available" } : unavailable);
       }
-      if (path !== "/api/investigate" && path !== "/api/composer")
+      if (
+        path !== "/api/investigate" &&
+        path !== "/api/composer" &&
+        path !== "/api/lab"
+      )
         return json(
           { status: "failed", code: "NOT_FOUND", message: "Unknown endpoint." },
           404,
@@ -145,6 +150,19 @@ export function createWorker(
             .toLowerCase() !== "application/json"
         )
           throw new BoundaryError("CONTENT_TYPE", 415);
+        if (path === "/api/lab") {
+          if (!enabled(env)) return json(unavailable, 503);
+          return json(
+            await runLab(
+              request,
+              env,
+              transport,
+              controller.signal,
+              !!options.transport,
+              options.onPrivateProviderDiagnostic,
+            ),
+          );
+        }
         if (path === "/api/composer") {
           if (!enabled(env)) return json(unavailable, 503);
           return json(

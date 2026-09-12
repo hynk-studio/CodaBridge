@@ -1,0 +1,2855 @@
+{
+  "format": "codabridge-context-investigation",
+  "version": 1,
+  "savedAnalysisStatus": "Historical snapshot — not a fresh live run on reopen",
+  "identity": "Source research annotations; audio is synthetic timing reconstruction, not an original recording",
+  "datasetId": "zenodo-10817697",
+  "source": {
+    "version": "sw-combinatoriality",
+    "releaseCommit": "7228c8eed2cc27ddd23b74c51aeccec9d762389e",
+    "csvSha256": "1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2",
+    "archiveSha256": "3639acbf5f5d3ee9ab4f05befb2aa7df065063820126bfbd872f76c8a4b009cd",
+    "recordUrl": "https://zenodo.org/records/10817697",
+    "doi": "10.5281/zenodo.10817697",
+    "license": "CC BY 4.0",
+    "attribution": "Pratyusha Sharma, Shane Gero, Roger Payne, David F. Gruber, Daniela Rus, Antonio Torralba and Jacob Andreas; Dominica Sperm Whale Project. Contextual and combinatorial structure in sperm whale vocalisations (2024).",
+    "paperUrl": "https://www.nature.com/articles/s41467-024-47221-8",
+    "annotation": "Source research annotations; not independently human-reviewed by CodaBridge",
+    "timeOrigin": "Seconds from source recording start, as documented in archive exchange notebook. REC suffix meaning is not established; exact REC groups stay separate."
+  },
+  "segment": {
+    "id": "sw061b001_124-from-row-2-60s-v1",
+    "rec": "sw061b001_124",
+    "start": 126.0372,
+    "end": 186.03719999999998,
+    "callers": [
+      "1",
+      "2"
+    ],
+    "calls": [
+      {
+        "id": "row-2",
+        "sourceLine": 2,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 126.0372,
+        "duration": 0.9277916000000002,
+        "declaredDuration": 0.9277916,
+        "durationTolerance": 0.000006700001000000006,
+        "clicks": [
+          0,
+          0.03395,
+          0.0700666,
+          0.1189333,
+          0.1678416,
+          0.21011660000000001,
+          0.25060000000000004,
+          0.29157500000000003,
+          0.3311833,
+          0.3733167,
+          0.4150083,
+          0.4596,
+          0.5113916000000001,
+          0.5764250000000001,
+          0.6632583000000001,
+          0.7821500000000001,
+          0.9277916000000002
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "17",
+          "Duration": "0.9277916",
+          "ICI1": "0.03395",
+          "ICI2": "0.0361166",
+          "ICI3": "0.0488667",
+          "ICI4": "0.0489083",
+          "ICI5": "0.042275",
+          "ICI6": "0.0404834",
+          "ICI7": "0.040975",
+          "ICI8": "0.0396083",
+          "ICI9": "0.0421334",
+          "ICI10": "0.0416916",
+          "ICI11": "0.0445917",
+          "ICI12": "0.0517916",
+          "ICI13": "0.0650334",
+          "ICI14": "0.0868333",
+          "ICI15": "0.1188917",
+          "ICI16": "0.1456416",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "126.0372"
+        }
+      },
+      {
+        "id": "row-3",
+        "sourceLine": 3,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 128.3256,
+        "duration": 1.0929917,
+        "declaredDuration": 1.0929917,
+        "durationTolerance": 0.000006850001000000005,
+        "clicks": [
+          0,
+          0.0328166,
+          0.072175,
+          0.1175,
+          0.1674333,
+          0.2115167,
+          0.2563,
+          0.29998329999999995,
+          0.34063329999999997,
+          0.38282499999999997,
+          0.4256333,
+          0.4675167,
+          0.5094583,
+          0.5553917,
+          0.6077667,
+          0.66825,
+          0.7420167,
+          0.8315083,
+          0.941025,
+          1.0929917
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "20",
+          "Duration": "1.0929917",
+          "ICI1": "0.0328166",
+          "ICI2": "0.0393584",
+          "ICI3": "0.045325",
+          "ICI4": "0.0499333",
+          "ICI5": "0.0440834",
+          "ICI6": "0.0447833",
+          "ICI7": "0.0436833",
+          "ICI8": "0.04065",
+          "ICI9": "0.0421917",
+          "ICI10": "0.0428083",
+          "ICI11": "0.0418834",
+          "ICI12": "0.0419416",
+          "ICI13": "0.0459334",
+          "ICI14": "0.052375",
+          "ICI15": "0.0604833",
+          "ICI16": "0.0737667",
+          "ICI17": "0.0894916",
+          "ICI18": "0.1095167",
+          "ICI19": "0.1519667",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "128.3256"
+        }
+      },
+      {
+        "id": "row-4",
+        "sourceLine": 4,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 131.7476,
+        "duration": 0.89825,
+        "declaredDuration": 0.89825,
+        "durationTolerance": 0.00006010000100000001,
+        "clicks": [
+          0,
+          0.27585,
+          0.5626333,
+          0.7600333,
+          0.89825
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.89825",
+          "ICI1": "0.27585",
+          "ICI2": "0.2867833",
+          "ICI3": "0.1974",
+          "ICI4": "0.1382167",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "131.7476"
+        }
+      },
+      {
+        "id": "row-5",
+        "sourceLine": 5,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 135.5877,
+        "duration": 0.865575,
+        "declaredDuration": 0.865575,
+        "durationTolerance": 0.000001150001,
+        "clicks": [
+          0,
+          0.262275,
+          0.5391583,
+          0.7224916,
+          0.865575
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.865575",
+          "ICI1": "0.262275",
+          "ICI2": "0.2768833",
+          "ICI3": "0.1833333",
+          "ICI4": "0.1430834",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "135.5877"
+        }
+      },
+      {
+        "id": "row-6",
+        "sourceLine": 6,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 139.5217,
+        "duration": 0.8583166,
+        "declaredDuration": 0.8583166,
+        "durationTolerance": 0.000001150001,
+        "clicks": [
+          0,
+          0.266675,
+          0.5360332999999999,
+          0.7143583,
+          0.8583166
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.8583166",
+          "ICI1": "0.266675",
+          "ICI2": "0.2693583",
+          "ICI3": "0.178325",
+          "ICI4": "0.1439583",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "139.5217"
+        }
+      },
+      {
+        "id": "row-7",
+        "sourceLine": 7,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 142.7881,
+        "duration": 0.8619416,
+        "declaredDuration": 0.8619416,
+        "durationTolerance": 2.5000099999999996e-7,
+        "clicks": [
+          0,
+          0.2686583,
+          0.5538000000000001,
+          0.7322083,
+          0.8619416
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.8619416",
+          "ICI1": "0.2686583",
+          "ICI2": "0.2851417",
+          "ICI3": "0.1784083",
+          "ICI4": "0.1297333",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "142.7881"
+        }
+      },
+      {
+        "id": "row-8",
+        "sourceLine": 8,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 145.8571,
+        "duration": 0.838825,
+        "declaredDuration": 0.838825,
+        "durationTolerance": 7.00001e-7,
+        "clicks": [
+          0,
+          0.2522667,
+          0.50535,
+          0.6880834,
+          0.838825
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.838825",
+          "ICI1": "0.2522667",
+          "ICI2": "0.2530833",
+          "ICI3": "0.1827334",
+          "ICI4": "0.1507416",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "145.8571"
+        }
+      },
+      {
+        "id": "row-9",
+        "sourceLine": 9,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 149.3956,
+        "duration": 0.8447332999999999,
+        "declaredDuration": 0.8447333,
+        "durationTolerance": 7.000009999999999e-7,
+        "clicks": [
+          0,
+          0.2584333,
+          0.533075,
+          0.7071,
+          0.8447332999999999
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.8447333",
+          "ICI1": "0.2584333",
+          "ICI2": "0.2746417",
+          "ICI3": "0.174025",
+          "ICI4": "0.1376333",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "149.3956"
+        }
+      },
+      {
+        "id": "row-10",
+        "sourceLine": 10,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 149.4538,
+        "duration": 0.8711697,
+        "declaredDuration": 0.8711697,
+        "durationTolerance": 2.00001e-7,
+        "clicks": [
+          0,
+          0.2998227,
+          0.5963364,
+          0.8711697
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "4",
+          "Duration": "0.8711697",
+          "ICI1": "0.2998227",
+          "ICI2": "0.2965137",
+          "ICI3": "0.2748333",
+          "ICI4": "0",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "149.4538"
+        }
+      },
+      {
+        "id": "row-11",
+        "sourceLine": 11,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 152.8085,
+        "duration": 0.967213,
+        "declaredDuration": 0.967213,
+        "durationTolerance": 7.00001e-7,
+        "clicks": [
+          0,
+          0.3213012,
+          0.6229226,
+          0.9260951,
+          0.967213
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.967213",
+          "ICI1": "0.3213012",
+          "ICI2": "0.3016214",
+          "ICI3": "0.3031725",
+          "ICI4": "0.0411179",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "152.8085"
+        }
+      },
+      {
+        "id": "row-12",
+        "sourceLine": 12,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 152.9482,
+        "duration": 0.8275417,
+        "declaredDuration": 0.8275417,
+        "durationTolerance": 2.5000099999999996e-7,
+        "clicks": [
+          0,
+          0.2567917,
+          0.5301,
+          0.6973333,
+          0.8275417
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.8275417",
+          "ICI1": "0.2567917",
+          "ICI2": "0.2733083",
+          "ICI3": "0.1672333",
+          "ICI4": "0.1302084",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "152.9482"
+        }
+      },
+      {
+        "id": "row-13",
+        "sourceLine": 13,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 156.0181,
+        "duration": 0.946011,
+        "declaredDuration": 0.946011,
+        "durationTolerance": 0.000001100001,
+        "clicks": [
+          0,
+          0.326062,
+          0.6378171,
+          0.946011
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "4",
+          "Duration": "0.946011",
+          "ICI1": "0.326062",
+          "ICI2": "0.3117551",
+          "ICI3": "0.3081939",
+          "ICI4": "0",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "156.0181"
+        }
+      },
+      {
+        "id": "row-14",
+        "sourceLine": 14,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 156.199,
+        "duration": 0.8468334000000001,
+        "declaredDuration": 0.8468334,
+        "durationTolerance": 0.00005515000100000001,
+        "clicks": [
+          0,
+          0.2681917,
+          0.5549417,
+          0.7210334,
+          0.8468334000000001
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.8468334",
+          "ICI1": "0.2681917",
+          "ICI2": "0.28675",
+          "ICI3": "0.1660917",
+          "ICI4": "0.1258",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "156.199"
+        }
+      },
+      {
+        "id": "row-15",
+        "sourceLine": 15,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 160.9444,
+        "duration": 1.0306499999999998,
+        "declaredDuration": 1.03065,
+        "durationTolerance": 0.000010100001000000001,
+        "clicks": [
+          0,
+          0.3755167,
+          0.7012666999999999,
+          1.0306499999999998
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "4",
+          "Duration": "1.03065",
+          "ICI1": "0.3755167",
+          "ICI2": "0.32575",
+          "ICI3": "0.3293833",
+          "ICI4": "0",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "160.9444"
+        }
+      },
+      {
+        "id": "row-16",
+        "sourceLine": 16,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 165.8769,
+        "duration": 1.0820167,
+        "declaredDuration": 1.0820167,
+        "durationTolerance": 0.000050600001000000006,
+        "clicks": [
+          0,
+          0.373175,
+          0.7370749999999999,
+          1.0820167
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "4",
+          "Duration": "1.0820167",
+          "ICI1": "0.373175",
+          "ICI2": "0.3639",
+          "ICI3": "0.3449417",
+          "ICI4": "0",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "165.8769"
+        }
+      },
+      {
+        "id": "row-17",
+        "sourceLine": 17,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 166.211,
+        "duration": 1.0484083,
+        "declaredDuration": 1.0484083,
+        "durationTolerance": 2.5000099999999996e-7,
+        "clicks": [
+          0,
+          0.3581333,
+          0.7184999999999999,
+          0.8901665999999999,
+          1.0484083
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "1.0484083",
+          "ICI1": "0.3581333",
+          "ICI2": "0.3603667",
+          "ICI3": "0.1716666",
+          "ICI4": "0.1582417",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "166.211"
+        }
+      },
+      {
+        "id": "row-18",
+        "sourceLine": 18,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 170.3441,
+        "duration": 0.9956332999999999,
+        "declaredDuration": 0.9956333,
+        "durationTolerance": 2.5000099999999996e-7,
+        "clicks": [
+          0,
+          0.3423583,
+          0.6749417,
+          0.8471,
+          0.9956332999999999
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.9956333",
+          "ICI1": "0.3423583",
+          "ICI2": "0.3325834",
+          "ICI3": "0.1721583",
+          "ICI4": "0.1485333",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "170.3441"
+        }
+      },
+      {
+        "id": "row-19",
+        "sourceLine": 19,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 170.5812,
+        "duration": 1.07565,
+        "declaredDuration": 1.07565,
+        "durationTolerance": 0.000010100001000000001,
+        "clicks": [
+          0,
+          0.3895084,
+          0.7413,
+          1.07565
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "4",
+          "Duration": "1.07565",
+          "ICI1": "0.3895084",
+          "ICI2": "0.3517916",
+          "ICI3": "0.33435",
+          "ICI4": "0",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "170.5812"
+        }
+      },
+      {
+        "id": "row-20",
+        "sourceLine": 20,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 174.7044,
+        "duration": 1.020525,
+        "declaredDuration": 1.020525,
+        "durationTolerance": 6.500009999999999e-7,
+        "clicks": [
+          0,
+          0.3446084,
+          0.6942832999999999,
+          1.020525
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "4",
+          "Duration": "1.020525",
+          "ICI1": "0.3446084",
+          "ICI2": "0.3496749",
+          "ICI3": "0.3262417",
+          "ICI4": "0",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "174.7044"
+        }
+      },
+      {
+        "id": "row-21",
+        "sourceLine": 21,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 174.8052,
+        "duration": 0.9803084,
+        "declaredDuration": 0.9803084,
+        "durationTolerance": 2.5000099999999996e-7,
+        "clicks": [
+          0,
+          0.3444583,
+          0.67145,
+          0.8305583,
+          0.9803084
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.9803084",
+          "ICI1": "0.3444583",
+          "ICI2": "0.3269917",
+          "ICI3": "0.1591083",
+          "ICI4": "0.1497501",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "174.8052"
+        }
+      },
+      {
+        "id": "row-22",
+        "sourceLine": 22,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 178.4286,
+        "duration": 1.4634833,
+        "declaredDuration": 1.4634833,
+        "durationTolerance": 0.00005020000100000001,
+        "clicks": [
+          0,
+          0.3348,
+          0.6670332999999999,
+          0.9992167,
+          1.4634833
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "1.4634833",
+          "ICI1": "0.3348",
+          "ICI2": "0.3322333",
+          "ICI3": "0.3321834",
+          "ICI4": "0.4642666",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "178.4286"
+        }
+      },
+      {
+        "id": "row-23",
+        "sourceLine": 23,
+        "rec": "sw061b001_124",
+        "caller": "1",
+        "onset": 178.667,
+        "duration": 0.9525416,
+        "declaredDuration": 0.9525416,
+        "durationTolerance": 0.00005065000100000001,
+        "clicks": [
+          0,
+          0.350825,
+          0.6765583,
+          0.8159415999999999,
+          0.9525416
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "5",
+          "Duration": "0.9525416",
+          "ICI1": "0.350825",
+          "ICI2": "0.3257333",
+          "ICI3": "0.1393833",
+          "ICI4": "0.1366",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "1",
+          "TsTo": "178.667"
+        }
+      },
+      {
+        "id": "row-24",
+        "sourceLine": 24,
+        "rec": "sw061b001_124",
+        "caller": "2",
+        "onset": 182.2411,
+        "duration": 0.9997651000000001,
+        "declaredDuration": 0.9997651,
+        "durationTolerance": 6.500009999999999e-7,
+        "clicks": [
+          0,
+          0.3303356,
+          0.6631726,
+          0.9997651000000001
+        ],
+        "raw": {
+          "REC": "sw061b001_124",
+          "nClicks": "4",
+          "Duration": "0.9997651",
+          "ICI1": "0.3303356",
+          "ICI2": "0.332837",
+          "ICI3": "0.3365925",
+          "ICI4": "0",
+          "ICI5": "0",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "182.2411"
+        }
+      }
+    ],
+    "boundaryExcludedLines": [
+      25
+    ]
+  },
+  "question": "Does the similarity depend on the pairing? Compare the observed calls with reassigned pairings and explain other possible explanations.",
+  "selection": {
+    "offset": 1,
+    "selectedRowId": "row-12",
+    "binding": "{\"datasetId\":\"zenodo-10817697\",\"releaseCommit\":\"7228c8eed2cc27ddd23b74c51aeccec9d762389e\",\"csvSha256\":\"1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2\",\"derivedVersion\":1,\"selectionRule\":\"quality-coverage-v1\",\"segmentId\":\"sw061b001_124-from-row-2-60s-v1\",\"callers\":[\"1\",\"2\"],\"method\":\"paired-duration-gap-v1\",\"offset\":1,\"selectedRowId\":\"row-12\"}"
+  },
+  "comparison": {
+    "method": "paired-duration-gap-v1",
+    "unit": "seconds",
+    "status": "available",
+    "reason": null,
+    "pairCount": 7,
+    "uniqueCallCount": 14,
+    "aCallCount": 14,
+    "bCallCount": 9,
+    "observed": {
+      "offset": 0,
+      "assignments": [
+        {
+          "slotRowId": "row-10",
+          "durationFromRowId": "row-10",
+          "durationSeconds": 0.8711697
+        },
+        {
+          "slotRowId": "row-11",
+          "durationFromRowId": "row-11",
+          "durationSeconds": 0.967213
+        },
+        {
+          "slotRowId": "row-13",
+          "durationFromRowId": "row-13",
+          "durationSeconds": 0.946011
+        },
+        {
+          "slotRowId": "row-15",
+          "durationFromRowId": "row-15",
+          "durationSeconds": 1.0306499999999998
+        },
+        {
+          "slotRowId": "row-16",
+          "durationFromRowId": "row-16",
+          "durationSeconds": 1.0820167
+        },
+        {
+          "slotRowId": "row-19",
+          "durationFromRowId": "row-19",
+          "durationSeconds": 1.07565
+        },
+        {
+          "slotRowId": "row-20",
+          "durationFromRowId": "row-20",
+          "durationSeconds": 1.020525
+        },
+        {
+          "slotRowId": "row-22",
+          "durationFromRowId": "row-22",
+          "durationSeconds": 1.4634833
+        },
+        {
+          "slotRowId": "row-24",
+          "durationFromRowId": "row-24",
+          "durationSeconds": 0.9997651000000001
+        }
+      ],
+      "pairs": [
+        {
+          "aId": "row-9",
+          "bId": "row-10",
+          "overlapSeconds": 0.7865333000000021,
+          "aSourceLine": 9,
+          "bSlotSourceLine": 10,
+          "durationFromRowId": "row-10",
+          "durationFromSourceLine": 10,
+          "aDurationSeconds": 0.8447332999999999,
+          "originalBDurationSeconds": 0.8711697,
+          "assignedBDurationSeconds": 0.8711697,
+          "absoluteDifferenceSeconds": 0.026436400000000138
+        },
+        {
+          "aId": "row-12",
+          "bId": "row-11",
+          "overlapSeconds": 0.827512999999982,
+          "aSourceLine": 12,
+          "bSlotSourceLine": 11,
+          "durationFromRowId": "row-11",
+          "durationFromSourceLine": 11,
+          "aDurationSeconds": 0.8275417,
+          "originalBDurationSeconds": 0.967213,
+          "assignedBDurationSeconds": 0.967213,
+          "absoluteDifferenceSeconds": 0.13967129999999994
+        },
+        {
+          "aId": "row-14",
+          "bId": "row-13",
+          "overlapSeconds": 0.7651109999999903,
+          "aSourceLine": 14,
+          "bSlotSourceLine": 13,
+          "durationFromRowId": "row-13",
+          "durationFromSourceLine": 13,
+          "aDurationSeconds": 0.8468334000000001,
+          "originalBDurationSeconds": 0.946011,
+          "assignedBDurationSeconds": 0.946011,
+          "absoluteDifferenceSeconds": 0.09917759999999998
+        },
+        {
+          "aId": "row-17",
+          "bId": "row-16",
+          "overlapSeconds": 0.7479166999999904,
+          "aSourceLine": 17,
+          "bSlotSourceLine": 16,
+          "durationFromRowId": "row-16",
+          "durationFromSourceLine": 16,
+          "aDurationSeconds": 1.0484083,
+          "originalBDurationSeconds": 1.0820167,
+          "assignedBDurationSeconds": 1.0820167,
+          "absoluteDifferenceSeconds": 0.033608400000000094
+        },
+        {
+          "aId": "row-18",
+          "bId": "row-19",
+          "overlapSeconds": 0.7585333000000105,
+          "aSourceLine": 18,
+          "bSlotSourceLine": 19,
+          "durationFromRowId": "row-19",
+          "durationFromSourceLine": 19,
+          "aDurationSeconds": 0.9956332999999999,
+          "originalBDurationSeconds": 1.07565,
+          "assignedBDurationSeconds": 1.07565,
+          "absoluteDifferenceSeconds": 0.08001670000000005
+        },
+        {
+          "aId": "row-21",
+          "bId": "row-20",
+          "overlapSeconds": 0.9197249999999713,
+          "aSourceLine": 21,
+          "bSlotSourceLine": 20,
+          "durationFromRowId": "row-20",
+          "durationFromSourceLine": 20,
+          "aDurationSeconds": 0.9803084,
+          "originalBDurationSeconds": 1.020525,
+          "assignedBDurationSeconds": 1.020525,
+          "absoluteDifferenceSeconds": 0.040216599999999936
+        },
+        {
+          "aId": "row-23",
+          "bId": "row-22",
+          "overlapSeconds": 0.9525415999999893,
+          "aSourceLine": 23,
+          "bSlotSourceLine": 22,
+          "durationFromRowId": "row-22",
+          "durationFromSourceLine": 22,
+          "aDurationSeconds": 0.9525416,
+          "originalBDurationSeconds": 1.4634833,
+          "assignedBDurationSeconds": 1.4634833,
+          "absoluteDifferenceSeconds": 0.5109417
+        }
+      ],
+      "valueSeconds": 0.13286695714285718
+    },
+    "selected": {
+      "offset": 1,
+      "assignments": [
+        {
+          "slotRowId": "row-10",
+          "durationFromRowId": "row-11",
+          "durationSeconds": 0.967213
+        },
+        {
+          "slotRowId": "row-11",
+          "durationFromRowId": "row-13",
+          "durationSeconds": 0.946011
+        },
+        {
+          "slotRowId": "row-13",
+          "durationFromRowId": "row-15",
+          "durationSeconds": 1.0306499999999998
+        },
+        {
+          "slotRowId": "row-15",
+          "durationFromRowId": "row-16",
+          "durationSeconds": 1.0820167
+        },
+        {
+          "slotRowId": "row-16",
+          "durationFromRowId": "row-19",
+          "durationSeconds": 1.07565
+        },
+        {
+          "slotRowId": "row-19",
+          "durationFromRowId": "row-20",
+          "durationSeconds": 1.020525
+        },
+        {
+          "slotRowId": "row-20",
+          "durationFromRowId": "row-22",
+          "durationSeconds": 1.4634833
+        },
+        {
+          "slotRowId": "row-22",
+          "durationFromRowId": "row-24",
+          "durationSeconds": 0.9997651000000001
+        },
+        {
+          "slotRowId": "row-24",
+          "durationFromRowId": "row-10",
+          "durationSeconds": 0.8711697
+        }
+      ],
+      "pairs": [
+        {
+          "aId": "row-9",
+          "bId": "row-10",
+          "overlapSeconds": 0.7865333000000021,
+          "aSourceLine": 9,
+          "bSlotSourceLine": 10,
+          "durationFromRowId": "row-11",
+          "durationFromSourceLine": 11,
+          "aDurationSeconds": 0.8447332999999999,
+          "originalBDurationSeconds": 0.8711697,
+          "assignedBDurationSeconds": 0.967213,
+          "absoluteDifferenceSeconds": 0.12247970000000008
+        },
+        {
+          "aId": "row-12",
+          "bId": "row-11",
+          "overlapSeconds": 0.827512999999982,
+          "aSourceLine": 12,
+          "bSlotSourceLine": 11,
+          "durationFromRowId": "row-13",
+          "durationFromSourceLine": 13,
+          "aDurationSeconds": 0.8275417,
+          "originalBDurationSeconds": 0.967213,
+          "assignedBDurationSeconds": 0.946011,
+          "absoluteDifferenceSeconds": 0.1184693
+        },
+        {
+          "aId": "row-14",
+          "bId": "row-13",
+          "overlapSeconds": 0.7651109999999903,
+          "aSourceLine": 14,
+          "bSlotSourceLine": 13,
+          "durationFromRowId": "row-15",
+          "durationFromSourceLine": 15,
+          "aDurationSeconds": 0.8468334000000001,
+          "originalBDurationSeconds": 0.946011,
+          "assignedBDurationSeconds": 1.0306499999999998,
+          "absoluteDifferenceSeconds": 0.18381659999999977
+        },
+        {
+          "aId": "row-17",
+          "bId": "row-16",
+          "overlapSeconds": 0.7479166999999904,
+          "aSourceLine": 17,
+          "bSlotSourceLine": 16,
+          "durationFromRowId": "row-19",
+          "durationFromSourceLine": 19,
+          "aDurationSeconds": 1.0484083,
+          "originalBDurationSeconds": 1.0820167,
+          "assignedBDurationSeconds": 1.07565,
+          "absoluteDifferenceSeconds": 0.027241700000000035
+        },
+        {
+          "aId": "row-18",
+          "bId": "row-19",
+          "overlapSeconds": 0.7585333000000105,
+          "aSourceLine": 18,
+          "bSlotSourceLine": 19,
+          "durationFromRowId": "row-20",
+          "durationFromSourceLine": 20,
+          "aDurationSeconds": 0.9956332999999999,
+          "originalBDurationSeconds": 1.07565,
+          "assignedBDurationSeconds": 1.020525,
+          "absoluteDifferenceSeconds": 0.02489169999999996
+        },
+        {
+          "aId": "row-21",
+          "bId": "row-20",
+          "overlapSeconds": 0.9197249999999713,
+          "aSourceLine": 21,
+          "bSlotSourceLine": 20,
+          "durationFromRowId": "row-22",
+          "durationFromSourceLine": 22,
+          "aDurationSeconds": 0.9803084,
+          "originalBDurationSeconds": 1.020525,
+          "assignedBDurationSeconds": 1.4634833,
+          "absoluteDifferenceSeconds": 0.4831749000000001
+        },
+        {
+          "aId": "row-23",
+          "bId": "row-22",
+          "overlapSeconds": 0.9525415999999893,
+          "aSourceLine": 23,
+          "bSlotSourceLine": 22,
+          "durationFromRowId": "row-24",
+          "durationFromSourceLine": 24,
+          "aDurationSeconds": 0.9525416,
+          "originalBDurationSeconds": 1.4634833,
+          "assignedBDurationSeconds": 0.9997651000000001,
+          "absoluteDifferenceSeconds": 0.047223500000000085
+        }
+      ],
+      "valueSeconds": 0.1438996285714286
+    },
+    "controls": [
+      {
+        "offset": 1,
+        "valueSeconds": 0.1438996285714286,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 2,
+        "valueSeconds": 0.16230445714285716,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 3,
+        "valueSeconds": 0.1731750285714286,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 4,
+        "valueSeconds": 0.12168801428571423,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 5,
+        "valueSeconds": 0.19408779999999992,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 6,
+        "valueSeconds": 0.18218561428571428,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 7,
+        "valueSeconds": 0.16822005714285715,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 8,
+        "valueSeconds": 0.08378658571428575,
+        "equivalentToOffset": null
+      }
+    ],
+    "distinctControlCount": 8,
+    "equivalentControlCount": 0,
+    "controlSummary": {
+      "minSeconds": 0.08378658571428575,
+      "maxSeconds": 0.19408779999999992,
+      "medianSeconds": 0.16526225714285714
+    },
+    "limitations": [
+      "Timing reconstruction from research annotations — not the original recording. No mapping to the four field clips or your creation is established.",
+      "A and B are annotation-local caller labels, not verified identities across recordings or REC groups. Annotation precision is not accuracy.",
+      "Fixed positive-overlap pairs may reuse calls. This is a selected segment, not independent population samples.",
+      "Circular reassignment preserves B's duration inventory and circular order, but introduces a seam and may mix coda types or shared settings.",
+      "This descriptive sensitivity control is not the paper's type-conditioned permutation test or the planned predictive Dialogue Transfer experiment. It establishes no causality, independence, whale meaning or semantic confidence."
+    ]
+  },
+  "generated": {
+    "status": "completed",
+    "binding": "{\"datasetId\":\"zenodo-10817697\",\"releaseCommit\":\"7228c8eed2cc27ddd23b74c51aeccec9d762389e\",\"csvSha256\":\"1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2\",\"derivedVersion\":1,\"selectionRule\":\"quality-coverage-v1\",\"segmentId\":\"sw061b001_124-from-row-2-60s-v1\",\"callers\":[\"1\",\"2\"],\"method\":\"paired-duration-gap-v1\",\"offset\":1,\"selectedRowId\":\"row-12\"}",
+    "execution": "mock-transport-test",
+    "startedAt": "2026-09-12T20:19:11.592Z",
+    "completedAt": "2026-09-12T20:19:11.596Z",
+    "providerResponses": [
+      {
+        "responseId": "resp_mock_0",
+        "model": "gpt-6-astra",
+        "createdAt": 1789185600,
+        "usage": {
+          "inputTokens": 100,
+          "outputTokens": 30,
+          "totalTokens": 130
+        }
+      },
+      {
+        "responseId": "resp_mock_1",
+        "model": "gpt-6-astra",
+        "createdAt": 1789185600,
+        "usage": {
+          "inputTokens": 100,
+          "outputTokens": 30,
+          "totalTokens": 130
+        }
+      }
+    ],
+    "actions": [
+      {
+        "name": "exchange_info",
+        "initiatedBy": "server",
+        "arguments": {
+          "segmentId": "sw061b001_124-from-row-2-60s-v1",
+          "rowId": "row-12"
+        },
+        "evidenceId": "exchange_info:sw061b001_124-from-row-2-60s-v1:row-12"
+      },
+      {
+        "name": "compare_observed_pairing",
+        "initiatedBy": "server",
+        "arguments": {
+          "segmentId": "sw061b001_124-from-row-2-60s-v1"
+        },
+        "evidenceId": "compare_observed_pairing:sw061b001_124-from-row-2-60s-v1"
+      },
+      {
+        "name": "control_result",
+        "initiatedBy": "model",
+        "arguments": {
+          "segmentId": "sw061b001_124-from-row-2-60s-v1",
+          "offset": 1
+        },
+        "evidenceId": "control_result:sw061b001_124-from-row-2-60s-v1:1"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "exchange_info:sw061b001_124-from-row-2-60s-v1:row-12",
+        "kind": "exchange_info",
+        "data": {
+          "datasetId": "zenodo-10817697",
+          "source": {
+            "version": "sw-combinatoriality",
+            "releaseCommit": "7228c8eed2cc27ddd23b74c51aeccec9d762389e",
+            "csvSha256": "1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2",
+            "archiveSha256": "3639acbf5f5d3ee9ab4f05befb2aa7df065063820126bfbd872f76c8a4b009cd",
+            "recordUrl": "https://zenodo.org/records/10817697",
+            "doi": "10.5281/zenodo.10817697",
+            "license": "CC BY 4.0",
+            "attribution": "Pratyusha Sharma, Shane Gero, Roger Payne, David F. Gruber, Daniela Rus, Antonio Torralba and Jacob Andreas; Dominica Sperm Whale Project. Contextual and combinatorial structure in sperm whale vocalisations (2024).",
+            "paperUrl": "https://www.nature.com/articles/s41467-024-47221-8",
+            "annotation": "Source research annotations; not independently human-reviewed by CodaBridge",
+            "timeOrigin": "Seconds from source recording start, as documented in archive exchange notebook. REC suffix meaning is not established; exact REC groups stay separate."
+          },
+          "segment": {
+            "id": "sw061b001_124-from-row-2-60s-v1",
+            "rec": "sw061b001_124",
+            "start": 126.0372,
+            "end": 186.03719999999998,
+            "callers": [
+              "1",
+              "2"
+            ]
+          },
+          "calls": [
+            {
+              "id": "row-2",
+              "sourceLine": 2,
+              "caller": "1",
+              "onset": 126.0372,
+              "duration": 0.9277916000000002,
+              "clicks": [
+                0,
+                0.03395,
+                0.0700666,
+                0.1189333,
+                0.1678416,
+                0.21011660000000001,
+                0.25060000000000004,
+                0.29157500000000003,
+                0.3311833,
+                0.3733167,
+                0.4150083,
+                0.4596,
+                0.5113916000000001,
+                0.5764250000000001,
+                0.6632583000000001,
+                0.7821500000000001,
+                0.9277916000000002
+              ]
+            },
+            {
+              "id": "row-3",
+              "sourceLine": 3,
+              "caller": "1",
+              "onset": 128.3256,
+              "duration": 1.0929917,
+              "clicks": [
+                0,
+                0.0328166,
+                0.072175,
+                0.1175,
+                0.1674333,
+                0.2115167,
+                0.2563,
+                0.29998329999999995,
+                0.34063329999999997,
+                0.38282499999999997,
+                0.4256333,
+                0.4675167,
+                0.5094583,
+                0.5553917,
+                0.6077667,
+                0.66825,
+                0.7420167,
+                0.8315083,
+                0.941025,
+                1.0929917
+              ]
+            },
+            {
+              "id": "row-4",
+              "sourceLine": 4,
+              "caller": "1",
+              "onset": 131.7476,
+              "duration": 0.89825,
+              "clicks": [
+                0,
+                0.27585,
+                0.5626333,
+                0.7600333,
+                0.89825
+              ]
+            },
+            {
+              "id": "row-5",
+              "sourceLine": 5,
+              "caller": "1",
+              "onset": 135.5877,
+              "duration": 0.865575,
+              "clicks": [
+                0,
+                0.262275,
+                0.5391583,
+                0.7224916,
+                0.865575
+              ]
+            },
+            {
+              "id": "row-6",
+              "sourceLine": 6,
+              "caller": "1",
+              "onset": 139.5217,
+              "duration": 0.8583166,
+              "clicks": [
+                0,
+                0.266675,
+                0.5360332999999999,
+                0.7143583,
+                0.8583166
+              ]
+            },
+            {
+              "id": "row-7",
+              "sourceLine": 7,
+              "caller": "1",
+              "onset": 142.7881,
+              "duration": 0.8619416,
+              "clicks": [
+                0,
+                0.2686583,
+                0.5538000000000001,
+                0.7322083,
+                0.8619416
+              ]
+            },
+            {
+              "id": "row-8",
+              "sourceLine": 8,
+              "caller": "1",
+              "onset": 145.8571,
+              "duration": 0.838825,
+              "clicks": [
+                0,
+                0.2522667,
+                0.50535,
+                0.6880834,
+                0.838825
+              ]
+            },
+            {
+              "id": "row-9",
+              "sourceLine": 9,
+              "caller": "1",
+              "onset": 149.3956,
+              "duration": 0.8447332999999999,
+              "clicks": [
+                0,
+                0.2584333,
+                0.533075,
+                0.7071,
+                0.8447332999999999
+              ]
+            },
+            {
+              "id": "row-10",
+              "sourceLine": 10,
+              "caller": "2",
+              "onset": 149.4538,
+              "duration": 0.8711697,
+              "clicks": [
+                0,
+                0.2998227,
+                0.5963364,
+                0.8711697
+              ]
+            },
+            {
+              "id": "row-11",
+              "sourceLine": 11,
+              "caller": "2",
+              "onset": 152.8085,
+              "duration": 0.967213,
+              "clicks": [
+                0,
+                0.3213012,
+                0.6229226,
+                0.9260951,
+                0.967213
+              ]
+            },
+            {
+              "id": "row-12",
+              "sourceLine": 12,
+              "caller": "1",
+              "onset": 152.9482,
+              "duration": 0.8275417,
+              "clicks": [
+                0,
+                0.2567917,
+                0.5301,
+                0.6973333,
+                0.8275417
+              ]
+            },
+            {
+              "id": "row-13",
+              "sourceLine": 13,
+              "caller": "2",
+              "onset": 156.0181,
+              "duration": 0.946011,
+              "clicks": [
+                0,
+                0.326062,
+                0.6378171,
+                0.946011
+              ]
+            },
+            {
+              "id": "row-14",
+              "sourceLine": 14,
+              "caller": "1",
+              "onset": 156.199,
+              "duration": 0.8468334000000001,
+              "clicks": [
+                0,
+                0.2681917,
+                0.5549417,
+                0.7210334,
+                0.8468334000000001
+              ]
+            },
+            {
+              "id": "row-15",
+              "sourceLine": 15,
+              "caller": "2",
+              "onset": 160.9444,
+              "duration": 1.0306499999999998,
+              "clicks": [
+                0,
+                0.3755167,
+                0.7012666999999999,
+                1.0306499999999998
+              ]
+            },
+            {
+              "id": "row-16",
+              "sourceLine": 16,
+              "caller": "2",
+              "onset": 165.8769,
+              "duration": 1.0820167,
+              "clicks": [
+                0,
+                0.373175,
+                0.7370749999999999,
+                1.0820167
+              ]
+            },
+            {
+              "id": "row-17",
+              "sourceLine": 17,
+              "caller": "1",
+              "onset": 166.211,
+              "duration": 1.0484083,
+              "clicks": [
+                0,
+                0.3581333,
+                0.7184999999999999,
+                0.8901665999999999,
+                1.0484083
+              ]
+            },
+            {
+              "id": "row-18",
+              "sourceLine": 18,
+              "caller": "1",
+              "onset": 170.3441,
+              "duration": 0.9956332999999999,
+              "clicks": [
+                0,
+                0.3423583,
+                0.6749417,
+                0.8471,
+                0.9956332999999999
+              ]
+            },
+            {
+              "id": "row-19",
+              "sourceLine": 19,
+              "caller": "2",
+              "onset": 170.5812,
+              "duration": 1.07565,
+              "clicks": [
+                0,
+                0.3895084,
+                0.7413,
+                1.07565
+              ]
+            },
+            {
+              "id": "row-20",
+              "sourceLine": 20,
+              "caller": "2",
+              "onset": 174.7044,
+              "duration": 1.020525,
+              "clicks": [
+                0,
+                0.3446084,
+                0.6942832999999999,
+                1.020525
+              ]
+            },
+            {
+              "id": "row-21",
+              "sourceLine": 21,
+              "caller": "1",
+              "onset": 174.8052,
+              "duration": 0.9803084,
+              "clicks": [
+                0,
+                0.3444583,
+                0.67145,
+                0.8305583,
+                0.9803084
+              ]
+            },
+            {
+              "id": "row-22",
+              "sourceLine": 22,
+              "caller": "2",
+              "onset": 178.4286,
+              "duration": 1.4634833,
+              "clicks": [
+                0,
+                0.3348,
+                0.6670332999999999,
+                0.9992167,
+                1.4634833
+              ]
+            },
+            {
+              "id": "row-23",
+              "sourceLine": 23,
+              "caller": "1",
+              "onset": 178.667,
+              "duration": 0.9525416,
+              "clicks": [
+                0,
+                0.350825,
+                0.6765583,
+                0.8159415999999999,
+                0.9525416
+              ]
+            },
+            {
+              "id": "row-24",
+              "sourceLine": 24,
+              "caller": "2",
+              "onset": 182.2411,
+              "duration": 0.9997651000000001,
+              "clicks": [
+                0,
+                0.3303356,
+                0.6631726,
+                0.9997651000000001
+              ]
+            }
+          ],
+          "inspectedSourceRow": {
+            "id": "row-12",
+            "sourceLine": 12,
+            "rec": "sw061b001_124",
+            "caller": "1",
+            "onset": 152.9482,
+            "duration": 0.8275417,
+            "declaredDuration": 0.8275417,
+            "durationTolerance": 2.5000099999999996e-7,
+            "clicks": [
+              0,
+              0.2567917,
+              0.5301,
+              0.6973333,
+              0.8275417
+            ],
+            "raw": {
+              "REC": "sw061b001_124",
+              "nClicks": "5",
+              "Duration": "0.8275417",
+              "ICI1": "0.2567917",
+              "ICI2": "0.2733083",
+              "ICI3": "0.1672333",
+              "ICI4": "0.1302084",
+              "ICI5": "0",
+              "ICI6": "0",
+              "ICI7": "0",
+              "ICI8": "0",
+              "ICI9": "0",
+              "ICI10": "0",
+              "ICI11": "0",
+              "ICI12": "0",
+              "ICI13": "0",
+              "ICI14": "0",
+              "ICI15": "0",
+              "ICI16": "0",
+              "ICI17": "0",
+              "ICI18": "0",
+              "ICI19": "0",
+              "ICI20": "0",
+              "ICI21": "0",
+              "ICI22": "0",
+              "ICI23": "0",
+              "ICI24": "0",
+              "ICI25": "0",
+              "ICI26": "0",
+              "ICI27": "0",
+              "ICI28": "0",
+              "Whale": "1",
+              "TsTo": "152.9482"
+            }
+          },
+          "limitations": [
+            "Timing reconstruction from research annotations — not the original recording. No mapping to the four field clips or your creation is established.",
+            "A and B are annotation-local caller labels, not verified identities across recordings or REC groups. Annotation precision is not accuracy.",
+            "Fixed positive-overlap pairs may reuse calls. This is a selected segment, not independent population samples.",
+            "Circular reassignment preserves B's duration inventory and circular order, but introduces a seam and may mix coda types or shared settings.",
+            "This descriptive sensitivity control is not the paper's type-conditioned permutation test or the planned predictive Dialogue Transfer experiment. It establishes no causality, independence, whale meaning or semantic confidence."
+          ]
+        }
+      },
+      {
+        "id": "compare_observed_pairing:sw061b001_124-from-row-2-60s-v1",
+        "kind": "compare_observed_pairing",
+        "data": {
+          "method": "paired-duration-gap-v1",
+          "status": "available",
+          "reason": null,
+          "unit": "seconds",
+          "observed": {
+            "offset": 0,
+            "assignments": [
+              {
+                "slotRowId": "row-10",
+                "durationFromRowId": "row-10",
+                "durationSeconds": 0.8711697
+              },
+              {
+                "slotRowId": "row-11",
+                "durationFromRowId": "row-11",
+                "durationSeconds": 0.967213
+              },
+              {
+                "slotRowId": "row-13",
+                "durationFromRowId": "row-13",
+                "durationSeconds": 0.946011
+              },
+              {
+                "slotRowId": "row-15",
+                "durationFromRowId": "row-15",
+                "durationSeconds": 1.0306499999999998
+              },
+              {
+                "slotRowId": "row-16",
+                "durationFromRowId": "row-16",
+                "durationSeconds": 1.0820167
+              },
+              {
+                "slotRowId": "row-19",
+                "durationFromRowId": "row-19",
+                "durationSeconds": 1.07565
+              },
+              {
+                "slotRowId": "row-20",
+                "durationFromRowId": "row-20",
+                "durationSeconds": 1.020525
+              },
+              {
+                "slotRowId": "row-22",
+                "durationFromRowId": "row-22",
+                "durationSeconds": 1.4634833
+              },
+              {
+                "slotRowId": "row-24",
+                "durationFromRowId": "row-24",
+                "durationSeconds": 0.9997651000000001
+              }
+            ],
+            "pairs": [
+              {
+                "aId": "row-9",
+                "bId": "row-10",
+                "overlapSeconds": 0.7865333000000021,
+                "aSourceLine": 9,
+                "bSlotSourceLine": 10,
+                "durationFromRowId": "row-10",
+                "durationFromSourceLine": 10,
+                "aDurationSeconds": 0.8447332999999999,
+                "originalBDurationSeconds": 0.8711697,
+                "assignedBDurationSeconds": 0.8711697,
+                "absoluteDifferenceSeconds": 0.026436400000000138
+              },
+              {
+                "aId": "row-12",
+                "bId": "row-11",
+                "overlapSeconds": 0.827512999999982,
+                "aSourceLine": 12,
+                "bSlotSourceLine": 11,
+                "durationFromRowId": "row-11",
+                "durationFromSourceLine": 11,
+                "aDurationSeconds": 0.8275417,
+                "originalBDurationSeconds": 0.967213,
+                "assignedBDurationSeconds": 0.967213,
+                "absoluteDifferenceSeconds": 0.13967129999999994
+              },
+              {
+                "aId": "row-14",
+                "bId": "row-13",
+                "overlapSeconds": 0.7651109999999903,
+                "aSourceLine": 14,
+                "bSlotSourceLine": 13,
+                "durationFromRowId": "row-13",
+                "durationFromSourceLine": 13,
+                "aDurationSeconds": 0.8468334000000001,
+                "originalBDurationSeconds": 0.946011,
+                "assignedBDurationSeconds": 0.946011,
+                "absoluteDifferenceSeconds": 0.09917759999999998
+              },
+              {
+                "aId": "row-17",
+                "bId": "row-16",
+                "overlapSeconds": 0.7479166999999904,
+                "aSourceLine": 17,
+                "bSlotSourceLine": 16,
+                "durationFromRowId": "row-16",
+                "durationFromSourceLine": 16,
+                "aDurationSeconds": 1.0484083,
+                "originalBDurationSeconds": 1.0820167,
+                "assignedBDurationSeconds": 1.0820167,
+                "absoluteDifferenceSeconds": 0.033608400000000094
+              },
+              {
+                "aId": "row-18",
+                "bId": "row-19",
+                "overlapSeconds": 0.7585333000000105,
+                "aSourceLine": 18,
+                "bSlotSourceLine": 19,
+                "durationFromRowId": "row-19",
+                "durationFromSourceLine": 19,
+                "aDurationSeconds": 0.9956332999999999,
+                "originalBDurationSeconds": 1.07565,
+                "assignedBDurationSeconds": 1.07565,
+                "absoluteDifferenceSeconds": 0.08001670000000005
+              },
+              {
+                "aId": "row-21",
+                "bId": "row-20",
+                "overlapSeconds": 0.9197249999999713,
+                "aSourceLine": 21,
+                "bSlotSourceLine": 20,
+                "durationFromRowId": "row-20",
+                "durationFromSourceLine": 20,
+                "aDurationSeconds": 0.9803084,
+                "originalBDurationSeconds": 1.020525,
+                "assignedBDurationSeconds": 1.020525,
+                "absoluteDifferenceSeconds": 0.040216599999999936
+              },
+              {
+                "aId": "row-23",
+                "bId": "row-22",
+                "overlapSeconds": 0.9525415999999893,
+                "aSourceLine": 23,
+                "bSlotSourceLine": 22,
+                "durationFromRowId": "row-22",
+                "durationFromSourceLine": 22,
+                "aDurationSeconds": 0.9525416,
+                "originalBDurationSeconds": 1.4634833,
+                "assignedBDurationSeconds": 1.4634833,
+                "absoluteDifferenceSeconds": 0.5109417
+              }
+            ],
+            "valueSeconds": 0.13286695714285718
+          },
+          "pairCount": 7,
+          "uniqueCallCount": 14,
+          "aCallCount": 14,
+          "bCallCount": 9,
+          "controls": [
+            {
+              "offset": 1,
+              "valueSeconds": 0.1438996285714286,
+              "equivalentToOffset": null
+            },
+            {
+              "offset": 2,
+              "valueSeconds": 0.16230445714285716,
+              "equivalentToOffset": null
+            },
+            {
+              "offset": 3,
+              "valueSeconds": 0.1731750285714286,
+              "equivalentToOffset": null
+            },
+            {
+              "offset": 4,
+              "valueSeconds": 0.12168801428571423,
+              "equivalentToOffset": null
+            },
+            {
+              "offset": 5,
+              "valueSeconds": 0.19408779999999992,
+              "equivalentToOffset": null
+            },
+            {
+              "offset": 6,
+              "valueSeconds": 0.18218561428571428,
+              "equivalentToOffset": null
+            },
+            {
+              "offset": 7,
+              "valueSeconds": 0.16822005714285715,
+              "equivalentToOffset": null
+            },
+            {
+              "offset": 8,
+              "valueSeconds": 0.08378658571428575,
+              "equivalentToOffset": null
+            }
+          ],
+          "distinctControlCount": 8,
+          "equivalentControlCount": 0,
+          "controlSummary": {
+            "minSeconds": 0.08378658571428575,
+            "maxSeconds": 0.19408779999999992,
+            "medianSeconds": 0.16526225714285714
+          },
+          "limitations": [
+            "Timing reconstruction from research annotations — not the original recording. No mapping to the four field clips or your creation is established.",
+            "A and B are annotation-local caller labels, not verified identities across recordings or REC groups. Annotation precision is not accuracy.",
+            "Fixed positive-overlap pairs may reuse calls. This is a selected segment, not independent population samples.",
+            "Circular reassignment preserves B's duration inventory and circular order, but introduces a seam and may mix coda types or shared settings.",
+            "This descriptive sensitivity control is not the paper's type-conditioned permutation test or the planned predictive Dialogue Transfer experiment. It establishes no causality, independence, whale meaning or semantic confidence."
+          ]
+        }
+      },
+      {
+        "id": "control_result:sw061b001_124-from-row-2-60s-v1:1",
+        "kind": "control_result",
+        "data": {
+          "offset": 1,
+          "assignments": [
+            {
+              "slotRowId": "row-10",
+              "durationFromRowId": "row-11",
+              "durationSeconds": 0.967213
+            },
+            {
+              "slotRowId": "row-11",
+              "durationFromRowId": "row-13",
+              "durationSeconds": 0.946011
+            },
+            {
+              "slotRowId": "row-13",
+              "durationFromRowId": "row-15",
+              "durationSeconds": 1.0306499999999998
+            },
+            {
+              "slotRowId": "row-15",
+              "durationFromRowId": "row-16",
+              "durationSeconds": 1.0820167
+            },
+            {
+              "slotRowId": "row-16",
+              "durationFromRowId": "row-19",
+              "durationSeconds": 1.07565
+            },
+            {
+              "slotRowId": "row-19",
+              "durationFromRowId": "row-20",
+              "durationSeconds": 1.020525
+            },
+            {
+              "slotRowId": "row-20",
+              "durationFromRowId": "row-22",
+              "durationSeconds": 1.4634833
+            },
+            {
+              "slotRowId": "row-22",
+              "durationFromRowId": "row-24",
+              "durationSeconds": 0.9997651000000001
+            },
+            {
+              "slotRowId": "row-24",
+              "durationFromRowId": "row-10",
+              "durationSeconds": 0.8711697
+            }
+          ],
+          "pairs": [
+            {
+              "aId": "row-9",
+              "bId": "row-10",
+              "overlapSeconds": 0.7865333000000021,
+              "aSourceLine": 9,
+              "bSlotSourceLine": 10,
+              "durationFromRowId": "row-11",
+              "durationFromSourceLine": 11,
+              "aDurationSeconds": 0.8447332999999999,
+              "originalBDurationSeconds": 0.8711697,
+              "assignedBDurationSeconds": 0.967213,
+              "absoluteDifferenceSeconds": 0.12247970000000008
+            },
+            {
+              "aId": "row-12",
+              "bId": "row-11",
+              "overlapSeconds": 0.827512999999982,
+              "aSourceLine": 12,
+              "bSlotSourceLine": 11,
+              "durationFromRowId": "row-13",
+              "durationFromSourceLine": 13,
+              "aDurationSeconds": 0.8275417,
+              "originalBDurationSeconds": 0.967213,
+              "assignedBDurationSeconds": 0.946011,
+              "absoluteDifferenceSeconds": 0.1184693
+            },
+            {
+              "aId": "row-14",
+              "bId": "row-13",
+              "overlapSeconds": 0.7651109999999903,
+              "aSourceLine": 14,
+              "bSlotSourceLine": 13,
+              "durationFromRowId": "row-15",
+              "durationFromSourceLine": 15,
+              "aDurationSeconds": 0.8468334000000001,
+              "originalBDurationSeconds": 0.946011,
+              "assignedBDurationSeconds": 1.0306499999999998,
+              "absoluteDifferenceSeconds": 0.18381659999999977
+            },
+            {
+              "aId": "row-17",
+              "bId": "row-16",
+              "overlapSeconds": 0.7479166999999904,
+              "aSourceLine": 17,
+              "bSlotSourceLine": 16,
+              "durationFromRowId": "row-19",
+              "durationFromSourceLine": 19,
+              "aDurationSeconds": 1.0484083,
+              "originalBDurationSeconds": 1.0820167,
+              "assignedBDurationSeconds": 1.07565,
+              "absoluteDifferenceSeconds": 0.027241700000000035
+            },
+            {
+              "aId": "row-18",
+              "bId": "row-19",
+              "overlapSeconds": 0.7585333000000105,
+              "aSourceLine": 18,
+              "bSlotSourceLine": 19,
+              "durationFromRowId": "row-20",
+              "durationFromSourceLine": 20,
+              "aDurationSeconds": 0.9956332999999999,
+              "originalBDurationSeconds": 1.07565,
+              "assignedBDurationSeconds": 1.020525,
+              "absoluteDifferenceSeconds": 0.02489169999999996
+            },
+            {
+              "aId": "row-21",
+              "bId": "row-20",
+              "overlapSeconds": 0.9197249999999713,
+              "aSourceLine": 21,
+              "bSlotSourceLine": 20,
+              "durationFromRowId": "row-22",
+              "durationFromSourceLine": 22,
+              "aDurationSeconds": 0.9803084,
+              "originalBDurationSeconds": 1.020525,
+              "assignedBDurationSeconds": 1.4634833,
+              "absoluteDifferenceSeconds": 0.4831749000000001
+            },
+            {
+              "aId": "row-23",
+              "bId": "row-22",
+              "overlapSeconds": 0.9525415999999893,
+              "aSourceLine": 23,
+              "bSlotSourceLine": 22,
+              "durationFromRowId": "row-24",
+              "durationFromSourceLine": 24,
+              "aDurationSeconds": 0.9525416,
+              "originalBDurationSeconds": 1.4634833,
+              "assignedBDurationSeconds": 0.9997651000000001,
+              "absoluteDifferenceSeconds": 0.047223500000000085
+            }
+          ],
+          "valueSeconds": 0.1438996285714286,
+          "label": "Reassigned B durations — explicit control, not recorded behavior",
+          "method": "paired-duration-gap-v1",
+          "limitations": [
+            "Timing reconstruction from research annotations — not the original recording. No mapping to the four field clips or your creation is established.",
+            "A and B are annotation-local caller labels, not verified identities across recordings or REC groups. Annotation precision is not accuracy.",
+            "Fixed positive-overlap pairs may reuse calls. This is a selected segment, not independent population samples.",
+            "Circular reassignment preserves B's duration inventory and circular order, but introduces a seam and may mix coda types or shared settings.",
+            "This descriptive sensitivity control is not the paper's type-conditioned permutation test or the planned predictive Dialogue Transfer experiment. It establishes no causality, independence, whale meaning or semantic confidence."
+          ]
+        }
+      }
+    ],
+    "comparison": {
+      "method": "paired-duration-gap-v1",
+      "unit": "seconds",
+      "status": "available",
+      "reason": null,
+      "pairCount": 7,
+      "uniqueCallCount": 14,
+      "aCallCount": 14,
+      "bCallCount": 9,
+      "observed": {
+        "offset": 0,
+        "assignments": [
+          {
+            "slotRowId": "row-10",
+            "durationFromRowId": "row-10",
+            "durationSeconds": 0.8711697
+          },
+          {
+            "slotRowId": "row-11",
+            "durationFromRowId": "row-11",
+            "durationSeconds": 0.967213
+          },
+          {
+            "slotRowId": "row-13",
+            "durationFromRowId": "row-13",
+            "durationSeconds": 0.946011
+          },
+          {
+            "slotRowId": "row-15",
+            "durationFromRowId": "row-15",
+            "durationSeconds": 1.0306499999999998
+          },
+          {
+            "slotRowId": "row-16",
+            "durationFromRowId": "row-16",
+            "durationSeconds": 1.0820167
+          },
+          {
+            "slotRowId": "row-19",
+            "durationFromRowId": "row-19",
+            "durationSeconds": 1.07565
+          },
+          {
+            "slotRowId": "row-20",
+            "durationFromRowId": "row-20",
+            "durationSeconds": 1.020525
+          },
+          {
+            "slotRowId": "row-22",
+            "durationFromRowId": "row-22",
+            "durationSeconds": 1.4634833
+          },
+          {
+            "slotRowId": "row-24",
+            "durationFromRowId": "row-24",
+            "durationSeconds": 0.9997651000000001
+          }
+        ],
+        "pairs": [
+          {
+            "aId": "row-9",
+            "bId": "row-10",
+            "overlapSeconds": 0.7865333000000021,
+            "aSourceLine": 9,
+            "bSlotSourceLine": 10,
+            "durationFromRowId": "row-10",
+            "durationFromSourceLine": 10,
+            "aDurationSeconds": 0.8447332999999999,
+            "originalBDurationSeconds": 0.8711697,
+            "assignedBDurationSeconds": 0.8711697,
+            "absoluteDifferenceSeconds": 0.026436400000000138
+          },
+          {
+            "aId": "row-12",
+            "bId": "row-11",
+            "overlapSeconds": 0.827512999999982,
+            "aSourceLine": 12,
+            "bSlotSourceLine": 11,
+            "durationFromRowId": "row-11",
+            "durationFromSourceLine": 11,
+            "aDurationSeconds": 0.8275417,
+            "originalBDurationSeconds": 0.967213,
+            "assignedBDurationSeconds": 0.967213,
+            "absoluteDifferenceSeconds": 0.13967129999999994
+          },
+          {
+            "aId": "row-14",
+            "bId": "row-13",
+            "overlapSeconds": 0.7651109999999903,
+            "aSourceLine": 14,
+            "bSlotSourceLine": 13,
+            "durationFromRowId": "row-13",
+            "durationFromSourceLine": 13,
+            "aDurationSeconds": 0.8468334000000001,
+            "originalBDurationSeconds": 0.946011,
+            "assignedBDurationSeconds": 0.946011,
+            "absoluteDifferenceSeconds": 0.09917759999999998
+          },
+          {
+            "aId": "row-17",
+            "bId": "row-16",
+            "overlapSeconds": 0.7479166999999904,
+            "aSourceLine": 17,
+            "bSlotSourceLine": 16,
+            "durationFromRowId": "row-16",
+            "durationFromSourceLine": 16,
+            "aDurationSeconds": 1.0484083,
+            "originalBDurationSeconds": 1.0820167,
+            "assignedBDurationSeconds": 1.0820167,
+            "absoluteDifferenceSeconds": 0.033608400000000094
+          },
+          {
+            "aId": "row-18",
+            "bId": "row-19",
+            "overlapSeconds": 0.7585333000000105,
+            "aSourceLine": 18,
+            "bSlotSourceLine": 19,
+            "durationFromRowId": "row-19",
+            "durationFromSourceLine": 19,
+            "aDurationSeconds": 0.9956332999999999,
+            "originalBDurationSeconds": 1.07565,
+            "assignedBDurationSeconds": 1.07565,
+            "absoluteDifferenceSeconds": 0.08001670000000005
+          },
+          {
+            "aId": "row-21",
+            "bId": "row-20",
+            "overlapSeconds": 0.9197249999999713,
+            "aSourceLine": 21,
+            "bSlotSourceLine": 20,
+            "durationFromRowId": "row-20",
+            "durationFromSourceLine": 20,
+            "aDurationSeconds": 0.9803084,
+            "originalBDurationSeconds": 1.020525,
+            "assignedBDurationSeconds": 1.020525,
+            "absoluteDifferenceSeconds": 0.040216599999999936
+          },
+          {
+            "aId": "row-23",
+            "bId": "row-22",
+            "overlapSeconds": 0.9525415999999893,
+            "aSourceLine": 23,
+            "bSlotSourceLine": 22,
+            "durationFromRowId": "row-22",
+            "durationFromSourceLine": 22,
+            "aDurationSeconds": 0.9525416,
+            "originalBDurationSeconds": 1.4634833,
+            "assignedBDurationSeconds": 1.4634833,
+            "absoluteDifferenceSeconds": 0.5109417
+          }
+        ],
+        "valueSeconds": 0.13286695714285718
+      },
+      "selected": {
+        "offset": 1,
+        "assignments": [
+          {
+            "slotRowId": "row-10",
+            "durationFromRowId": "row-11",
+            "durationSeconds": 0.967213
+          },
+          {
+            "slotRowId": "row-11",
+            "durationFromRowId": "row-13",
+            "durationSeconds": 0.946011
+          },
+          {
+            "slotRowId": "row-13",
+            "durationFromRowId": "row-15",
+            "durationSeconds": 1.0306499999999998
+          },
+          {
+            "slotRowId": "row-15",
+            "durationFromRowId": "row-16",
+            "durationSeconds": 1.0820167
+          },
+          {
+            "slotRowId": "row-16",
+            "durationFromRowId": "row-19",
+            "durationSeconds": 1.07565
+          },
+          {
+            "slotRowId": "row-19",
+            "durationFromRowId": "row-20",
+            "durationSeconds": 1.020525
+          },
+          {
+            "slotRowId": "row-20",
+            "durationFromRowId": "row-22",
+            "durationSeconds": 1.4634833
+          },
+          {
+            "slotRowId": "row-22",
+            "durationFromRowId": "row-24",
+            "durationSeconds": 0.9997651000000001
+          },
+          {
+            "slotRowId": "row-24",
+            "durationFromRowId": "row-10",
+            "durationSeconds": 0.8711697
+          }
+        ],
+        "pairs": [
+          {
+            "aId": "row-9",
+            "bId": "row-10",
+            "overlapSeconds": 0.7865333000000021,
+            "aSourceLine": 9,
+            "bSlotSourceLine": 10,
+            "durationFromRowId": "row-11",
+            "durationFromSourceLine": 11,
+            "aDurationSeconds": 0.8447332999999999,
+            "originalBDurationSeconds": 0.8711697,
+            "assignedBDurationSeconds": 0.967213,
+            "absoluteDifferenceSeconds": 0.12247970000000008
+          },
+          {
+            "aId": "row-12",
+            "bId": "row-11",
+            "overlapSeconds": 0.827512999999982,
+            "aSourceLine": 12,
+            "bSlotSourceLine": 11,
+            "durationFromRowId": "row-13",
+            "durationFromSourceLine": 13,
+            "aDurationSeconds": 0.8275417,
+            "originalBDurationSeconds": 0.967213,
+            "assignedBDurationSeconds": 0.946011,
+            "absoluteDifferenceSeconds": 0.1184693
+          },
+          {
+            "aId": "row-14",
+            "bId": "row-13",
+            "overlapSeconds": 0.7651109999999903,
+            "aSourceLine": 14,
+            "bSlotSourceLine": 13,
+            "durationFromRowId": "row-15",
+            "durationFromSourceLine": 15,
+            "aDurationSeconds": 0.8468334000000001,
+            "originalBDurationSeconds": 0.946011,
+            "assignedBDurationSeconds": 1.0306499999999998,
+            "absoluteDifferenceSeconds": 0.18381659999999977
+          },
+          {
+            "aId": "row-17",
+            "bId": "row-16",
+            "overlapSeconds": 0.7479166999999904,
+            "aSourceLine": 17,
+            "bSlotSourceLine": 16,
+            "durationFromRowId": "row-19",
+            "durationFromSourceLine": 19,
+            "aDurationSeconds": 1.0484083,
+            "originalBDurationSeconds": 1.0820167,
+            "assignedBDurationSeconds": 1.07565,
+            "absoluteDifferenceSeconds": 0.027241700000000035
+          },
+          {
+            "aId": "row-18",
+            "bId": "row-19",
+            "overlapSeconds": 0.7585333000000105,
+            "aSourceLine": 18,
+            "bSlotSourceLine": 19,
+            "durationFromRowId": "row-20",
+            "durationFromSourceLine": 20,
+            "aDurationSeconds": 0.9956332999999999,
+            "originalBDurationSeconds": 1.07565,
+            "assignedBDurationSeconds": 1.020525,
+            "absoluteDifferenceSeconds": 0.02489169999999996
+          },
+          {
+            "aId": "row-21",
+            "bId": "row-20",
+            "overlapSeconds": 0.9197249999999713,
+            "aSourceLine": 21,
+            "bSlotSourceLine": 20,
+            "durationFromRowId": "row-22",
+            "durationFromSourceLine": 22,
+            "aDurationSeconds": 0.9803084,
+            "originalBDurationSeconds": 1.020525,
+            "assignedBDurationSeconds": 1.4634833,
+            "absoluteDifferenceSeconds": 0.4831749000000001
+          },
+          {
+            "aId": "row-23",
+            "bId": "row-22",
+            "overlapSeconds": 0.9525415999999893,
+            "aSourceLine": 23,
+            "bSlotSourceLine": 22,
+            "durationFromRowId": "row-24",
+            "durationFromSourceLine": 24,
+            "aDurationSeconds": 0.9525416,
+            "originalBDurationSeconds": 1.4634833,
+            "assignedBDurationSeconds": 0.9997651000000001,
+            "absoluteDifferenceSeconds": 0.047223500000000085
+          }
+        ],
+        "valueSeconds": 0.1438996285714286
+      },
+      "controls": [
+        {
+          "offset": 1,
+          "valueSeconds": 0.1438996285714286,
+          "equivalentToOffset": null
+        },
+        {
+          "offset": 2,
+          "valueSeconds": 0.16230445714285716,
+          "equivalentToOffset": null
+        },
+        {
+          "offset": 3,
+          "valueSeconds": 0.1731750285714286,
+          "equivalentToOffset": null
+        },
+        {
+          "offset": 4,
+          "valueSeconds": 0.12168801428571423,
+          "equivalentToOffset": null
+        },
+        {
+          "offset": 5,
+          "valueSeconds": 0.19408779999999992,
+          "equivalentToOffset": null
+        },
+        {
+          "offset": 6,
+          "valueSeconds": 0.18218561428571428,
+          "equivalentToOffset": null
+        },
+        {
+          "offset": 7,
+          "valueSeconds": 0.16822005714285715,
+          "equivalentToOffset": null
+        },
+        {
+          "offset": 8,
+          "valueSeconds": 0.08378658571428575,
+          "equivalentToOffset": null
+        }
+      ],
+      "distinctControlCount": 8,
+      "equivalentControlCount": 0,
+      "controlSummary": {
+        "minSeconds": 0.08378658571428575,
+        "maxSeconds": 0.19408779999999992,
+        "medianSeconds": 0.16526225714285714
+      },
+      "limitations": [
+        "Timing reconstruction from research annotations — not the original recording. No mapping to the four field clips or your creation is established.",
+        "A and B are annotation-local caller labels, not verified identities across recordings or REC groups. Annotation precision is not accuracy.",
+        "Fixed positive-overlap pairs may reuse calls. This is a selected segment, not independent population samples.",
+        "Circular reassignment preserves B's duration inventory and circular order, but introduces a seam and may mix coda types or shared settings.",
+        "This descriptive sensitivity control is not the paper's type-conditioned permutation test or the planned predictive Dialogue Transfer experiment. It establishes no causality, independence, whale meaning or semantic confidence."
+      ]
+    },
+    "explanation": {
+      "possibleInterpretations": [
+        {
+          "text": "The observed mean absolute duration gap is 0.132867 seconds across 7 fixed overlap pairs. Control 1 gives 0.143900 seconds. The 8 controls range from 0.083787 to 0.194088 seconds, so the observed value lies within that range. This one segment does not show that the observed pairing is uniquely close.",
+          "evidenceIds": [
+            "compare_observed_pairing:sw061b001_124-from-row-2-60s-v1",
+            "control_result:sw061b001_124-from-row-2-60s-v1:1"
+          ]
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Timing reconstruction is not original audio. A/B labels are local; duration accepts unequal click counts. Own persistence, shared setting, coda-type composition and selection offer other accounts. Rotation has a seam and may reuse calls. This is a descriptive control, not the paper's permutation test or evidence of causality, independence or whale meaning.",
+          "evidenceIds": [
+            "compare_observed_pairing:sw061b001_124-from-row-2-60s-v1",
+            "control_result:sw061b001_124-from-row-2-60s-v1:1"
+          ]
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Timing reconstruction from research annotations — not the original recording. No mapping to the four field clips or your creation is established.",
+    "A and B are annotation-local caller labels, not verified identities across recordings or REC groups. Annotation precision is not accuracy.",
+    "Fixed positive-overlap pairs may reuse calls. This is a selected segment, not independent population samples.",
+    "Circular reassignment preserves B's duration inventory and circular order, but introduces a seam and may mix coda types or shared settings.",
+    "This descriptive sensitivity control is not the paper's type-conditioned permutation test or the planned predictive Dialogue Transfer experiment. It establishes no causality, independence, whale meaning or semantic confidence."
+  ]
+}
