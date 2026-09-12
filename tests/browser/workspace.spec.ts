@@ -13,10 +13,10 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
   });
   await page.goto("/");
   await expect(page.getByLabel("Playback status A")).toHaveText(
-    "Ready · verified audio",
+    "Ready · source bytes checked",
   );
   await expect(page.getByLabel("Playback status B")).toHaveText(
-    "Ready · verified audio",
+    "Ready · source bytes checked",
   );
   await expect(page.locator(".wave-path")).toHaveCount(2);
   const media = page.locator("audio");
@@ -95,7 +95,7 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
     .getByRole("combobox", { name: "Select recording A", exact: true })
     .selectOption("dswp-2");
   await expect(page.getByLabel("Playback status A")).toHaveText(
-    "Ready · verified audio",
+    "Ready · source bytes checked",
   );
   await expect(page.getByTestId("metric-value")).toHaveText("0.000000");
   expect(
@@ -126,7 +126,7 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
     .getByRole("combobox", { name: "Select recording A", exact: true })
     .selectOption("dswp-1");
   await expect(page.getByLabel("Playback status A")).toHaveText(
-    "Ready · verified audio",
+    "Ready · source bytes checked",
   );
   await page.getByRole("radio", { name: "Absolute", exact: true }).check();
   await expect(page.getByTestId("metric-value")).toHaveText(originalMetric!);
@@ -143,10 +143,13 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
     .click();
   await expect(
     page
-      .getByRole("complementary")
-      .getByText("Astra investigation is not enabled in this build.", {
-        exact: true,
-      }),
+      .getByRole("region", { name: "Ask about this pair." })
+      .getByText(
+        "Astra investigation is unavailable. Server access has not been enabled for this workspace. Listening and comparison remain available.",
+        {
+          exact: true,
+        },
+      ),
   ).toBeVisible();
   expect(
     await page.evaluate(
@@ -154,7 +157,7 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/screenshots/${testInfo.project.name}.png`,
+    path: `docs/screenshots/${testInfo.project.name}-mvp02-unavailable.png`,
     fullPage: true,
   });
   expect(errors).toEqual([]);
@@ -176,7 +179,7 @@ test("missing audio is explicit, retry recovers, and the other recording remains
     page.getByRole("button", { name: "Play recording A", exact: true }),
   ).toBeDisabled();
   await expect(page.getByLabel("Playback status B")).toHaveText(
-    "Ready · verified audio",
+    "Ready · source bytes checked",
   );
   await page
     .getByRole("button", { name: "Play recording B", exact: true })
@@ -187,7 +190,7 @@ test("missing audio is explicit, retry recovers, and the other recording remains
     .getByRole("button", { name: "Retry audio A", exact: true })
     .click();
   await expect(page.getByLabel("Playback status A")).toHaveText(
-    "Ready · verified audio",
+    "Ready · source bytes checked",
   );
   await expect(page.getByRole("alert")).toHaveCount(0);
 });
@@ -235,7 +238,7 @@ test("320 px layout and enlarged text keep controls reachable without page overf
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto("/");
   await expect(page.getByLabel("Playback status A")).toHaveText(
-    "Ready · verified audio",
+    "Ready · source bytes checked",
   );
   await page.addStyleTag({ content: "html { font-size: 200%; }" });
   await expect(

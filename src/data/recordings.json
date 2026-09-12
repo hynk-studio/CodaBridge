@@ -134,5 +134,143 @@
         "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
       ]
     }
+  },
+  {
+    "id": "dswp-11",
+    "label": "DSWP / 11.wav",
+    "audio": {
+      "path": "/audio/dswp-11.wav",
+      "sha256": "6e4cc5f55a2ec915b23e05ebfd3bc9e4f13d87956139dc8ac36ea3f1e05a97a3",
+      "bytes": 146562,
+      "durationSeconds": 1.6612018140589568,
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "frames": 73259,
+      "encoding": "WAV / PCM signed 16-bit little-endian",
+      "transformations": []
+    },
+    "source": {
+      "dataset": "orrp/DSWP",
+      "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+      "filename": "11.wav",
+      "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/11.wav",
+      "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+      "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+      "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+      "paperUrl": "https://arxiv.org/abs/2512.02206",
+      "acquiredOn": "2026-09-12"
+    },
+    "annotation": {
+      "status": "machine-estimated",
+      "method": "relative-peak-transient-groups",
+      "version": "1.0.0",
+      "parameters": {
+        "envelopeWindowSeconds": 0.002,
+        "relativeThreshold": 0.18,
+        "groupGapSeconds": 0.07
+      },
+      "timestampOrigin": "original-file-start",
+      "selectedIntervalSeconds": {
+        "start": 0,
+        "end": 1.6612018140589568
+      },
+      "clickSampleIndices": [
+        13288,
+        22108,
+        36833,
+        43320,
+        51266,
+        60517
+      ],
+      "clickTimesSeconds": [
+        0.30131519274376417,
+        0.5013151927437641,
+        0.8352154195011338,
+        0.9823129251700681,
+        1.1624943310657596,
+        1.3722675736961452
+      ],
+      "sourceAnnotations": "not-provided",
+      "humanReview": "not-performed",
+      "corrections": [],
+      "limitations": [
+        "Whole-file candidate sequence; biological coda boundaries are unverified.",
+        "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+        "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+      ]
+    }
+  },
+  {
+    "id": "dswp-7",
+    "label": "DSWP / 7.wav",
+    "audio": {
+      "path": "/audio/dswp-7.wav",
+      "sha256": "9af722759e0d1125e161b87cb71e01adc026d35b6500d0d62504d2bbe978ce60",
+      "bytes": 180826,
+      "durationSeconds": 2.0496825396825398,
+      "sampleRateHz": 44100,
+      "channels": 1,
+      "frames": 90391,
+      "encoding": "WAV / PCM signed 16-bit little-endian",
+      "transformations": []
+    },
+    "source": {
+      "dataset": "orrp/DSWP",
+      "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+      "filename": "7.wav",
+      "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/7.wav",
+      "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+      "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+      "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+      "paperUrl": "https://arxiv.org/abs/2512.02206",
+      "acquiredOn": "2026-09-12"
+    },
+    "annotation": {
+      "status": "machine-estimated",
+      "method": "relative-peak-transient-groups",
+      "version": "1.0.0",
+      "parameters": {
+        "envelopeWindowSeconds": 0.002,
+        "relativeThreshold": 0.18,
+        "groupGapSeconds": 0.07
+      },
+      "timestampOrigin": "original-file-start",
+      "selectedIntervalSeconds": {
+        "start": 0,
+        "end": 2.0496825396825398
+      },
+      "clickSampleIndices": [
+        10997,
+        22103,
+        33223,
+        39276,
+        55173,
+        61681,
+        69011
+      ],
+      "clickTimesSeconds": [
+        0.24936507936507937,
+        0.5012018140589569,
+        0.7533560090702948,
+        0.8906122448979592,
+        1.2510884353741496,
+        1.3986621315192744,
+        1.5648752834467121
+      ],
+      "sourceAnnotations": "not-provided",
+      "humanReview": "not-performed",
+      "corrections": [],
+      "limitations": [
+        "Whole-file candidate sequence; biological coda boundaries are unverified.",
+        "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+        "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+      ]
+    }
   }
 ]
