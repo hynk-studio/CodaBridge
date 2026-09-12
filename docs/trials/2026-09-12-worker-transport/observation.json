@@ -1,0 +1,75 @@
+{
+  "source": "0a7f1cb94075c973218682f5b83a9d9f9571625f",
+  "artifactSha256": "20a34a5fb80519f3a0ba28c2d8a5a264db8e5eb3b559f815e8f514106dcc9d3b",
+  "runtime": {
+    "node": "v25.9.0",
+    "miniflare": "5.20260911.0-alpha",
+    "workerd": "1.20260911.1",
+    "compatibilityDate": "2026-09-12"
+  },
+  "startedAt": "2026-09-12T09:19:21.049Z",
+  "phases": {
+    "0": {
+      "started": true,
+      "startedAt": "2026-09-12T09:19:21.257Z",
+      "result": {
+        "trimmed_exact": true,
+        "contains_cr": false,
+        "contains_lf": false,
+        "contains_other_invalid_header_control": false,
+        "contains_invalid_header_control": false,
+        "authorization_headers_constructible": true,
+        "authorization_request_constructible": false,
+        "request_constructible_without_authorization": false
+      },
+      "recordedAt": "2026-09-12T09:19:21.272Z"
+    },
+    "1": {
+      "started": true,
+      "startedAt": "2026-09-12T09:19:21.282Z",
+      "result": {
+        "http_response_obtained": true,
+        "status": 200
+      },
+      "recordedAt": "2026-09-12T09:19:21.430Z"
+    },
+    "2": {
+      "started": true,
+      "startedAt": "2026-09-12T09:19:21.433Z",
+      "result": {
+        "http_response_obtained": true,
+        "status": 401
+      },
+      "recordedAt": "2026-09-12T09:19:21.630Z"
+    },
+    "3": {
+      "started": true,
+      "startedAt": "2026-09-12T09:19:21.636Z",
+      "result": {
+        "http_response_obtained": true,
+        "status": 401
+      },
+      "recordedAt": "2026-09-12T09:19:21.852Z"
+    },
+    "4": {
+      "started": false,
+      "skipped": "required_conditions_not_met"
+    }
+  },
+  "status": "custom_probes_finished_no_inference",
+  "finishedAt": "2026-09-12T09:19:21.855Z",
+  "customRuntimeStopped": true,
+  "wranglerComparison": {
+    "started": false,
+    "skipped": "custom_phase_1_obtained_http_response"
+  },
+  "networkProbeCount": 3,
+  "authenticatedNetworkProbeCount": 0,
+  "inferenceRequestsInitiated": 0,
+  "cleanup": {
+    "customRuntimeStopped": true,
+    "loopbackPortClosed": true,
+    "temporaryHarnessRemoved": true,
+    "checkedInInvestigationFlagsDisabled": true
+  }
+}
