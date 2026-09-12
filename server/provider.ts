@@ -5,6 +5,11 @@ import type {
 } from "../src/investigation.ts";
 import { ANALYSIS_TOOLS } from "./tools.ts";
 import {
+  httpFailureDiagnostic,
+  observeProvider,
+  type PrivateProviderObserver,
+} from "./provider-diagnostics.ts";
+import {
   BoundaryError,
   boundedText,
   exact,
@@ -200,6 +205,7 @@ export async function requestResponse(
   apiKey: string,
   signal: AbortSignal,
   transport: ProviderTransport,
+  onPrivateProviderDiagnostic?: PrivateProviderObserver,
 ) {
   const body = JSON.stringify({
     model: MODEL,
@@ -236,18 +242,36 @@ export async function requestResponse(
       }),
       signal,
     );
-  } catch (error) {
-    if (error instanceof BoundaryError) throw error;
+  } catch {
+    observeProvider(onPrivateProviderDiagnostic, {
+      kind: "PROVIDER_TRANSPORT_FAILURE",
+      httpResponseObtained: false,
+    });
     throw new BoundaryError(
-      signal.aborted ? "TIMEOUT" : "PROVIDER_FAILURE",
+      signal.aborted ? "TIMEOUT" : "PROVIDER_TRANSPORT_FAILURE",
       signal.aborted ? 504 : 502,
     );
   }
-  // Never forward provider error bodies/headers. No retries, including 429 responses.
+  // Only an explicitly installed private collector reads a bounded error
+  // envelope. The ordinary Worker cancels it. Neither path retries.
   if (!response.ok) {
-    void response.body?.cancel().catch(() => {});
-    throw new BoundaryError("PROVIDER_FAILURE", 502);
+    if (onPrivateProviderDiagnostic)
+      observeProvider(
+        onPrivateProviderDiagnostic,
+        await httpFailureDiagnostic(response, signal),
+      );
+    else void response.body?.cancel().catch(() => {});
+    throw new BoundaryError(
+      signal.aborted ? "TIMEOUT" : "PROVIDER_HTTP_FAILURE",
+      signal.aborted ? 504 : 502,
+    );
   }
+  // An HTTP response is not proof of a valid/accepted final explanation.
+  observeProvider(onPrivateProviderDiagnostic, {
+    kind: "PROVIDER_HTTP_RESPONSE",
+    httpResponseObtained: true,
+    upstreamStatus: response.status,
+  });
   let payload: Record<string, unknown>;
   try {
     payload = object(

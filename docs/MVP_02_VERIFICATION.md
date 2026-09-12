@@ -4,6 +4,30 @@ September 12, 2026. Existing Draft [PR #3](https://github.com/hynk-studio/CodaBr
 
 **Later authorized private trial:** one real-adapter investigation at `e28bedb` returned `PROVIDER_FAILURE`; cases 2 and 3 were left unrun. Provider request count, returned IDs and usage are unknown. See the [sanitized trial report and evidence](trials/2026-09-12-private-astra/README.md). The no-call statements and mocked checks below remain historical records of the implementation/correction, not the later trial.
 
+## Private diagnostic correction after 82a7273
+
+Starting local and remote head: `82a7273a16219b96936b56982d5db56b593a92f5`. The original trial remains **consumed and unresolved**; it is not retrospectively reclassified. No live provider request occurred in this correction. See the [private diagnostic plan](trials/2026-09-12-private-astra/DIAGNOSTIC_PLAN.md) for the exact boundary and next separately authorized attempt.
+
+The adapter now distinguishes `PROVIDER_TRANSPORT_FAILURE` (no HTTP response obtained) from `PROVIDER_HTTP_FAILURE`. A server-code-only callback can retain immutable status/parseability/allowlisted error classifications; unknown values become `unknown`. Error reads are capped at 4,096 bytes within the existing deadline. A 2xx status observation precedes output validation and is not an accepted-answer receipt. The ordinary endpoint still returns the same generic `PROVIDER_FAILURE`, cancels non-2xx bodies immediately, and emits no diagnostic logs. No visitor request or environment flag enables the callback. Default Worker fetch, request settings, output/final validation and the 20-second / 1,800-token / four-round limits are unchanged.
+
+Actual commands on macOS arm64, Node **v25.9.0**, npm **11.12.1**:
+
+| Command | Result |
+| --- | --- |
+| `env -u OPENAI_API_KEY node --experimental-strip-types --test tests/provider-diagnostics.test.ts tests/provider-compatibility.test.ts tests/investigation.test.ts` | **88 passed**, no failures/skips: 41 diagnostic fixtures plus 47 existing investigation/compatibility cases. |
+| `env -u OPENAI_API_KEY npm run typecheck` | Passed. |
+| `env -u OPENAI_API_KEY npm test` | **111 passed**, no failures/skips. |
+| `env -u OPENAI_API_KEY npm run data:verify` | Four original byte hashes, PCM metadata, source-card hash and deterministic annotations reproduce. |
+| `env -u OPENAI_API_KEY npm run lint` | Passed. |
+| `env -u OPENAI_API_KEY npm run build` | Client and actual Worker ESM built; Worker metadata copied. |
+| `env -u OPENAI_API_KEY npm run test:server-build` | **5 passed**; compiled factory diagnostic wiring, existing successes and client exclusion checks. |
+| `env -u OPENAI_API_KEY npm run test:browser` | **22 passed**, no retries, Chromium desktop/mobile; private diagnostics absent from visitor HTTP/UI and actual downloaded evidence. |
+| `git diff --check` | Passed. |
+
+New fixtures cover transport throws, HTTP 400/401/403/404/429/500/503, known and unknown error classifications, malicious/private strings, malformed JSON/envelopes/UTF-8, exact and excessive byte bounds, streamed/read-failing/hanging error bodies, deadline before HTTP, collector exceptions, generic public failures and four-round observation bounds. Existing numeric source-label, invented-reference, forged-measurement, refusal, mixed-output replay, no-tool-final and tool-only tests remain. All four original recordings and annotations (`dswp-1`, `dswp-2`, `dswp-11`, `dswp-7`) are unchanged; no human listening or annotation review is claimed.
+
+All transport fixtures are test-only and use dummy credentials. The compiled default-fetch wiring test stubs the test process's global fetch; it does **not** qualify real Worker egress. Browser checks use a disabled local workerd preview and the existing source-handler/mock-provider seam. They prove neither key validity, Astra model access, network transport nor live request-schema compatibility. Historical trial artifacts and screenshots are preserved; no new live-launcher or private evidence sink was run. Live latency/output sufficiency, usage/cost and answer quality remain unknown. Public access/shared-budget decisions and hosted Sites verification remain separate; flags are not authentication or a shared spending cap. No deployment, public enablement, model fallback/retry, merge or force-push occurred.
+
 ## Review 5185693873 correction
 
 Starting head: `afdd3fb5d14b56ee996e2b332a951fae83a57970`, matching the reviewed head and remote branch after fetch. [The review](https://github.com/hynk-studio/CodaBridge/pull/3#pullrequestreview-5185693873) identified two local adapter rejections: legitimate numeric source labels and an assistant message accompanying a function call. The correction changes only provider validation, its worker call site, test-only regression fixtures/tests and documentation. No recordings, measurements, production UI, dependencies, configuration or limits changed.

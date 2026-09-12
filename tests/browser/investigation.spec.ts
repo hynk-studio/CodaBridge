@@ -2,6 +2,11 @@ import { test, expect, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { createWorker } from "../../server/worker.ts";
 import type { ProviderTransport } from "../../server/provider.ts";
+import type {
+  PrivateProviderDiagnostic,
+  PrivateProviderObserver,
+} from "../../server/provider-diagnostics.ts";
+import { errorResponse, PRIVATE_SENTINELS } from "../fixtures/provider-errors.ts";
 import {
   finalOutput,
   happyTransport,
@@ -16,8 +21,9 @@ async function connectMockTransport(
   page: Page,
   transport: ProviderTransport,
   deadlineMs?: number,
+  onPrivateProviderDiagnostic?: PrivateProviderObserver,
 ) {
-  const worker = createWorker({ transport, deadlineMs });
+  const worker = createWorker({ transport, deadlineMs, onPrivateProviderDiagnostic });
   // Only the provider transport is mocked. Requests still pass through production
   // request parsing, catalog resolution, tools, response validation and receipts.
   await page.route("**/api/**", async (route) => {
@@ -234,6 +240,33 @@ test("failure and timeout stay explicit and listening remains available", async 
   await expect(
     page.getByRole("button", { name: "Play recording B" }),
   ).toBeEnabled();
+});
+
+test("private HTTP diagnostic stays outside the public UI, response and downloaded evidence (TEST ONLY transport)", async ({ page }) => {
+  const diagnostics: PrivateProviderDiagnostic[] = [];
+  const mock = scriptedTransport([errorResponse(404, "invalid_request_error", "model_not_found")]);
+  await connectMockTransport(page, mock.transport, undefined, (item) => { diagnostics.push(item); });
+  await page.goto("/");
+  const pending = page.waitForResponse("**/api/investigate");
+  await page.getByRole("button", { name: "Investigate selection" }).click();
+  const response = await pending;
+  const result = await response.json();
+  expect(response.status()).toBe(502);
+  expect(result.code).toBe("PROVIDER_FAILURE");
+  await expect(page.getByText("Failed", { exact: true })).toBeVisible();
+  await expect(page.getByText(/The investigation could not be validated/)).toBeVisible();
+  const packet = await exportPacket(page);
+  expect(packet.investigation).toBeNull();
+  expect(diagnostics).toEqual([{
+    kind: "PROVIDER_HTTP_FAILURE", httpResponseObtained: true, upstreamStatus: 404,
+    errorEnvelopeParseable: true, errorType: "invalid_request_error", errorCode: "model_not_found",
+  }]);
+  const publicContent = JSON.stringify({ result, packet, page: await page.locator("body").innerText() });
+  for (const value of [...PRIVATE_SENTINELS, "PROVIDER_HTTP_FAILURE", "httpResponseObtained", "upstreamStatus", "errorEnvelopeParseable", "model_not_found", "invalid_request_error"])
+    expect(publicContent).not.toContain(value);
+  for (const value of PRIVATE_SENTINELS)
+    expect(JSON.stringify(diagnostics)).not.toContain(value);
+  expect(mock.calls).toHaveLength(1);
 });
 
 test("no comparable alternative is visible and changing a completed selection clears export", async ({

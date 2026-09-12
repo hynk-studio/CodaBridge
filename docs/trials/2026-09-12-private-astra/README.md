@@ -4,6 +4,8 @@
 
 Authority: [owner comment 5644528950](https://github.com/hynk-studio/CodaBridge/pull/3#issuecomment-5644528950), following [review 5185738234](https://github.com/hynk-studio/CodaBridge/pull/3#pullrequestreview-5185738234). This report records consumption of the first case; an interrupted or failed attempt must not be treated as unused authorization.
 
+Subsequent diagnostic correction: see the [private diagnostic plan](DIAGNOSTIC_PLAN.md). No new live request was made for that correction. This historical failure remains unresolved and consumed; its original generic result is not reclassified.
+
 ## Executed source and runtime
 
 - Source: `e28bedb1ebdcf8e38a6839cda4d5c484c7a06af1`, branch `codex/mvp-02-grounded-investigation`; Draft PR #3 remains stacked on Draft PR #2.

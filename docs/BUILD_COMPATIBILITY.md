@@ -27,6 +27,8 @@ The adapter accepts one bounded completed assistant message alongside one functi
 
 Opaque reasoning, intermediate messages, raw responses and errors are never exported or logged. Final text, tool arguments and evidence references are validated independently of the provider's schema enforcement. Provider response IDs, model, timestamp and token counts are copied only when actually returned and structurally valid; missing fields stay absent. Local start/completion timestamps are recorded by the handler, not invented provider run metadata.
 
+The later [private diagnostic correction](trials/2026-09-12-private-astra/DIAGNOSTIC_PLAN.md) distinguishes fetch failures from obtained upstream HTTP failures through an opt-in server-only callback. It retains only status, bounded-envelope parseability and finite error classifications. The default public response remains generic, and the default Worker transport and request limits are unchanged. No new live provider request was made; the original consumed failure remains unresolved.
+
 Official sources checked:
 
 - [Astra model](https://developers.openai.com/api/docs/models/gpt-6-astra)

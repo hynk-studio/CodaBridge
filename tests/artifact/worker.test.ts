@@ -2,12 +2,15 @@ import { it } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { createWorker as sourceFactory } from "../../server/worker.ts";
+import type { PrivateProviderDiagnostic } from "../../server/provider-diagnostics.ts";
+import { errorResponse, PRIVATE_SENTINELS } from "../fixtures/provider-errors.ts";
 import {
   happyTransport,
   identifierExplanation,
   INTERMEDIATE_TEXT,
   mixedTransport,
   requestFor,
+  scriptedTransport,
   TEST_ENV,
 } from "../fixtures/provider.ts";
 
@@ -62,6 +65,11 @@ it("client artifact contains no server config, provider adapter or test fixture;
       "resp_mock_",
       "test-opaque-reasoning",
       INTERMEDIATE_TEXT,
+      "onPrivateProviderDiagnostic",
+      "PROVIDER_TRANSPORT_FAILURE",
+      "PROVIDER_HTTP_FAILURE",
+      "errorEnvelopeParseable",
+      ...PRIVATE_SENTINELS,
     ])
       assert.ok(!text.includes(forbidden), `${file} contains ${forbidden}`);
   }
@@ -78,6 +86,35 @@ it("client artifact contains no server config, provider adapter or test fixture;
       "https://api.openai.com/v1/responses",
     ),
   );
+});
+
+it("built factory observes its default fetch without a transport override (global fetch is TEST ONLY stubbed)", async (context) => {
+  // This proves compiled wiring only, not real Worker egress or model access.
+  for (const output of [new Error(PRIVATE_SENTINELS.join(" ")), errorResponse(404, "invalid_request_error", "model_not_found")]) {
+    const diagnostics: PrivateProviderDiagnostic[] = [];
+    const mock = scriptedTransport([output]);
+    const fetchStub = context.mock.method(globalThis, "fetch", mock.transport);
+    try {
+      const response = await built.createWorker({
+        onPrivateProviderDiagnostic: (item) => { diagnostics.push(item); },
+      }).fetch(requestFor(), TEST_ENV);
+      assert.equal(response.status, 502);
+      const result = await response.json();
+      assert.equal(result.code, "PROVIDER_FAILURE");
+      assert.equal(result.diagnostic, undefined);
+      assert.equal(mock.calls.length, 1);
+      assert.deepEqual(diagnostics, [output instanceof Error ? {
+        kind: "PROVIDER_TRANSPORT_FAILURE", httpResponseObtained: false,
+      } : {
+        kind: "PROVIDER_HTTP_FAILURE", httpResponseObtained: true, upstreamStatus: 404,
+        errorEnvelopeParseable: true, errorType: "invalid_request_error", errorCode: "model_not_found",
+      }]);
+      for (const sentinel of PRIVATE_SENTINELS)
+        assert.ok(!JSON.stringify({ result, diagnostics }).includes(sentinel));
+    } finally {
+      fetchStub.mock.restore();
+    }
+  }
 });
 
 it("built adapter accepts mixed commentary/tool output and supplied numeric source labels", async () => {

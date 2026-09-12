@@ -10,6 +10,7 @@ import {
 } from "../src/investigation.ts";
 import type { Recording } from "../src/domain/types.ts";
 import { createAnalysisTools } from "./tools.ts";
+import type { PrivateProviderObserver } from "./provider-diagnostics.ts";
 import {
   LIMITS,
   requestResponse,
@@ -75,9 +76,15 @@ function parseRequest(value: unknown): {
   };
 }
 
-// Injection is a source-level test seam, never a request field or visitor mode.
+// Transport/deadline injection is a test seam. The optional private collector
+// runs only in a trusted local trial wrapper; no HTTP/env flag enables it.
+// Omitting transport retains this runtime's native Worker fetch.
 export function createWorker(
-  options: { transport?: ProviderTransport; deadlineMs?: number } = {},
+  options: {
+    transport?: ProviderTransport;
+    deadlineMs?: number;
+    onPrivateProviderDiagnostic?: PrivateProviderObserver;
+  } = {},
 ) {
   const transport: ProviderTransport =
     options.transport ?? ((url, init) => fetch(url, init));
@@ -177,6 +184,7 @@ export function createWorker(
             env.OPENAI_API_KEY!,
             controller.signal,
             transport,
+            options.onPrivateProviderDiagnostic,
           );
           providerResponses.push(output.receipt);
           if (output.toolCalls.length) {
@@ -234,7 +242,11 @@ export function createWorker(
         return json(
           {
             status: "failed",
-            code: failure.code,
+            code:
+              failure.code === "PROVIDER_TRANSPORT_FAILURE" ||
+              failure.code === "PROVIDER_HTTP_FAILURE"
+                ? "PROVIDER_FAILURE"
+                : failure.code,
             message:
               failure.code === "TIMEOUT"
                 ? "The investigation timed out. No explanation was accepted."
