@@ -1,0 +1,135 @@
+{
+  "authorization": "owner_direct_single_post_fix_investigation",
+  "reviewedSource": "933ab107459fbff7c0a9e18447b7d5a5dcfe1b7f",
+  "review": "5186079185",
+  "artifactSha256": "6857f305a59e2d6e0172d9d105ac1c32a879cdb10ed830eed8d701fb1f33877e",
+  "sourceIds": [
+    "dswp-1",
+    "dswp-2"
+  ],
+  "question": "What differs in the timing of A and B, and what cannot be concluded?",
+  "status": "finished_stop_authorization_consumed",
+  "consumedAt": "2026-09-12T10:04:07.477Z",
+  "investigationSubmissions": 1,
+  "diagnostics": [
+    {
+      "kind": "PROVIDER_HTTP_RESPONSE",
+      "httpResponseObtained": true,
+      "upstreamStatus": 200
+    }
+  ],
+  "completedAt": "2026-09-12T10:04:15.230Z",
+  "applicationLatencyMs": 7745,
+  "applicationResult": {
+    "httpStatus": 200,
+    "status": "completed"
+  },
+  "acceptedExplanation": true,
+  "providerResponses": [
+    {
+      "responseId": "resp_0596dc5c63be8677016aa52398b4b087d097592c684f01a9c1",
+      "model": "gpt-6-astra",
+      "createdAt": 1789207448,
+      "usage": {
+        "inputTokens": 2795,
+        "outputTokens": 288,
+        "totalTokens": 3083
+      }
+    }
+  ],
+  "label": "LIVE ASTRA \u2014 post-fix single local investigation",
+  "runtime": {
+    "node": "v25.9.0",
+    "miniflare": "5.20260911.0-alpha",
+    "workerd": "1.20260911.1",
+    "compatibilityDate": "2026-09-12",
+    "browser": "Codex in-app Browser",
+    "nativeWorkerFetch": true,
+    "providerTransportOverride": false,
+    "redirect": "manual"
+  },
+  "applicationStartedAt": "2026-09-12T10:04:07.486Z",
+  "applicationCompletedAt": "2026-09-12T10:04:15.229Z",
+  "providerRequestCountObserved": 1,
+  "providerReceiptCount": 1,
+  "usage": {
+    "inputTokens": 2795,
+    "outputTokens": 288,
+    "totalTokens": 3083
+  },
+  "cost": null,
+  "costNote": "No settled charge or pricing estimate obtained; token usage is not an invoice.",
+  "browser": {
+    "submissionClickAt": "2026-09-12T10:04:07.434Z",
+    "uiOutcomeObservedAt": "2026-09-12T10:04:22.617Z",
+    "browserTiming": [
+      {
+        "startEpochMs": 1789207447469.8,
+        "durationMs": 7766.9000000059605,
+        "responseEndEpochMs": 1789207455236.7002
+      }
+    ],
+    "evidencePacketGeneratedAt": "2026-09-12T10:04:15.247Z",
+    "evidenceDownloadButtonClicks": 1,
+    "downloadEventObserved": false,
+    "webMcpEvidenceSaved": true,
+    "screenshotSaved": true,
+    "investigationRequestCountObserved": 1,
+    "clickToFirstAcceptedEvidencePacketMs": 7813.0,
+    "latencyCaveat": "Click to accepted UI evidence-packet generation, not an exact paint measurement; later UI inspection includes observer delay.",
+    "savedPacketGeneratedAt": "2026-09-12T10:06:00.235Z",
+    "savedPacketSource": "Exact displayed Current evidence JSON; its investigation equals the accepted application result.",
+    "downloadDeliveryConfirmed": false,
+    "fullPageStitchCaptureReplacedWithViewport": true
+  },
+  "actions": [
+    {
+      "name": "recording_details",
+      "initiatedBy": "server",
+      "arguments": {
+        "sourceId": "dswp-1"
+      },
+      "evidenceId": "recording:dswp-1"
+    },
+    {
+      "name": "recording_details",
+      "initiatedBy": "server",
+      "arguments": {
+        "sourceId": "dswp-2"
+      },
+      "evidenceId": "recording:dswp-2"
+    },
+    {
+      "name": "compare_selected",
+      "initiatedBy": "server",
+      "arguments": {},
+      "evidenceId": "comparison:dswp-1:dswp-2"
+    }
+  ],
+  "modelInitiatedToolActions": 0,
+  "quality": {
+    "assessment": "Useful and consistent for this narrow timing question, with a wording caveat; not a general model-quality verdict.",
+    "allCitedEvidenceIdsPresent": true,
+    "noNewNumericalMeasurementClaims": true,
+    "measurementSeparatedFromGeneratedInterpretation": true,
+    "statesAnnotationAndSemanticLimitations": true,
+    "caveat": "Pauses is read as estimated inter-marker gaps, not verified silence or biological segmentation. The generated text does not enumerate every interval or total-span difference; deterministic evidence supplies those values."
+  },
+  "secondInvestigationSubmitted": false,
+  "cleanup": {
+    "trialRuntimeStopped": true,
+    "temporaryLauncherRemoved": true,
+    "trialBrowserTabClosed": true,
+    "keepAwakeLeaseStopped": true,
+    "normalPreview": {
+      "httpStatus": 200,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED",
+      "checkedAt": "2026-09-12T10:08:24.652Z"
+    },
+    "normalPreviewStopped": true,
+    "loopbackPortClosed": true,
+    "checkedInAccessFlagsDisabled": true,
+    "originalCredentialSourceUnchanged": true
+  }
+}
