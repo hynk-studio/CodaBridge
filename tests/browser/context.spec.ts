@@ -52,6 +52,63 @@ async function seed(page: Page) {
     "My first coda",
   );
 }
+
+test("focused follow-up: Lab answer opens once without moving focus or scroll, and failure preserves the comparison", async ({ page }) => {
+  let release = () => {}, fail = false;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  const mock = labTransport();
+  await fixture(page, {
+    ...mock,
+    transport: async (url, init) => {
+      if (fail) throw new Error("TEST ONLY controlled transport failure");
+      return mock.transport(url, init);
+    },
+  }, () => gate);
+  await seed(page);
+  const draft = await stored(page);
+  await labView(page, "compare");
+  await page.getByLabel("Control offset", { exact: true }).selectOption("1");
+  const measured = await page.locator(".lab-statistics").innerText();
+  const question = page.getByRole("textbox", { name: "Context question", exact: true });
+  await question.fill("Does the observed pairing look different from reassigned durations, and what remains uncertain?");
+  await page.getByRole("button", { name: "Ask Astra about this comparison", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Investigating this comparison…", exact: true })).toBeDisabled();
+  await question.click();
+  const scrollBefore = await page.evaluate(() => scrollY);
+  release();
+  const result = page.getByTestId("lab-result"), answer = result.locator(".exact-answer");
+  await expect(answer).toHaveAttribute("open");
+  await expect(question).toBeFocused();
+  expect(await page.evaluate(() => scrollY)).toBe(scrollBefore);
+  const received = JSON.parse((await result.locator("pre").textContent())!) as LabResult;
+  expect(await answer.locator("p").allTextContents()).toEqual([
+    ...received.explanation.possibleInterpretations, ...received.explanation.limitations,
+  ].map(row => row.text));
+  expect(received.comparison).toEqual(comparePairing(contextSegment, 1));
+  await expect(result.locator("details").last()).not.toHaveAttribute("open");
+  await answer.locator("summary").click();
+  await labView(page, "save");
+  await labView(page, "compare");
+  await expect(answer).not.toHaveAttribute("open");
+  expect(mock.calls).toHaveLength(2);
+  await page.getByRole("button", { name: "Ask Astra about this comparison", exact: true }).click();
+  await expect(answer).toHaveAttribute("open");
+  fail = true;
+  await page.getByRole("button", { name: "Ask Astra about this comparison", exact: true }).click();
+  await expect(page.locator(".lab-ask .lab-notice")).toContainText("The measured comparison is unchanged");
+  await expect(result).toHaveCount(0);
+  expect(await page.locator(".lab-statistics").innerText()).toBe(measured);
+  expect(await stored(page)).toEqual(draft);
+  const packet = await download(page, "Download investigation JSON");
+  expect(JSON.parse(packet.bytes.toString()).generated).toBeNull();
+  expect(JSON.parse(packet.bytes.toString()).comparison).toEqual(comparePairing(contextSegment, 1));
+  await labView(page, "compare");
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.addStyleTag({ content: "html { font-size: 200%; }" });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+  await page.getByRole("button", { name: "Ask Astra about this comparison", exact: true }).scrollIntoViewIfNeeded();
+  await page.screenshot({ path: "test-results/followup-lab-320-enlarged.png", fullPage: false });
+});
 async function download(page: Page, name: string) {
   if (name.startsWith("Download investigation")) await labView(page, "save");
   else await composerView(page, "save");

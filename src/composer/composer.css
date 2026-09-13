@@ -695,6 +695,7 @@
   .alternative-list { grid-template-columns: 1fr; }
 }
 .composer .workspace-steps { margin: 12px 0; }
+.composer-astra > .composer-notice { grid-column: 1 / -1; margin: 0; }
 .composer .phrase-block { padding: 10px 14px; }
 .phrase-block .block-pattern { height: 40px; }
 .phrase-properties { border-top: 0 !important; }

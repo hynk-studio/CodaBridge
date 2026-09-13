@@ -231,7 +231,7 @@ export default function ContextLab({
         <button aria-pressed={panel === "compare"} onClick={() => showPanel("compare")}>Compare pairings</button>
         <button aria-pressed={panel === "save"} onClick={() => showPanel("save")}>Save investigation</button>
       </nav>
-      {notice && <p className="lab-notice" role="status">{notice}</p>}
+      {panel !== "compare" && notice && <p className="lab-notice" role="status">{notice}</p>}
       <section hidden={panel !== "explore"} className="lab-panel" aria-labelledby="exchange-title">
         <div className="lab-section-heading">
           <div>
@@ -720,15 +720,16 @@ export default function ContextLab({
             </button>
           )}
         </form>
+        {panel === "compare" && notice && <p className="lab-notice" role="status">{notice}</p>}
         {result && (
           <div className="lab-result" data-testid="lab-result">
-            <p className="reconstruction-label">
+            <p className="reconstruction-label" role="status">
+              Answer ready.{" "}
               {result.execution === "mock-transport-test"
                 ? "TEST ONLY · provider transport fixture · no live Astra call"
                 : "Astra provider result · generated and unverified"}
             </p>
-            <p><strong>{pairingFinding(comparison)}</strong> Computed locally; the original model answer is available below.</p>
-            <details className="exact-answer">
+            <details className="exact-answer" open>
             <summary>Exact generated answer · unverified</summary>
             {[
               ...result.explanation.possibleInterpretations,

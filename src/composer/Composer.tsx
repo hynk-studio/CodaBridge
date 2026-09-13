@@ -202,6 +202,7 @@ const Composer = forwardRef<
     generation = useRef(0);
   const player = useRef<SyntheticPlayer | null>(null);
   const region = useRef<HTMLElement>(null);
+  const requestForm = useRef<HTMLFormElement>(null);
   const historyRef = useRef(history);
   const textTransaction = useRef<string | null>(null);
   const finishText = useCallback(() => {
@@ -544,12 +545,21 @@ const Composer = forwardRef<
   const analysis =
     draft && active ? compareBlock(draft, active.id, previous) : null;
   const example = recordings.find((r) => r.id === exampleId);
-  function showPanel(next: typeof panel) {
+  function chooseRequestMode(next: ComposerRequest["mode"]) {
+    cancel();
+    setMode(next);
+    setQuestion(
+      next === "edit"
+        ? "Make the active block 1.25 times as long, preserving its interval ratios."
+        : "Find real recordings closest to my active block under the normalized interval metric.",
+    );
+  }
+  function showPanel(next: typeof panel, target = region.current) {
     finishText();
     player.current?.stop();
     flushSync(() => setPanel(next));
-    region.current?.scrollIntoView({ block: "start" });
-    region.current?.focus({ preventScroll: true });
+    target?.scrollIntoView({ block: "start" });
+    target?.focus({ preventScroll: true });
   }
   return (
     <section
@@ -581,9 +591,9 @@ const Composer = forwardRef<
       <p className="composer-storage" role="status">
         {storage}
       </p>
-      <p className="composer-notice" role="status">
+      {panel !== "compare" && <p className="composer-notice" role="status">
         {notice}
-      </p>
+      </p>}
       {!draft || !active ? (
         <div className="composer-empty">
           <span className="empty-pattern" aria-hidden="true">
@@ -796,7 +806,11 @@ const Composer = forwardRef<
                   Tighten first gap −0.05 s
                 </button>
               </div>
-              <details className="precise-timing">
+                <button onClick={() => {
+                  if (mode !== "edit") chooseRequestMode("edit");
+                  showPanel("compare", requestForm.current);
+                }}>Describe an edit with Astra →</button>
+                <details className="precise-timing">
                 <summary>Precise duration & gap controls</summary>
               <div className="duration-edit">
                 <NumberEdit
@@ -1095,6 +1109,9 @@ const Composer = forwardRef<
               <p>{availability}</p>
             </div>
             <form
+              ref={requestForm}
+              tabIndex={-1}
+              aria-label="Ask Astra about this creation"
               onSubmit={(e) => {
                 e.preventDefault();
                 void ask();
@@ -1105,15 +1122,7 @@ const Composer = forwardRef<
                 <select
                   aria-label="What would you like to do?"
                   value={mode}
-                  onChange={(e) => {
-                    cancel();
-                    setMode(e.target.value as ComposerRequest["mode"]);
-                    setQuestion(
-                      e.target.value === "edit"
-                        ? "Make the active block 1.25 times as long, preserving its interval ratios."
-                        : "Find real recordings closest to my active block under the normalized interval metric.",
-                    );
-                  }}
+                  onChange={(e) => chooseRequestMode(e.target.value as ComposerRequest["mode"])}
                 >
                   <option value="edit">Propose a timing edit</option>
                   <option value="investigate">Investigate this block</option>
@@ -1156,9 +1165,11 @@ const Composer = forwardRef<
                 )}
               </div>
             </form>
+            {panel === "compare" && notice && <p className="composer-notice" role="status">{notice}</p>}
             {result && (
               <div className="composer-result" data-testid="composer-result">
-                <p className="result-label">
+                <p className="result-label" role="status">
+                  {result.proposal ? "Edit proposal ready. " : "Answer ready. "}
                   {result.execution === "mock-transport-test"
                     ? "TEST ONLY · model transport fixture · no live Astra call"
                     : "Astra provider response · interpretation remains unverified"}
@@ -1220,17 +1231,18 @@ const Composer = forwardRef<
                           if (result.binding === keyRef.current) {
                             operate(result.proposal!.operations);
                             setNotice("Proposal applied to your phrase. Play it, or Undo to restore the previous version.");
+                            showPanel("edit");
                           }
                         }}
                       >
-                        Apply proposal
+                        Apply & return to editor
                       </button>
                       <button onClick={() => { cancel(); setNotice("Proposal discarded. Your phrase is unchanged."); }}>Discard proposal</button>
                     </div>
                   </>
                 )}
                 {result.explanation && (
-                  <details className="exact-answer">
+                  <details className="exact-answer" open>
                     <summary>Exact generated answer · unverified</summary>
                     <p>Computed comparisons above remain separate from this original answer. Evidence references do not fact-check every statement.</p>
                     {[

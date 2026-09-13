@@ -69,6 +69,102 @@ async function routeFixture(
   });
 }
 
+test("focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo", async ({ page }) => {
+  const mock = composerTransport();
+  let gate = Promise.resolve(), release = () => {}, fail = false;
+  const hold = () => { gate = new Promise<void>(resolve => { release = resolve; }); };
+  await routeFixture(page, async (url, init) => {
+    await gate;
+    if (fail) throw new Error("TEST ONLY controlled transport failure");
+    return mock.transport(url, init);
+  });
+  const posts: string[] = [];
+  page.on("request", request => { if (request.method() === "POST") posts.push(request.url()); });
+  await seed(page);
+  const before = await storedDraft(page);
+  // Discover the request from the ordinary editor, without selecting a hidden form.
+  await page.getByRole("button", { name: "Describe an edit with Astra →", exact: true }).press("Enter");
+  await expect(page.getByRole("form", { name: "Ask Astra about this creation" })).toBeFocused();
+  expect(posts).toEqual([]);
+  await page.getByLabel("What would you like to do?", { exact: true }).selectOption("investigate");
+  const request = page.getByRole("textbox", { name: "Your request", exact: true });
+  await request.fill("Which real examples have similar spacing, and what can that tell me?");
+  hold();
+  await page.getByRole("button", { name: "Ask Astra to investigate", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Working with this revision…", exact: true })).toBeDisabled();
+  await request.click();
+  const scrollBefore = await page.evaluate(() => scrollY);
+  release();
+  const result = page.getByTestId("composer-result"), answer = result.locator(".exact-answer");
+  await expect(answer).toHaveAttribute("open");
+  await expect(request).toBeFocused();
+  expect(await page.evaluate(() => scrollY)).toBe(scrollBefore);
+  const received = JSON.parse((await result.locator("pre").textContent())!) as ComposerResult;
+  const rows = [...received.explanation!.possibleInterpretations, ...received.explanation!.limitations];
+  expect(await answer.locator("p:has(.citation)").evaluateAll(elements => elements.map(e => e.firstChild?.textContent))).toEqual(rows.map(r => r.text));
+  expect(await answer.locator(".citation").allTextContents()).toEqual(rows.map(r => `Evidence: ${r.evidenceIds.join(", ")}`));
+  await expect(result.locator("details").last()).not.toHaveAttribute("open");
+  await answer.locator("summary").click();
+  await composerView(page, "save");
+  await composerView(page, "compare");
+  await expect(answer).not.toHaveAttribute("open");
+  expect(await storedDraft(page)).toEqual(before);
+  expect(posts).toHaveLength(1);
+  // A different current request mounts a fresh answer; a prior deliberate close
+  // does not hide it, and a failed request cannot leave that answer current.
+  await page.getByRole("button", { name: "Ask Astra to investigate", exact: true }).click();
+  await expect(answer).toHaveAttribute("open");
+  fail = true;
+  await page.getByRole("button", { name: "Ask Astra to investigate", exact: true }).click();
+  await expect(page.locator(".composer-astra .composer-notice")).toContainText("Your draft is unchanged");
+  await expect(result).toHaveCount(0);
+  expect(await storedDraft(page)).toEqual(before);
+  fail = false;
+  await composerView(page, "edit");
+  await page.getByRole("button", { name: "Describe an edit with Astra →", exact: true }).click();
+  await expect(page.getByLabel("What would you like to do?", { exact: true })).toHaveValue("edit");
+  hold();
+  await page.getByRole("button", { name: "Ask Astra for an edit", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Working with this revision…", exact: true })).toBeDisabled();
+  release();
+  await expect(result).toContainText("Proposed edit · your draft is unchanged");
+  const proposal = JSON.parse((await result.locator("pre").textContent())!) as ComposerResult;
+  await page.getByRole("button", { name: "Play synthetic proposal", exact: true }).click();
+  expect(await storedDraft(page)).toEqual(before);
+  await page.getByRole("button", { name: "Apply & return to editor", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Edit phrase", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#composer")).toBeFocused();
+  const applied = await storedDraft(page);
+  expect(applied.blocks).toEqual(proposal.proposal!.preview.blocks);
+  await page.getByRole("button", { name: "Play selected synthetic block", exact: true }).click();
+  await expect(page.getByLabel("Synthetic playback status")).toContainText("Playing");
+  expect(await page.locator("audio").evaluateAll(elements => elements.every(e => (e as HTMLAudioElement).paused))).toBe(true);
+  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  expect((await storedDraft(page)).blocks).toEqual(before.blocks);
+  await expect(page.getByLabel("Synthetic playback status")).toContainText("stopped");
+  await page.getByRole("button", { name: "Redo", exact: true }).click();
+  expect((await storedDraft(page)).blocks).toEqual(applied.blocks);
+  expect((await storedDraft(page)).revision).toBeGreaterThan(applied.revision);
+  expect(posts).toHaveLength(4);
+  // Late explanations obey the same invalidation boundary as edit proposals.
+  await composerView(page, "compare");
+  await page.getByLabel("What would you like to do?", { exact: true }).selectOption("investigate");
+  hold();
+  await page.getByRole("button", { name: "Ask Astra to investigate", exact: true }).click();
+  await page.getByRole("button", { name: "Context Lab", exact: true }).click();
+  release();
+  await composerView(page, "compare");
+  await expect(result).toHaveCount(0);
+  expect((await storedDraft(page)).blocks).toEqual(applied.blocks);
+  await composerView(page, "edit");
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.addStyleTag({ content: "html { font-size: 200%; }" });
+  await page.getByRole("button", { name: "Describe an edit with Astra →", exact: true }).press("Enter");
+  await expect(page.getByRole("form", { name: "Ask Astra about this creation" })).toBeFocused();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+  await page.screenshot({ path: "test-results/followup-composer-320-enlarged.png", fullPage: false });
+});
+
 async function modifiedCopy(page: Page) {
   await seed(page);
   await (await composerView(page, "edit"))
@@ -154,7 +250,7 @@ for (const [label, prose] of [
     ).toBe(fieldSelection);
     await expect(comparison).not.toContainText("dswp-99");
     await expect(
-      page.getByRole("button", { name: "Apply proposal", exact: true }),
+      page.getByRole("button", { name: "Apply & return to editor", exact: true }),
     ).toHaveCount(0);
     await (await composerView(page, "save"))
       .getByLabel("Include analysis evidence", { exact: false })
@@ -842,7 +938,7 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
     path: `${outputDirectory}/${info.project.name}-TEST-ONLY-proposal.png`,
   });
   await page
-    .getByRole("button", { name: "Apply proposal", exact: true })
+    .getByRole("button", { name: "Apply & return to editor", exact: true })
     .click();
   expect((await storedDraft(page)).blocks[1].times.at(-1)).toBeCloseTo(
     before.blocks[0].times.at(-1)! * 1.25,
