@@ -2,7 +2,9 @@
 
 Hear a real recording. Shape a personal synthetic phrase. Compare its timing and keep your coda.
 
-**Composer, Context Lab #8, UI polish #9 and corrected Dialogue Transfer v0.1 #11 are integrated. This branch adds the executed v0.2 research follow-up for Draft review.** Four attributed originals connect to the phrase editor, synthetic playback, source-aware comparison, personal codebook and WAV/card/project downloads. Enter Context Lab without losing the creation: explore a real annotated exchange, compare descriptive pairings, or choose **Dialogue Transfer / Prediction** to compare held-out predictions, reveal the next recorded coda and download the sourced experiment. [v0.2 results and decision note](docs/MVP_05B.md) · [original prediction](docs/MVP_05.md) · [descriptive Lab](docs/MVP_04.md) · [listening pack](docs/RELEASE_HANDOFF.md).
+**Composer, Context Lab #8, UI polish #9, corrected Dialogue Transfer v0.1 #11 and executed v0.2 research #13 are integrated.** Four attributed originals connect to the phrase editor, synthetic playback, source-aware comparison, personal codebook and WAV/card/project downloads. Enter Context Lab without losing the creation: explore a real annotated exchange, compare descriptive pairings, or choose **Dialogue Transfer / Prediction** to compare held-out predictions, reveal the next recorded coda and download the sourced experiment. [v0.2 results and decision note](docs/MVP_05B.md) · [original prediction](docs/MVP_05.md) · [descriptive Lab](docs/MVP_04.md) · [listening pack](docs/RELEASE_HANDOFF.md).
+
+The separate [metadata linkage audit](docs/METADATA_LINKAGE_AUDIT.md) is executed for Draft review. It compares the complete pinned external files with all original rows and both research cohorts, retaining inferred links, missing identities, annotation/date conflicts and dependence risks. It changes no historical study, public artifact or application identity. [Audit commands and cached-source retrieval](analysis/metadata-linkage-v1/README.md).
 
 **Default live access remains disabled on the server.** Earlier separately authorized Composer trials accepted a compound edit and, after a prose correction, an investigation of the restored modified creation; their historical failure and acceptance evidence is preserved. The [first separately authorized live Lab investigation](docs/trials/2026-09-13-live-context-lab/README.md) accepted an actual model-initiated control lookup and explanation, with independent answer checks passing for that case. Broader live reliability, human listening and hosted Sites operation remain unverified.
 
@@ -50,6 +52,7 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 
 ## Review and compatibility
 
+- [Full-file metadata linkage audit, coverage and decision note](docs/METADATA_LINKAGE_AUDIT.md)
 - [MVP-05B executed v0.2 research, numerical verification and decision note](docs/MVP_05B.md)
 - [MVP-05 predictive experiment, uncertainty, controls and running-app verification](docs/MVP_05.md)
 - [MVP-04 connected Lab contract and exact control](docs/MVP_04.md)
@@ -70,4 +73,4 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 - Historical [MVP-01 contract](docs/MVP_01.md) and [verification](docs/VERIFICATION.md)
 - [Parent issue #1](https://github.com/hynk-studio/CodaBridge/issues/1), integrated foundation [PR #2](https://github.com/hynk-studio/CodaBridge/pull/2) → [PR #3](https://github.com/hynk-studio/CodaBridge/pull/3) → [PR #5](https://github.com/hynk-studio/CodaBridge/pull/5)
 
-Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. Broader Composer/Lab live reliability, hosted Sites runtime/delivery and scientific validity remain unverified. The bounded offline predictive pilot is executed on this branch; implementation verification does not establish biological transfer or encounter independence. The parent launch and release issues remain open; this new implementation is for Draft review. No Site creation/save/deployment, account/database stack or WhAM is included. Project code licensing remains undecided; third-party licenses remain in force.
+Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. Broader Composer/Lab live reliability, hosted Sites runtime/delivery and scientific validity remain unverified. Both bounded offline predictive studies are integrated; implementation verification does not establish biological transfer or encounter independence. The parent launch and release issues remain open; the separate metadata audit is for Draft review. No Site creation/save/deployment, account/database stack or WhAM is included. Project code licensing remains undecided; third-party licenses remain in force.

@@ -1,0 +1,7 @@
+
+> codabridge@0.2.0 analysis:verify
+> node --experimental-strip-types scripts/prepare-prediction.ts --check && node --experimental-strip-types analysis/dialogue-transfer/verify.ts && node --experimental-strip-types scripts/check-prediction-summary.ts
+
+{"status":"data-only-no-scores","rows":3840,"valid":3790,"roots":22,"eligibleExamples":723,"eligibleRec":67,"eligibleGroups":19,"beforeLag":1392,"lagCost":669,"barriers":17,"gapsOver60":0,"duplicates":0,"crossFragmentOverlaps":0,"exclusions":{"CURRENT_AT_BARRIER":2,"FEWER_THAN_FOUR_COMPLETED_PARTNER_CODAS":669,"NEXT_FOCAL_ACROSS_BARRIER":11,"NEXT_FOCAL_REJECTED":14,"NOT_TWO_LOCAL_CALLERS":2177,"NO_NEXT_FOCAL":194},"folds":5}
+{"status":"INDEPENDENT VERIFICATION PASS","examples":723,"groups":19,"folds":5,"maximumReconstructedProbabilityDifference":9.992007221626409e-16,"maximumTrainingGradient":9.974999738824084e-7,"trainingGradientBound":0.000001,"checks":"source/producer/freeze hashes; exact OOF support; train-only bins/imputation/scaling; original donor bindings; scalar coefficient/softmax prediction replay; finite penalized training objective/gradient and frozen stationarity bound per fold/model; raw/floored probabilities; base-2 losses; paired gains; clipping; 2000 paired group-bootstrap draws and percentile weighting; delivered summary/report bytes"}
+{"schema":"dialogue-transfer-summary-v1","status":"completed","selectedExamples":5}

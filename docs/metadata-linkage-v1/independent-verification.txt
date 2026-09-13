@@ -1,0 +1,13 @@
+
+> codabridge@0.2.0 audit:metadata:verify
+> python3 analysis/metadata-linkage-v1/verify.py
+
+{
+  "status": "Independent Decimal/CSV mapping and coverage verification passed",
+  "preservedFiles": 462,
+  "rawRows": 3840,
+  "maorCompatible": 3678,
+  "cetiCompatible": 1103,
+  "sequenceSupportedEvents": 1098,
+  "seedEvents": 25
+}

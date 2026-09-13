@@ -1,0 +1,100 @@
+{
+  "inspectedOn": "2026-09-14 Asia/Seoul",
+  "trees": {
+    "maor": {
+      "requestedRevision": "aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93",
+      "truncated": false,
+      "files": [
+        {
+          "path": "LICENSE",
+          "gitBlob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "bytes": 11357
+        },
+        {
+          "path": "README.md",
+          "gitBlob": "b245016f9b7a82b0faaf883eb1feae21eac7c996",
+          "bytes": 3267
+        },
+        {
+          "path": "assets/coda features symmetry.png",
+          "gitBlob": "537838e2c8ef10e00549367f264695b4f7098950",
+          "bytes": 767403
+        },
+        {
+          "path": "assets/coda sequence alignment.png",
+          "gitBlob": "0e75e7a0fe1c65eb66e1c1ad3bed9ef394450ce3",
+          "bytes": 469764
+        },
+        {
+          "path": "assets/credit.png",
+          "gitBlob": "df0f3c177350b2ec930cb59722232980e2916f27",
+          "bytes": 85722
+        },
+        {
+          "path": "codaspred.ipynb",
+          "gitBlob": "4747d8da7e037e65e9f256c6de58849345d3e047",
+          "bytes": 18685384
+        },
+        {
+          "path": "dataset/dswp-2014-2016-retagged-maor-2025.csv",
+          "gitBlob": "2a84f92cfd0ca4472e30b9913afc2c291b261834",
+          "bytes": 2258170
+        }
+      ]
+    },
+    "ceti": {
+      "requestedRevision": "be751b8761c87813754dba10ad7068a9e71367c0",
+      "truncated": false,
+      "files": [
+        {
+          "path": "PhonologyCodaVowel.R",
+          "gitBlob": "a192388c3a6f36f302e6c6258fb38acaa4e6dffe",
+          "bytes": 8416
+        },
+        {
+          "path": "README.9t6qu.md",
+          "gitBlob": "7f899a13500b6af1198143cc82530d89861b70a3",
+          "bytes": 7146
+        },
+        {
+          "path": "coda-click-mismatches.ipynb",
+          "gitBlob": "c0fbccb949ee3af5524ec927d4ee1a7cb55da48d",
+          "bytes": 52319
+        },
+        {
+          "path": "codamd.csv",
+          "gitBlob": "c0d521e4cfb4976eb204c9e86d4e082f6f1821ae",
+          "bytes": 44407
+        },
+        {
+          "path": "codasp.csv",
+          "gitBlob": "d3713078091116066a15f91c906abff9b9efef33",
+          "bytes": 81709
+        },
+        {
+          "path": "focal-coarticulation-metadata.csv",
+          "gitBlob": "be0936d4826d53bd0724578d22ae84fc3aa320c1",
+          "bytes": 346249
+        }
+      ]
+    }
+  },
+  "notebookSourceInspection": {
+    "file": "maor/codaspred.ipynb",
+    "cells": 390,
+    "codeExecuted": false,
+    "outputsUsed": false,
+    "absentInputReferenceCell": 4,
+    "tagFocalSequenceUseCell": 10,
+    "IndividualColumnFound": false,
+    "individualUnitUnknownDictionaryFound": false
+  },
+  "rights": {
+    "maorReadme": "MIT",
+    "maorLicenseFile": "Apache-2.0",
+    "maorDataSpecificGrantEstablished": false,
+    "cetiLicenseInPinnedTree": false,
+    "cetiDataSpecificGrantInPinnedReadme": false,
+    "originalArchiveLicense": "CC-BY-4.0"
+  }
+}
