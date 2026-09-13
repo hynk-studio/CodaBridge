@@ -1,0 +1,16 @@
+{
+  "identity": "Local built v0.2 UI inspected through the in-app Browser and tab-level CDP",
+  "applicationCommit": "53d32f9ad31fd8d4c8c30e8cba341cb2cf97d10a",
+  "origin": "http://127.0.0.1:4173",
+  "domainsEnabled": ["Runtime", "Network"],
+  "summaryRequest": { "method": "GET", "path": "/prediction-v02/summary.json", "status": 200 },
+  "targetNodeBeforeReveal": false,
+  "targetNodeAfterExplicitReveal": true,
+  "observedTarget": { "sourceLine": 11, "durationDisplaySeconds": "0.9672", "count": 5, "onsetDisplaySeconds": "152.8085", "gapDisplaySeconds": "2.4835" },
+  "finalGapHeading": "Time until next eligible recorded focal coda",
+  "primaryHeadline": "Positive pooled estimate — interval above zero",
+  "viewportWidth": 1280,
+  "documentWidth": 1280,
+  "consoleErrors": [],
+  "cleanup": "Owned temporary tab, local preview and 30-minute keep-awake lease stopped. No viewport/font overrides were left in the in-app Browser."
+}

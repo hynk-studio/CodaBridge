@@ -1,0 +1,236 @@
+
+> codabridge@0.2.0 analysis:v02:run
+> analysis/dialogue-transfer/.venv/bin/python analysis/dialogue-transfer-v02/run.py
+
+{
+  "status": "completed",
+  "attemptedLearnedFits": 55,
+  "summaryBytes": 163666,
+  "reportBytes": 10986207,
+  "studies": [
+    {
+      "id": "duration",
+      "status": "completed",
+      "failures": [],
+      "warnings": 120,
+      "pooled": {
+        "n": 723,
+        "loss": {
+          "M0": 0.292391551879142,
+          "M1": 0.038930777957609936,
+          "M2": 0.03561366799723615,
+          "M2-lagged": 0.03710603366578346
+        },
+        "mae": {
+          "M0": 0.45787802422040197,
+          "M1": 0.12927321470448372,
+          "M2": 0.12635527042998698,
+          "M2-lagged": 0.12910854833450053
+        },
+        "gain": {
+          "M2_vs_M1": 0.003317109960373785,
+          "M2-lagged_vs_M1": 0.0018247442918264743,
+          "M2_vs_M2-lagged": 0.0014923656685473104
+        }
+      },
+      "intervals": {
+        "intervals": {
+          "M2_vs_M1": {
+            "pooled": [
+              0.0004989287261508543,
+              0.005665775265604646
+            ],
+            "macro": [
+              -0.0013497560192002357,
+              0.0029834228916955745
+            ]
+          },
+          "M2-lagged_vs_M1": {
+            "pooled": [
+              -0.0003477697558055854,
+              0.003369073153931362
+            ],
+            "macro": [
+              -0.0019907904327658575,
+              0.0023754056045614913
+            ]
+          },
+          "M2_vs_M2-lagged": {
+            "pooled": [
+              -0.0002957348004394855,
+              0.002667946909087826
+            ],
+            "macro": [
+              -0.0009196881615586292,
+              0.00186225285543771
+            ]
+          }
+        },
+        "resamples": 2000,
+        "interpretation": "95% pointwise conditional/descriptive; no refit uncertainty, certified independence or simultaneous/family-wise coverage"
+      }
+    },
+    {
+      "id": "count",
+      "status": "completed",
+      "failures": [],
+      "warnings": 3699,
+      "pooled": {
+        "n": 723,
+        "loss": {
+          "M0": 1.3905647399146683,
+          "M1": 0.611319382221328,
+          "M2": 0.6208726371287632,
+          "M2-lagged": 0.6283778721877898
+        },
+        "mae": {
+          "M0": 1.7358370715937637,
+          "M1": 0.9505841607219977,
+          "M2": 0.9894780635540071,
+          "M2-lagged": 1.027838347311842
+        },
+        "gain": {
+          "M2_vs_M1": -0.009553254907435286,
+          "M2-lagged_vs_M1": -0.01705848996646186,
+          "M2_vs_M2-lagged": 0.007505235059026582
+        }
+      },
+      "intervals": {
+        "intervals": {
+          "M2_vs_M1": {
+            "pooled": [
+              -0.023512811296774974,
+              0.0029016920391248314
+            ],
+            "macro": [
+              -0.025380687791137432,
+              -0.005402760188277184
+            ]
+          },
+          "M2-lagged_vs_M1": {
+            "pooled": [
+              -0.04823517792412037,
+              0.016871745057834554
+            ],
+            "macro": [
+              -0.03032433801187599,
+              0.008183922339490906
+            ]
+          },
+          "M2_vs_M2-lagged": {
+            "pooled": [
+              -0.019915639818646337,
+              0.029035769926517446
+            ],
+            "macro": [
+              -0.016591461374322193,
+              0.009857797603576576
+            ]
+          }
+        },
+        "resamples": 2000,
+        "interpretation": "95% pointwise conditional/descriptive; no refit uncertainty, certified independence or simultaneous/family-wise coverage"
+      }
+    },
+    {
+      "id": "gap",
+      "status": "completed",
+      "failures": [],
+      "warnings": 120,
+      "pooled": {
+        "n": 723,
+        "loss": {
+          "M0": 0.226932391935776,
+          "M1": 0.23851148245216922,
+          "M2": 0.2372385776723194,
+          "M2-lagged": 0.24301923705335512
+        },
+        "mae": {
+          "M0": 0.33996759118179287,
+          "M1": 0.34923404856265505,
+          "M2": 0.34931871707189627,
+          "M2-lagged": 0.354731473766211
+        },
+        "gain": {
+          "M2_vs_M1": 0.0012729047798497866,
+          "M2-lagged_vs_M1": -0.004507754601185932,
+          "M2_vs_M2-lagged": 0.005780659381035719
+        }
+      },
+      "intervals": {
+        "intervals": {
+          "M2_vs_M1": {
+            "pooled": [
+              -0.004683745071341154,
+              0.006633250436654398
+            ],
+            "macro": [
+              -0.0028972888938632764,
+              0.025752633507619086
+            ]
+          },
+          "M2-lagged_vs_M1": {
+            "pooled": [
+              -0.009344319268073893,
+              0.0018555919874603361
+            ],
+            "macro": [
+              -0.012565053174499487,
+              0.020410771577209007
+            ]
+          },
+          "M2_vs_M2-lagged": {
+            "pooled": [
+              -0.0021467408049866523,
+              0.011658279371140463
+            ],
+            "macro": [
+              -0.00570865069820458,
+              0.017585677412709166
+            ]
+          }
+        },
+        "resamples": 2000,
+        "interpretation": "95% pointwise conditional/descriptive; no refit uncertainty, certified independence or simultaneous/family-wise coverage"
+      }
+    },
+    {
+      "id": "coverage-duration",
+      "status": "completed",
+      "failures": [],
+      "warnings": 75,
+      "pooled": {
+        "n": 1017,
+        "loss": {
+          "M0": 0.3128987318172252,
+          "M1": 0.03695331389936465,
+          "M2": 0.03443600593514258
+        },
+        "mae": {
+          "M0": 0.48507599788242506,
+          "M1": 0.12674606100270952,
+          "M2": 0.12353089166438107
+        },
+        "gain": {
+          "M2_vs_M1": 0.002517307964222075
+        }
+      },
+      "intervals": {
+        "intervals": {
+          "M2_vs_M1": {
+            "pooled": [
+              -0.0010011739816317496,
+              0.004811165323125744
+            ],
+            "macro": [
+              -0.003619572757696271,
+              0.0033143371395320123
+            ]
+          }
+        },
+        "resamples": 2000,
+        "interpretation": "95% pointwise conditional/descriptive; no refit uncertainty, certified independence or simultaneous/family-wise coverage"
+      }
+    }
+  ]
+}

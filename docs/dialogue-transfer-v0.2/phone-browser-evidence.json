@@ -1,0 +1,32 @@
+{
+  "identity": "Actual pinned-source v0.2 studies; no synthetic/model fixture",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "reportSha256": "1277fdd2ed8ea940568cfd6afe6ae4d03f16629be3e945514b189125fdd68e24",
+  "bytes": 10986207,
+  "targetAbsentBeforeReveal": true,
+  "revealResetOnExampleVersionWorkspace": true,
+  "noPredictionAudio": true,
+  "composerAndDescriptivePreserved": true,
+  "pageErrors": [],
+  "pageModelPosts": [],
+  "defaultRefusals": [
+    {
+      "path": "/api/investigate",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/composer",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/lab",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "identity": "Real pinned-source prediction UI; no model fixture or paid request",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "reportSha256": "0c9f61cb547fec66a57e302a393623066ff6d5fbf0e7d1975fc2c30734c5029d",
+  "bytes": 2128588,
+  "revealReset": true,
+  "noPreRevealTargetInAccessibility": true,
+  "noPredictionAudio": true,
+  "composerPreserved": true,
+  "pageErrors": [],
+  "modelPostsFromPage": [],
+  "defaultRefusals": [
+    {
+      "path": "/api/investigate",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/composer",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/lab",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    }
+  ]
+}

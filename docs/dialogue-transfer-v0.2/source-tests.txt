@@ -1,0 +1,12 @@
+✔ v0.2 reproduces frozen core/coverage from full source and preserves common endpoint support (956.366292ms)
+✔ TEST ONLY upstream future/target mutations change targets, never admissible predictors or replay (33.899917ms)
+✔ TEST ONLY independent Ridge/Poisson checks enforce stationarity beyond prediction replay (1.71025ms)
+✔ TEST ONLY hand-computable losses and unequal-root weighting use each paired row (0.657667ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1168.604917

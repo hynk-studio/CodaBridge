@@ -1,0 +1,16 @@
+
+> codabridge@0.2.0 analysis:v02:test
+> analysis/dialogue-transfer/.venv/bin/python -m unittest discover -s analysis/dialogue-transfer-v02 -p 'test_*.py' -v
+
+test_bootstrap_pairing_multiplicity_and_macro (test_experiment.FixedResearchTests.test_bootstrap_pairing_multiplicity_and_macro) ... ok
+test_enforced_ridge_and_poisson_numerics (test_experiment.FixedResearchTests.test_enforced_ridge_and_poisson_numerics) ... ok
+test_failure_and_insufficient_states_no_partial_average (test_experiment.FixedResearchTests.test_failure_and_insufficient_states_no_partial_average) ... ok
+test_hand_computable_losses_units_and_signs (test_experiment.FixedResearchTests.test_hand_computable_losses_units_and_signs) ... ok
+test_known_coupling_and_finite_independent_sample (test_experiment.FixedResearchTests.test_known_coupling_and_finite_independent_sample) ... ok
+test_pinned_poisson_objective_and_regularization_reference (test_experiment.FixedResearchTests.test_pinned_poisson_objective_and_regularization_reference) ... ok
+test_train_only_fit_and_separate_older_model (test_experiment.FixedResearchTests.test_train_only_fit_and_separate_older_model) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.259s
+
+OK

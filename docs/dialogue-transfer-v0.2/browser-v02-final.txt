@@ -1,0 +1,19 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test tests/browser/research-prediction.spec.ts
+
+
+Running 6 tests using 1 worker
+
+(node:35214) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop-chromium] › tests/browser/research-prediction.spec.ts:21:1 › actual v0.2: all endpoints, Reveal/reset, controls, delivered JSON and Composer/descriptive preservation (4.0s)
+  ✓  2 [desktop-chromium] › tests/browser/research-prediction.spec.ts:132:1 › v0.2 remains usable at 320 px with 200% text, including all result units and scrolling root tables (962ms)
+  ✓  3 [desktop-chromium] › tests/browser/research-prediction.spec.ts:153:1 › TEST ONLY failed endpoints and loading/download failures never fabricate a score or successful delivery (798ms)
+(node:35306) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [mobile-chromium] › tests/browser/research-prediction.spec.ts:21:1 › actual v0.2: all endpoints, Reveal/reset, controls, delivered JSON and Composer/descriptive preservation (3.4s)
+  ✓  5 [mobile-chromium] › tests/browser/research-prediction.spec.ts:132:1 › v0.2 remains usable at 320 px with 200% text, including all result units and scrolling root tables (996ms)
+  ✓  6 [mobile-chromium] › tests/browser/research-prediction.spec.ts:153:1 › TEST ONLY failed endpoints and loading/download failures never fabricate a score or successful delivery (633ms)
+
+  6 passed (12.0s)

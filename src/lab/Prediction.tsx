@@ -3,6 +3,7 @@ import { deliver } from "../composer/project.ts";
 import Notice, { useNotice } from "../Notice.tsx";
 import { BIN_NAMES, CONTRAST_KEYS, PREDICTION_MODELS, predictionFinding, predictionView, validatePredictionSummary, type PredictionExample, type PredictionSummary } from "./prediction.ts";
 import type { Coda } from "./model.ts";
+import ResearchPrediction from "./ResearchPrediction.tsx";
 import "./prediction.css";
 const seconds = (n: number) => `${n.toFixed(4)} s`;
 const bits = (n: number) => `${n > 0 ? "+" : ""}${n.toFixed(5)}`;
@@ -120,7 +121,7 @@ function Study({ summary: s }: { summary: PredictionSummary }) {
     </details>
   </section>;
 }
-export default function Prediction({ active }: { active: boolean }) {
+function OriginalPrediction({ active }: { active: boolean }) {
   const [summary, setSummary] = useState<PredictionSummary | null>(null), [error, setError] = useState(""), [index, setIndex] = useState(0), [attempt, setAttempt] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
@@ -150,4 +151,15 @@ export default function Prediction({ active }: { active: boolean }) {
       <p>Source SHA-256: {summary.source.csvSha256}. Freeze: {summary.provenance.freezeCommit}. Producer: {summary.provenance.producerCommit}. Report SHA-256: {summary.report.sha256}.</p>
     </details>
   </div>;
+}
+
+export default function Prediction({ active }: { active: boolean }) {
+  const [version, setVersion] = useState<"v01" | "v02">("v01");
+  return <>
+    <div className="lab-modes prediction-versions" role="group" aria-label="Prediction study version">
+      <button aria-pressed={version === "v01"} onClick={() => setVersion("v01")}>Original study · v0.1</button>
+      <button aria-pressed={version === "v02"} onClick={() => setVersion("v02")}>Follow-up research · v0.2</button>
+    </div>
+    {version === "v01" ? <OriginalPrediction active={active} /> : <ResearchPrediction active={active} />}
+  </>;
 }
