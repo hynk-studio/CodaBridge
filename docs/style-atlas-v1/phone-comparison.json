@@ -1,0 +1,676 @@
+{
+  "schema": "codabridge-composer-timing-reference-v1",
+  "identity": "Read-only descriptive timing comparison; not a project or Coda Packet",
+  "binding": "{\"blockId\":\"b-55b75e15-8a82-4438-ac02-a8ffbbe17522\",\"revision\":4,\"times\":[0,0.14827097505668935,0.6678004535147393,1.4239229024943312,1.651729024943311,1.9730158730158731]}",
+  "currentTiming": {
+    "blockId": "b-55b75e15-8a82-4438-ac02-a8ffbbe17522",
+    "revision": 4,
+    "times": [
+      0,
+      0.14827097505668935,
+      0.6678004535147393,
+      1.4239229024943312,
+      1.651729024943311,
+      1.9730158730158731
+    ],
+    "features": {
+      "clickCount": 6,
+      "intervalsSeconds": [
+        0.14827097505668935,
+        0.51952947845805,
+        0.7561224489795919,
+        0.2278061224489798,
+        0.32128684807256214
+      ],
+      "durationSeconds": 1.9730158730158731,
+      "gapShares": [
+        0.07514940811400989,
+        0.2633174347776118,
+        0.38323181243535226,
+        0.11546086656706135,
+        0.16284047810596472
+      ],
+      "clickPositions": [
+        0,
+        0.07514940811400989,
+        0.33846684289162166,
+        0.721698655326974,
+        0.8371595218940353,
+        1
+      ],
+      "meanIntervalSeconds": 0.3946031746031746,
+      "intervalCV": 0.5554203816859299,
+      "endpointRatio": 2.16688969604282,
+      "endpointShareDifference": 0.08769106999195483,
+      "shapeInformative": true
+    }
+  },
+  "atlas": {
+    "version": "1.0.0",
+    "sourceSha256": "1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2",
+    "sourceRecord": {
+      "id": "zenodo-10817697",
+      "version": "sw-combinatoriality",
+      "doi": "10.5281/zenodo.10817697",
+      "recordUrl": "https://zenodo.org/records/10817697",
+      "releaseCommit": "7228c8eed2cc27ddd23b74c51aeccec9d762389e",
+      "acquiredOn": "2026-09-13",
+      "declaredLicense": {
+        "id": "cc-by-4.0"
+      },
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "recordMetadata": {
+        "title": "pratyushasharma/sw-combinatoriality: sw-combinatoriality",
+        "doi": "10.5281/zenodo.10817697",
+        "publication_date": "2024-03-14",
+        "description": "Dataset and Codebase for paper on \"Contextual and Combinatorial Structure in Sperm Whale Vocalisations\"",
+        "access_right": "open",
+        "creators": [
+          {
+            "name": "Pratyusha Sharma",
+            "affiliation": null
+          }
+        ],
+        "related_identifiers": [
+          {
+            "identifier": "https://github.com/pratyushasharma/sw-combinatoriality/tree/sw-combinatoriality",
+            "relation": "isSupplementTo",
+            "resource_type": "software",
+            "scheme": "url"
+          }
+        ],
+        "version": "sw-combinatoriality",
+        "resource_type": {
+          "title": "Software",
+          "type": "software"
+        },
+        "license": {
+          "id": "cc-by-4.0"
+        },
+        "relations": {
+          "version": [
+            {
+              "index": 0,
+              "is_last": true,
+              "parent": {
+                "pid_type": "recid",
+                "pid_value": "10817696"
+              }
+            }
+          ]
+        }
+      },
+      "archive": {
+        "id": "c0b7093b-20d1-4e81-a931-de891372e93c",
+        "key": "pratyushasharma/sw-combinatoriality-sw-combinatoriality.zip",
+        "size": 4879909,
+        "checksum": "md5:ea057337237598b7118fec5713ed3edf",
+        "links": {
+          "self": "https://zenodo.org/api/records/10817697/files/pratyushasharma/sw-combinatoriality-sw-combinatoriality.zip/content"
+        }
+      },
+      "archiveSha256": "3639acbf5f5d3ee9ab4f05befb2aa7df065063820126bfbd872f76c8a4b009cd",
+      "files": [
+        {
+          "archivePath": "pratyushasharma-sw-combinatoriality-7228c8e/data/sperm-whale-dialogues.csv",
+          "bytes": 500380,
+          "sha256": "1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2"
+        },
+        {
+          "archivePath": "pratyushasharma-sw-combinatoriality-7228c8e/code/1-exchange-plot.ipynb",
+          "bytes": 335800,
+          "sha256": "605d94c4bb303826fe2ef58d51e3c7e257bbfe77259a0629cf8185daa2a896a7"
+        },
+        {
+          "archivePath": "pratyushasharma-sw-combinatoriality-7228c8e/code/4-rubato.ipynb",
+          "bytes": 1663470,
+          "sha256": "fb841377d778e6aacc506329fcb157976bc43418ec0e7a66f032bf2b9f906143"
+        },
+        {
+          "archivePath": "pratyushasharma-sw-combinatoriality-7228c8e/README.md",
+          "bytes": 1546,
+          "sha256": "e92924e501fa895ca73089e0a6268e7ba6c916c5be38569e8eafc15e0509e89d"
+        }
+      ],
+      "transformations": [
+        "CSV unchanged; all source rows retained offline.",
+        "Notebook code/markdown cells extracted as text with cell indices; outputs omitted. No notebook or pickle execution."
+      ]
+    },
+    "methodSha256": "d46c01ab1a884d84c8f626ebd61a8dd7fd68863e266da3bc3640c7e5d039c366",
+    "method": {
+      "id": "observed-timing-style-atlas",
+      "version": "1.0.0",
+      "population": "All retained parseAnnotations records; equal record weights, exact click-count groups. Records are not independent animals or proven distinct biological events.",
+      "intervals": "Full original n-1 positive ICIs in seconds; no clipping, warping, padding, deduplication or count interpolation.",
+      "durationSeconds": "D = sum(d); first to last click, not declared Duration or recording length.",
+      "gapShares": "p_j = d_j / D; dimensionless fractions summing to one.",
+      "clickPositions": "Zero followed by cumulative p; last position one within arithmetic tolerance.",
+      "meanIntervalSeconds": "D / (n-1)",
+      "intervalCV": "sqrt(sum((d_j - mean)^2)/(n-1)) / mean; population interval standard deviation, dimensionless.",
+      "endpointRatio": "last interval / first interval; dimensionless ratio, not monotonic acceleration or rubato.",
+      "endpointShareDifference": "last p - first p; dimensionless fraction, not ornamentation.",
+      "quantiles": {
+        "probabilities": [
+          0.1,
+          0.5,
+          0.9
+        ],
+        "rule": "Sorted values; h=(N-1)q; linear interpolation between floor(h) and ceil(h). Empty=null; singleton=its value; ties unchanged."
+      },
+      "sparse": {
+        "minimumRecords": 20,
+        "minimumRoots": 3,
+        "rule": "Sparse if either minimum is unmet. UI suppresses bands and percentile judgments; numeric downloads remain descriptive."
+      },
+      "ranges": "Observed 10th–90th percentile range, at each gap position",
+      "warning": "Marginal archive descriptions, not confidence intervals, a joint 80% region or synthesis recipes. Coordinate medians need not sum to one. Never splice or normalize quantiles into an observed exemplar.",
+      "shape": "normalized-interval-mad v1.0.0 from compareTiming; exact count only, ascending distance then source line. Two-click shape is nondiscriminating; ties do not imply identity or meaning.",
+      "grouping": "Exact REC, nine-character prefix and six-character root are provenance labels; caller is local to REC. Roots may be dependent; no resolved animal or encounter identity.",
+      "selection": "Default actual exemplar: ascending source line. Optional ascending duration, CV and endpoint ratio sorts; source-line ties.",
+      "arithmeticTolerance": 1e-10,
+      "annotationSchedule": {
+        "maximumClicks": 29,
+        "maximumSpanSeconds": 120,
+        "attenuation": "1 / max(2, maximum overlapping 12 ms pulses); shared click-pulse-1 renderer."
+      },
+      "byteLimits": {
+        "summary": 262144,
+        "report": 8388608
+      }
+    },
+    "report": {
+      "path": "/style-atlas-v1/atlas.json",
+      "bytes": 4769558,
+      "sha256": "7b01d8cb58c8c5443591a53713c680c775c4354dc5ce1403b7f481094f66656f"
+    }
+  },
+  "support": {
+    "clickCount": 6,
+    "records": 126,
+    "recs": 51,
+    "prefixes": 31,
+    "roots": 18,
+    "rootContributions": [
+      {
+        "root": "sw061b",
+        "records": 61,
+        "share": 0.48412698412698413
+      },
+      {
+        "root": "sw078a",
+        "records": 6,
+        "share": 0.047619047619047616
+      },
+      {
+        "root": "sw078b",
+        "records": 1,
+        "share": 0.007936507936507936
+      },
+      {
+        "root": "sw078c",
+        "records": 6,
+        "share": 0.047619047619047616
+      },
+      {
+        "root": "sw085a",
+        "records": 10,
+        "share": 0.07936507936507936
+      },
+      {
+        "root": "sw090a",
+        "records": 3,
+        "share": 0.023809523809523808
+      },
+      {
+        "root": "sw090b",
+        "records": 5,
+        "share": 0.03968253968253968
+      },
+      {
+        "root": "sw091b",
+        "records": 5,
+        "share": 0.03968253968253968
+      },
+      {
+        "root": "sw097a",
+        "records": 2,
+        "share": 0.015873015873015872
+      },
+      {
+        "root": "sw100b",
+        "records": 5,
+        "share": 0.03968253968253968
+      },
+      {
+        "root": "sw106a",
+        "records": 6,
+        "share": 0.047619047619047616
+      },
+      {
+        "root": "sw106b",
+        "records": 6,
+        "share": 0.047619047619047616
+      },
+      {
+        "root": "sw114b",
+        "records": 1,
+        "share": 0.007936507936507936
+      },
+      {
+        "root": "sw115b",
+        "records": 2,
+        "share": 0.015873015873015872
+      },
+      {
+        "root": "sw119a",
+        "records": 1,
+        "share": 0.007936507936507936
+      },
+      {
+        "root": "sw119b",
+        "records": 1,
+        "share": 0.007936507936507936
+      },
+      {
+        "root": "sw133a",
+        "records": 2,
+        "share": 0.015873015873015872
+      },
+      {
+        "root": "sw133b",
+        "records": 3,
+        "share": 0.023809523809523808
+      }
+    ],
+    "largestRootShare": 0.48412698412698413,
+    "sparse": false,
+    "durationSeconds": {
+      "p10": 0.36029120000000003,
+      "p50": 0.9339977500000001,
+      "p90": 1.44768335
+    },
+    "intervalCV": {
+      "p10": 0.13716547827425984,
+      "p50": 0.3339899240861133,
+      "p90": 0.5397666900996068
+    },
+    "endpointRatio": {
+      "p10": 0.39386164138776203,
+      "p50": 0.6434371210519725,
+      "p90": 1.4917967914806494
+    },
+    "gapShares": [
+      {
+        "p10": 0.1647458153707977,
+        "p50": 0.26725754954072845,
+        "p90": 0.35765904243563507
+      },
+      {
+        "p10": 0.1873137869295797,
+        "p50": 0.24615315647987523,
+        "p90": 0.3032364855085069
+      },
+      {
+        "p10": 0.10686423950045663,
+        "p50": 0.163219322733322,
+        "p90": 0.20715004630556855
+      },
+      {
+        "p10": 0.10547541537086749,
+        "p50": 0.13858487967727495,
+        "p90": 0.1978213423429657
+      },
+      {
+        "p10": 0.13540517943223887,
+        "p50": 0.1723290890584459,
+        "p90": 0.2607455290510343
+      }
+    ]
+  },
+  "shapeStatus": "descriptive",
+  "perPosition": [
+    {
+      "gap": 1,
+      "share": 0.07514940811400989,
+      "reference": {
+        "p10": 0.1647458153707977,
+        "p50": 0.26725754954072845,
+        "p90": 0.35765904243563507
+      },
+      "position": "below-p10"
+    },
+    {
+      "gap": 2,
+      "share": 0.2633174347776118,
+      "reference": {
+        "p10": 0.1873137869295797,
+        "p50": 0.24615315647987523,
+        "p90": 0.3032364855085069
+      },
+      "position": "within-marginal-range"
+    },
+    {
+      "gap": 3,
+      "share": 0.38323181243535226,
+      "reference": {
+        "p10": 0.10686423950045663,
+        "p50": 0.163219322733322,
+        "p90": 0.20715004630556855
+      },
+      "position": "above-p90"
+    },
+    {
+      "gap": 4,
+      "share": 0.11546086656706135,
+      "reference": {
+        "p10": 0.10547541537086749,
+        "p50": 0.13858487967727495,
+        "p90": 0.1978213423429657
+      },
+      "position": "within-marginal-range"
+    },
+    {
+      "gap": 5,
+      "share": 0.16284047810596472,
+      "reference": {
+        "p10": 0.13540517943223887,
+        "p50": 0.1723290890584459,
+        "p90": 0.2607455290510343
+      },
+      "position": "within-marginal-range"
+    }
+  ],
+  "metric": {
+    "id": "normalized-interval-mad",
+    "version": "1.0.0",
+    "name": "Mean absolute normalized interval difference",
+    "unit": "dimensionless",
+    "interpretation": "Smaller means closer under this timing metric."
+  },
+  "nearest": [
+    {
+      "sourceLine": 2412,
+      "id": "row-2412",
+      "durationSeconds": 1.2482609,
+      "distance": 0.023770369371668067,
+      "reference": {
+        "id": "row-2412",
+        "sourceLine": 2412,
+        "rec": "sw090b002_10922",
+        "caller": "4",
+        "onset": 10967.9341,
+        "duration": 1.2482609,
+        "declaredDuration": 1.2482609,
+        "durationTolerance": 7.50001e-7,
+        "clicks": [
+          0,
+          0.0762759,
+          0.435571,
+          0.8728077999999999,
+          1.0605059,
+          1.2482609
+        ],
+        "raw": {
+          "REC": "sw090b002_10922",
+          "nClicks": "6",
+          "Duration": "1.2482609",
+          "ICI1": "0.0762759",
+          "ICI2": "0.3592951",
+          "ICI3": "0.4372368",
+          "ICI4": "0.1876981",
+          "ICI5": "0.187755",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "4",
+          "TsTo": "10967.9341"
+        },
+        "prefix": "sw090b002",
+        "root": "sw090b",
+        "features": {
+          "clickCount": 6,
+          "intervalsSeconds": [
+            0.0762759,
+            0.3592951,
+            0.4372368,
+            0.1876981,
+            0.187755
+          ],
+          "durationSeconds": 1.2482609,
+          "gapShares": [
+            0.06110573518725131,
+            0.28783654122307284,
+            0.3502767730688352,
+            0.15036768355077051,
+            0.15041326697007013
+          ],
+          "clickPositions": [
+            0,
+            0.06110573518725131,
+            0.34894227641032416,
+            0.6992190494791592,
+            0.8495867330299298,
+            1
+          ],
+          "meanIntervalSeconds": 0.24965218,
+          "intervalCV": 0.5220737219233827,
+          "endpointRatio": 2.4615245444498197,
+          "endpointShareDifference": 0.0893075317828188,
+          "shapeInformative": true
+        }
+      }
+    },
+    {
+      "sourceLine": 2118,
+      "id": "row-2118",
+      "durationSeconds": 1.3413731000000002,
+      "distance": 0.04219412949687497,
+      "reference": {
+        "id": "row-2118",
+        "sourceLine": 2118,
+        "rec": "sw090a002_12388",
+        "caller": "4",
+        "onset": 12390.0241,
+        "duration": 1.3413731000000002,
+        "declaredDuration": 1.3413731,
+        "durationTolerance": 7.500009999999998e-7,
+        "clicks": [
+          0,
+          0.0320274,
+          0.4725946,
+          0.9166988,
+          1.1257098,
+          1.3413731000000002
+        ],
+        "raw": {
+          "REC": "sw090a002_12388",
+          "nClicks": "6",
+          "Duration": "1.3413731",
+          "ICI1": "0.0320274",
+          "ICI2": "0.4405672",
+          "ICI3": "0.4441042",
+          "ICI4": "0.209011",
+          "ICI5": "0.2156633",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "4",
+          "TsTo": "12390.0241"
+        },
+        "prefix": "sw090a002",
+        "root": "sw090a",
+        "features": {
+          "clickCount": 6,
+          "intervalsSeconds": [
+            0.0320274,
+            0.4405672,
+            0.4441042,
+            0.209011,
+            0.2156633
+          ],
+          "durationSeconds": 1.3413731000000002,
+          "gapShares": [
+            0.023876578410585388,
+            0.32844493452269163,
+            0.3310817847771063,
+            0.1558186905641689,
+            0.1607780117254476
+          ],
+          "clickPositions": [
+            0,
+            0.023876578410585388,
+            0.352321512933277,
+            0.6834032977103834,
+            0.8392219882745523,
+            1
+          ],
+          "meanIntervalSeconds": 0.26827462,
+          "intervalCV": 0.5839107277869052,
+          "endpointRatio": 6.733712383771397,
+          "endpointShareDifference": 0.1369014333148622,
+          "shapeInformative": true
+        }
+      }
+    },
+    {
+      "sourceLine": 3157,
+      "id": "row-3157",
+      "durationSeconds": 0.721106,
+      "distance": 0.05409226850170061,
+      "reference": {
+        "id": "row-3157",
+        "sourceLine": 3157,
+        "rec": "sw106a002_9999",
+        "caller": "2",
+        "onset": 10070.0356,
+        "duration": 0.721106,
+        "declaredDuration": 0.721106,
+        "durationTolerance": 0.000001200001,
+        "clicks": [
+          0,
+          0.0028264,
+          0.2049004,
+          0.43509980000000004,
+          0.5965323,
+          0.721106
+        ],
+        "raw": {
+          "REC": "sw106a002_9999",
+          "nClicks": "6",
+          "Duration": "0.721106",
+          "ICI1": "0.0028264",
+          "ICI2": "0.202074",
+          "ICI3": "0.2301994",
+          "ICI4": "0.1614325",
+          "ICI5": "0.1245737",
+          "ICI6": "0",
+          "ICI7": "0",
+          "ICI8": "0",
+          "ICI9": "0",
+          "ICI10": "0",
+          "ICI11": "0",
+          "ICI12": "0",
+          "ICI13": "0",
+          "ICI14": "0",
+          "ICI15": "0",
+          "ICI16": "0",
+          "ICI17": "0",
+          "ICI18": "0",
+          "ICI19": "0",
+          "ICI20": "0",
+          "ICI21": "0",
+          "ICI22": "0",
+          "ICI23": "0",
+          "ICI24": "0",
+          "ICI25": "0",
+          "ICI26": "0",
+          "ICI27": "0",
+          "ICI28": "0",
+          "Whale": "2",
+          "TsTo": "10070.0356"
+        },
+        "prefix": "sw106a002",
+        "root": "sw106a",
+        "features": {
+          "clickCount": 6,
+          "intervalsSeconds": [
+            0.0028264,
+            0.202074,
+            0.2301994,
+            0.1614325,
+            0.1245737
+          ],
+          "durationSeconds": 0.721106,
+          "gapShares": [
+            0.003919534714729873,
+            0.2802278721852266,
+            0.31923101458038067,
+            0.22386791955690288,
+            0.17275365896275996
+          ],
+          "clickPositions": [
+            0,
+            0.003919534714729873,
+            0.28414740689995643,
+            0.6033784214803372,
+            0.82724634103724,
+            1
+          ],
+          "meanIntervalSeconds": 0.1442212,
+          "intervalCV": 0.549600472450745,
+          "endpointRatio": 44.07504245683555,
+          "endpointShareDifference": 0.1688341242480301,
+          "shapeInformative": true
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Retained archive records, not independent whales or species-wide limits. Roots may share animals, settings or events; multiple shapes can share a count.",
+    "Archive/paper 3,840/3,948-row correspondence remains unresolved. All 50 original parser exclusions remain excluded.",
+    "Marginal archive descriptions, not confidence intervals, a joint 80% region or synthesis recipes. Coordinate medians need not sum to one. Never splice or normalize quantiles into an observed exemplar.",
+    "Actual annotated rows have no verified field-audio join. Audition is a synthetic timing reconstruction, not original audio.",
+    "Descriptive human-creation reference only: no authenticity, meaning, biological classification or validated whale-response rule."
+  ]
+}

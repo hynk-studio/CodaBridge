@@ -6,6 +6,8 @@ Read README.md, issues #1 and #4, and docs/MVP_03.md before Composer work. docs/
 
 For Context Lab work, also read issues #6/#7/#10/#12, docs/MVP_04.md, docs/MVP_05.md, docs/MVP_05B.md and docs/CONTEXT_DATA.md. The descriptive duration control and the bounded offline Dialogue Transfer prediction are separate analyses.
 
+For Timing / Style Atlas work, read issue #15, docs/MVP_06.md and analysis/style-atlas-v1/README.md. This full-source descriptive reference and read-only Composer comparison do not authorize new fitting or atlas-to-Composer imports.
+
 ## Working style
 
 - ChatGPT plans and reviews; Codex implements and tests. Continue the assigned implementation branch/PR rather than creating a competing version.

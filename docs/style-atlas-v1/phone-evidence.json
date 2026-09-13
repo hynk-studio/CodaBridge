@@ -1,0 +1,54 @@
+{
+  "source": "Actual unchanged archive; only creator labels are TEST ONLY",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "atlasBytes": 4769558,
+  "atlasSha256": "7b01d8cb58c8c5443591a53713c680c775c4354dc5ce1403b7f481094f66656f",
+  "comparisonBytes": 20460,
+  "comparisonSha256": "64fa7bc2a0799b6ad5114ad216c52608f6a6f7acf9f8f2fb34afb787d73e4f23",
+  "sourceSha256": "1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2",
+  "methodSha256": "d46c01ab1a884d84c8f626ebd61a8dd7fd68863e266da3bc3640c7e5d039c366",
+  "assets": [
+    "http://127.0.0.1:4173/style-atlas-v1/summary.json",
+    "http://127.0.0.1:4173/style-atlas-v1/atlas.json"
+  ],
+  "pageErrors": [],
+  "pageModelPosts": [],
+  "refusals": [
+    {
+      "path": "/api/investigate",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/composer",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/lab",
+      "status": 503,
+      "code": "NOT_CONFIGURED"
+    }
+  ],
+  "audio": [
+    {
+      "kind": "start",
+      "samples": 49261
+    },
+    {
+      "kind": "stop"
+    },
+    {
+      "kind": "start",
+      "samples": 48854
+    },
+    {
+      "kind": "stop"
+    }
+  ],
+  "retainedPrivateState": true,
+  "undoRedoImportRecomputed": true
+}

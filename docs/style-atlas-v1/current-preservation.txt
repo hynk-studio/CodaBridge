@@ -1,0 +1,24 @@
+
+> codabridge@0.2.0 audit:metadata:test
+> node --experimental-strip-types --test tests/metadata-linkage.test.ts
+
+✔ TEST ONLY CSV quoted commas/newlines, physical lines and malformed input (4.3125ms)
+✔ TEST ONLY exact decimal and timezone-free nanosecond differences enforce written precision (5.080334ms)
+✔ TEST ONLY unknown labels, U unit, tag wearer versus producer are separate (2.109ms)
+✔ TEST ONLY Maor retains collisions, relabeling, full long ICIs and annotation conflicts (6.11375ms)
+✔ TEST ONLY date ambiguity is retained; textual March does not become February (0.757709ms)
+✔ TEST ONLY CETI documented role join, sequence support, missing last count and collision rejection (2.64025ms)
+✔ TEST ONLY conflicting CETI duplicates and inconsistent metadata never choose a winner (1.807625ms)
+✔ Original source validation and current frozen data/results retain their recorded identities (243.050959ms)
+✔ TEST ONLY application edits pass the current guard; changed frozen source, cohort and results fail (1021.825583ms)
+✔ TEST ONLY historical preservation checks both recorded snapshots and rejects missing/tampered bytes (7.2575ms)
+✔ TEST ONLY missing or tampered source bytes fail before completed audit output (2.428709ms)
+✔ Saved full-file audit reproduces all 25 seed events with count source evidence (62.711542ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1711.869375

@@ -19,6 +19,7 @@ import { stopSynthetic } from "./composer/sound.ts";
 import ContextLab from "./lab/ContextLab.tsx";
 import WorkspaceHeader from "./WorkspaceHeader.tsx";
 import Notice, { useNotice } from "./Notice.tsx";
+import type { AtlasEntry } from "./atlas/Atlas.tsx";
 
 const seconds = (value: number) => `${value.toFixed(3)} s`;
 
@@ -137,6 +138,7 @@ export default function App() {
   const [downloadStatus, setDownloadStatus] = useNotice();
   const [revealed, setRevealed] = useState(false);
   const composer = useRef<ComposerHandle>(null);
+  const [atlasEntry, setAtlasEntry] = useState<AtlasEntry>();
   const audioElements = useRef(new Map<Side, HTMLAudioElement>());
   const registerAudio = useCallback(
     (side: Side, element: HTMLAudioElement | null) => {
@@ -488,6 +490,11 @@ export default function App() {
         <div hidden={section !== "composer"}>
           <Composer
             ref={composer}
+            workspaceActive={section === "composer"}
+            onExploreAtlas={(clickCount, sourceLine) => {
+              setAtlasEntry(previous => ({ clickCount, sourceLine, request: (previous?.request ?? 0) + 1 }));
+              navigate("lab");
+            }}
             stopField={stopAudio}
             fieldSelection={`${selection.A}:${selection.B}`}
             onExample={(id) => { select("B", id); navigate("listen"); }}
@@ -495,6 +502,7 @@ export default function App() {
         </div>
         <ContextLab
           active={section === "lab"}
+          atlasEntry={atlasEntry}
           onReturn={() => navigate("composer")}
           stopField={stopAudio}
         />

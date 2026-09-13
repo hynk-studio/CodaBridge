@@ -29,7 +29,10 @@
     "audit:metadata:run": "node --experimental-strip-types analysis/metadata-linkage-v1/run.ts",
     "audit:metadata:reproduce": "node --experimental-strip-types analysis/metadata-linkage-v1/run.ts --check",
     "audit:metadata:verify": "python3 analysis/metadata-linkage-v1/verify.py",
-    "audit:metadata:history": "node --experimental-strip-types scripts/check-metadata-history.ts"
+    "audit:metadata:history": "node --experimental-strip-types scripts/check-metadata-history.ts",
+    "atlas:generate": "node --experimental-strip-types scripts/prepare-atlas.ts",
+    "atlas:check": "node --experimental-strip-types scripts/prepare-atlas.ts --check",
+    "atlas:verify": "node --experimental-strip-types scripts/check-atlas.ts"
   },
   "dependencies": {
     "react": "^19.2.8",
