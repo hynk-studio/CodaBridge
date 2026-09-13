@@ -2,6 +2,8 @@
 
 Implemented [owner assignment #10](https://github.com/hynk-studio/CodaBridge/issues/10): a reproducible offline predictive experiment and connected Context Lab Prediction mode. The experiment completed; the small pooled gain has an interval spanning zero. Implementation verification does not establish biological communication, causality, whale meaning or independent encounters.
 
+Subsequent [PR #11 review correction and newly executed checks](dialogue-transfer-v0.1-review/README.md) make the headline uncertainty-aware and enforce the independent gradient tolerance. The original experiment and verification evidence below are retained unchanged.
+
 Base: `0adb2c1585e1fbda9ea52b8bbd1745e498ec0341`. Protocol/cohort/split freeze: `5c07c77ec8f9b3a028737ec7a73b63181e44ee98`, committed before held-out scoring. Fitting producer: `44c4a09b83308a909d2086ab620b30621458d509`, tree `e946108b3949dbe74824f8d55263ccc2ffa8288c`. Verified application and first result-artifact commit: `ae59036e6c824d67711dbac110867f9695a728c6`, tree `1998f808b3e25917a9b94f77ae4d1cdc7e3ffc99`. The PR head also includes subsequent documentation/capture packaging; its exact final head is in PR metadata/description. Producer identity deliberately precedes the artifact commit.
 
 ## Actual fixed result

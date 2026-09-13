@@ -3,10 +3,13 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
+import { assertTrainingStationarity, reconstructPrediction, trainingObjectiveGradient } from "./stationarity.ts";
 const root = "analysis/dialogue-transfer/";
 const read = (p: string) => JSON.parse(readFileSync(p, "utf8"));
 const sha = (v: Buffer) => createHash("sha256").update(v).digest("hex");
 const report = read(root + "results/report.json"), cohort = read(root + "inputs/cohort.json").examples, split = read(root + "split-manifest.json"), calls = new Map<number, any>(read(root + "inputs/validated.json").calls.map((c: any) => [c.sourceLine, c]));
+const protocol = read(root + "protocol.json");
+assert.deepEqual(report.protocol, protocol, "Saved report protocol differs from frozen protocol");
 const models = ["M0", "M1", "M2", "M2-lagged"];
 const contrasts = ["M2_vs_M1", "M2-lagged_vs_M1", "M2_vs_M2-lagged"];
 const near = (a: number, b: number) => assert.ok(Number.isFinite(a) && Number.isFinite(b) && Math.abs(a - b) < 1e-8 + 1e-7 * Math.abs(b), `${a} differs from ${b}`);
@@ -62,27 +65,13 @@ if (report.status !== "completed") {
         const filled = train.map((e: any) => e.features[model][j] ?? median), average = mean(filled), sd = Math.sqrt(mean(filled.map((x: number) => (x - average) ** 2)));
         near(d.mean[j], average); near(d.scale[j], sd < 1e-12 ? 1 : sd);
       }
+      const diagnostic = trainingObjectiveGradient(train.map((e: any) => ({ features: e.features[model], category: category(e.targetDuration, edges) })), d, protocol.logistic.C);
+      maximumTrainingGradient = Math.max(maximumTrainingGradient, assertTrainingStationarity(diagnostic, protocol.logistic.tol, { fold: fold.fold, model }));
       // Scalar dot products + softmax also check the saved fit without NumPy/BLAS.
-      const reconstruct = (e: any) => {
-        const x = e.features[model].map((v: number | null, j: number) => ((v ?? d.imputer[j]) - d.mean[j]) / d.scale[j]);
-        const z = d.coefficients.map((w: number[], k: number) => w.reduce((sum, v, j) => sum + v * x[j], d.intercepts[k]));
-        const exp = z.map((v: number) => Math.exp(v - Math.max(...z))), sum = exp.reduce((a: number, b: number) => a + b, 0);
-        return { x, p: exp.map((v: number) => v / sum) };
-      };
       for (const e of test) {
-        const r = records.find(r => r.id === e.id), p = reconstruct(e).p;
+        const r = records.find(r => r.id === e.id), p = reconstructPrediction(e.features[model], d).p;
         p.forEach((v: number, j: number) => { near(v, r.predictions[model].raw[j]); maximumReconstructedProbabilityDifference = Math.max(maximumReconstructedProbabilityDifference, Math.abs(v - r.predictions[model].raw[j])); });
       }
-      const gradient = d.coefficients.map((w: number[]) => w.map(v => v / (train.length * report.protocol.logistic.C))), interceptGradient = [0, 0, 0];
-      for (const e of train) {
-        const { x, p } = reconstruct(e), y = category(e.targetDuration, edges);
-        for (let k = 0; k < 3; k++) {
-          const residual = (p[k] - Number(k === y)) / train.length;
-          interceptGradient[k] += residual;
-          x.forEach((v: number, j: number) => { gradient[k][j] += residual * v; });
-        }
-      }
-      maximumTrainingGradient = Math.max(maximumTrainingGradient, ...gradient.flat().map(Math.abs), ...interceptGradient.map(Math.abs));
     }
     for (const r of records.filter(r => r.fold === fold.fold)) r.predictions.M0.raw.forEach((p: number, i: number) => near(p, counts[i] / train.length));
   }
@@ -140,5 +129,5 @@ if (report.status !== "completed") {
     }
     for (const [kind, values] of [["pooled", pooled], ["groupMacro", macro]] as const) [.025, .975].forEach((q, j) => near(b.intervals[key][kind][j], quantile(values, q)));
   }
-  console.log(JSON.stringify({ status: "INDEPENDENT VERIFICATION PASS", examples: records.length, groups: report.metrics.perGroup.length, folds: report.folds.length, maximumReconstructedProbabilityDifference, maximumTrainingGradient, checks: "source/producer/freeze hashes; exact OOF support; train-only bins/imputation/scaling; original donor bindings; scalar coefficient/softmax prediction replay; raw/floored probabilities; base-2 losses; paired gains; clipping; 2000 paired group-bootstrap draws and percentile weighting; delivered summary/report bytes" }));
+  console.log(JSON.stringify({ status: "INDEPENDENT VERIFICATION PASS", examples: records.length, groups: report.metrics.perGroup.length, folds: report.folds.length, maximumReconstructedProbabilityDifference, maximumTrainingGradient, trainingGradientBound: protocol.logistic.tol, checks: "source/producer/freeze hashes; exact OOF support; train-only bins/imputation/scaling; original donor bindings; scalar coefficient/softmax prediction replay; finite penalized training objective/gradient and frozen stationarity bound per fold/model; raw/floored probabilities; base-2 losses; paired gains; clipping; 2000 paired group-bootstrap draws and percentile weighting; delivered summary/report bytes" }));
 }

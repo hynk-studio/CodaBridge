@@ -53,7 +53,9 @@ export function validatePredictionSummary(value: unknown): PredictionSummary {
     if (s.metrics !== null || s.uncertainty !== null || s.selectedExamples.length || !s.failures.length) return fail();
     return s as PredictionSummary;
   }
-  if (s.failures.length || !s.selectedExamples.length || !object(s.metrics) || s.metrics.n !== s.cohort.eligibleExamples || !losses(s.metrics.logLossBits) || !gains(s.metrics.gainBits) || !gains(s.metrics.groupMacroGainBits) || !Array.isArray(s.metrics.perGroup) || s.metrics.perGroup.length !== s.cohort.eligibleParentGroups || !s.metrics.perGroup.every((g: any) => object(g) && text(g.parentGroup) && integer(g.n) && g.n > 0 && gains(g.gainBits) && losses(g.logLossBits)) || !object(s.uncertainty) || s.uncertainty.resamples !== 2000 || !integer(s.uncertainty.seed) || !object(s.uncertainty.intervals) || !CONTRAST_KEYS.every(k => object(s.uncertainty.intervals[k]) && ["pooled", "groupMacro"].every(weight => { const range = s.uncertainty.intervals[k][weight]; return numbers(range, 2) && range[0] <= range[1]; }))) return fail();
+  if (s.failures.length || !s.selectedExamples.length || !object(s.metrics) || s.metrics.n !== s.cohort.eligibleExamples || !losses(s.metrics.logLossBits) || !gains(s.metrics.gainBits) || !gains(s.metrics.groupMacroGainBits) || !Array.isArray(s.metrics.perGroup) || s.metrics.perGroup.length !== s.cohort.eligibleParentGroups || !s.metrics.perGroup.every((g: any) => object(g) && text(g.parentGroup) && integer(g.n) && g.n > 0 && gains(g.gainBits) && losses(g.logLossBits))) return fail();
+  // A missing interval does not erase a recorded point estimate. Malformed intervals still fail validation.
+  if (s.uncertainty !== null && (!object(s.uncertainty) || s.uncertainty.resamples !== 2000 || !integer(s.uncertainty.seed) || !object(s.uncertainty.intervals) || !CONTRAST_KEYS.every(k => object(s.uncertainty.intervals[k]) && ["pooled", "groupMacro"].every(weight => { const range = s.uncertainty.intervals[k][weight]; return numbers(range, 2) && range[0] <= range[1]; })))) return fail();
   if (s.folds.length < 3 || !s.folds.every((f: any) => object(f) && integer(f.fold) && edges(f.edges) && integer(f.testCount) && integer(f.trainingCount) && Array.isArray(f.testGroups) && f.testGroups.every(text))) return fail();
   for (const example of s.selectedExamples) {
     if (!object(example) || !object(example.record) || !coda(example.target) || !Array.isArray(example.history) || example.history.length > 6 || !example.history.length || !example.history.every(coda)) return fail();
@@ -77,10 +79,12 @@ export function validatePredictionSummary(value: unknown): PredictionSummary {
 export function predictionView(example: PredictionExample, revealed: boolean) {
   return { history: example.history, currentRow: example.record.currentRow, cutoff: example.record.cutoff, edges: example.record.edges, selfOnly: example.record.predictions.M1.scoring, selfPartner: example.record.predictions.M2.scoring, ...(revealed ? { target: example.target, category: example.record.category, gain: example.record.gainBits.M2_vs_M1 } : {}) };
 }
-export function predictionFinding(status: PredictionSummary["status"], gain: number | null) {
+export function predictionFinding(status: PredictionSummary["status"], gain: number | null, interval: readonly number[] | null) {
   if (status === "failed") return "Experiment failed — no primary estimate";
   if (status !== "completed" || gain === null || !Number.isFinite(gain)) return "Insufficient data — no primary estimate";
-  if (gain > 0) return "Partner history improved pooled prediction";
-  if (gain < 0) return "Partner history worsened pooled prediction";
-  return "No measured predictive gain";
+  const point = gain > 0 ? "Positive pooled estimate" : gain < 0 ? "Negative pooled estimate" : "Zero pooled estimate";
+  if (!interval || interval.length !== 2 || !interval.every(Number.isFinite) || interval[0] > interval[1]) return `${point} — uncertainty unavailable`;
+  // Describe the estimate and conditional interval separately, without an effect/significance claim.
+  if (interval[0] <= 0 && interval[1] >= 0) return `${point} — interval spans zero`;
+  return `${point} — interval ${interval[0] > 0 ? "above" : "below"} zero`;
 }

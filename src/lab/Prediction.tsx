@@ -104,17 +104,17 @@ function Example({ example, summary, active }: { example: PredictionExample; sum
 }
 function Study({ summary: s }: { summary: PredictionSummary }) {
   const m = s.metrics;
-  if (!m || !s.uncertainty) return <section className="lab-panel"><h2>{predictionFinding(s.status, null)}</h2><p>{s.failures.map(f => f.reason).join("; ")}</p><p>No prediction or score is substituted.</p></section>;
-  const range = s.uncertainty.intervals.M2_vs_M1.pooled;
+  if (!m) return <section className="lab-panel"><h2>{predictionFinding(s.status, null, null)}</h2><p>{s.failures.map(f => f.reason).join("; ")}</p><p>No prediction or score is substituted.</p></section>;
+  const range = s.uncertainty?.intervals.M2_vs_M1.pooled ?? null;
   return <section className="lab-panel prediction-study" aria-labelledby="study-title">
-    <p className="eyebrow">05 · Whole-study result</p><h2 id="study-title">{predictionFinding(s.status, m.gainBits.M2_vs_M1)}</h2>
+    <p className="eyebrow">05 · Whole-study result</p><h2 id="study-title">{predictionFinding(s.status, m.gainBits.M2_vs_M1, range)}</h2>
     <p className="prediction-result"><strong>{bits(m.gainBits.M2_vs_M1)}</strong> bits per evaluated coda</p>
-    <p>95% group-bootstrap interval: <strong>{bits(range[0])} to {bits(range[1])}</strong>. {range[0] <= 0 && range[1] >= 0 ? "The interval includes zero; the direction is uncertain in this exercise." : "This conditional interval does not establish a biological effect."}</p>
+    {range ? <p>95% group-bootstrap interval: <strong>{bits(range[0])} to {bits(range[1])}</strong>. {range[0] <= 0 && range[1] >= 0 ? "The interval includes zero; the direction is uncertain in this exercise." : "This conditional interval does not establish a biological effect."}</p> : <p>Uncertainty is unavailable for this saved point estimate. No interval or conclusion about its direction is substituted.</p>}
     <p>{s.cohort.eligibleExamples} evaluated codas · {s.cohort.eligibleRecGroups} exact REC fragments · {s.cohort.eligibleParentGroups} recording roots · {s.folds.length} held-out folds. Requiring older partner history excluded {s.cohort.lagRequirementCost} of {s.cohort.beforeLagRequirement} otherwise eligible opportunities.</p>
-    <p>These roots are not certified independent encounters. The 2,000 paired group resamples describe this fitted cross-validation exercise and omit model-refit uncertainty; group coverage remains limited.</p>
+    <p>These roots are not certified independent encounters. {s.uncertainty && "The 2,000 paired group resamples give conditional, descriptive intervals for this fitted cross-validation exercise and omit model-refit uncertainty; group coverage remains limited."}</p>
     <div className="prediction-metrics">{PREDICTION_MODELS.map(model => <div key={model}><span>{modelNames[model]}</span><strong>{m.logLossBits[model].toFixed(5)} bits</strong><small>mean log loss · lower is better</small></div>)}</div>
     <details><summary>Paired comparisons, groups and fold boundaries</summary>
-      {CONTRAST_KEYS.map(key => <p key={key}><strong>{contrastNames[key]}:</strong> {bits(m.gainBits[key])} bits/coda, interval {s.uncertainty!.intervals[key].pooled.map(bits).join(" to ")}. Group-macro gain {bits(m.groupMacroGainBits[key])}.</p>)}
+      {CONTRAST_KEYS.map(key => <p key={key}><strong>{contrastNames[key]}:</strong> {bits(m.gainBits[key])} bits/coda, interval {s.uncertainty?.intervals[key].pooled.map(bits).join(" to ") ?? "unavailable"}. Group-macro gain {bits(m.groupMacroGainBits[key])}.</p>)}
       <div className="prediction-group-list">{m.perGroup.map(g => <p key={g.parentGroup}>{g.parentGroup} · {g.n} codas · {bits(g.gainBits.M2_vs_M1)} bits/coda</p>)}</div>
       {s.folds.map(f => <p key={f.fold}>Fold {f.fold + 1}: edges {f.edges.map(seconds).join(" / ")}; {f.trainingCount} training / {f.testCount} held out.</p>)}
     </details>

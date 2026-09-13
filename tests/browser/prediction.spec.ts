@@ -64,8 +64,11 @@ test("actual offline Prediction journey: cutoff, compare, Reveal, lagged results
   await page.getByTestId("prediction-target").scrollIntoViewIfNeeded();
   await page.screenshot({ path: `${directory}/revealed.png`, fullPage: false });
   await expect(page.locator(".prediction-study")).toContainText("+0.00220");
+  await expect(page.getByRole("heading", { name: "Positive pooled estimate — interval spans zero", exact: true })).toBeVisible();
   await expect(page.locator(".prediction-study")).toContainText("interval includes zero");
-  await page.locator(".prediction-study").scrollIntoViewIfNeeded();
+  await expect(page.locator(".prediction-study")).toContainText("-0.05468 to +0.06934");
+  await expect(page.locator(".prediction-study")).toContainText("conditional, descriptive");
+  await page.locator(".prediction-study").evaluate(element => element.scrollIntoView({ block: "start" }));
   await page.screenshot({ path: `${directory}/study.png`, fullPage: false });
   await page.getByText("Paired comparisons, groups and fold boundaries", { exact: true }).click();
   await expect(page.locator(".prediction-study")).toContainText("-0.01796");
@@ -112,24 +115,54 @@ test("Prediction remains usable at 320 px and 200% text enlargement", async ({ p
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
   await page.getByRole("button", { name: "Reveal actual next coda", exact: true }).press("Enter");
   await expect(page.getByTestId("prediction-target")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Positive pooled estimate — interval spans zero", exact: true })).toBeVisible();
+  await page.locator(".prediction-study").evaluate(element => element.scrollIntoView({ block: "start" }));
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+  await page.screenshot({ path: `test-results/prediction-320-study-${info.project.name}.png` });
   await page.getByRole("button", { name: "Download sourced prediction JSON", exact: true }).scrollIntoViewIfNeeded();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
   await page.screenshot({ path: `test-results/prediction-320-enlarged-${info.project.name}.png` });
 });
 
-test("TEST ONLY failed, insufficient, zero and negative states are explicit", async ({ page }) => {
-  let state = "failed";
+test("TEST ONLY failed, insufficient, signed, zero and missing-uncertainty headlines are explicit", async ({ page }) => {
+  test.setTimeout(60_000);
+  const states = [
+    { status: "failed", gain: null, interval: null, headline: "Experiment failed — no primary estimate" },
+    { status: "insufficient-data", gain: null, interval: null, headline: "Insufficient data — no primary estimate" },
+    { status: "completed", gain: .25, interval: [-.1, .5], headline: "Positive pooled estimate — interval spans zero" },
+    { status: "completed", gain: -.25, interval: [-.5, .1], headline: "Negative pooled estimate — interval spans zero" },
+    { status: "completed", gain: 0, interval: [-.1, .1], headline: "Zero pooled estimate — interval spans zero" },
+    { status: "completed", gain: .25, interval: [.1, .5], headline: "Positive pooled estimate — interval above zero" },
+    { status: "completed", gain: -.25, interval: [-.5, -.1], headline: "Negative pooled estimate — interval below zero" },
+    { status: "completed", gain: .25, interval: null, headline: "Positive pooled estimate — uncertainty unavailable" },
+    { status: "completed", gain: -.25, interval: null, headline: "Negative pooled estimate — uncertainty unavailable" },
+    { status: "completed", gain: 0, interval: null, headline: "Zero pooled estimate — uncertainty unavailable" },
+  ];
+  let state = states[0];
   await page.route("**/prediction/summary.json", route => {
     const s = JSON.parse(bytes);
     s.limitations.unshift("TEST ONLY synthetic presentation state; not an experiment result.");
-    if (["failed", "insufficient-data"].includes(state)) Object.assign(s, { status: state, failures: [{ reason: "TEST ONLY missing eligible groups or failed fold" }], metrics: null, uncertainty: null, selectedExamples: [] });
-    else s.metrics.gainBits.M2_vs_M1 = state === "zero" ? 0 : -.25;
+    if (state.status !== "completed") Object.assign(s, { status: state.status, failures: [{ reason: "TEST ONLY missing eligible groups or failed fold" }], metrics: null, uncertainty: null, selectedExamples: [] });
+    else {
+      s.metrics.gainBits.M2_vs_M1 = state.gain;
+      if (state.interval) s.uncertainty.intervals.M2_vs_M1.pooled = state.interval;
+      else s.uncertainty = null;
+    }
     return route.fulfill({ json: s });
   });
-  for (state of ["failed", "insufficient-data", "zero", "negative"]) {
+  for (state of states) {
     await page.goto("/"); await prediction(page);
-    if (["zero", "negative"].includes(state)) await page.getByRole("button", { name: "Reveal actual next coda", exact: true }).click();
-    await expect(page.getByRole("heading", { name: state === "failed" ? "Experiment failed — no primary estimate" : state === "insufficient-data" ? "Insufficient data — no primary estimate" : state === "zero" ? "No measured predictive gain" : "Partner history worsened pooled prediction", exact: true })).toBeVisible();
+    if (state.status === "completed") {
+      await page.getByRole("button", { name: "Reveal actual next coda", exact: true }).click();
+      await expect(page.locator(".prediction-result")).toContainText(`${state.gain! > 0 ? "+" : ""}${state.gain!.toFixed(5)}`);
+      if (!state.interval) {
+        await expect(page.locator(".prediction-study")).toContainText("Uncertainty is unavailable for this saved point estimate");
+        await expect(page.locator(".prediction-study")).not.toContainText("95% group-bootstrap interval:");
+        await page.getByText("Paired comparisons, groups and fold boundaries", { exact: true }).click();
+        await expect(page.locator(".prediction-study")).toContainText("interval unavailable");
+      }
+    }
+    await expect(page.getByRole("heading", { name: state.headline, exact: true })).toBeVisible();
   }
 });
 
