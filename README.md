@@ -2,7 +2,7 @@
 
 Hear a real recording. Shape a personal synthetic phrase. Compare its timing and keep your coda.
 
-**Composer, Context Lab #8 and UI polish #9 are integrated. This branch adds Dialogue Transfer v0.1 for Draft review.** Four attributed originals connect to the phrase editor, synthetic playback, source-aware comparison, personal codebook and WAV/card/project downloads. Enter Context Lab without losing the creation: explore a real annotated exchange, compare descriptive pairings, or choose **Dialogue Transfer / Prediction** to compare held-out predictions, reveal the next recorded coda and download the sourced experiment. [Prediction results and verification](docs/MVP_05.md) · [descriptive Lab](docs/MVP_04.md) · [listening pack](docs/RELEASE_HANDOFF.md).
+**Composer, Context Lab #8, UI polish #9 and corrected Dialogue Transfer v0.1 #11 are integrated. This branch adds the executed v0.2 research follow-up for Draft review.** Four attributed originals connect to the phrase editor, synthetic playback, source-aware comparison, personal codebook and WAV/card/project downloads. Enter Context Lab without losing the creation: explore a real annotated exchange, compare descriptive pairings, or choose **Dialogue Transfer / Prediction** to compare held-out predictions, reveal the next recorded coda and download the sourced experiment. [v0.2 results and decision note](docs/MVP_05B.md) · [original prediction](docs/MVP_05.md) · [descriptive Lab](docs/MVP_04.md) · [listening pack](docs/RELEASE_HANDOFF.md).
 
 **Default live access remains disabled on the server.** Earlier separately authorized Composer trials accepted a compound edit and, after a prose correction, an investigation of the restored modified creation; their historical failure and acceptance evidence is preserved. The [first separately authorized live Lab investigation](docs/trials/2026-09-13-live-context-lab/README.md) accepted an actual model-initiated control lookup and explanation, with independent answer checks passing for that case. Broader live reliability, human listening and hosted Sites operation remain unverified.
 
@@ -21,6 +21,8 @@ Open `http://127.0.0.1:4173`. This runs the built Worker and static assets local
 Choose **Context Lab** to inspect a 60-second annotation segment. Listen with mute/solo, change the control offset, inspect exact source rows and download the investigation PNG/JSON. Return to Composer with the draft, codebook and Undo history intact. Lab reconstructions are separate from the original field clips and your creation.
 
 **Dialogue Transfer / Prediction** uses precomputed offline results from the full annotation corpus. Five deterministically selected held-out examples show completed history and fold-specific duration-bin probabilities; **Reveal actual next coda** discloses the recorded target. The fixed run evaluated **723 codas / 67 exact REC fragments / 19 recording roots**. Partner gain was **+0.00220 bits/coda**, with a conditional 95% group-bootstrap interval **−0.05468 to +0.06934**. The interval includes zero. Older-partner gain versus self-only was **−0.01796 bits/coda**. No causal, independence or animal-meaning claim follows. [Offline protocol and reproduction commands](analysis/dialogue-transfer/README.md).
+
+Choose **Follow-up research · v0.2** for the separate fixed continuous-duration, count and conditional-gap studies. All 55 fits completed. Primary duration gain is **+0.003317 squared log units**, pooled interval **[+0.000499, +0.005666]**; its equal-root macro interval spans zero. Count gain is negative; gap and expanded-coverage duration gains have pooled intervals spanning zero. This is exploratory reuse, with conditional descriptive intervals and unresolved encounter identities. It does not validate whale-response rules or generation on synthetic codas. [All outcomes, controls and limits](docs/MVP_05B.md) · [exact v0.2 reproduction commands](analysis/dialogue-transfer-v02/README.md).
 
 For UI development, keep that preview running and run `npm run dev` in another terminal. Vite serves `http://127.0.0.1:5173` and proxies `/api` to the preview. Rebuild/restart preview after server changes. Without preview, the development UI reports investigation unavailable.
 
@@ -48,6 +50,7 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 
 ## Review and compatibility
 
+- [MVP-05B executed v0.2 research, numerical verification and decision note](docs/MVP_05B.md)
 - [MVP-05 predictive experiment, uncertainty, controls and running-app verification](docs/MVP_05.md)
 - [MVP-04 connected Lab contract and exact control](docs/MVP_04.md)
 - [Research annotation audit and deterministic selection](docs/CONTEXT_DATA.md)

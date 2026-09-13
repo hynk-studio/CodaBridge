@@ -1,0 +1,66 @@
+- paragraph: Precomputed held-out research · v0.2
+- heading "Beyond duration categories" [level=2]
+- paragraph: "One fixed exploratory follow-up: duration, click count and time until the next recorded focal coda, plus one duration coverage sensitivity. Reusing the original data makes this exploratory research, not independent confirmation."
+- paragraph: 4 of 4 prespecified analyses completed. The original v0.1 result remains available above.
+- text: Held-out example
+- combobox "Held-out v0.2 example":
+  - option "Example 1 · sw061b · current row 10" [selected]
+  - option "Example 2 · sw078a · current row 1294"
+  - option "Example 3 · sw078c · current row 1498"
+  - option "Example 4 · sw085a · current row 1556"
+  - option "Example 5 · sw090a · current row 1991"
+- paragraph: First eligible source-order example in each of the first five lexical roots, fixed before scoring. The three core endpoints share these examples.
+- paragraph: 01 · Available at the cutoff
+- heading "Start with completed history" [level=2]
+- paragraph: The focal caller has just finished at 150.3250 s. Histories stay inside this exact REC; caller labels have no identity across recordings.
+- article:
+  - text: Current focal coda
+  - img "4 annotated clicks across 0.8712 s"
+  - strong: 0.8712 s · 4 clicks
+  - text: Ended 0.000 s before cutoff · row 10
+- article:
+  - text: Recent partner coda
+  - img "5 annotated clicks across 0.8447 s"
+  - strong: 0.8447 s · 5 clicks
+  - text: Ended 0.085 s before cutoff · row 9
+- article:
+  - text: Recent partner coda
+  - img "5 annotated clicks across 0.8388 s"
+  - strong: 0.8388 s · 5 clicks
+  - text: Ended 3.629 s before cutoff · row 8
+- paragraph: No previous completed focal coda is available. The self-history predictors retain that missing-history state.
+- group: Allowed older history and recording scope
+- paragraph: 02 · Compare precomputed held-out predictions
+- heading "Three questions about the next focal coda" [level=2]
+- paragraph: Each model was trained on other recording roots. These are saved point predictions, not live inference, response rules or probabilities of a coda occurring.
+- region "Next coda duration":
+  - paragraph: PRIMARY
+  - heading "Next coda duration" [level=3]
+  - text: Self only
+  - strong: "0.6999"
+  - text: s · back-transformed log point Self + recent partner
+  - strong: "0.7291"
+  - text: s · back-transformed log point
+  - paragraph: Fold 1 · this example’s root was held out.
+- region "Next coda click count":
+  - paragraph: SECONDARY
+  - heading "Next coda click count" [level=3]
+  - text: Self only
+  - strong: "4.8485"
+  - text: clicks · conditional mean Self + recent partner
+  - strong: "4.9646"
+  - text: clicks · conditional mean
+  - paragraph: Fold 1 · this example’s root was held out.
+- region "Time until next eligible recorded focal coda":
+  - paragraph: SECONDARY
+  - heading "Time until next eligible recorded focal coda" [level=3]
+  - text: Self only
+  - strong: "3.9823"
+  - text: s · back-transformed log point Self + recent partner
+  - strong: "4.1428"
+  - text: s · back-transformed log point
+  - paragraph: Fold 1 · this example’s root was held out.
+- paragraph: Duration and gap use natural logs. Exponentiating a log prediction gives a point in seconds, not the arithmetic expected duration or gap. Count is a fractional conditional mean, not an ornament label.
+- paragraph: The actual next coda and this example’s errors appear only after Reveal.
+- button "Reveal v0.2 actual next coda"
+- group: v0.2 methods, attribution and limits

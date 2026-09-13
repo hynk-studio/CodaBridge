@@ -1,0 +1,27 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test tests/browser/prediction.spec.ts tests/browser/research-prediction.spec.ts
+
+
+Running 14 tests using 1 worker
+
+(node:32438) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop-chromium] › tests/browser/prediction.spec.ts:18:1 › actual offline Prediction journey: cutoff, compare, Reveal, lagged results, delivered JSON and preserved Composer (2.4s)
+  ✓   2 [desktop-chromium] › tests/browser/prediction.spec.ts:111:1 › Prediction remains usable at 320 px and 200% text enlargement (595ms)
+  ✓   3 [desktop-chromium] › tests/browser/prediction.spec.ts:127:1 › TEST ONLY failed, insufficient, signed, zero and missing-uncertainty headlines are explicit (3.1s)
+  ✓   4 [desktop-chromium] › tests/browser/prediction.spec.ts:169:1 › TEST ONLY loading and report failures do not fabricate successful delivery (684ms)
+  ✓   5 [desktop-chromium] › tests/browser/research-prediction.spec.ts:21:1 › actual v0.2: all endpoints, Reveal/reset, controls, delivered JSON and Composer/descriptive preservation (3.7s)
+  ✓   6 [desktop-chromium] › tests/browser/research-prediction.spec.ts:132:1 › v0.2 remains usable at 320 px with 200% text, including all result units and scrolling root tables (980ms)
+  ✓   7 [desktop-chromium] › tests/browser/research-prediction.spec.ts:153:1 › TEST ONLY failed endpoints and loading/download failures never fabricate a score or successful delivery (727ms)
+(node:32596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [mobile-chromium] › tests/browser/prediction.spec.ts:18:1 › actual offline Prediction journey: cutoff, compare, Reveal, lagged results, delivered JSON and preserved Composer (2.0s)
+  ✓   9 [mobile-chromium] › tests/browser/prediction.spec.ts:111:1 › Prediction remains usable at 320 px and 200% text enlargement (593ms)
+  ✓  10 [mobile-chromium] › tests/browser/prediction.spec.ts:127:1 › TEST ONLY failed, insufficient, signed, zero and missing-uncertainty headlines are explicit (3.0s)
+  ✓  11 [mobile-chromium] › tests/browser/prediction.spec.ts:169:1 › TEST ONLY loading and report failures do not fabricate successful delivery (612ms)
+  ✓  12 [mobile-chromium] › tests/browser/research-prediction.spec.ts:21:1 › actual v0.2: all endpoints, Reveal/reset, controls, delivered JSON and Composer/descriptive preservation (3.2s)
+  ✓  13 [mobile-chromium] › tests/browser/research-prediction.spec.ts:132:1 › v0.2 remains usable at 320 px with 200% text, including all result units and scrolling root tables (943ms)
+  ✓  14 [mobile-chromium] › tests/browser/research-prediction.spec.ts:153:1 › TEST ONLY failed endpoints and loading/download failures never fabricate a score or successful delivery (664ms)
+
+  14 passed (24.6s)

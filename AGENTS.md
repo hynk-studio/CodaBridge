@@ -4,7 +4,7 @@
 
 Read README.md, issues #1 and #4, and docs/MVP_03.md before Composer work. docs/MVP_01.md and docs/MVP_02.md describe the preserved foundations. Work only in hynk-studio/CodaBridge. GitHub is the source of truth.
 
-For Context Lab work, also read issues #6/#7/#10, docs/MVP_04.md, docs/MVP_05.md and docs/CONTEXT_DATA.md. The descriptive duration control and the bounded offline Dialogue Transfer prediction are separate analyses.
+For Context Lab work, also read issues #6/#7/#10/#12, docs/MVP_04.md, docs/MVP_05.md, docs/MVP_05B.md and docs/CONTEXT_DATA.md. The descriptive duration control and the bounded offline Dialogue Transfer prediction are separate analyses.
 
 ## Working style
 
@@ -23,6 +23,7 @@ For Context Lab work, also read issues #6/#7/#10, docs/MVP_04.md, docs/MVP_05.md
 - Composer creations are separate human-authored timing records, never observed catalog recordings. Preserve original offsets/provenance; personal codebook meaning is not animal semantics. Use the centralized deterministic operations, bounds and renderer for UI, provider proposals and exports. Imports are untrusted; saved analysis never establishes live execution.
 - Context annotations retain their archived CC BY 4.0 record, source lines, true ICIs and local caller/REC scope. Do not execute downloaded notebooks or unpickle data. Freeze segment selection before inspecting experimental effect; do not clip long codas to Composer limits. Control offsets reassign duration comparisons over fixed original pairs, never observed timeline/audio. No p-values, causality, independence or animal-meaning claims from this control.
 - Dialogue Transfer uses the committed offline protocol/cohort/splits in `analysis/dialogue-transfer/`. Preserve its pre-score freeze, common group-held-out cohort, train-only preprocessing, strict completion cutoff, separate older-history fit and all result signs. Browser predictions are precomputed; Reveal is pedagogical, not secrecy. No online fitting service or expanded Astra contract is implied.
+- The executed v0.2 follow-up is separately frozen under `analysis/dialogue-transfer-v02/`. Preserve both versions, their result signs, source/group limitations and script meanings. Its continuous predictions are exploratory estimates, not validated whale-response rules or authority to fit further studies or implement Packet/Exchange/encryption.
 
 ## Delivery and safety
 

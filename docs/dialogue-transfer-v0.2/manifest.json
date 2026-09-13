@@ -1,0 +1,199 @@
+{
+  "identity": "Actual local v0.2 research run and browser evidence; TEST ONLY diagnostics labeled separately",
+  "baseCommit": "dffc940dc380151c9b0520e1cd7cfd76c8b2a92d",
+  "freezeCommit": "ab422e5e9df914a924f7df65229fefd1cb1711f3",
+  "producerCommit": "f9e70e2e82d899bfa9e914983aa4de6e8cf9f702",
+  "applicationCommit": "53d32f9ad31fd8d4c8c30e8cba341cb2cf97d10a",
+  "files": [
+    {
+      "path": "docs/dialogue-transfer-v0.2/application-tests.txt",
+      "bytes": 19882,
+      "sha256": "bdeab0936fb1af34a47cf2df59ec4c1b5de91591bea8471f88f3e73e7f589412"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/browser-delivered.json",
+      "bytes": 10986207,
+      "sha256": "1277fdd2ed8ea940568cfd6afe6ae4d03f16629be3e945514b189125fdd68e24"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/browser-tests.txt",
+      "bytes": 3025,
+      "sha256": "4fc43bba72ca4bff32999385a6cfc84d0fdb181fdcd29da1858bcc408236e319"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/browser-v02-final.txt",
+      "bytes": 1636,
+      "sha256": "cc1dcb75e40ae3a3784e344c431230d4e4149d84954e1037b1d12ddd5345aa52"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/build.txt",
+      "bytes": 805,
+      "sha256": "2b76da77deb06c88588e76b02680250b8a4e6394928fd39f50fd1d618c9183a9"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/data-verification.txt",
+      "bytes": 718,
+      "sha256": "18239c9d38a1cc0934ecf9ac4862b875326e942fa07ef2ae087913f14742ec91"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/desktop-before-reveal-accessibility.txt",
+      "bytes": 3569,
+      "sha256": "92bdd7480f477adc9a39a574557646793ae8ce293d29bec1a5aed65689c9d7fc"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/desktop-before-reveal.png",
+      "bytes": 383349,
+      "sha256": "41a5c9c9626896a21dccc690171e6dc216cd5d471f8461b52bee767f6ea2f6fd"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/desktop-browser-evidence.json",
+      "bytes": 760,
+      "sha256": "ce831241b341daaaf5864a50c28c993a841737bcac5526ed49b3038e49aca178"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/desktop-revealed.png",
+      "bytes": 324691,
+      "sha256": "e8b929aab67edb8dcd9c5e543bcd12bbb47298e10b0fc4a633e9473e3e8a67d3"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/desktop-study-count.png",
+      "bytes": 468735,
+      "sha256": "bd3c4c0c82beeb377ea850f4ef08eb5cd086120586358f0d66f6bff493726606"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/desktop-study-coverage-duration.png",
+      "bytes": 467747,
+      "sha256": "41229bd191ee4d2c167bd26b107f51c61b9dac513174fad74fc357d0520a8cf3"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/desktop-study-duration.png",
+      "bytes": 453837,
+      "sha256": "b96600399fb6658a5363ce916672c13a0fd4e7222380b3fa7fab955a1cf0bd09"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/desktop-study-gap.png",
+      "bytes": 472003,
+      "sha256": "cc5b557099ac57c2f4f3462270c1d121f2bf4c0fcd9023de91770b4ee4f084ae"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/experiment.txt",
+      "bytes": 6402,
+      "sha256": "0cc1df7c3f5f673d7f434ea3109fa1f75bf429b68956b2c656a786a0bb24d14e"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/iab-observation.json",
+      "bytes": 937,
+      "sha256": "ad7b44ccbbcc4634dbc091111a6041396704df72d794fb57b075cf15d1e6cebc"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/independent-verification.txt",
+      "bytes": 1623,
+      "sha256": "6d6750cf93833159019375ea766b10ca08bf19615bc31636bc89da8705f5aa6c"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/isolated-tests.txt",
+      "bytes": 1246,
+      "sha256": "d2f828b3c0e4d9e3c0dbdbf0c87344f3fa366c82c5e2c4ec9d847c2c99b6d9e3"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/lint.txt",
+      "bytes": 34,
+      "sha256": "783b5615296dcb3a2b8c0e16f99718af7a72cf1f646ed5eeb9fc817cdf40e81b"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-320-download.png",
+      "bytes": 93227,
+      "sha256": "afd14446d50612714c8f3d7691ce8b72be374dfbf9af29db5877b04111500bbb"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-320-study.png",
+      "bytes": 93927,
+      "sha256": "2a063778461bf4040549eeef4f6bcb4ebdb951580f0a19cb86fb7d3de2ce95d0"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-before-reveal-accessibility.txt",
+      "bytes": 3569,
+      "sha256": "92bdd7480f477adc9a39a574557646793ae8ce293d29bec1a5aed65689c9d7fc"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-before-reveal.png",
+      "bytes": 154197,
+      "sha256": "bae157e83f8658a36bad10208b68da5bcca1edb827fb71d14327393385a1582e"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-browser-evidence.json",
+      "bytes": 758,
+      "sha256": "df5e529372e5d1efb071c7d883a9480d6639a337906729449bdb2ed6aa87ea59"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-revealed.png",
+      "bytes": 140425,
+      "sha256": "628f9c567640bfa836f91ddbf9e0021e120ccf672d00999bbde76507f534f1c3"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-study-count.png",
+      "bytes": 208639,
+      "sha256": "f7136cce9c92a03537343d7cd3b71275e6a10696f14e65e3f111bcb1337f52c0"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-study-coverage-duration.png",
+      "bytes": 200106,
+      "sha256": "6ae763690d3d388f6d2adb6f82536659ffed4e0a9d7ef62a2ffe775d9a4a4ecd"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-study-duration.png",
+      "bytes": 195456,
+      "sha256": "91dd832875c7572b7becc6bd6f28bbe65f49a6378f9e4789a31ddcce47eda82e"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/phone-study-gap.png",
+      "bytes": 203317,
+      "sha256": "d082f8b925d946b54ee9f5345cd9ff09ec03387f0702f17f127af5bbc881e759"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/preservation.json",
+      "bytes": 957,
+      "sha256": "ae9518c70eacd15dca46e10a65a1d0034646bb12c5255dab871bc0e7a7fabd91"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/reproduction.txt",
+      "bytes": 219,
+      "sha256": "2acfcfa845b290c0efecdb5a73f42995f9151c5714ad4517d5f08d4fc6cdcd3c"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/source-tests.txt",
+      "bytes": 544,
+      "sha256": "77f4c5aceb4b4aa95df7d8d7bb4e68baac949a13684a14f456c2408cd07a95f0"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/typecheck.txt",
+      "bytes": 39,
+      "sha256": "dbc6cb0ef1e675a4eebbe0c681966cac6d711ff9cac8686eb32d77daa545d7fe"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/v01-desktop-evidence.json",
+      "bytes": 737,
+      "sha256": "a971a12bdc18b814fad6f86bf155d0e8ff05b74496f41dfcb30ab988049a66ca"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/v01-desktop-study.png",
+      "bytes": 424189,
+      "sha256": "f5d348be14b09a7d51bcdd5ec1cb8d5f15de82c54c0f100f617b451d241c6353"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/v01-phone-evidence.json",
+      "bytes": 735,
+      "sha256": "dd82a37d8604a0adfe30244ed80300bf76b57249618cd1af6cc85d11faf8ae51"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/v01-phone-study.png",
+      "bytes": 192087,
+      "sha256": "0ee9aeb5431cc36a419be8a5c67f04d3df3cd954603d1b884bb459290080cb8a"
+    },
+    {
+      "path": "docs/dialogue-transfer-v0.2/v01-verification.txt",
+      "bytes": 1407,
+      "sha256": "43697b6b0cca7ee5cfe3a69b1df94167e437d186b17fcb76ebd10ea1aca8b875"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+
+> codabridge@0.2.0 analysis:v02:reproduce
+> analysis/dialogue-transfer/.venv/bin/python analysis/dialogue-transfer-v02/run.py --check
+
+V0.2 REPRODUCTION PASS: fixed package, no outputs overwritten; atol=1e-8 rtol=1e-7
