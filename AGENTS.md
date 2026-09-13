@@ -4,6 +4,8 @@
 
 Read README.md, issues #1 and #4, and docs/MVP_03.md before Composer work. docs/MVP_01.md and docs/MVP_02.md describe the preserved foundations. Work only in hynk-studio/CodaBridge. GitHub is the source of truth.
 
+For Context Lab work, also read issues #6/#7, docs/MVP_04.md and docs/CONTEXT_DATA.md. The simple descriptive duration control is separate from the planned predictive Dialogue Transfer experiment.
+
 ## Working style
 
 - ChatGPT plans and reviews; Codex implements and tests. Continue the assigned implementation branch/PR rather than creating a competing version.
@@ -19,6 +21,7 @@ Read README.md, issues #1 and #4, and docs/MVP_03.md before Composer work. docs/
 - Preserve original measurements. Acoustic distance is a named descriptive metric, not translation accuracy, a shared-meaning probability, or a biological category.
 - Future model output must cite existing evidence and cannot overwrite measurements. Never present a fixture, template, or cached answer as a live Astra result.
 - Composer creations are separate human-authored timing records, never observed catalog recordings. Preserve original offsets/provenance; personal codebook meaning is not animal semantics. Use the centralized deterministic operations, bounds and renderer for UI, provider proposals and exports. Imports are untrusted; saved analysis never establishes live execution.
+- Context annotations retain their archived CC BY 4.0 record, source lines, true ICIs and local caller/REC scope. Do not execute downloaded notebooks or unpickle data. Freeze segment selection before inspecting experimental effect; do not clip long codas to Composer limits. Control offsets reassign duration comparisons over fixed original pairs, never observed timeline/audio. No p-values, causality, independence or animal-meaning claims from this control.
 
 ## Delivery and safety
 

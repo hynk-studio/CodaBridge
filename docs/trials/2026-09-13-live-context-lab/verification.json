@@ -1,0 +1,65 @@
+{
+  "source": "6e83e7681ce705a4d052df517b9abdc118b135e3",
+  "applicationSource": "8cc61f7f240ce007c3263a13721edd2d06550606",
+  "workerArtifactSha256": "1c55d2d7f4f46b224bb6f73a9dff480e4812d17ff3a3f32c0b1a05109db742d9",
+  "clientAsset": "index-CpcP7E-9.js",
+  "runtime": {
+    "node": "v25.9.0",
+    "miniflare": "5.20260911.0-alpha",
+    "workerd": "1.20260911.1",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "compatibilityDate": "2026-09-12",
+    "nativeWorkerFetch": true,
+    "transportOverride": false,
+    "outboundFixtureInterception": false,
+    "loopbackOnly": true
+  },
+  "preservedParameters": {
+    "model": "gpt-6-astra",
+    "endpoint": "https://api.openai.com/v1/responses",
+    "reasoningEffort": "low",
+    "redirect": "manual",
+    "deadlineMs": 20000,
+    "maxOutputTokens": 1800,
+    "maxProviderRounds": 4
+  },
+  "checks": [
+    {
+      "command": "git fetch origin; gh pr view 8; gh api owner authorization and review",
+      "result": "Local/fetched remote/PR heads exactly reviewed head; report-only changes after application source; Draft on main; no prior execution for this authorization."
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run data:verify",
+      "result": "PASS: four field hashes/metadata/annotations; Context archive hash and derived files reproduce, 3840 source rows, 3790 valid, 23 selected calls."
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run build",
+      "result": "PASS: TypeScript, client and Worker builds; server hash matches reviewed artifact."
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run test:server-build",
+      "result": "PASS: 15 built-Worker checks; model fixtures TEST ONLY and no paid calls during preflight."
+    },
+    {
+      "command": "env -u OPENAI_API_KEY node --check .tmp/live-context-lab.mjs",
+      "result": "PASS: temporary one-shot wrapper syntax."
+    },
+    {
+      "command": "node .tmp/live-context-lab.mjs",
+      "result": "One actual UI submission; two native provider responses; accepted result and real downloads; runtime/context disposed."
+    },
+    {
+      "command": "env -u OPENAI_API_KEY python3 (inline csv/Decimal calculation and saved-result verification)",
+      "result": "PASS: independent scores, all control values, observed/selected pair and assignment mappings, current binding, exact accepted result, real source and downloaded packet. First result-check script expected pair arrays in scalar control summaries; corrected this offline assertion to match the export shape. Application and live result were unchanged; no rerun of inference."
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run preview; loopback GET /api/investigation/status",
+      "result": "HTTP 200 / unavailable / NOT_CONFIGURED. This task-owned key-free preview was then stopped."
+    }
+  ],
+  "wholeSuiteRerun": false,
+  "applicationChanges": false,
+  "secondInvestigation": false,
+  "paidRequestsOutsideSingleLoop": false
+}

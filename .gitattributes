@@ -1,0 +1,4 @@
+# Preserve archived bytes and extracted notebook-cell whitespace for provenance.
+data/context/sperm-whale-dialogues.csv -text -whitespace
+data/context/*.ipynb.txt -text -whitespace
+data/context/source-README.md -text -whitespace

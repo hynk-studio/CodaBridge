@@ -1,0 +1,61 @@
+{
+  "sourceCommit": "afbaedeb2b10b61775a75a63be3067db3db764aa",
+  "sourceTree": "8b576266b6abe9f5a797eb6f3700138c198b2bd0",
+  "purpose": "Reviewed integration candidate; pre-Lab foundation",
+  "build": "env -u OPENAI_API_KEY npm run build",
+  "artifactRoot": "dist",
+  "workerEntry": "server/index.js",
+  "staticAssets": "client",
+  "hostingMetadata": {},
+  "modelBindings": {},
+  "defaultAccess": "NOT_CONFIGURED; built-Worker tests pass",
+  "files": [
+    {
+      "path": ".openai/hosting.json",
+      "bytes": 3,
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    {
+      "path": "client/assets/index-D5p3hsd0.js",
+      "bytes": 303336,
+      "sha256": "632d1df837624597fbed7e470a7b4fcef511ab53241dae2627c2c0de8041a139"
+    },
+    {
+      "path": "client/assets/index-iAHzf7Md.css",
+      "bytes": 24259,
+      "sha256": "534dcb86490e4743e5ffa63a3199ad934160ed5d4c6af4aefc53971697cfbd6b"
+    },
+    {
+      "path": "client/audio/dswp-1.wav",
+      "bytes": 193192,
+      "sha256": "8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057"
+    },
+    {
+      "path": "client/audio/dswp-11.wav",
+      "bytes": 146562,
+      "sha256": "6e4cc5f55a2ec915b23e05ebfd3bc9e4f13d87956139dc8ac36ea3f1e05a97a3"
+    },
+    {
+      "path": "client/audio/dswp-2.wav",
+      "bytes": 189798,
+      "sha256": "fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417"
+    },
+    {
+      "path": "client/audio/dswp-7.wav",
+      "bytes": 180826,
+      "sha256": "9af722759e0d1125e161b87cb71e01adc026d35b6500d0d62504d2bbe978ce60"
+    },
+    {
+      "path": "client/index.html",
+      "bytes": 651,
+      "sha256": "b088fa5e1158a7fd38aa04a2e59633e0a62658c44d147fedb2c66029d186bbe7"
+    },
+    {
+      "path": "server/index.js",
+      "bytes": 59545,
+      "sha256": "5847d674d35cda724f4fca03ffa463d54ddc6e13bd7fd6bbdfbb3f4f2bbf6dd5"
+    }
+  ],
+  "previewConfig": "wrangler.local.json",
+  "previewCommand": "env -u OPENAI_API_KEY WRANGLER_SEND_METRICS=false npx --no-install wrangler dev --local --config wrangler.local.json --ip 127.0.0.1 --port 4174"
+}

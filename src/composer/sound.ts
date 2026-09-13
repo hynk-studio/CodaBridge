@@ -30,21 +30,48 @@ export function renderSamples(draft: Draft) {
   const schedule = eventSchedule(draft);
   if (schedule.duration > COMPOSER_LIMITS.phraseSeconds + 0.1)
     throw new Error("Audio duration limit.");
-  const samples = new Float32Array(
-    Math.ceil(schedule.duration * RENDERER.sampleRate),
-  );
+  return {
+    samples: renderClickSchedule(schedule.events, schedule.duration),
+    schedule,
+  };
+}
+// Shared pulse renderer; Composer retains its own stricter draft limits above.
+// Research reconstructions use a separate, bounded schedule, never a fake Draft.
+export function renderClickSchedule(
+  events: { seconds: number }[],
+  duration: number,
+  attenuation = 1,
+) {
+  if (
+    !Number.isFinite(duration) ||
+    duration <= 0 ||
+    duration > 120.1 ||
+    events.length > 1740 ||
+    !Number.isFinite(attenuation) ||
+    attenuation <= 0 ||
+    attenuation > 1 ||
+    events.some(
+      (e) =>
+        !Number.isFinite(e.seconds) || e.seconds < 0 || e.seconds >= duration,
+    )
+  )
+    throw new Error("Synthetic schedule limit.");
+  const samples = new Float32Array(Math.ceil(duration * RENDERER.sampleRate));
   const pulseFrames = Math.floor(RENDERER.pulseSeconds * RENDERER.sampleRate);
-  for (const event of schedule.events) {
+  for (const event of events) {
     const start = Math.round(event.seconds * RENDERER.sampleRate);
     for (let i = 0; i < pulseFrames && start + i < samples.length; i++) {
       const t = i / RENDERER.sampleRate;
       const envelope =
         Math.sin((Math.PI * i) / pulseFrames) ** 2 * Math.exp(-t * 240);
       samples[start + i] +=
-        RENDERER.gain * envelope * Math.sin(2 * Math.PI * 1400 * t);
+        RENDERER.gain *
+        attenuation *
+        envelope *
+        Math.sin(2 * Math.PI * 1400 * t);
     }
   }
-  return { samples, schedule };
+  return samples;
 }
 export function wavBytes(draft: Draft) {
   const { samples } = renderSamples(draft);
@@ -54,6 +81,16 @@ export function wavBytes(draft: Draft) {
   const metadata = new TextEncoder().encode(
     `${CREATION_IDENTITY}. ${draft.title}. Creator intention: ${draft.intention || "not assigned"}. Creator-assigned block meanings: ${draft.blocks.map((b, i) => `${i + 1}: ${b.meaning || "not assigned"}`).join("; ")}. Seed timing: Dominica Sperm Whale Project / DSWP, distributed by Orr Paradise and colleagues, ${credit}, CC BY 4.0. Meaning to sperm whales: unknown.\0`,
   );
+  return encodeWav(samples, metadata);
+}
+export function encodeWav(samples: Float32Array, metadata: Uint8Array) {
+  if (
+    !samples.length ||
+    samples.length > Math.ceil(120.1 * RENDERER.sampleRate) ||
+    metadata.length > 8192 ||
+    samples.some((s) => !Number.isFinite(s))
+  )
+    throw new Error("WAV bounds.");
   const metadataSize = metadata.length + (metadata.length % 2);
   const bytes = new ArrayBuffer(44 + samples.length * 2 + 20 + metadataSize);
   const view = new DataView(bytes);
@@ -100,6 +137,18 @@ export class SyntheticPlayer {
     this.changed = changed;
   }
   async play(draft: Draft) {
+    return this.playBuffer(() => renderSamples(draft).samples);
+  }
+  async playRendered(samples: Float32Array) {
+    if (
+      !samples.length ||
+      samples.length > Math.ceil(120.1 * RENDERER.sampleRate) ||
+      samples.some((s) => !Number.isFinite(s))
+    )
+      throw new Error("Synthetic buffer limit.");
+    return this.playBuffer(() => samples);
+  }
+  private async playBuffer(render: () => Float32Array) {
     // One process-local playback owner coordinates separate browser components.
     stopSynthetic();
     this.stop();
@@ -113,13 +162,13 @@ export class SyntheticPlayer {
     const context = new AudioContext();
     this.context = context;
     try {
-      const { samples } = renderSamples(draft);
+      const samples = render();
       const buffer = context.createBuffer(
         1,
         samples.length,
         RENDERER.sampleRate,
       );
-      buffer.copyToChannel(samples, 0);
+      buffer.getChannelData(0).set(samples);
       await context.resume();
       if (this.generation !== generation || this.context !== context) return;
       const source = context.createBufferSource();

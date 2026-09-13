@@ -1,0 +1,10 @@
+{
+  "version": "quality-coverage-v1",
+  "frozenBeforeEffectCalculation": true,
+  "grouping": "Exact REC only; no joins across REC or caller labels.",
+  "order": "REC lexical, then candidate start onset ascending, then source CSV line.",
+  "windowSeconds": 60,
+  "selection": "First admissible 60-second window beginning at a valid call onset and ending no later than the group last annotated end. Require 12\u201360 wholly contained valid calls, exactly two positive integer local caller labels, >=4 calls each, >=4 positive-overlap A/B pairs. Reject windows intersecting invalid/unknown rows. Omit and report boundary-crossing calls without clipping. Do not rank by score, control contrast, or paper coda type.",
+  "quality": "Use nClicks-1 positive ICIs, >=2 and <=29 clicks, zero padding, finite nonnegative onset and positive duration. Reject any ICI <=0.0002 seconds (authors flag these) rather than deleting a marker. Require ICI sum and Duration agreement within summed half-last-decimal units plus 1e-12 arithmetic tolerance. Exclude exact repeated rows after first; never silently fill or truncate.",
+  "callers": "Two annotation-local source labels sorted numerically become A and B."
+}
