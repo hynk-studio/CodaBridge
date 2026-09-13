@@ -1,0 +1,38 @@
+[
+  {
+    "command": "env -u OPENAI_API_KEY python3 -m unittest discover -s analysis/style-atlas-v1 -p 'test_*.py' -v",
+    "interpreter": "python-3.9",
+    "exitCode": 0,
+    "log": "python-3.9-regression.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run atlas:check",
+    "interpreter": "python-3.9",
+    "exitCode": 0,
+    "log": "python-3.9-atlas-check.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run atlas:verify",
+    "interpreter": "python-3.9",
+    "exitCode": 0,
+    "log": "python-3.9-atlas-verify.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY PATH=\"$PWD/analysis/dialogue-transfer/.venv/bin:$PATH\" python3 -m unittest discover -s analysis/style-atlas-v1 -p 'test_*.py' -v",
+    "interpreter": "python-3.12",
+    "exitCode": 0,
+    "log": "python-3.12-regression.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY PATH=\"$PWD/analysis/dialogue-transfer/.venv/bin:$PATH\" npm run atlas:check",
+    "interpreter": "python-3.12",
+    "exitCode": 0,
+    "log": "python-3.12-atlas-check.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY PATH=\"$PWD/analysis/dialogue-transfer/.venv/bin:$PATH\" npm run atlas:verify",
+    "interpreter": "python-3.12",
+    "exitCode": 0,
+    "log": "python-3.12-atlas-verify.txt"
+  }
+]

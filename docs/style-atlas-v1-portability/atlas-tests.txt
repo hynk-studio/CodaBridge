@@ -1,0 +1,21 @@
+$ env -u OPENAI_API_KEY node --experimental-strip-types --test tests/atlas.test.ts
+✔ Atlas covers unchanged full source and original exclusions, long codas and short gaps (100.703583ms)
+✔ TEST ONLY hand-computable population CV, endpoint units, quantiles and degeneracy (0.415875ms)
+✔ TEST ONLY finite failures, exact-count rejection, sparse and empty states (6.992958ms)
+✔ TEST ONLY scale/time-origin invariance and complete normalized reconstruction (0.299541ms)
+✔ TEST ONLY coordinate medians and percentiles are not an observed coda template (2.410625ms)
+✔ TEST ONLY nearest metric stays equal-count with deterministic source-line ties (0.672917ms)
+✔ whole annotation schedule retains all short gaps/long rows, gain and source binding (12.379708ms)
+✔ source/schema/hash/dimension/truncation corruption fails explicitly (1070.617ms)
+✔ bounded streamed loader rejects network, size, hash and aborted requests (72.639209ms)
+✔ read-only export binds latest timing; project, codebook and undo/redo are unchanged (16.193ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1864.478375
+
+Exit code: 0

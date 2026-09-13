@@ -1,0 +1,23 @@
+$ env -u OPENAI_API_KEY PATH="$PWD/analysis/dialogue-transfer/.venv/bin:$PATH" python3 -m unittest discover -s analysis/style-atlas-v1 -p 'test_*.py' -v
+
+test_actual_line_2_with_alternate_summation (test_verify.ClickVerificationTests.test_actual_line_2_with_alternate_summation) ... ok
+test_actual_line_2_with_current_interpreter_sum (test_verify.ClickVerificationTests.test_actual_line_2_with_current_interpreter_sum) ... ok
+test_feature_vectors_require_exact_dimensions_and_finite_values (test_verify.ClickVerificationTests.test_feature_vectors_require_exact_dimensions_and_finite_values) ... ok
+test_materially_perturbed_click_fails (test_verify.ClickVerificationTests.test_materially_perturbed_click_fails) ... ok
+test_missing_and_extra_clicks_fail (test_verify.ClickVerificationTests.test_missing_and_extra_clicks_fail) ... ok
+test_nonfinite_clicks_fail (test_verify.ClickVerificationTests.test_nonfinite_clicks_fail) ... ok
+test_nonfinite_recomputed_values_fail (test_verify.ClickVerificationTests.test_nonfinite_recomputed_values_fail) ... ok
+test_raw_numeric_text_stays_exact (test_verify.ClickVerificationTests.test_raw_numeric_text_stays_exact) ... ok
+test_source_identity_tampering_fails (test_verify.ClickVerificationTests.test_source_identity_tampering_fails) ... ok
+test_stored_parser_clicks_remain_exact_even_within_tolerance (test_verify.ClickVerificationTests.test_stored_parser_clicks_remain_exact_even_within_tolerance) ... ok
+test_nearest_ranking_has_no_fuzzy_ties (test_verify.ProvenanceAndRankingTests.test_nearest_ranking_has_no_fuzzy_ties) ... ok
+test_ranking_accumulation_matches_js_left_fold (test_verify.ProvenanceAndRankingTests.test_ranking_accumulation_matches_js_left_fold) ... ok
+test_root_counts_order_and_dimensions_stay_exact (test_verify.ProvenanceAndRankingTests.test_root_counts_order_and_dimensions_stay_exact) ... ok
+test_source_and_artifact_hashes_remain_exact (test_verify.ProvenanceAndRankingTests.test_source_and_artifact_hashes_remain_exact) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.105s
+
+OK
+
+Exit code: 0

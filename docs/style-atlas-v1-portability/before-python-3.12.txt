@@ -1,0 +1,33 @@
+$ env -u OPENAI_API_KEY PATH="$PWD/analysis/dialogue-transfer/.venv/bin:$PATH" npm run atlas:verify
+
+> codabridge@0.2.0 atlas:verify
+> node --experimental-strip-types scripts/check-atlas.ts
+
+Traceback (most recent call last):
+  File "/Users/hynk/code/CodaBridge/analysis/style-atlas-v1/verify.py", line 86, in <module>
+    assert clicks == row['clicks']
+           ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Independent Atlas verification failed
+
+1 !== 0
+
+    at file:///Users/hynk/code/CodaBridge/scripts/check-atlas.ts:16:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:639:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v25.9.0
+
+Exit code: 1

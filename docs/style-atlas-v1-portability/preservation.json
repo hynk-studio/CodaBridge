@@ -1,0 +1,62 @@
+{
+  "baselineHead": "f110d216ed49d1637abe7a70d1d3047b2c88b3a8",
+  "existingFileExceptions": [
+    "analysis/style-atlas-v1/README.md",
+    "analysis/style-atlas-v1/verify.py"
+  ],
+  "check": "Exact working-file bytes against every other baseline Git blob",
+  "existingFilesMatched": 565,
+  "mismatches": [],
+  "protectedPathCounts": {
+    "data/": 11,
+    "analysis/dialogue-transfer/": 18,
+    "analysis/dialogue-transfer-v02/": 22,
+    "analysis/metadata-linkage-v1/": 18,
+    "public/": 10,
+    "src/": 51,
+    "docs/style-atlas-v1/": 34
+  },
+  "methodSha256": "d46c01ab1a884d84c8f626ebd61a8dd7fd68863e266da3bc3640c7e5d039c366",
+  "identities": [
+    {
+      "path": "data/context/sperm-whale-dialogues.csv",
+      "bytes": 500380,
+      "sha256": "1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2"
+    },
+    {
+      "path": "data/context/source-record.json",
+      "bytes": 2965,
+      "sha256": "337e6e279914f884be300a857ef97022bad26cee7365aa1363cf44fbbdc756e4"
+    },
+    {
+      "path": "public/style-atlas-v1/atlas.json",
+      "bytes": 4769558,
+      "sha256": "7b01d8cb58c8c5443591a53713c680c775c4354dc5ce1403b7f481094f66656f"
+    },
+    {
+      "path": "public/style-atlas-v1/summary.json",
+      "bytes": 48349,
+      "sha256": "93f6cc199985454f943ece7e5b31d4739d22c9a8c014c67954dec6715d9dacdf"
+    },
+    {
+      "path": "src/atlas/manifest.json",
+      "bytes": 463,
+      "sha256": "683af3df21e50acf7e4bb72b112b6e50b865653dd9a23f5a35deb05bc6afcacf"
+    },
+    {
+      "path": "analysis/style-atlas-v1/method.json",
+      "bytes": 3180,
+      "sha256": "8e269715a1650abc232ed8027ffcb668d972b691d5e64f34e0af6f42c42bb75c"
+    },
+    {
+      "path": "docs/style-atlas-v1/browser-atlas.json",
+      "bytes": 4769558,
+      "sha256": "7b01d8cb58c8c5443591a53713c680c775c4354dc5ce1403b7f481094f66656f"
+    },
+    {
+      "path": "docs/style-atlas-v1/manifest.json",
+      "bytes": 6048,
+      "sha256": "cf7648f3e50c6b8ff00dedf012b87e5c0dd7264e88ea7040a970e7567e579643"
+    }
+  ]
+}
