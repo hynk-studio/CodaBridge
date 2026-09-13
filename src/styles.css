@@ -299,6 +299,8 @@ input[type="range"] {
 .time-label {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 12px;
   font-size: 0.75rem;
   color: var(--muted);
 }
@@ -1105,3 +1107,54 @@ footer {
     display: block;
   }
 }
+
+/* Focused workspaces share the original ink, lime and blue identity. */
+[hidden] { display: none !important; }
+html { scroll-padding-top: 112px; }
+.site-header { position: sticky; top: 0; z-index: 10; background: #0c1b23; height: auto; min-height: 76px; padding-top: 12px; padding-bottom: 12px; gap: 24px; }
+.site-header .wordmark { white-space: nowrap; }
+.product-navigation { margin-left: auto; }
+.product-navigation button { font-size: 1rem; }
+#workspace:focus { outline: none; }
+.intro { padding: 28px 0 24px; margin: 0; }
+.intro p:last-child { max-width: 65ch; font-size: 1.05rem; }
+.intro h1 { margin: 8px 0 12px; }
+.workspace-label { align-items: baseline; flex-wrap: wrap; gap: 8px; }
+.workspace-label strong { margin: 0; }
+.listen-next { border-top: 1px solid var(--line); padding: 22px 0 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.listen-next p { flex: 1 1 380px; max-width: 60ch; color: var(--muted); }
+.listen-next p strong { color: var(--text); }
+.listen-next button { min-height: 44px; padding: 10px 14px; border: 1px solid #4b6370; border-radius: 6px; background: #182f39; }
+.optional-investigation { min-width: 0; border: 1px solid var(--line); border-radius: 9px; padding: 22px 24px; }
+.optional-investigation summary { min-height: 44px; font-size: 1.1rem; }
+.optional-investigation summary span { display: block; color: var(--muted); font-size: 0.875rem; margin-top: 4px; }
+.optional-investigation .investigation-panel { border: 0; padding: 22px 0 0; }
+.workspace-steps { display: flex; gap: 8px; margin: 20px 0; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.workspace-steps button { background: transparent; border-color: transparent; min-height: 44px; flex: 1; }
+.workspace-steps button[aria-pressed="true"] { color: var(--a); background: #21373b; border-color: #7c9965; }
+button:disabled { cursor: default; }
+summary { min-height: 44px; }
+@media (max-width: 650px) {
+  .site-header { flex-wrap: wrap; gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+  .product-navigation { margin: 0; width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .product-navigation button { padding: 8px 5px; font-size: 0.9375rem; }
+  .site-header .wordmark { font-size: 1.2rem; }
+  .brand-mark { font-size: 1.4rem; }
+  html { scroll-padding-top: 140px; }
+  .intro { padding: 22px 0 18px; }
+  .intro h1 { font-size: 1.85rem; }
+  .intro h1 em { display: block; }
+  .intro p:last-child { font-size: 1rem; }
+  .workspace-steps { gap: 5px; }
+  .workspace-steps button { padding: 9px 7px; font-size: 0.875rem; }
+  .count-badge { font-size: 0.8125rem; }
+  .listen-next button { width: 100%; }
+  .optional-investigation { padding: 18px; }
+}
+@media (max-width: 350px) { .site-header, main, footer { padding-left: 12px; padding-right: 12px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+@media (max-width: 650px) {
+  .product-navigation { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .product-navigation button, .workspace-steps button { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
+}
+.composer:focus, .context-lab:focus { outline: none; }

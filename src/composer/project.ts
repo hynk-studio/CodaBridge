@@ -231,49 +231,27 @@ export async function cardImage(draft: Draft, activeId: string): Promise<Blob> {
     y += 50;
     line(
       `Block ${index + 1} · ${duration.toFixed(3)} s · normalized spacing${index < draft.blocks.length - 1 ? ` · ${block.spacingAfter.toFixed(3)} s pause after` : ""}`,
-      20,
-      "#a4b7bf",
+      28,
+      "#b7c8ce",
     );
     y += 18;
   }
   const active = draft.blocks.find((b) => b.id === activeId)!;
   line(
     `Selected block / seed: ${timingChange(seedBlock(active.seed.recordingId, active.id), active)}`,
-    22,
+    30,
   );
   y += 20;
   ctx.fillStyle = "#30444f";
   ctx.fillRect(70, y, 1060, 1);
   y += 35;
-  line(CREATION_IDENTITY, 22, "#c4eb91");
-  line(
-    "Meaning to sperm whales: unknown. Personal labels are not translation.",
-    20,
-    "#c4eb91",
-  );
-  line(
-    `Timing source: DSWP (${draft.ancestry.map((s) => s.recordingId).join(", ")}), CC BY 4.0.`,
-    20,
-    "#a4b7bf",
-  );
-  // Exact credits and original offsets also live in the companion project evidence.
-  for (const credit of new Set(sourceCredits(draft).map((s) => s.attribution)))
-    line(credit, 20, "#a4b7bf");
-  line(
-    `Revision ${draft.revision} · ${eventSchedule(draft).duration.toFixed(3)} s synthetic WAV · estimated seed timing.`,
-    19,
-    "#a4b7bf",
-  );
-  line(
-    "This image is not playable. Keep its synthetic WAV + re-openable project JSON.",
-    20,
-    "#a4b7bf",
-  );
-  line(
-    "Full measurements, source versions and limitations accompany the project / evidence.",
-    19,
-    "#a4b7bf",
-  );
+  line(CREATION_IDENTITY, 28, "#c4eb91");
+  line("Creator-assigned meaning. Meaning to sperm whales: unknown.", 28, "#c4eb91");
+  line(`Timing seeds: ${draft.ancestry.map((s) => recordings.find((r) => r.id === s.recordingId)!.source.filename).join(", ")} · machine-estimated markers.`, 28, "#b7c8ce");
+  line("Dominica Sperm Whale Project (DSWP) / Orr Paradise et al. · CC BY 4.0", 28, "#b7c8ce");
+  line("WAV: hear the synthetic phrase. Project JSON: reopen and edit.", 28, "#b7c8ce");
+  line(`Revision ${draft.revision} · Saved creation`, 26, "#b7c8ce");
+  line("This image is not playable. Exact timing, sources and limits accompany the project.", 26, "#b7c8ce");
   // Bounded text fits this working canvas; crop to the actual content height.
   if (y > canvas.height - 35)
     throw new Error(

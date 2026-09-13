@@ -647,3 +647,71 @@
     transition: none;
   }
 }
+
+.composer { margin: 0; border-top: 0; padding-top: 24px; scroll-margin-top: 100px; }
+.composer-storage { margin-top: 6px !important; font-size: 0.875rem; }
+.composer-notice:empty { display: none; }
+.composer-notice:not(:empty) { border-left: 3px solid #f5d89f; padding: 10px 14px; background: #28302c; }
+.composer .creation-identity { margin: 12px 0; }
+.composer .phrase-properties { margin: 12px 0 0; padding: 10px 0 0; }
+.composer summary { min-height: 44px; }
+.phrase-properties .phrase-title { padding: 10px 0 16px; }
+.phrase-toolbar { margin: 8px 0 10px; }
+.phrase-toolbar .composer-actions { flex-wrap: nowrap; }
+.phrase-strip { padding: 10px; }
+.phrase-block .block-pattern { height: 58px; }
+.playback-controls { margin: 14px 0 6px; }
+.composer-workbench { margin: 18px 0; align-items: start; }
+.compare-workbench { grid-template-columns: 1fr; }
+.compare-workbench .creation-comparison { max-width: 900px; width: 100%; margin: 0 auto; }
+.block-editor .block-pattern { max-height: 70px; }
+.duration-pair button { width: 100%; margin-top: 12px; padding: 10px; text-align: left; }
+.duration-pair { grid-template-columns: 1fr 1fr; }
+.duration-pair span { font-size: 0.875rem; }
+.quick-edits { display: grid; grid-template-columns: 1fr 1fr; }
+.quick-edits button { text-align: left; }
+.alternative-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.alternative-list li { padding: 18px; border: 1px solid #4b6370; border-radius: 8px; background: #0c202a; }
+.alternative-list li > div { display: block; }
+.alternative-list li strong { display: block; font-size: 1.2rem; }
+.alternative-list li span { display: block; margin-top: 8px; }
+.alternative-list button { margin-top: 8px; width: 100%; }
+.exact-answer p { white-space: pre-wrap; line-height: 1.7; }
+.keep-coda { padding-top: 20px; }
+.coda-card { margin: 18px 0; }
+.coda-card .block-pattern { max-height: 80px; }
+@media (max-width: 650px) {
+  .composer { scroll-margin-top: 138px; padding-top: 20px; }
+  .composer-heading { gap: 12px; flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .composer-heading h2 { font-size: 1.4rem; }
+  .composer .phrase-block { flex-basis: 42%; }
+  .phrase-toolbar { flex-wrap: wrap; gap: 4px; }
+  .phrase-toolbar strong { font-size: 1.2rem; }
+  .phrase-toolbar .composer-actions { margin: 4px 0; }
+  .phrase-properties summary span { float: none; display: block; margin: 6px 0; }
+  .duration-pair { gap: 10px; }
+  .duration-pair > div { padding-left: 8px; }
+  .duration-pair button { font-size: 0.875rem; }
+  .alternative-list { grid-template-columns: 1fr; }
+}
+.composer .workspace-steps { margin: 12px 0; }
+.composer .phrase-block { padding: 10px 14px; }
+.phrase-block .block-pattern { height: 40px; }
+.phrase-properties { border-top: 0 !important; }
+.block-audition { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0 18px; }
+.block-audition button { font-size: 0.875rem; padding: 10px; }
+.composer[data-panel="compare"] .phrase-strip .block-pattern { display: none; }
+.composer[data-panel="compare"] .phrase-strip .block-meaning { margin-top: 6px; }
+@media (max-width: 650px) {
+  .composer-heading { gap: 8px; }
+  .composer-heading .eyebrow { font-size: 0.75rem; }
+  .composer-heading .file-open { padding: 10px; min-height: 44px; }
+  .composer-heading h2 { font-size: 1.3rem; }
+  .composer .phrase-block { padding: 10px; flex-basis: 40%; }
+  .phrase-block .block-pattern, .phrase-block .block-meaning { display: none; }
+  .phrase-block > span { flex-direction: row; flex-wrap: wrap; }
+  .phrase-properties summary { display: flex; justify-content: space-between; gap: 8px; }
+  .phrase-properties summary span { display: inline; margin: 0; max-width: 50%; }
+  .composer .creation-identity { font-size: 0.8125rem; gap: 4px; }
+  .composer-workbench { margin-top: 12px; }
+}

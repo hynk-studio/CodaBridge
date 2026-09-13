@@ -53,7 +53,7 @@ function RetrievalSummary({
                   : match.sourceId}
               </a>
               {" · MAD "}
-              {match.value.toFixed(6)}
+              {match.value.toFixed(3)}
             </li>
           );
         })}
@@ -198,7 +198,14 @@ export default function InvestigationPanel({
             ).closest<HTMLAnchorElement>('a[href^="#evidence-"]');
             const target =
               anchor && document.getElementById(anchor.hash.slice(1));
-            if (target instanceof HTMLDetailsElement) target.open = true;
+            if (target instanceof HTMLDetailsElement) {
+              target.open = true;
+              let parent = target.parentElement;
+              while (parent) {
+                if (parent instanceof HTMLDetailsElement) parent.open = true;
+                parent = parent.parentElement;
+              }
+            }
           }}
         >
           {result.execution === "mock-transport-test" && (
@@ -232,6 +239,8 @@ export default function InvestigationPanel({
             Generated interpretation is unverified. References show
             traceability, not proof that a statement is correct.
           </p>
+          <details className="exact-answer">
+          <summary>Exact generated answer · unverified</summary>
           <CitedSection
             title="Possible interpretations · generated"
             rows={result.explanation.possibleInterpretations}
@@ -240,7 +249,9 @@ export default function InvestigationPanel({
             title="Limitations · generated"
             rows={result.explanation.limitations}
           />
-          <h3>Tool actions & supporting evidence</h3>
+          </details>
+          <details className="supporting-evidence">
+          <summary>Tool actions & supporting evidence</summary>
           <ol className="tool-actions">
             {result.actions.map((action, index) => (
               <li key={index}>
@@ -271,6 +282,7 @@ export default function InvestigationPanel({
                 2,
               )}
             </pre>
+          </details>
           </details>
         </div>
       )}

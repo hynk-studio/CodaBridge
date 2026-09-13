@@ -167,6 +167,7 @@ const Composer = forwardRef<
     fieldSelection: string;
   }
 >(function Composer({ onExample, stopField, fieldSelection }, ref) {
+  const [panel, setPanel] = useState<"edit" | "compare" | "save">("edit");
   const [initial] = useState(initialProject);
   const [history, setHistory] = useState<History | null>(
     initial.project?.draft
@@ -180,7 +181,7 @@ const Composer = forwardRef<
   const [savedAnalysis, setSavedAnalysis] = useState<unknown>(
     initial.project?.savedAnalysis ?? null,
   );
-  const [notice, setNotice] = useState(initial.error);
+  const [notice, setNotice] = useState(initial.error || (initial.project ? "Restored saved work from this browser." : ""));
   const [storage, setStorage] = useState(
     initial.error ? "File saving available" : "Saved only in this browser",
   );
@@ -307,6 +308,7 @@ const Composer = forwardRef<
     });
   }
   function makeVersion(sourceId: string) {
+    setPanel("edit");
     finishText();
     attempt(() => {
       const current = historyRef.current;
@@ -328,7 +330,7 @@ const Composer = forwardRef<
           blockId,
         );
       }
-      region.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      region.current?.scrollIntoView({ block: "start" });
     });
   }
   useImperativeHandle(ref, () => ({
@@ -542,17 +544,26 @@ const Composer = forwardRef<
   const analysis =
     draft && active ? compareBlock(draft, active.id, previous) : null;
   const example = recordings.find((r) => r.id === exampleId);
+  function showPanel(next: typeof panel) {
+    finishText();
+    player.current?.stop();
+    flushSync(() => setPanel(next));
+    region.current?.scrollIntoView({ block: "start" });
+    region.current?.focus({ preventScroll: true });
+  }
   return (
     <section
       className="composer"
+      data-panel={panel}
       id="composer"
       ref={region}
+      tabIndex={-1}
       aria-labelledby="composer-title"
     >
       <div className="composer-heading">
         <div>
-          <p className="eyebrow">02 Make it yours</p>
-          <h2 id="composer-title">A small phrase. Your own rhythm.</h2>
+          <p className="eyebrow">Composer / Your synthetic creation</p>
+          <h2 id="composer-title">{draft ? "Your phrase, your rhythm." : "A small phrase. Your own rhythm."}</h2>
         </div>
         <label className="file-open">
           Open project
@@ -567,6 +578,12 @@ const Composer = forwardRef<
           />
         </label>
       </div>
+      <p className="composer-storage" role="status">
+        {storage}
+      </p>
+      <p className="composer-notice" role="status">
+        {notice}
+      </p>
       {!draft || !active ? (
         <div className="composer-empty">
           <span className="empty-pattern" aria-hidden="true">
@@ -590,10 +607,17 @@ const Composer = forwardRef<
         </div>
       ) : (
         <>
+          <nav className="workspace-steps" aria-label="Composer steps">
+            <button aria-pressed={panel === "edit"} onClick={() => showPanel("edit")}>Edit phrase</button>
+            <button aria-pressed={panel === "compare"} onClick={() => showPanel("compare")}>Compare & ask</button>
+            <button aria-pressed={panel === "save"} onClick={() => showPanel("save")}>Save & codebook</button>
+          </nav>
           <div className="creation-identity">
             <span>{CREATION_IDENTITY}</span>
             <span>Meaning to sperm whales: unknown</span>
           </div>
+          <details className="phrase-properties">
+            <summary>Title & intention <span>{draft.title || "Untitled coda"}</span></summary>
           <div className="phrase-title">
             <label>
               Phrase title
@@ -615,12 +639,14 @@ const Composer = forwardRef<
               />
             </label>
           </div>
-          <div className="phrase-toolbar">
+          </details>
+          <div hidden={panel === "save"}>
+          <div className="phrase-toolbar" hidden={panel === "compare"}>
             <div>
               <strong>{phraseDuration(draft).toFixed(3)} s</strong>
               <span>
                 {" "}
-                / {draft.blocks.length} blocks · revision {draft.revision}
+                / {draft.blocks.length} {draft.blocks.length === 1 ? "block" : "blocks"} · whole phrase
               </span>
             </div>
             <div className="composer-actions">
@@ -654,7 +680,7 @@ const Composer = forwardRef<
                 }}
               >
                 <span>
-                  Block {i + 1} <small>{span(b).toFixed(2)} s</small>
+                  Block {i + 1}{b.id === active.id ? " · selected" : ""} <small>{span(b).toFixed(2)} s</small>
                 </span>
                 <Pattern block={b} label={`Block ${i + 1} timing`} />
                 <span className="block-meaning">
@@ -664,18 +690,11 @@ const Composer = forwardRef<
             ))}
           </div>
           <p className="composer-meta">
-            Patterns show normalized spacing, not duration. Each block fills its
-            own width.
+            Choose a block to edit. The phrase plays every block in order, including the pauses between them.
           </p>
           <div className="composer-actions playback-controls">
             <button className="primary" onClick={() => void play("phrase")}>
               ▶ Play my synthetic phrase
-            </button>
-            <button onClick={() => void play("block")}>
-              Play selected synthetic block
-            </button>
-            <button onClick={() => void play("seed")}>
-              Play synthetic seed timing
             </button>
             <button
               disabled={
@@ -697,19 +716,22 @@ const Composer = forwardRef<
             role="status"
             aria-label="Synthetic playback status"
           >
-            {soundStatus}. Same click renderer for seed and draft; field audio
-            stays separate.
+            {soundStatus}. All Composer playback is synthetic.
           </p>
-          <div className="composer-workbench">
-            <section className="block-editor" aria-label="Active block editor">
+          <div className={`composer-workbench ${panel === "compare" ? "compare-workbench" : ""}`}>
+            <section hidden={panel !== "edit"} className="block-editor" aria-label="Active block editor">
               <div className="small-heading">
                 <h3>
                   Shape block{" "}
                   {draft.blocks.findIndex((b) => b.id === active.id) + 1}
                 </h3>
                 <span>
-                  {active.times.length} markers · {active.seed.recordingId} seed
+                  {active.times.length} clicks · seed {recordings.find((r) => r.id === active.seed.recordingId)!.source.filename}
                 </span>
+              </div>
+              <div className="block-audition">
+                <button onClick={() => void play("seed")}>Play synthetic seed timing</button>
+                <button className="primary" onClick={() => void play("block")}>Play selected synthetic block</button>
               </div>
               <Pattern
                 block={active}
@@ -718,18 +740,8 @@ const Composer = forwardRef<
               <p className="composer-meta">
                 Normalized marker pattern · first marker to last
               </p>
-              <label className="meaning-label">
-                Meaning I assign <span>(optional, creator-authored)</span>
-                <input
-                  maxLength={160}
-                  value={active.meaning}
-                  onChange={(e) => editText("meaning", e.target.value)}
-                  onBlur={finishText}
-                  placeholder="A personal label, never a whale translation"
-                />
-              </label>
               <p className="edit-invitation">
-                Try a little more room, or bring the clicks closer.
+                Lengthen or shorten every gap to change the pace. Change just the first gap to reshape the opening pause.
               </p>
               <div className="composer-actions quick-edits">
                 <button
@@ -784,6 +796,8 @@ const Composer = forwardRef<
                   Tighten first gap −0.05 s
                 </button>
               </div>
+              <details className="precise-timing">
+                <summary>Precise duration & gap controls</summary>
               <div className="duration-edit">
                 <NumberEdit
                   label="Duration multiplier"
@@ -841,6 +855,7 @@ const Composer = forwardRef<
                   }
                 />
               )}
+              </details>
               <div className="composer-actions">
                 <button
                   disabled={draft.blocks.length >= COMPOSER_LIMITS.blocks}
@@ -921,11 +936,16 @@ const Composer = forwardRef<
                   ))}
                 </select>
               </label>
-              <p className="composer-meta">
-                Engineering bounds: 1–4 blocks, 2–12 markers per block, 30 s
-                phrase. Gap 0.04–5 s; space 0.05–5 s. These are editor limits,
-                not whale biology.
-              </p>
+              <label className="meaning-label">
+                Meaning I assign <span>(optional, creator-authored)</span>
+                <input
+                  maxLength={160}
+                  value={active.meaning}
+                  onChange={(e) => editText("meaning", e.target.value)}
+                  onBlur={finishText}
+                  placeholder="A personal label, never a whale translation"
+                />
+              </label>
             </section>
             <section
               className="creation-comparison"
@@ -950,10 +970,12 @@ const Composer = forwardRef<
                 <div>
                   <span>Synthetic seed timing</span>
                   <strong>{analysis!.seed.spanSeconds.toFixed(3)} s</strong>
+                  <button hidden={panel === "edit"} onClick={() => void play("seed")}>Play synthetic seed timing</button>
                 </div>
                 <div>
                   <span>Selected synthetic block</span>
                   <strong>{span(active).toFixed(3)} s</strong>
+                  <button hidden={panel === "edit"} className="primary" onClick={() => void play("block")}>Play selected synthetic block</button>
                 </div>
               </div>
               {previous && (
@@ -962,6 +984,11 @@ const Composer = forwardRef<
                   {timingChange(previous, active)}
                 </p>
               )}
+              <p className="composer-meta">The seed and selected block use the same synthetic click sound. The field recording keeps the whale’s original sound.</p>
+              {panel === "edit" && <button onClick={() => showPanel("compare")}>Compare with real recordings →</button>}
+              <div hidden={panel !== "compare"}>
+              <details>
+                <summary>Exact rhythm metric & previous revision</summary>
               <div className="baseline-result">
                 <span>
                   Normalized interval MAD · seed {analysis!.seed.sourceId}
@@ -983,18 +1010,20 @@ const Composer = forwardRef<
                 shared meaning. Uniform duration scaling leaves this score
                 unchanged.
               </p>
+              </details>
               <h4>Other real examples</h4>
               <p>
                 {analysis!.eligibleCount} eligible / {analysis!.catalogCount}{" "}
                 catalog recordings. Seed ancestry and duplicate bytes excluded.
               </p>
               <ol className="alternative-list">
-                {analysis!.matches.map((row) => (
+                {analysis!.matches.map((row, rank) => (
                   <li key={row.sourceId}>
                     <div>
-                      <strong>{row.sourceId}</strong>
-                      <span>{score(row.comparison)}</span>
+                      <strong>#{rank + 1} · {recordings.find((r) => r.id === row.sourceId)!.label}</strong>
+                      <span>Distance {row.comparison.status === "comparable" ? row.comparison.value.toFixed(3) : "Not comparable"}</span>
                     </div>
+                    <p className="composer-meta">{recordings.find((r) => r.id === row.sourceId)!.annotation.clickTimesSeconds.length} estimated clicks · {span(seedBlock(row.sourceId)).toFixed(2)} s click span. Lower distance means closer relative spacing, not shared meaning.</p>
                     <button
                       onClick={() => {
                         cancel();
@@ -1038,9 +1067,10 @@ const Composer = forwardRef<
                     . Your phrase is preserved. Press Play recording B when
                     ready.
                   </p>
-                  <a href="#listen">Go to field audio ↑</a>
+                  <button onClick={() => onExample(example.id)}>Go to field audio ↑</button>
                 </div>
               )}
+              </div>
               <details>
                 <summary>Seed origin & measured evidence</summary>
                 <p>
@@ -1053,7 +1083,9 @@ const Composer = forwardRef<
               </details>
             </section>
           </div>
+          </div>
           <section
+            hidden={panel !== "compare"}
             className="composer-astra"
             aria-labelledby="composer-astra-title"
           >
@@ -1185,19 +1217,22 @@ const Composer = forwardRef<
                       <button
                         className="primary"
                         onClick={() => {
-                          if (result.binding === keyRef.current)
+                          if (result.binding === keyRef.current) {
                             operate(result.proposal!.operations);
+                            setNotice("Proposal applied to your phrase. Play it, or Undo to restore the previous version.");
+                          }
                         }}
                       >
                         Apply proposal
                       </button>
-                      <button onClick={cancel}>Discard proposal</button>
+                      <button onClick={() => { cancel(); setNotice("Proposal discarded. Your phrase is unchanged."); }}>Discard proposal</button>
                     </div>
                   </>
                 )}
                 {result.explanation && (
-                  <>
-                    <h4>Generated interpretation · unverified</h4>
+                  <details className="exact-answer">
+                    <summary>Exact generated answer · unverified</summary>
+                    <p>Computed comparisons above remain separate from this original answer. Evidence references do not fact-check every statement.</p>
                     {[
                       ...result.explanation.possibleInterpretations,
                       ...result.explanation.limitations,
@@ -1209,7 +1244,7 @@ const Composer = forwardRef<
                         </small>
                       </p>
                     ))}
-                  </>
+                  </details>
                 )}
                 <details>
                   <summary>
@@ -1220,14 +1255,27 @@ const Composer = forwardRef<
               </div>
             )}
           </section>
-          <section className="keep-coda" aria-labelledby="keep-title">
+          <section hidden={panel !== "save"} className="keep-coda" aria-labelledby="keep-title">
             <div>
-              <p className="eyebrow">04 Keep my coda</p>
+              <p className="eyebrow">Keep my coda / Downloads</p>
               <h3 id="keep-title">A rhythm worth keeping.</h3>
               <p>
-                The card is a picture. Keep its WAV to hear it and its project
-                JSON to edit it again.
+                Save the project to edit again, the WAV to hear your phrase, or the card to keep a visual memento.
               </p>
+              <div className="composer-actions">
+                <button
+                  className="primary"
+                  onClick={() => void exportFile("wav")}
+                >
+                  Download synthetic WAV
+                </button>
+                <button onClick={() => void exportFile("card")}>
+                  Download card image
+                </button>
+                <button onClick={() => void exportFile("json")}>
+                  Download project JSON
+                </button>
+              </div>
               <div className="coda-card" data-testid="coda-card">
                 <span className="eyebrow">CodaBridge / Coda Card</span>
                 <h4>{draft.title || "Untitled coda"}</h4>
@@ -1274,20 +1322,6 @@ const Composer = forwardRef<
                   details.
                 </small>
               </div>
-              <div className="composer-actions">
-                <button
-                  className="primary"
-                  onClick={() => void exportFile("wav")}
-                >
-                  Download synthetic WAV
-                </button>
-                <button onClick={() => void exportFile("card")}>
-                  Download card image
-                </button>
-                <button onClick={() => void exportFile("json")}>
-                  Download project JSON
-                </button>
-              </div>
               <label className="include-evidence">
                 <input
                   type="checkbox"
@@ -1309,6 +1343,7 @@ const Composer = forwardRef<
                 Keep blocks with your personal labels, then reuse them in
                 another phrase.
               </p>
+              <p className="codebook-selection">Selected: block {draft.blocks.findIndex((b) => b.id === active.id) + 1}{active.meaning ? ` · ${active.meaning}` : " · no personal label yet"}</p>
               <button
                 disabled={codebook.length >= COMPOSER_LIMITS.codebook}
                 onClick={() => {
@@ -1368,8 +1403,9 @@ const Composer = forwardRef<
               </p>
             </aside>
           </section>
-          <details className="composer-limitations">
+          <details hidden={panel !== "save"} className="composer-limitations">
             <summary>Sources, limits & local project details</summary>
+            <p>Engineering bounds: 1–4 blocks, 2–12 markers per block, 30 s phrase. Gap 0.04–5 s; space 0.05–5 s. These are editor limits, not whale biology.</p>
             {CREATION_LIMITATIONS.map((item) => (
               <p key={item}>{item}</p>
             ))}
@@ -1425,12 +1461,6 @@ const Composer = forwardRef<
           <pre>{JSON.stringify(savedAnalysis, null, 2)}</pre>
         </details>
       )}
-      <p className="composer-storage" role="status">
-        {storage}
-      </p>
-      <p className="composer-notice" role="status">
-        {notice}
-      </p>
     </section>
   );
 });
