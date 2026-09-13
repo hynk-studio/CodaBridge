@@ -1,0 +1,25 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test tests/browser/atlas.spec.ts
+
+
+Running 12 tests using 1 worker
+
+(node:77591) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop-chromium] › tests/browser/atlas.spec.ts:32:1 › full Atlas journey: current comparison, actual downloads, whole reconstruction and preserved private work (3.2s)
+  ✓   2 [desktop-chromium] › tests/browser/atlas.spec.ts:126:1 › Atlas keyboard, 320px enlarged text, actual sorting, sparse and numeric alternatives (2.5s)
+  ✓   3 [desktop-chromium] › tests/browser/atlas.spec.ts:155:1 › TEST ONLY failed loading/hash/size responses show no results and support explicit retry (1.8s)
+  ✓   4 [desktop-chromium] › tests/browser/atlas.spec.ts:173:1 › TEST ONLY delayed archive cannot bind a comparison to an old selected block (1.5s)
+  ✓   5 [desktop-chromium] › tests/browser/atlas.spec.ts:189:1 › TEST ONLY unavailable audio leaves sourced inspection and downloads usable (941ms)
+  ✓   6 [desktop-chromium] › tests/browser/atlas.spec.ts:197:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals (2.7s)
+(node:77767) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [mobile-chromium] › tests/browser/atlas.spec.ts:32:1 › full Atlas journey: current comparison, actual downloads, whole reconstruction and preserved private work (3.0s)
+  ✓   8 [mobile-chromium] › tests/browser/atlas.spec.ts:126:1 › Atlas keyboard, 320px enlarged text, actual sorting, sparse and numeric alternatives (2.0s)
+  ✓   9 [mobile-chromium] › tests/browser/atlas.spec.ts:155:1 › TEST ONLY failed loading/hash/size responses show no results and support explicit retry (1.9s)
+  ✓  10 [mobile-chromium] › tests/browser/atlas.spec.ts:173:1 › TEST ONLY delayed archive cannot bind a comparison to an old selected block (1.3s)
+  ✓  11 [mobile-chromium] › tests/browser/atlas.spec.ts:189:1 › TEST ONLY unavailable audio leaves sourced inspection and downloads usable (945ms)
+  ✓  12 [mobile-chromium] › tests/browser/atlas.spec.ts:197:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals (2.7s)
+
+  12 passed (26.2s)

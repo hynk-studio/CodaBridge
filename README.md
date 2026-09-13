@@ -40,6 +40,8 @@ npm run test:browser
 
 Install Playwright Chromium with `npx playwright install chromium` if absent. Browser tests start and stop their own local production preview. Tests inject a mock **provider transport** through the actual handler; fixtures never ship to visitors. Screenshots of that path are labeled **TEST ONLY**, not live Astra evidence.
 
+Context Lab → **Timing / Style Atlas** now browses all 3,790 retained annotated timing rows. Composer → **Compare & ask → Observed timing reference** compares only the selected block, offers actual same-count source rows, and downloads a private-text-free comparison. Atlas navigation preserves the draft and Undo/Redo. Sparse groups and dependent archive support are explicit; the Atlas does not supply whale-response rules. [Methods, measured coverage and verification](docs/MVP_06.md).
+
 ## Data and limits
 
 Originals `1.wav`, `2.wav`, `11.wav` and `7.wav` come from [orrp/DSWP](https://huggingface.co/datasets/orrp/DSWP), pinned revision `a2e5d6dd02fc60343e1288c33314e14e8b7aa5be`, under **CC BY 4.0**. Credit: Dominica Sperm Whale Project; Orr Paradise and colleagues, *Towards A Translative Model of Sperm Whale Vocalization*, NeurIPS 2025. [Attribution and methods](docs/DATA_METHODS.md) includes full credit, hashes and selection/annotation provenance.
@@ -52,6 +54,7 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 
 ## Review and compatibility
 
+- [MVP-06 observed Timing / Style Atlas and read-only Composer reference](docs/MVP_06.md) · [generate/check/independent verification](analysis/style-atlas-v1/README.md)
 - [Full-file metadata linkage audit, coverage and decision note](docs/METADATA_LINKAGE_AUDIT.md)
 - [MVP-05B executed v0.2 research, numerical verification and decision note](docs/MVP_05B.md)
 - [MVP-05 predictive experiment, uncertainty, controls and running-app verification](docs/MVP_05.md)
@@ -73,4 +76,4 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 - Historical [MVP-01 contract](docs/MVP_01.md) and [verification](docs/VERIFICATION.md)
 - [Parent issue #1](https://github.com/hynk-studio/CodaBridge/issues/1), integrated foundation [PR #2](https://github.com/hynk-studio/CodaBridge/pull/2) → [PR #3](https://github.com/hynk-studio/CodaBridge/pull/3) → [PR #5](https://github.com/hynk-studio/CodaBridge/pull/5)
 
-Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. Broader Composer/Lab live reliability, hosted Sites runtime/delivery and scientific validity remain unverified. Both bounded offline predictive studies are integrated; implementation verification does not establish biological transfer or encounter independence. The parent launch and release issues remain open; the separate metadata audit is for Draft review. No Site creation/save/deployment, account/database stack or WhAM is included. Project code licensing remains undecided; third-party licenses remain in force.
+Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. Broader Composer/Lab live reliability, hosted Sites runtime/delivery and scientific validity remain unverified. Both bounded offline predictive studies are integrated; implementation verification does not establish biological transfer or encounter independence. The parent launch and release issues remain open; the merged metadata audit and its corrected preservation guard remain intact. No Site creation/save/deployment, account/database stack or WhAM is included. Project code licensing remains undecided; third-party licenses remain in force.

@@ -45,6 +45,7 @@ import { durationHint, operationLabels, timingChange } from "./presentation.ts";
 import type { ComposerRequest, ComposerResult } from "./contract.ts";
 import Notice, { useNotice } from "../Notice.tsx";
 import "./composer.css";
+import ObservedReference from "../atlas/ObservedReference.tsx";
 
 export interface ComposerHandle {
   makeVersion(sourceId: string): void;
@@ -166,8 +167,10 @@ const Composer = forwardRef<
     onExample: (id: string) => void;
     stopField: () => void;
     fieldSelection: string;
+    workspaceActive: boolean;
+    onExploreAtlas: (clickCount: number, sourceLine?: number) => void;
   }
->(function Composer({ onExample, stopField, fieldSelection }, ref) {
+>(function Composer({ onExample, stopField, fieldSelection, workspaceActive, onExploreAtlas }, ref) {
   const [panel, setPanel] = useState<"edit" | "compare" | "save">("edit");
   const [initial] = useState(initialProject);
   const [history, setHistory] = useState<History | null>(
@@ -1099,6 +1102,7 @@ const Composer = forwardRef<
             </section>
           </div>
           </div>
+          <ObservedReference current={{ blockId: active.id, revision: draft.revision, times: active.times }} enabled={workspaceActive && panel === "compare"} onExplore={onExploreAtlas} />
           <section
             hidden={panel !== "compare"}
             className="composer-astra"

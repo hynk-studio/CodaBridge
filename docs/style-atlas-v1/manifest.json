@@ -1,0 +1,171 @@
+{
+  "identity": "MVP-06 local verification and actual browser-delivered evidence; text logs have trailing whitespace normalized",
+  "base": "d50c3a7050f40823e56fd050f2a4e64277d8c96f",
+  "files": [
+    {
+      "path": "docs/style-atlas-v1/browser-atlas-final.txt",
+      "bytes": 2443,
+      "sha256": "76495b42b6006722480f631064e6994a65941be6ad56668e90f40e98bd0b85ff"
+    },
+    {
+      "path": "docs/style-atlas-v1/browser-atlas.json",
+      "bytes": 4769558,
+      "sha256": "7b01d8cb58c8c5443591a53713c680c775c4354dc5ce1403b7f481094f66656f"
+    },
+    {
+      "path": "docs/style-atlas-v1/browser-tests.txt",
+      "bytes": 21138,
+      "sha256": "0b1331397df6b8d75462f22dee6cacae70161a6fb12d8949627559eaaf71fec6"
+    },
+    {
+      "path": "docs/style-atlas-v1/build.txt",
+      "bytes": 805,
+      "sha256": "cc6ae3a526d824f3b8053f1058136b1f4336f9afb11401afc22cd8aecd94b02c"
+    },
+    {
+      "path": "docs/style-atlas-v1/current-preservation.txt",
+      "bytes": 1466,
+      "sha256": "8a7509e699d081f4c2af60ec2227f8f719b00bdd3165bb23c08143d623f29731"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-actual-row.png",
+      "bytes": 107002,
+      "sha256": "c85b2f414e0fc783e9c035f8ada8c8a27b259f204252b0dbf145e4fb4b948d43"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-atlas.png",
+      "bytes": 124989,
+      "sha256": "887c1b38d90a25ca0f74bb9794deb3a4bb0dd98550ac5ac083614735c30121f1"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-comparison.json",
+      "bytes": 20460,
+      "sha256": "42dd6c218abc94e4934a52610842cdc57068d11f24fb9928716adb974c4662b0"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-comparison.png",
+      "bytes": 132310,
+      "sha256": "1078f27459f0ef2d0aa5782b61cf7eb576ecb3cde92e1cee44ace071f594eef3"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-evidence.json",
+      "bytes": 1287,
+      "sha256": "ea7278996dcfda91578fd963145d5e4865d0547b69e3adc2323da16ed8c3c8e1"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-import-comparison.json",
+      "bytes": 21420,
+      "sha256": "2ad54b0cac7994afb935fde950666f3c30941d53e82746fcbc029cd92b651940"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-narrow-comparison.png",
+      "bytes": 45183,
+      "sha256": "09aee7a46670916559418fe5eec1433336a684278db9957cfb3efcb2a3b01803"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-narrow-download.png",
+      "bytes": 42062,
+      "sha256": "784f14b87eef52ca548874d77238f43bfe2dd1c00b9f2130f8604430b5091762"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-narrow-enlarged.png",
+      "bytes": 40896,
+      "sha256": "0cc0bcdb214877aa9a134fd3f506b5762761d2a8b023329bbbbde9ec1620ca2f"
+    },
+    {
+      "path": "docs/style-atlas-v1/desktop-narrow-gaps.png",
+      "bytes": 37269,
+      "sha256": "f32146f249eb99adc354b58241f3ece4b701e54815dd377b8a8e5e2ccce1dcfd"
+    },
+    {
+      "path": "docs/style-atlas-v1/in-app-browser.json",
+      "bytes": 672,
+      "sha256": "c2e9a7ac4e1a515075a24164430394260556c7413fe1c8d99e57d982b857c54f"
+    },
+    {
+      "path": "docs/style-atlas-v1/independent-verification.txt",
+      "bytes": 510,
+      "sha256": "c9df8fb24bad8c0fdeafec981e0454a4be03f170c84fc5e935dfc84efc114ffa"
+    },
+    {
+      "path": "docs/style-atlas-v1/lint.txt",
+      "bytes": 34,
+      "sha256": "783b5615296dcb3a2b8c0e16f99718af7a72cf1f646ed5eeb9fc817cdf40e81b"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-actual-row.png",
+      "bytes": 57133,
+      "sha256": "cbed744d282e3ab09bfa99a5b65a39fd5a264b13ac6b74f1ebc834e8256adbd8"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-atlas.png",
+      "bytes": 72146,
+      "sha256": "85e144e9367e969a1d040f3205f66a271384638ee63efd408579cf2c71e7d48f"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-comparison.json",
+      "bytes": 20460,
+      "sha256": "64fa7bc2a0799b6ad5114ad216c52608f6a6f7acf9f8f2fb34afb787d73e4f23"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-comparison.png",
+      "bytes": 64286,
+      "sha256": "fe3cf87fb6ce3e48cf5d7b8f64b9c58d0d6bf52edd83bae55545f2e738479037"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-evidence.json",
+      "bytes": 1285,
+      "sha256": "0e22f5885ae241012cb20f5a3b1437c18832f6ef6af62537d935542abf02624f"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-import-comparison.json",
+      "bytes": 21420,
+      "sha256": "b0aaaebb8af23a31b5550726537e6c9f95dbebaac7584db71a9274d84e7f4aef"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-narrow-comparison.png",
+      "bytes": 45183,
+      "sha256": "09aee7a46670916559418fe5eec1433336a684278db9957cfb3efcb2a3b01803"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-narrow-download.png",
+      "bytes": 42062,
+      "sha256": "784f14b87eef52ca548874d77238f43bfe2dd1c00b9f2130f8604430b5091762"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-narrow-enlarged.png",
+      "bytes": 40896,
+      "sha256": "0cc0bcdb214877aa9a134fd3f506b5762761d2a8b023329bbbbde9ec1620ca2f"
+    },
+    {
+      "path": "docs/style-atlas-v1/phone-narrow-gaps.png",
+      "bytes": 37269,
+      "sha256": "f32146f249eb99adc354b58241f3ece4b701e54815dd377b8a8e5e2ccce1dcfd"
+    },
+    {
+      "path": "docs/style-atlas-v1/preserved-studies-verification.txt",
+      "bytes": 2886,
+      "sha256": "fbc8017837f0fdd5331c80c13b55e0189bbaaa990f955ca4138a968d1cecca82"
+    },
+    {
+      "path": "docs/style-atlas-v1/source-and-reproduction.txt",
+      "bytes": 5188,
+      "sha256": "aae1e8de7f4431c50471ee1d2804af109071e6894f857e6090044b39c1abc76e"
+    },
+    {
+      "path": "docs/style-atlas-v1/support-table.md",
+      "bytes": 1263,
+      "sha256": "cd371399de23348f17f552a083cc0ff62d6c206821ee10bdefd4e458cf5428b8"
+    },
+    {
+      "path": "docs/style-atlas-v1/typecheck.txt",
+      "bytes": 39,
+      "sha256": "dbc6cb0ef1e675a4eebbe0c681966cac6d711ff9cac8686eb32d77daa545d7fe"
+    },
+    {
+      "path": "docs/style-atlas-v1/unit-tests.txt",
+      "bytes": 22105,
+      "sha256": "399109626839675e0ffd2d14d4b86a56d4256fe0450b4d5a2b36cb0e0b959e13"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "python": "3.9.6",
+    "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "sourceLine": 2,
+    "REC": "sw061b001_124",
+    "clickCount": 17,
+    "clickIndex": 3,
+    "storedJS": 0.1189333,
+    "pythonSum": 0.1189333,
+    "exactEquality": true,
+    "maxAbsoluteDifference": 0,
+    "existingTolerancePass": true
+  },
+  {
+    "python": "3.12.14",
+    "executable": "/Users/hynk/code/CodaBridge/analysis/dialogue-transfer/.venv/bin/python3",
+    "sourceLine": 2,
+    "REC": "sw061b001_124",
+    "clickCount": 17,
+    "clickIndex": 3,
+    "storedJS": 0.1189333,
+    "pythonSum": 0.11893329999999999,
+    "exactEquality": false,
+    "maxAbsoluteDifference": 1.1102230246251565e-16,
+    "existingTolerancePass": true
+  }
+]

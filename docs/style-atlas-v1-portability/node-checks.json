@@ -1,0 +1,22 @@
+[
+  {
+    "command": "env -u OPENAI_API_KEY node --experimental-strip-types --test tests/atlas.test.ts",
+    "exitCode": 0,
+    "log": "atlas-tests.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm test",
+    "exitCode": 0,
+    "log": "unit-tests.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run typecheck",
+    "exitCode": 0,
+    "log": "typecheck.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run lint",
+    "exitCode": 0,
+    "log": "lint.txt"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "browser": "Codex in-app Browser via CUA",
+  "cdpDomains": [
+    "Runtime",
+    "Network"
+  ],
+  "url": "http://127.0.0.1:4173/#context-lab",
+  "observedAtlasRequests": [
+    {
+      "path": "/style-atlas-v1/summary.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/style-atlas-v1/atlas.json",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "capturedPostCount": 0,
+  "networkEventsTruncated": false,
+  "consoleErrorsAndWarnings": [],
+  "measuredViewportWidth": 1280,
+  "measuredDocumentWidth": 1265,
+  "inspectedDefaultRow": 4,
+  "inspectedWhole29ClickRow": 1063,
+  "contentMutation": false,
+  "humanListening": "not performed"
+}
