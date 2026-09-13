@@ -4,7 +4,7 @@ Implemented [owner assignment #15](https://github.com/hynk-studio/CodaBridge/iss
 
 ## Source and executed coverage
 
-Base main: `d50c3a7050f40823e56fd050f2a4e64277d8c96f`, including merged #13/#14. Work branch: `codex/mvp-06-style-atlas`; final head is recorded in the Draft PR. The pre-existing untracked PNG was untouched.
+Base main: `d50c3a7050f40823e56fd050f2a4e64277d8c96f`, including merged #13/#14. Work branch: `codex/mvp-06-style-atlas`; implementation/artifact commit is `ffa04a08fce988b0843813acae1e722cb0f9ea6c`; final head is recorded in the Draft PR. The pre-existing untracked PNG was untouched.
 
 The unchanged **500,380-byte** `data/context/sperm-whale-dialogues.csv` comes from [Zenodo 10817697](https://zenodo.org/records/10817697), release `7228c8eed2cc27ddd23b74c51aeccec9d762389e`, **CC BY 4.0**. Credit Sharma et al. and the Dominica Sperm Whale Project. [Original source record](../data/context/source-record.json), [source semantics](CONTEXT_DATA.md).
 

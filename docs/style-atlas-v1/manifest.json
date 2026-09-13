@@ -1,5 +1,5 @@
 {
-  "identity": "MVP-06 local verification and actual browser-delivered evidence",
+  "identity": "MVP-06 local verification and actual browser-delivered evidence; text logs have trailing whitespace normalized",
   "base": "d50c3a7050f40823e56fd050f2a4e64277d8c96f",
   "files": [
     {
@@ -14,8 +14,8 @@
     },
     {
       "path": "docs/style-atlas-v1/browser-tests.txt",
-      "bytes": 21142,
-      "sha256": "81e8262660e6b779cb99cdd86df5812a6a6b40baeb4673a96b9a49e8a66bf6b8"
+      "bytes": 21138,
+      "sha256": "0b1331397df6b8d75462f22dee6cacae70161a6fb12d8949627559eaaf71fec6"
     },
     {
       "path": "docs/style-atlas-v1/build.txt",
@@ -89,8 +89,8 @@
     },
     {
       "path": "docs/style-atlas-v1/lint.txt",
-      "bytes": 35,
-      "sha256": "6be0a531f6130f3dda283328dbeca9c819081c7ba511e94f1bf0bdc6fae22641"
+      "bytes": 34,
+      "sha256": "783b5615296dcb3a2b8c0e16f99718af7a72cf1f646ed5eeb9fc817cdf40e81b"
     },
     {
       "path": "docs/style-atlas-v1/phone-actual-row.png",
@@ -144,13 +144,13 @@
     },
     {
       "path": "docs/style-atlas-v1/preserved-studies-verification.txt",
-      "bytes": 2887,
-      "sha256": "7108064d2dffe00b9e0382651beac9d493c7cd73a7cdc549373ac40df95ec379"
+      "bytes": 2886,
+      "sha256": "fbc8017837f0fdd5331c80c13b55e0189bbaaa990f955ca4138a968d1cecca82"
     },
     {
       "path": "docs/style-atlas-v1/source-and-reproduction.txt",
-      "bytes": 5190,
-      "sha256": "fd070f24d9b230f11a02c81d90adc75fbfab5e0968c4a4a23639212e14e07562"
+      "bytes": 5188,
+      "sha256": "aae1e8de7f4431c50471ee1d2804af109071e6894f857e6090044b39c1abc76e"
     },
     {
       "path": "docs/style-atlas-v1/support-table.md",
@@ -159,8 +159,8 @@
     },
     {
       "path": "docs/style-atlas-v1/typecheck.txt",
-      "bytes": 40,
-      "sha256": "938fb2f8d946cd14b4a9621c1c6703e9ae520046634cfa85dd3b559369462001"
+      "bytes": 39,
+      "sha256": "dbc6cb0ef1e675a4eebbe0c681966cac6d711ff9cac8686eb32d77daa545d7fe"
     },
     {
       "path": "docs/style-atlas-v1/unit-tests.txt",

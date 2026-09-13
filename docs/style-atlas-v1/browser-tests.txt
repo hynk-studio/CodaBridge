@@ -103,7 +103,7 @@ Running 80 tests using 1 worker
   ✓  80 [mobile-chromium] › tests/browser/context.spec.ts:414:1 › ordinary disabled Lab: no model requests/autoplay, untrusted question is plain text, audio failure still permits downloads (994ms)
 
 
-  1) [desktop-chromium] › tests/browser/atlas.spec.ts:191:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals 
+  1) [desktop-chromium] › tests/browser/atlas.spec.ts:191:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals
 
     Error: expect(locator).toHaveText(expected) failed
 
@@ -140,7 +140,7 @@ Running 80 tests using 1 worker
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  2) [mobile-chromium] › tests/browser/atlas.spec.ts:191:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals 
+  2) [mobile-chromium] › tests/browser/atlas.spec.ts:191:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals
 
     Error: expect(locator).toHaveText(expected) failed
 
@@ -178,6 +178,6 @@ Running 80 tests using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   2 failed
-    [desktop-chromium] › tests/browser/atlas.spec.ts:191:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals 
-    [mobile-chromium] › tests/browser/atlas.spec.ts:191:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals 
+    [desktop-chromium] › tests/browser/atlas.spec.ts:191:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals
+    [mobile-chromium] › tests/browser/atlas.spec.ts:191:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals
   78 passed (3.6m)
