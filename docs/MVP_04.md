@@ -1,6 +1,6 @@
 # MVP-04 · Context Lab
 
-Implementation of [issue #6](https://github.com/hynk-studio/CodaBridge/issues/6), with the key-free listening/release preparation in [issue #7](https://github.com/hynk-studio/CodaBridge/issues/7). The reviewed foundation is integrated; this Lab remains a separate Draft PR. [Audit](CONTEXT_DATA.md), [verification](MVP_04_VERIFICATION.md), [release handoff](RELEASE_HANDOFF.md).
+Original implementation contract for [issue #6](https://github.com/hynk-studio/CodaBridge/issues/6), now integrated through PR #8. The notes below describe that initial descriptive slice; subsequent live-trial evidence remains in its historical reports. The separate predictive continuation is [MVP-05](MVP_05.md). [Audit](CONTEXT_DATA.md), [original verification](MVP_04_VERIFICATION.md), [release handoff](RELEASE_HANDOFF.md).
 
 ## Connected journey
 
