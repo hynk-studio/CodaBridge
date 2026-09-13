@@ -1,0 +1,130 @@
+{
+  "checkedOn": "2026-09-13",
+  "archiveCommit": "7228c8eed2cc27ddd23b74c51aeccec9d762389e",
+  "treeTruncated": false,
+  "archiveFiles": [
+    {
+      "path": "README.md",
+      "gitBlob": "a0911ae9ee8f7ce0f32de71e414008368a1fe84e",
+      "bytes": 1546
+    },
+    {
+      "path": "TheBookofWhales.pdf",
+      "gitBlob": "6368b34aa62a9adc35e36912d76ecf996d83555f",
+      "bytes": 890603
+    },
+    {
+      "path": "code/1-exchange-plot.ipynb",
+      "gitBlob": "a3e3e5432f49857f711a4ae84c62afbfa1ded67b",
+      "bytes": 335800
+    },
+    {
+      "path": "code/2-tempo.ipynb",
+      "gitBlob": "0e090a0786d464c30d5c4b80476b888de3914551",
+      "bytes": 59431
+    },
+    {
+      "path": "code/3-rhythm.ipynb",
+      "gitBlob": "17b7cfe9149206846244bfe08a69f548b0e554ce",
+      "bytes": 35477
+    },
+    {
+      "path": "code/4-rubato.ipynb",
+      "gitBlob": "1a74f52b214e2e6568956f372b3fa314613adcae",
+      "bytes": 1663470
+    },
+    {
+      "path": "code/5-ornament.ipynb",
+      "gitBlob": "944ba68f5d869fc85047ba42cc0c25211a26cbed",
+      "bytes": 82910
+    },
+    {
+      "path": "code/6-information-capacity.ipynb",
+      "gitBlob": "21fd11065816217ad469fb7bd9c4c510df80fcae",
+      "bytes": 2876
+    },
+    {
+      "path": "code/7-supplementary-extra.ipynb",
+      "gitBlob": "9d35623104aaeca95a18f3f2a4cc037b4d383e0c",
+      "bytes": 245825
+    },
+    {
+      "path": "data/DominicaCodas.csv",
+      "gitBlob": "fef50004b8340eb7d8094bb31722a9383a21853b",
+      "bytes": 747518
+    },
+    {
+      "path": "data/mean_codas.p",
+      "gitBlob": "b1fcec93488a579ad98324abaa7da350a5b2d9ad",
+      "bytes": 1674
+    },
+    {
+      "path": "data/ornaments.p",
+      "gitBlob": "c3f8d9566ae51008e57916f227a391c32d3b38cd",
+      "bytes": 7694
+    },
+    {
+      "path": "data/rhythms.p",
+      "gitBlob": "9fa8e79f5c363ba6ff72cf91bb60610378197ddf",
+      "bytes": 7702
+    },
+    {
+      "path": "data/sperm-whale-dialogues.csv",
+      "gitBlob": "dd200dc254984eeb26ae9e6bdd5d8674822fc458",
+      "bytes": 500380
+    },
+    {
+      "path": "data/tempos-dict.p",
+      "gitBlob": "9803941a491b403496e48dd72533f48583d12c6a",
+      "bytes": 117462
+    }
+  ],
+  "plotPageFiles": 197,
+  "metadataInspected": [
+    {
+      "path": "DominicaCodas.csv",
+      "bytes": 747518,
+      "sha256": "53dd44fbfb0040da93656aa44883954f3abe18dd6539e90c625af86a96db6b45"
+    },
+    {
+      "path": "TheBookofWhales.pdf",
+      "bytes": 890603,
+      "sha256": "53e61f00f3198f151e7d60055f85ac9e6ee64c2df240cbbfb8279fe17c22e4b0"
+    }
+  ],
+  "broaderCsvColumns": [
+    "codaNUM2018",
+    "Date",
+    "nClicks",
+    "Duration",
+    "ICI1",
+    "ICI2",
+    "ICI3",
+    "ICI4",
+    "ICI5",
+    "ICI6",
+    "ICI7",
+    "ICI8",
+    "ICI9",
+    "CodaType",
+    "Clan",
+    "Unit",
+    "UnitNum",
+    "IDN"
+  ],
+  "explicitDialogueCrosswalkFound": false,
+  "coalescingSupported": false,
+  "currentDataListing": "Same blob IDs as archived data listing; no additional crosswalk.",
+  "limits": [
+    "No join key from broader CSV to dialogue REC.",
+    "Book and supplementary text do not establish root/session/individual equivalence.",
+    "PRH references exist in notebook text, but PRH files are absent from the pinned archive tree.",
+    "No names-only cross-root coalescing or global caller inference.",
+    "3840/3948 discrepancy unresolved."
+  ],
+  "references": [
+    "https://www.nature.com/articles/s41467-024-47221-8",
+    "https://github.com/pratyushasharma/sw-combinatoriality/tree/7228c8eed2cc27ddd23b74c51aeccec9d762389e",
+    "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-47221-8/MediaObjects/41467_2024_47221_MOESM1_ESM.pdf"
+  ]
+}
