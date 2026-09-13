@@ -1,0 +1,56 @@
+- paragraph: Precomputed held-out prediction
+- paragraph: Does the other caller’s completed history help predict the focal caller’s next recorded coda? Compare the two models, then reveal what was recorded.
+- text: Held-out example
+- combobox "Held-out prediction example":
+  - option "Example 1 · sw061b · current row 10" [selected]
+  - option "Example 2 · sw078a · current row 1294"
+  - option "Example 3 · sw078c · current row 1498"
+  - option "Example 4 · sw085a · current row 1556"
+  - option "Example 5 · sw090a · current row 1991"
+- paragraph: First eligible source-order example from each of the first five eligible recording roots; selection was fixed before scoring.
+- region "Only completed calls":
+  - paragraph: 01 · Available at the cutoff
+  - heading "Only completed calls" [level=2]
+  - paragraph: The focal caller has just finished. These whole codas were available at 150.3250 s from the recording start. Each strip shows one coda’s internal timing.
+  - article:
+    - text: Current focal coda
+    - img "4 annotated clicks across 0.8712 s"
+    - strong: 0.8712 s · 4 clicks
+    - text: Ended 0.000 s before cutoff · row 10
+  - article:
+    - text: Recent partner coda
+    - img "5 annotated clicks across 0.8447 s"
+    - strong: 0.8447 s · 5 clicks
+    - text: Ended 0.085 s before cutoff · row 9
+  - article:
+    - text: Recent partner coda
+    - img "5 annotated clicks across 0.8388 s"
+    - strong: 0.8388 s · 5 clicks
+    - text: Ended 3.629 s before cutoff · row 8
+  - paragraph: No previous completed focal coda is available in this continuity span. The self-history features include an explicit missing-history indicator.
+  - group: Allowed older history and cutoff details
+- region "What duration comes next?":
+  - paragraph: 02 · Compare held-out predictions
+  - heading "What duration comes next?" [level=2]
+  - paragraph: Conditional on a subsequent eligible recorded coda from the focal caller. These are model probabilities for project-defined duration bins, not confidence about meaning.
+  - text: Short ≤ 0.7557 s Medium > 0.7557 s to 1.1851 s Long > 1.1851 s
+  - paragraph: Fold 1 boundaries come only from training targets in other recording roots. This example’s group was held out.
+  - region "Self only":
+    - heading "Self only" [level=3]
+    - text: Short
+    - strong: 12.6%
+    - text: Medium
+    - strong: 86.5%
+    - text: Long
+    - strong: 0.9%
+  - region "Self + recent partner":
+    - heading "Self + recent partner" [level=3]
+    - text: Short
+    - strong: 1.6%
+    - text: Medium
+    - strong: 98.0%
+    - text: Long
+    - strong: 0.4%
+  - paragraph: The actual next coda is hidden in this view until you reveal it.
+  - button "Reveal actual next coda"
+- group: Methods, attribution and limits

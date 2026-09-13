@@ -1,0 +1,60 @@
+{
+  "identity": "Running local app and actual browser-delivered artifact; no model or mock prediction fixture",
+  "files": [
+    {
+      "file": "desktop-before-reveal.png",
+      "bytes": 316565,
+      "sha256": "9b3182d38aab85ce5cf5898afbca5bbfdf0e6a01ffcbd6e6ab26d0b970163cb0"
+    },
+    {
+      "file": "desktop-revealed.png",
+      "bytes": 303829,
+      "sha256": "2439aa7b8aa4b449e6ecbf3af0c4cd4688fd4e1e9a5a490240b62f43cc393f40"
+    },
+    {
+      "file": "desktop-study.png",
+      "bytes": 406379,
+      "sha256": "1c0ca679885eb2efb79d89e1ac72c8b112247195de85e54700b3215c99f06acc"
+    },
+    {
+      "file": "phone-before-reveal.png",
+      "bytes": 130559,
+      "sha256": "d97f800cec22d271b564f29201bd05e97d7164c19f104e2c414f0d0a366e919b"
+    },
+    {
+      "file": "phone-revealed.png",
+      "bytes": 100257,
+      "sha256": "52026a5f30fe925a42e47a26828aefcc87b4ef22a40e59e4c29501f2c4d9e261"
+    },
+    {
+      "file": "phone-study.png",
+      "bytes": 186329,
+      "sha256": "1d0093b12a6ff45110dff364e39283b44bbb3c8c484a2adad0c6b42bab52a369"
+    },
+    {
+      "file": "phone-320-enlarged.png",
+      "bytes": 92827,
+      "sha256": "cdd49cabff76ce8ce78532e27cc73d013fddca971e7f7acba61e372914b61143"
+    },
+    {
+      "file": "browser-delivered.json",
+      "bytes": 2128588,
+      "sha256": "0c9f61cb547fec66a57e302a393623066ff6d5fbf0e7d1975fc2c30734c5029d"
+    },
+    {
+      "file": "desktop-evidence.json",
+      "bytes": 737,
+      "sha256": "a971a12bdc18b814fad6f86bf155d0e8ff05b74496f41dfcb30ab988049a66ca"
+    },
+    {
+      "file": "phone-evidence.json",
+      "bytes": 735,
+      "sha256": "dd82a37d8604a0adfe30244ed80300bf76b57249618cd1af6cc85d11faf8ae51"
+    },
+    {
+      "file": "before-reveal-accessibility.txt",
+      "bytes": 2775,
+      "sha256": "4e47865d4afe0a281b474681914a0dcf84c241bca401f65feaf4c0e163989e73"
+    }
+  ]
+}

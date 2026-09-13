@@ -13,7 +13,12 @@
     "test:browser": "playwright test",
     "data:verify": "node --experimental-strip-types scripts/prepare-data.ts --check && node --experimental-strip-types scripts/prepare-context.ts --check",
     "data:prepare": "node --experimental-strip-types scripts/prepare-data.ts",
-    "test:server-build": "node --experimental-strip-types --test tests/artifact/*.test.ts"
+    "test:server-build": "node --experimental-strip-types --test tests/artifact/*.test.ts",
+    "analysis:prepare": "node --experimental-strip-types scripts/prepare-prediction.ts",
+    "analysis:test": "analysis/dialogue-transfer/.venv/bin/python -m unittest discover -s analysis/dialogue-transfer -p 'test_*.py' -v",
+    "analysis:run": "analysis/dialogue-transfer/.venv/bin/python analysis/dialogue-transfer/run.py",
+    "analysis:reproduce": "analysis/dialogue-transfer/.venv/bin/python analysis/dialogue-transfer/run.py --check",
+    "analysis:verify": "node --experimental-strip-types scripts/prepare-prediction.ts --check && node --experimental-strip-types analysis/dialogue-transfer/verify.ts && node --experimental-strip-types scripts/check-prediction-summary.ts"
   },
   "dependencies": {
     "react": "^19.2.8",

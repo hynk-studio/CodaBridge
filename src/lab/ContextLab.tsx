@@ -20,6 +20,7 @@ import { deliver } from "../composer/project.ts";
 import { investigationCard, investigationPacket } from "./export.ts";
 import type { LabRequest, LabResult } from "./contract.ts";
 import ScoreChart from "./ScoreChart.tsx";
+import Prediction from "./Prediction.tsx";
 import { pairingFinding } from "./presentation.ts";
 import "./lab.css";
 
@@ -47,6 +48,7 @@ export default function ContextLab({
   stopField: () => void;
 }) {
   const [panel, setPanel] = useState<"explore" | "compare" | "save">("explore");
+  const [mode, setMode] = useState<"descriptive" | "prediction">("descriptive");
   const region = useRef<HTMLElement>(null);
   const [selectedId, setSelectedId] = useState(initialRow),
     [offset, setOffset] = useState(0);
@@ -201,6 +203,14 @@ export default function ContextLab({
     region.current?.scrollIntoView({ block: "start" });
     region.current?.focus({ preventScroll: true });
   }
+  const modeButtons = <nav className="lab-modes" aria-label="Context Lab mode">
+    <button aria-pressed={mode === "descriptive"} onClick={() => change(() => { stopField(); setMode("descriptive"); })}>Descriptive pairing</button>
+    <button aria-pressed={mode === "prediction"} onClick={() => change(() => { stopField(); setMode("prediction"); })}>Dialogue Transfer / Prediction</button>
+  </nav>;
+  if (mode === "prediction") return <section ref={region} tabIndex={-1} className="context-lab" hidden={!active} aria-labelledby="lab-title">
+    <div className="lab-heading"><div><p className="eyebrow">Context Lab / Dialogue Transfer</p><h1 id="lab-title">Can past calls help <em>predict?</em></h1></div><button onClick={onReturn}>← Return to my Composer</button></div>
+    {modeButtons}<Prediction active={active} />
+  </section>;
   return (
     <section
       ref={region}
@@ -222,6 +232,7 @@ export default function ContextLab({
         </div>
         <button onClick={onReturn}>← Return to my Composer</button>
       </div>
+      {modeButtons}
       <p hidden={panel !== "explore"} className="lab-source-note">
         A source-annotated exchange, separate from your creation and our four
         field clips.{" "}
@@ -782,7 +793,7 @@ export default function ContextLab({
         </div>
       </section>
       <details className="lab-source-details">
-        <summary>Source audit, license and planned deeper work</summary>
+        <summary>Source audit, license and prediction mode</summary>
         <p>
           Archived release {contextSource.version}, DOI {contextSource.doi};{" "}
           {contextSource.annotation}. {contextSource.timeOrigin}
@@ -794,9 +805,9 @@ export default function ContextLab({
           before computing any effect.
         </p>
         <p>
-          {contextSource.attribution} CC BY 4.0. The full predictive Context /
-          Dialogue Transfer experiment remains planned; this control does not
-          replace it.
+          {contextSource.attribution} CC BY 4.0. The separate Dialogue Transfer /
+          Prediction mode presents the bounded precomputed held-out experiment;
+          this descriptive control remains a different analysis.
         </p>
         <p>
           Source CSV SHA-256: {contextSource.csvSha256}. Original selected rows
