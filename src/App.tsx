@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import AudioCard from "./AudioCard.tsx";
 import { recordings } from "./domain/catalog.ts";
 import type { Recording, Side, ViewMode } from "./domain/types.ts";
@@ -16,6 +17,8 @@ import { measuredObservation } from "./domain/observation.ts";
 import Composer, { type ComposerHandle } from "./composer/Composer.tsx";
 import { stopSynthetic } from "./composer/sound.ts";
 import ContextLab from "./lab/ContextLab.tsx";
+import WorkspaceHeader from "./WorkspaceHeader.tsx";
+import Notice, { useNotice } from "./Notice.tsx";
 
 const seconds = (value: number) => `${value.toFixed(3)} s`;
 
@@ -125,13 +128,13 @@ function TimingPlot({
 }
 
 export default function App() {
-  const [section, setSection] = useState<"composer" | "lab">("composer");
+  const [section, setSection] = useState<"listen" | "composer" | "lab">(() => location.hash === "#composer" ? "composer" : location.hash === "#context-lab" ? "lab" : "listen");
   const [selection, setSelection] = useState({
     A: recordings[0].id,
     B: recordings[1].id,
   });
   const [view, setView] = useState<ViewMode>("absolute");
-  const [downloadStatus, setDownloadStatus] = useState("");
+  const [downloadStatus, setDownloadStatus] = useNotice();
   const [revealed, setRevealed] = useState(false);
   const composer = useRef<ComposerHandle>(null);
   const audioElements = useRef(new Map<Side, HTMLAudioElement>());
@@ -160,13 +163,17 @@ export default function App() {
   const a = recordings.find((recording) => recording.id === selection.A)!;
   const b = recordings.find((recording) => recording.id === selection.B)!;
   const investigation = useInvestigation(a, b);
-  function navigate(next: "composer" | "lab") {
+  function navigate(next: "listen" | "composer" | "lab") {
     stopAudio();
     stopSynthetic();
-    composer.current?.leave();
-    investigation.cancel("View changed. Previous investigation is obsolete.");
-    setSection(next);
+    if (next !== section) {
+      composer.current?.leave();
+      investigation.cancel("View changed. Previous investigation is obsolete.");
+    }
+    history.replaceState(null, "", `#${next === "lab" ? "context-lab" : next}`);
+    flushSync(() => setSection(next));
     window.scrollTo(0, 0);
+    document.getElementById("workspace")?.focus({ preventScroll: true });
   }
   const comparison = compareTiming(timingInput(a), timingInput(b));
   const measurements = [a, b].map((recording) =>
@@ -216,11 +223,11 @@ export default function App() {
       link.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       setDownloadStatus(
-        "Recording-comparison JSON download requested for A/B. Save your Composer project in Keep my coda.",
+        "Recording-comparison JSON download requested. Creation files are in Composer → Save & codebook.",
       );
     } catch (cause) {
       setDownloadStatus(
-        cause instanceof Error ? cause.message : "Evidence download failed.",
+        cause instanceof Error ? cause.message : "Evidence download failed.", "warning",
       );
     }
   }
@@ -228,60 +235,26 @@ export default function App() {
   return (
     <>
       <a className="skip-link" href="#workspace">
-        Skip to comparison
+        Skip to workspace
       </a>
-      <header className="site-header">
-        <a href="#" className="wordmark" aria-label="CodaBridge home">
-          <span className="brand-mark" aria-hidden="true">
-            ı┃ı┃ı
-          </span>
-          CodaBridge
-        </a>
-        <span className="edition">
-          Coda Composer <span> / </span> Listen · Make · Keep
-        </span>
-        <nav className="product-navigation" aria-label="CodaBridge workspace">
-          <button
-            aria-pressed={section === "composer"}
-            onClick={() => navigate("composer")}
-          >
-            Composer
-          </button>
-          <button
-            aria-pressed={section === "lab"}
-            onClick={() => navigate("lab")}
-          >
-            Context Lab
-          </button>
-        </nav>
-      </header>
-      <main id="workspace">
-        <div hidden={section !== "composer"}>
+      <WorkspaceHeader current={section} onNavigate={navigate} />
+      <main id="workspace" tabIndex={-1}>
+        <div hidden={section !== "listen"}>
           <div className="intro">
             <div>
-              <p className="eyebrow">A small window into sound</p>
+              <p className="eyebrow">Listen · Make · Investigate</p>
               <h1>
                 Hear a pattern. <em>Make it yours.</em>
               </h1>
               <p>
-                Listen to real sperm whale recordings. Shape their timing into a
-                personal, synthetic phrase.
+                A coda is a pattern of sperm whale clicks. Hear a real recording,
+                then make a synthetic phrase from its estimated timing.
               </p>
             </div>
-            <nav className="intro-actions" aria-label="Listen and create">
-              <a className="entry-listen" href="#listen">
-                Listen to recordings ↓
-              </a>
-              <a href="#composer">Open my Composer →</a>
-              <button onClick={() => navigate("lab")}>
-                Explore a source exchange →
-              </button>
-              <small>Listen first. Make a version when you’re ready.</small>
-            </nav>
           </div>
           <div className="workspace-label" id="listen">
             <span>
-              01 <strong>Listen</strong>
+              <strong>Press Play. Then make your version.</strong>
             </span>
             <span>
               Original audio · DSWP ·{" "}
@@ -299,9 +272,10 @@ export default function App() {
                 recordings={recordings}
                 onSelect={(id) => select(side, id)}
                 registerAudio={registerAudio}
-                onMake={() =>
-                  composer.current?.makeVersion(side === "A" ? a.id : b.id)
-                }
+                onMake={() => {
+                  navigate("composer");
+                  composer.current?.makeVersion(side === "A" ? a.id : b.id);
+                }}
                 onPlay={(element) => {
                   stopSynthetic();
                   audioElements.current.forEach((other) => {
@@ -473,12 +447,11 @@ export default function App() {
               </details>
             </section>
           </div>
-          <Composer
-            ref={composer}
-            stopField={stopAudio}
-            fieldSelection={`${selection.A}:${selection.B}`}
-            onExample={(id) => select("B", id)}
-          />
+          <div className="listen-next">
+            <p><strong>Make it your own.</strong> Stretch the clicks, change a pause, and hear what changes.</p>
+            <button onClick={() => navigate("composer")}>Open my Composer →</button>
+            <button onClick={() => navigate("lab")}>Explore an annotated exchange →</button>
+          </div>
           <div className="bottom-grid">
             <details className="evidence-panel">
               <summary>
@@ -505,11 +478,20 @@ export default function App() {
                 {evidenceJson(currentEvidence)}
               </pre>
             </details>
-            <InvestigationPanel investigation={investigation} />
+            <details className="optional-investigation">
+              <summary>Ask Astra about recordings A and B <span>Optional</span></summary>
+              <InvestigationPanel investigation={investigation} />
+            </details>
           </div>
-          <p className="download-status" role="status">
-            {downloadStatus}
-          </p>
+          <Notice className="download-status" message={downloadStatus} />
+        </div>
+        <div hidden={section !== "composer"}>
+          <Composer
+            ref={composer}
+            stopField={stopAudio}
+            fieldSelection={`${selection.A}:${selection.B}`}
+            onExample={(id) => { select("B", id); navigate("listen"); }}
+          />
         </div>
         <ContextLab
           active={section === "lab"}

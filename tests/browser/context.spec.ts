@@ -1,3 +1,4 @@
+import { composerView, labView, disclosure } from "./navigation.ts";
 import { test, expect, type Page } from "@playwright/test";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { createWorker } from "../../server/worker.ts";
@@ -46,11 +47,74 @@ async function seed(page: Page) {
   await page
     .getByRole("button", { name: "Make my version · 1.wav", exact: true })
     .click();
+  await composerView(page, "edit");
   await expect(page.getByLabel("Phrase title", { exact: true })).toHaveValue(
     "My first coda",
   );
 }
+
+test("focused follow-up: Lab answer opens once without moving focus or scroll, and failure preserves the comparison", async ({ page }) => {
+  let release = () => {}, fail = false;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  const mock = labTransport();
+  await fixture(page, {
+    ...mock,
+    transport: async (url, init) => {
+      if (fail) throw new Error("TEST ONLY controlled transport failure");
+      return mock.transport(url, init);
+    },
+  }, () => gate);
+  await seed(page);
+  const draft = await stored(page);
+  await labView(page, "compare");
+  await page.getByLabel("Duration assignment", { exact: true }).selectOption("1");
+  const measured = await page.locator(".lab-statistics").innerText();
+  const question = page.getByRole("textbox", { name: "Context question", exact: true });
+  await question.fill("Does the observed pairing look different from reassigned durations, and what remains uncertain?");
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Investigating this comparison…", exact: true })).toBeDisabled();
+  await question.click();
+  const scrollBefore = await page.evaluate(() => scrollY);
+  release();
+  const result = page.getByTestId("lab-result"), answer = result.locator(".exact-answer");
+  await expect(answer).toHaveAttribute("open");
+  await expect(question).toBeFocused();
+  expect(await page.evaluate(() => scrollY)).toBe(scrollBefore);
+  const received = JSON.parse((await result.locator("pre").textContent())!) as LabResult;
+  expect(await answer.locator("p").allTextContents()).toEqual([
+    ...received.explanation.possibleInterpretations, ...received.explanation.limitations,
+  ].map(row => row.text));
+  expect(received.comparison).toEqual(comparePairing(contextSegment, 1));
+  await expect(result.locator("details").last()).not.toHaveAttribute("open");
+  await answer.locator("summary").click();
+  await labView(page, "save");
+  await labView(page, "compare");
+  await expect(answer).not.toHaveAttribute("open");
+  expect(mock.calls).toHaveLength(2);
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+  await expect(answer).toHaveAttribute("open");
+  fail = true;
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+  await expect(page.locator(".lab-ask .lab-notice")).toContainText("The measured comparison is unchanged");
+  await expect(page.locator(".lab-ask .lab-notice")).toHaveAttribute("data-tone", "warning");
+  await expect(result).toHaveCount(0);
+  expect(await page.locator(".lab-statistics").innerText()).toBe(measured);
+  expect(await stored(page)).toEqual(draft);
+  const packet = await download(page, "Download investigation JSON");
+  await expect(page.locator(".lab-notice")).toHaveAttribute("data-tone", "info");
+  await expect(page.locator(".lab-notice")).toHaveAttribute("role", "status");
+  expect(JSON.parse(packet.bytes.toString()).generated).toBeNull();
+  expect(JSON.parse(packet.bytes.toString()).comparison).toEqual(comparePairing(contextSegment, 1));
+  await labView(page, "compare");
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.addStyleTag({ content: "html { font-size: 200%; }" });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).scrollIntoViewIfNeeded();
+  await page.screenshot({ path: "test-results/followup-lab-320-enlarged.png", fullPage: false });
+});
 async function download(page: Page, name: string) {
+  if (name.startsWith("Download investigation")) await labView(page, "save");
+  else await composerView(page, "save");
   const pending = page.waitForEvent("download");
   await page.getByRole("button", { name, exact: true }).click();
   const d = await pending;
@@ -85,14 +149,14 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
   });
   await seed(page);
   const seedDraft = await stored(page);
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Lengthen ×1.25", exact: true })
     .click();
-  await page
+  await (await composerView(page, "edit"))
     .getByLabel("Phrase title", { exact: true })
     .fill("My preserved Context journey");
   await page.getByLabel("Phrase title", { exact: true }).blur();
-  await page
+  await (await composerView(page, "save"))
     .getByRole("button", { name: "Save active block to codebook", exact: true })
     .click();
   const savedState = await page.evaluate(
@@ -108,8 +172,8 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
   await page.screenshot({
     path: `${directory}/${info.project.name}-composer-entry.png`,
   });
-  await page
-    .getByRole("button", { name: "▶ Play my synthetic phrase", exact: true })
+  await (await composerView(page, "edit"))
+    .getByRole("button", { name: "Play whole phrase", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
     "Playing",
@@ -125,7 +189,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
     lab.getByRole("status").filter({ hasText: "conservative combined gain" }),
   ).toContainText("stopped");
   const timeline = await page.locator(".exchange-timeline").innerHTML();
-  await page
+  await (await labView(page, "explore"))
     .getByRole("button", { name: "Play annotated timing window", exact: true })
     .click();
   await expect(
@@ -136,7 +200,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
       .locator("audio")
       .evaluateAll((els) => els.every((el) => (el as HTMLAudioElement).paused)),
   ).toBe(true);
-  await page.getByRole("button", { name: "Solo B", exact: true }).click();
+  await (await labView(page, "explore")).getByRole("button", { name: "Solo B", exact: true }).click();
   await expect(page.getByLabel("Mute caller A", { exact: true })).toBeChecked();
   await expect(
     page.getByLabel("Mute caller B", { exact: true }),
@@ -144,13 +208,13 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
   await expect(
     lab.getByRole("status").filter({ hasText: "conservative combined gain" }),
   ).toContainText("stopped");
-  await page
+  await (await labView(page, "explore"))
     .getByRole("button", { name: "Hear both callers", exact: true })
     .click();
-  await page
+  await (await labView(page, "explore"))
     .getByRole("button", { name: "Play annotated timing window", exact: true })
     .click();
-  await page
+  await (await labView(page, "explore"))
     .getByRole("button", { name: "Stop reconstruction", exact: true })
     .click();
   const audio = await page.evaluate(
@@ -169,27 +233,27 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
     20.09,
     4,
   );
-  await page.getByLabel("Control offset", { exact: true }).selectOption("1");
+  await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
   const comparison = comparePairing(contextSegment, 1);
   await expect(page.getByTestId("lab-observed")).toHaveText(
-    `${comparison.observed.valueSeconds!.toFixed(6)} s`,
+    `${comparison.observed.valueSeconds!.toFixed(3)} s`,
   );
   await expect(page.getByTestId("lab-selected-score")).toHaveText(
-    `${comparison.selected.valueSeconds!.toFixed(6)} s`,
+    `${comparison.selected.valueSeconds!.toFixed(3)} s`,
   );
   expect(await page.locator(".exchange-timeline").innerHTML()).toBe(timeline);
-  await page
+  await (await labView(page, "compare"))
     .getByRole("button", { name: "Reset to observed", exact: true })
     .click();
   await expect(page.getByTestId("lab-selected-score")).toHaveText(
-    `${comparison.observed.valueSeconds!.toFixed(6)} s`,
+    `${comparison.observed.valueSeconds!.toFixed(3)} s`,
   );
-  await page.getByLabel("Control offset", { exact: true }).selectOption("1");
-  await page.getByRole("button", { name: "Later window", exact: true }).click();
-  await page
+  await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
+  await (await labView(page, "explore")).getByRole("button", { name: "Later window", exact: true }).click();
+  await (await labView(page, "explore"))
     .getByLabel("Selected exchange coda", { exact: true })
     .selectOption("row-12");
-  await page
+  await (await labView(page, "explore"))
     .getByRole("button", { name: "Zoom to selected coda", exact: true })
     .click();
   await expect(page.locator(".lab-selected")).toContainText("row 12");
@@ -204,9 +268,9 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBe(true);
-  await page
+  await (await labView(page, "compare"))
     .getByRole("button", {
-      name: "Ask Astra about this comparison",
+      name: "Ask Astra",
       exact: true,
     })
     .click();
@@ -216,7 +280,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
     "TEST ONLY · provider transport fixture · no live Astra call",
   );
   await expect(resultBox).toContainText(
-    "Generated interpretation · unverified",
+    "Exact generated answer · unverified",
   );
   expect(mock.calls).toHaveLength(2);
   const result = JSON.parse(
@@ -252,6 +316,8 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
     json.path,
     `${directory}/${info.project.name}-TEST-ONLY-investigation.json`,
   );
+  await labView(page, "compare");
+  await disclosure(page, ".lab-result .exact-answer");
   await resultBox.screenshot({
     path: `${directory}/${info.project.name}-TEST-ONLY-explanation.png`,
   });
@@ -259,7 +325,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
     `${directory}/${info.project.name}-TEST-ONLY-result.json`,
     JSON.stringify(result, null, 2),
   );
-  await page
+  await (await labView(page, "save"))
     .getByRole("button", {
       name: "Return to Composer with my creation",
       exact: true,
@@ -278,11 +344,11 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
   expect(
     await page.getByLabel("Select recording B", { exact: true }).inputValue(),
   ).toBe(fieldSelection);
-  await page.getByRole("button", { name: "Undo", exact: true }).click(); // title transaction
-  await page.getByRole("button", { name: "Undo", exact: true }).click(); // timing remains in history
+  await (await composerView(page, "edit")).getByRole("button", { name: "Undo", exact: true }).click(); // title transaction
+  await (await composerView(page, "edit")).getByRole("button", { name: "Undo", exact: true }).click(); // timing remains in history
   expect((await stored(page)).blocks).toEqual(seedDraft.blocks);
-  await page.getByRole("button", { name: "Redo", exact: true }).click();
-  await page.getByRole("button", { name: "Redo", exact: true }).click();
+  await (await composerView(page, "edit")).getByRole("button", { name: "Redo", exact: true }).click();
+  await (await composerView(page, "edit")).getByRole("button", { name: "Redo", exact: true }).click();
   expect((await stored(page)).blocks).toEqual(before.blocks);
   const project = await download(page, "Download project JSON"),
     restored = parseProject(project.bytes.toString());
@@ -312,24 +378,24 @@ for (const change of ["offset", "row", "question", "navigation"])
     await page
       .getByRole("button", { name: "Context Lab", exact: true })
       .click();
-    await page.getByLabel("Control offset", { exact: true }).selectOption("1");
-    await page
+    await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
+    await (await labView(page, "compare"))
       .getByRole("button", {
-        name: "Ask Astra about this comparison",
+        name: "Ask Astra",
         exact: true,
       })
       .click();
     await expect.poll(() => waiting).toBe(true);
     if (change === "offset")
-      await page
-        .getByLabel("Control offset", { exact: true })
+      await (await labView(page, "compare"))
+        .getByLabel("Duration assignment", { exact: true })
         .selectOption("2");
     if (change === "row")
-      await page
+      await (await labView(page, "explore"))
         .getByLabel("Selected exchange coda", { exact: true })
         .selectOption("row-12");
     if (change === "question")
-      await page
+      await (await labView(page, "compare"))
         .getByLabel("Context question", { exact: true })
         .fill("An updated question");
     if (change === "navigation")
@@ -360,22 +426,23 @@ test("ordinary disabled Lab: no model requests/autoplay, untrusted question is p
   });
   await page.goto("/");
   await page.getByRole("button", { name: "Context Lab", exact: true }).click();
+  await labView(page, "compare");
   await expect(
     page.getByRole("button", {
-      name: "Ask Astra about this comparison",
+      name: "Ask Astra",
       exact: true,
     }),
   ).toBeDisabled();
-  await page
+  await (await labView(page, "explore"))
     .getByRole("button", { name: "Play annotated timing window", exact: true })
     .click();
   await expect(
     page
-      .getByRole("status")
+      .getByRole("alert")
       .filter({ hasText: "Timing audio could not start" }),
   ).toBeVisible();
   const malicious = "<img src=x onerror=alert(1)>".repeat(15);
-  await page.getByLabel("Context question", { exact: true }).fill(malicious);
+  await (await labView(page, "compare")).getByLabel("Context question", { exact: true }).fill(malicious);
   expect(await page.locator(".context-lab img").count()).toBe(0);
   const json = await download(page, "Download investigation JSON"),
     card = await download(page, "Download investigation card");

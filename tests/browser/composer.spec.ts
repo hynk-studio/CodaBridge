@@ -1,3 +1,4 @@
+import { composerView, listenView, disclosure } from "./navigation.ts";
 import { test, expect, type Page } from "@playwright/test";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { createWorker } from "../../server/worker.ts";
@@ -32,6 +33,7 @@ async function seed(page: Page) {
   await page
     .getByRole("button", { name: "Make my version · 1.wav", exact: true })
     .click();
+  await composerView(page, "edit");
   await expect(page.getByLabel("Phrase title", { exact: true })).toHaveValue(
     "My first coda",
   );
@@ -67,25 +69,129 @@ async function routeFixture(
   });
 }
 
+test("focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo", async ({ page }) => {
+  const mock = composerTransport();
+  let gate = Promise.resolve(), release = () => {}, fail = false;
+  const hold = () => { gate = new Promise<void>(resolve => { release = resolve; }); };
+  await routeFixture(page, async (url, init) => {
+    await gate;
+    if (fail) throw new Error("TEST ONLY controlled transport failure");
+    return mock.transport(url, init);
+  });
+  const posts: string[] = [];
+  page.on("request", request => { if (request.method() === "POST") posts.push(request.url()); });
+  await seed(page);
+  const before = await storedDraft(page);
+  // Discover the request from the ordinary editor, without selecting a hidden form.
+  await page.getByRole("button", { name: "Describe an edit with Astra →", exact: true }).press("Enter");
+  await expect(page.getByRole("form", { name: "Ask Astra about this creation" })).toBeFocused();
+  expect(posts).toEqual([]);
+  await page.getByLabel("Request type", { exact: true }).selectOption("investigate");
+  const request = page.getByRole("textbox", { name: "Your request", exact: true });
+  await request.fill("Which real examples have similar spacing, and what can that tell me?");
+  hold();
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Working with this revision…", exact: true })).toBeDisabled();
+  await request.click();
+  const scrollBefore = await page.evaluate(() => scrollY);
+  release();
+  const result = page.getByTestId("composer-result"), answer = result.locator(".exact-answer");
+  await expect(answer).toHaveAttribute("open");
+  await expect(request).toBeFocused();
+  expect(await page.evaluate(() => scrollY)).toBe(scrollBefore);
+  const received = JSON.parse((await result.locator("pre").textContent())!) as ComposerResult;
+  const rows = [...received.explanation!.possibleInterpretations, ...received.explanation!.limitations];
+  expect(await answer.locator("p:has(.citation)").evaluateAll(elements => elements.map(e => e.firstChild?.textContent))).toEqual(rows.map(r => r.text));
+  expect(await answer.locator(".citation").allTextContents()).toEqual(rows.map(r => `Evidence: ${r.evidenceIds.join(", ")}`));
+  await expect(result.locator("details").last()).not.toHaveAttribute("open");
+  await answer.locator("summary").click();
+  await composerView(page, "save");
+  await composerView(page, "compare");
+  await expect(answer).not.toHaveAttribute("open");
+  expect(await storedDraft(page)).toEqual(before);
+  expect(posts).toHaveLength(1);
+  // A different current request mounts a fresh answer; a prior deliberate close
+  // does not hide it, and a failed request cannot leave that answer current.
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+  await expect(answer).toHaveAttribute("open");
+  fail = true;
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+  await expect(page.locator(".composer-astra .composer-notice")).toContainText("Your draft is unchanged");
+  await expect(page.locator(".composer-astra .composer-notice")).toHaveAttribute("data-tone", "warning");
+  await expect(page.locator(".composer-astra .composer-notice")).toHaveAttribute("role", "alert");
+  await expect(result).toHaveCount(0);
+  expect(await storedDraft(page)).toEqual(before);
+  fail = false;
+  await composerView(page, "edit");
+  await page.getByRole("button", { name: "Describe an edit with Astra →", exact: true }).click();
+  await expect(page.getByLabel("Request type", { exact: true })).toHaveValue("edit");
+  hold();
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Working with this revision…", exact: true })).toBeDisabled();
+  release();
+  await expect(result).toContainText("Proposed edit · your draft is unchanged");
+  const proposal = JSON.parse((await result.locator("pre").textContent())!) as ComposerResult;
+  await page.getByRole("button", { name: "Play synthetic proposal", exact: true }).click();
+  expect(await storedDraft(page)).toEqual(before);
+  await page.getByRole("button", { name: "Apply & return to editor", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Edit phrase", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#composer")).toBeFocused();
+  await expect(page.locator(".composer-notice")).toHaveAttribute("data-tone", "info");
+  const applied = await storedDraft(page);
+  expect(applied.blocks).toEqual(proposal.proposal!.preview.blocks);
+  const playback = page.getByRole("group", { name: "Synthetic playback", exact: true });
+  await expect(playback).toHaveAccessibleDescription(/Seed timing and your edits use synthesized clicks/);
+  for (const name of ["Play seed timing", "Play this block", "Play whole phrase", "Pause", "Stop"]) {
+    await expect(playback.getByRole("button", { name, exact: true })).toBeVisible();
+  }
+  await page.getByRole("button", { name: "Play this block", exact: true }).click();
+  await expect(page.getByLabel("Synthetic playback status")).toContainText("Playing");
+  expect(await page.locator("audio").evaluateAll(elements => elements.every(e => (e as HTMLAudioElement).paused))).toBe(true);
+  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  expect((await storedDraft(page)).blocks).toEqual(before.blocks);
+  await expect(page.getByLabel("Synthetic playback status")).toContainText("Stopped");
+  await page.getByRole("button", { name: "Redo", exact: true }).click();
+  expect((await storedDraft(page)).blocks).toEqual(applied.blocks);
+  expect((await storedDraft(page)).revision).toBeGreaterThan(applied.revision);
+  expect(posts).toHaveLength(4);
+  // Late explanations obey the same invalidation boundary as edit proposals.
+  await composerView(page, "compare");
+  await page.getByLabel("Request type", { exact: true }).selectOption("investigate");
+  hold();
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+  await page.getByRole("button", { name: "Context Lab", exact: true }).click();
+  release();
+  await composerView(page, "compare");
+  await expect(result).toHaveCount(0);
+  expect((await storedDraft(page)).blocks).toEqual(applied.blocks);
+  await composerView(page, "edit");
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.addStyleTag({ content: "html { font-size: 200%; }" });
+  await page.getByRole("button", { name: "Describe an edit with Astra →", exact: true }).press("Enter");
+  await expect(page.getByRole("form", { name: "Ask Astra about this creation" })).toBeFocused();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+  await page.screenshot({ path: "test-results/followup-composer-320-enlarged.png", fullPage: false });
+});
+
 async function modifiedCopy(page: Page) {
   await seed(page);
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Duplicate block", exact: true })
     .click();
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Scale duration", exact: true })
     .click();
-  await page.locator(".gap-editor summary").click();
-  await page.getByLabel("Gap 1 → 2", { exact: true }).fill("0.300");
-  await page.getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
+  await (await composerView(page, "edit")).locator(".gap-editor summary").click();
+  await (await composerView(page, "edit")).getByLabel("Gap 1 → 2", { exact: true }).fill("0.300");
+  await (await composerView(page, "edit")).getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
   const draft = await storedDraft(page);
   expect(draft.blocks.map((b) => b.times)).toEqual(
     modifiedCopyInput().draft.blocks.map((b) => b.times),
   );
-  await page
-    .getByLabel("What would you like to do?", { exact: true })
+  await (await composerView(page, "compare"))
+    .getByLabel("Request type", { exact: true })
     .selectOption("investigate");
-  await page
+  await (await composerView(page, "compare"))
     .getByRole("textbox", { name: "Your request", exact: true })
     .fill(
       "Find the closest real recordings to my currently selected edited block under the normalized interval metric. Exclude its seed and explain the timing differences and limitations.",
@@ -116,18 +222,17 @@ for (const [label, prose] of [
     const fieldSelection = await page
       .getByLabel("Select recording B", { exact: true })
       .inputValue();
-    await page
-      .getByRole("button", { name: "Ask Astra to investigate", exact: true })
+    await (await composerView(page, "compare"))
+      .getByRole("button", { name: "Ask Astra", exact: true })
       .click();
     const visible = page.getByTestId("composer-result");
     await expect(visible).toContainText(
       "TEST ONLY · model transport fixture · no live Astra call",
     );
-    await expect(visible.getByRole("heading")).toHaveText(
-      "Generated interpretation · unverified",
-    );
+    await disclosure(page, ".composer-result .exact-answer");
+    await expect(visible.locator(".exact-answer summary")).toHaveText("Exact generated answer · unverified");
     await expect(visible).toContainText(prose);
-    await expect(visible.getByRole("heading")).not.toContainText(
+    await expect(visible.locator(".exact-answer summary")).not.toContainText(
       /fact.?verified/i,
     );
     const result = JSON.parse(
@@ -153,9 +258,9 @@ for (const [label, prose] of [
     ).toBe(fieldSelection);
     await expect(comparison).not.toContainText("dswp-99");
     await expect(
-      page.getByRole("button", { name: "Apply proposal", exact: true }),
+      page.getByRole("button", { name: "Apply & return to editor", exact: true }),
     ).toHaveCount(0);
-    await page
+    await (await composerView(page, "save"))
       .getByLabel("Include analysis evidence", { exact: false })
       .check();
     const delivered = await download(page, "Download project JSON");
@@ -180,6 +285,7 @@ for (const [label, prose] of [
     );
     const directory = "test-results/composer-numeric-prose";
     await mkdir(directory, { recursive: true });
+    await composerView(page, "compare");
     await visible.screenshot({
       path: `${directory}/${info.project.name}-TEST-ONLY-${label}.png`,
     });
@@ -227,19 +333,19 @@ test("late TEST ONLY numeric Composer investigation cannot describe or enter the
     },
   );
   const before = await modifiedCopy(page);
-  await page
-    .getByRole("button", { name: "Ask Astra to investigate", exact: true })
+  await (await composerView(page, "compare"))
+    .getByRole("button", { name: "Ask Astra", exact: true })
     .click();
   await expect.poll(() => finalWaiting).toBe(true);
-  await page.getByLabel("Gap 1 → 2", { exact: true }).fill("0.350");
-  await page.getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
+  await (await composerView(page, "edit")).getByLabel("Gap 1 → 2", { exact: true }).fill("0.350");
+  await (await composerView(page, "edit")).getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
   const changed = await storedDraft(page);
   expect(changed.revision).toBeGreaterThan(before.revision);
   expect(changed.blocks[1].times[1]).toBe(0.35);
   release();
   await expect.poll(() => serverAccepted).toBe(true);
   await expect(page.getByTestId("composer-result")).toHaveCount(0);
-  await page.getByLabel("Include analysis evidence", { exact: false }).check();
+  await (await composerView(page, "save")).getByLabel("Include analysis evidence", { exact: false }).check();
   const delivered = await download(page, "Download project JSON");
   const project = parseProject(delivered.bytes.toString());
   expect(project.draft).toEqual(changed);
@@ -251,6 +357,8 @@ test("late TEST ONLY numeric Composer investigation cannot describe or enter the
   expect(mock.calls).toHaveLength(2);
 });
 async function download(page: Page, name: string) {
+  if (name === "Download recording-comparison JSON") await listenView(page);
+  else await composerView(page, "save");
   const pending = page.waitForEvent("download");
   await page.getByRole("button", { name, exact: true }).click();
   const delivered = await pending,
@@ -282,23 +390,22 @@ for (const field of ["Phrase title", "My intention", "Meaning I assign"]) {
     });
     await seed(page);
     const original = await storedDraft(page);
-    await page
+    await (await composerView(page, "edit"))
       .getByRole("button", { name: "Lengthen ×1.25", exact: true })
       .click();
     const timed = await storedDraft(page);
     if (investigation)
-      await page
-        .getByLabel("What would you like to do?", { exact: true })
+      await (await composerView(page, "compare"))
+        .getByLabel("Request type", { exact: true })
         .selectOption("investigate");
-    await page
+    await (await composerView(page, "compare"))
       .getByRole("button", {
-        name: investigation
-          ? "Ask Astra to investigate"
-          : "Ask Astra for an edit",
+        name: "Ask Astra",
         exact: true,
       })
       .click();
     await expect.poll(() => started).toBe(true);
+    if (field === "Meaning I assign") await composerView(page, "edit");
     const input = page.getByLabel(field, { exact: field === "Phrase title" });
     const oldText = await input.inputValue();
     await input.focus();
@@ -321,13 +428,13 @@ for (const field of ["Phrase title", "My intention", "Meaning I assign"]) {
     release();
     await expect.poll(() => mock.calls.length).toBe(investigation ? 2 : 1);
     await expect(page.getByTestId("composer-result")).toHaveCount(0);
-    await page.getByRole("button", { name: "Undo", exact: true }).click();
+    await (await composerView(page, "edit")).getByRole("button", { name: "Undo", exact: true }).click();
     await expect(input).toHaveValue(oldText);
     expect((await storedDraft(page)).blocks).toEqual(timed.blocks);
-    await page.getByRole("button", { name: "Undo", exact: true }).click();
+    await (await composerView(page, "edit")).getByRole("button", { name: "Undo", exact: true }).click();
     expect((await storedDraft(page)).blocks).toEqual(original.blocks);
-    await page.getByRole("button", { name: "Redo", exact: true }).click();
-    await page.getByRole("button", { name: "Redo", exact: true }).click();
+    await (await composerView(page, "edit")).getByRole("button", { name: "Redo", exact: true }).click();
+    await (await composerView(page, "edit")).getByRole("button", { name: "Redo", exact: true }).click();
     await expect(input).toHaveValue(oldText + text);
     const redone = await storedDraft(page);
     expect(redone.blocks).toEqual(typed.blocks);
@@ -348,19 +455,19 @@ test("entry navigation preserves a draft and the secondary download is explicitl
     if (r.method() === "POST") posts.push(r.url());
   });
   await seed(page);
-  await page
+  await (await composerView(page, "edit"))
     .getByLabel("Phrase title", { exact: true })
     .fill("Keep this draft");
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Duplicate block", exact: true })
     .click();
   const saved = await storedDraft(page);
   await page.reload();
   await page
-    .getByRole("link", { name: "Listen to recordings ↓", exact: true })
+    .getByRole("button", { name: "Listen", exact: true })
     .click();
   await page
-    .getByRole("link", { name: "Open my Composer →", exact: true })
+    .getByRole("button", { name: "Open my Composer →", exact: true })
     .click();
   expect(await storedDraft(page)).toEqual(saved);
   expect(
@@ -369,8 +476,9 @@ test("entry navigation preserves a draft and the secondary download is explicitl
       .evaluateAll((els) => els.every((el) => (el as HTMLAudioElement).paused)),
   ).toBe(true);
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "stopped",
+    "Stopped",
   );
+  await listenView(page);
   await page.locator(".evidence-panel summary").click();
   await expect(page.locator(".evidence-panel")).toContainText(
     "This is not a Composer project",
@@ -398,10 +506,10 @@ test("selected-block audition uses its own schedule, coordinates playback, and q
     };
   });
   await seed(page);
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Duplicate block", exact: true })
     .click();
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Lengthen ×1.25", exact: true })
     .press("Enter");
   const draft = await storedDraft(page),
@@ -410,7 +518,7 @@ test("selected-block audition uses its own schedule, coordinates playback, and q
     "relative spacing is unchanged",
   );
   await expect(page.getByTestId("creation-seed-score")).toHaveText("0.000000");
-  await page.getByLabel("Duration multiplier", { exact: true }).fill("1.5");
+  await (await composerView(page, "edit")).getByLabel("Duration multiplier", { exact: true }).fill("1.5");
   await expect(page.locator(".number-hint")).toHaveText(
     "×1.5 multiplies every gap by 1.5. Normalized spacing stays the same.",
   );
@@ -420,9 +528,9 @@ test("selected-block audition uses its own schedule, coordinates playback, and q
         (window as unknown as { __testAuditions: number[] }).__testAuditions,
     );
   for (const [index, name] of [
-    "Play synthetic seed timing",
-    "Play selected synthetic block",
-    "▶ Play my synthetic phrase",
+    "Play seed timing",
+    "Play this block",
+    "Play whole phrase",
   ].entries()) {
     await page.getByRole("button", { name, exact: true }).click();
     await expect.poll(async () => (await auditions()).length).toBe(index + 1);
@@ -431,11 +539,11 @@ test("selected-block audition uses its own schedule, coordinates playback, and q
   expect(durations[0]).toBeCloseTo(draft.blocks[0].times.at(-1)! + 0.09, 4);
   expect(durations[1]).toBeCloseTo(block.times.at(-1)! + 0.09, 4);
   expect(durations[2]).toBeCloseTo(eventSchedule(draft).duration, 4);
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Open first gap +0.05 s", exact: true })
     .press("Enter");
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "stopped",
+    "Stopped",
   );
   await expect(page.getByTestId("timing-change")).toContainText(
     "different proportions",
@@ -450,17 +558,17 @@ test("selected-block audition uses its own schedule, coordinates playback, and q
       block.times[i] - block.times[i - 1],
       12,
     );
-  await page
-    .getByRole("button", { name: "Play selected synthetic block", exact: true })
+  await (await composerView(page, "edit"))
+    .getByRole("button", { name: "Play this block", exact: true })
     .click();
-  await page
+  await (await listenView(page))
     .getByRole("button", { name: "Play recording A", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "stopped",
+    "Stopped",
   );
-  await page
-    .getByRole("button", { name: "Play selected synthetic block", exact: true })
+  await (await composerView(page, "edit"))
+    .getByRole("button", { name: "Play this block", exact: true })
     .click();
   expect(
     await page
@@ -468,17 +576,17 @@ test("selected-block audition uses its own schedule, coordinates playback, and q
       .evaluateAll((els) => els.every((el) => (el as HTMLAudioElement).paused)),
   ).toBe(true);
   await page
-    .getByRole("button", { name: "Pause synthetic", exact: true })
+    .getByRole("button", { name: "Pause", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "paused",
+    "Paused",
   );
   await page
-    .getByRole("button", { name: "Resume synthetic", exact: true })
+    .getByRole("button", { name: "Resume", exact: true })
     .click();
   await page.locator(".phrase-block").first().click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "stopped",
+    "Stopped",
   );
 });
 
@@ -512,14 +620,14 @@ test("local complete journey: field audio, independent edits, playback, comparis
     "Ready · source bytes checked",
   );
   await expect(
-    page.getByRole("navigation", { name: "Listen and create" }),
+    page.getByRole("navigation", { name: "CodaBridge workspace" }),
   ).toBeVisible();
   await expect(page.locator(".intro")).not.toContainText("Download");
   await mkdir(outputDirectory, { recursive: true });
   await page.screenshot({
     path: `${outputDirectory}/${info.project.name}-listen.png`,
   });
-  await page
+  await (await listenView(page))
     .getByRole("button", { name: "Play recording A", exact: true })
     .press("Enter");
   await expect(page.getByLabel("Playback status A")).toHaveText("Playing");
@@ -535,19 +643,19 @@ test("local complete journey: field audio, independent edits, playback, comparis
     .getByRole("button", { name: "Make my version · 1.wav", exact: true })
     .click();
   const original = await storedDraft(page);
-  await page
+  await (await composerView(page, "edit"))
     .getByLabel("Phrase title", { exact: true })
     .fill("Room to breathe");
-  await page
+  await (await composerView(page, "edit"))
     .getByLabel("My intention", { exact: false })
     .fill("A pause before answering — my own human code");
-  await page
+  await (await composerView(page, "edit"))
     .getByLabel("Meaning I assign", { exact: false })
     .fill("A little hello");
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Duplicate block", exact: true })
     .click();
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Scale duration", exact: true })
     .click();
   const scaled = await storedDraft(page);
@@ -559,10 +667,10 @@ test("local complete journey: field audio, independent edits, playback, comparis
   );
   await expect(page.getByTestId("creation-seed-score")).toHaveText("0.000000");
   await page
-    .getByRole("button", { name: "▶ Play my synthetic phrase", exact: true })
+    .getByRole("button", { name: "Play whole phrase", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "Playing synthetic clicks",
+    "Playing",
   );
   expect(
     await page
@@ -572,36 +680,36 @@ test("local complete journey: field audio, independent edits, playback, comparis
       ),
   ).toBe(true);
   await page
-    .getByRole("button", { name: "Pause synthetic", exact: true })
+    .getByRole("button", { name: "Pause", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "paused",
+    "Paused",
   );
   await page
-    .getByRole("button", { name: "Resume synthetic", exact: true })
+    .getByRole("button", { name: "Resume", exact: true })
     .click();
   await page
-    .getByRole("button", { name: "Stop synthetic", exact: true })
+    .getByRole("button", { name: "Stop", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "stopped",
+    "Stopped",
   );
   await expect(page.locator(".gap-editor")).not.toHaveAttribute("open");
-  await page.locator(".gap-editor summary").click();
-  await page.getByLabel("Gap 1 → 2", { exact: true }).fill("0.3");
-  await page.getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
+  await (await composerView(page, "edit")).locator(".gap-editor summary").click();
+  await (await composerView(page, "edit")).getByLabel("Gap 1 → 2", { exact: true }).fill("0.3");
+  await (await composerView(page, "edit")).getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
   const changed = await storedDraft(page);
   expect(changed.blocks[1].times[1]).toBe(0.3);
   expect(changed.blocks[0].times).toEqual(original.blocks[0].times);
   await expect(page.getByTestId("creation-seed-score")).not.toHaveText(
     "0.000000",
   );
-  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  await (await composerView(page, "edit")).getByRole("button", { name: "Undo", exact: true }).click();
   expect((await storedDraft(page)).blocks).toEqual(scaled.blocks);
-  await page.getByRole("button", { name: "Redo", exact: true }).click();
+  await (await composerView(page, "edit")).getByRole("button", { name: "Redo", exact: true }).click();
   expect((await storedDraft(page)).blocks).toEqual(changed.blocks);
-  await page
-    .getByRole("button", { name: "Listen / compare dswp-11", exact: true })
+  await (await composerView(page, "compare"))
+    .getByRole("button", { name: "Open recording 11", exact: true })
     .click();
   await expect(
     page.getByLabel("Select recording B", { exact: true }),
@@ -617,13 +725,14 @@ test("local complete journey: field audio, independent edits, playback, comparis
         elements.every((element) => (element as HTMLAudioElement).paused),
       ),
   ).toBe(true);
-  await page
+  await (await composerView(page, "save"))
     .getByRole("button", { name: "Save active block to codebook", exact: true })
     .click();
   await expect(
     page.getByLabel("Include analysis evidence", { exact: false }),
   ).not.toBeChecked();
   const current = await storedDraft(page);
+  await composerView(page, "edit");
   await page.locator(".composer-workbench").screenshot({
     path: `${outputDirectory}/${info.project.name}-workbench.png`,
   });
@@ -727,7 +836,7 @@ test("local complete journey: field audio, independent edits, playback, comparis
       ),
     );
   }
-  await page
+  await (await composerView(page, "edit"))
     .getByLabel("Phrase title", { exact: true })
     .fill("An obsolete local edit");
   await page
@@ -746,10 +855,9 @@ test("local complete journey: field audio, independent edits, playback, comparis
       { exact: true },
     ),
   ).toBeVisible();
-  await expect(
-    page.getByRole("button", { name: "Ask Astra for an edit", exact: true }),
-  ).toBeDisabled();
-  await page
+  await composerView(page, "compare");
+  await expect(page.getByRole("button", { name: "Ask Astra", exact: true })).toBeDisabled();
+  await (await composerView(page, "save"))
     .getByRole("button", { name: "Start a new phrase", exact: true })
     .click();
   await page.reload();
@@ -783,24 +891,24 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
     }),
   );
   await page.goto("/");
-  await page
+  await (await listenView(page))
     .getByRole("button", { name: "Play recording A", exact: true })
     .click();
   await holdForCapture(1500);
   await page
     .getByRole("button", { name: "Make my version · 1.wav", exact: true })
     .click();
-  await page.getByLabel("Phrase title", { exact: true }).fill("A longer hello");
-  await page
+  await (await composerView(page, "edit")).getByLabel("Phrase title", { exact: true }).fill("A longer hello");
+  await (await composerView(page, "edit"))
     .getByLabel("Meaning I assign", { exact: false })
     .fill("Hello, in my own code");
-  await page
+  await (await composerView(page, "compare"))
     .getByRole("textbox", { name: "Your request", exact: true })
     .fill("Repeat it and make the second block 1.25 times as long.");
   await holdForCapture();
   const before = await storedDraft(page);
-  await page
-    .getByRole("button", { name: "Ask Astra for an edit", exact: true })
+  await (await composerView(page, "compare"))
+    .getByRole("button", { name: "Ask Astra", exact: true })
     .click();
   await expect(page.getByTestId("composer-result")).toContainText("TEST ONLY");
   await expect(page.getByTestId("composer-result")).toContainText(
@@ -828,13 +936,15 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
     .click();
   await holdForCapture(1500);
   await page
-    .getByRole("button", { name: "Stop synthetic", exact: true })
+    .getByRole("button", { name: "Stop", exact: true })
     .click();
+  await composerView(page, "compare");
+  await disclosure(page, ".composer-result .exact-answer");
   await page.getByTestId("composer-result").screenshot({
     path: `${outputDirectory}/${info.project.name}-TEST-ONLY-proposal.png`,
   });
   await page
-    .getByRole("button", { name: "Apply proposal", exact: true })
+    .getByRole("button", { name: "Apply & return to editor", exact: true })
     .click();
   expect((await storedDraft(page)).blocks[1].times.at(-1)).toBeCloseTo(
     before.blocks[0].times.at(-1)! * 1.25,
@@ -842,23 +952,23 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
   );
   expect((await storedDraft(page)).blocks[0]).toEqual(before.blocks[0]);
   await holdForCapture();
-  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  await (await composerView(page, "edit")).getByRole("button", { name: "Undo", exact: true }).click();
   expect((await storedDraft(page)).blocks).toEqual(before.blocks);
   await holdForCapture();
-  await page.getByRole("button", { name: "Redo", exact: true }).click();
+  await (await composerView(page, "edit")).getByRole("button", { name: "Redo", exact: true }).click();
   await page.locator(".phrase-block").last().click();
-  await page.locator(".gap-editor summary").click();
-  await page.getByLabel("Gap 1 → 2", { exact: true }).fill("0.3");
-  await page.getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
+  await (await composerView(page, "edit")).locator(".gap-editor summary").click();
+  await (await composerView(page, "edit")).getByLabel("Gap 1 → 2", { exact: true }).fill("0.3");
+  await (await composerView(page, "edit")).getByLabel("Gap 1 → 2", { exact: true }).press("Enter");
   await holdForCapture();
-  await page
-    .getByLabel("What would you like to do?", { exact: true })
+  await (await composerView(page, "compare"))
+    .getByLabel("Request type", { exact: true })
     .selectOption("investigate");
-  await page
-    .getByRole("button", { name: "Ask Astra to investigate", exact: true })
+  await (await composerView(page, "compare"))
+    .getByRole("button", { name: "Ask Astra", exact: true })
     .click();
   await expect(page.getByTestId("composer-result")).toContainText(
-    "Generated interpretation · unverified",
+    "Exact generated answer · unverified",
   );
   expect(mock.calls).toHaveLength(3);
   await holdForCapture(2400);
@@ -876,21 +986,24 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
   expect(JSON.stringify(result)).not.toMatch(
     /test-opaque|intermediate commentary|encrypted_content/,
   );
+  await composerView(page, "compare");
+  await disclosure(page, ".composer-result .exact-answer");
   await page.getByTestId("composer-result").screenshot({
     path: `${outputDirectory}/${info.project.name}-TEST-ONLY-retrieval.png`,
   });
-  await page.getByLabel("Include analysis evidence", { exact: false }).check();
+  await (await composerView(page, "save")).getByLabel("Include analysis evidence", { exact: false }).check();
   const project = await download(page, "Download project JSON");
   expect(
     JSON.parse(project.bytes.toString()).savedAnalysis.generated.execution,
   ).toBe("mock-transport-test");
-  await page
-    .getByRole("button", { name: "Listen / compare dswp-11", exact: true })
+  await (await composerView(page, "compare"))
+    .getByRole("button", { name: "Open recording 11", exact: true })
     .click();
-  await page
+  await (await listenView(page))
     .getByRole("button", { name: "Play recording B", exact: true })
     .click();
   await holdForCapture(1300);
+  await composerView(page, "save");
   await page.getByTestId("coda-card").scrollIntoViewIfNeeded();
   await holdForCapture(1700);
   expect(mock.calls).toHaveLength(3);
@@ -926,23 +1039,23 @@ for (const mutation of [
       return mock.transport(url, init);
     });
     await seed(page);
-    await page
+    await (await composerView(page, "edit"))
       .getByRole("button", { name: "Duplicate block", exact: true })
       .click();
-    await page
-      .getByRole("button", { name: "Ask Astra for an edit", exact: true })
+    await (await composerView(page, "compare"))
+      .getByRole("button", { name: "Ask Astra", exact: true })
       .click();
     await expect.poll(() => started).toBe(true);
     if (mutation === "edit")
-      await page
+      await (await composerView(page, "edit"))
         .getByRole("button", { name: "Scale duration", exact: true })
         .click();
     else if (mutation === "undo")
-      await page.getByRole("button", { name: "Undo", exact: true }).click();
+      await (await composerView(page, "edit")).getByRole("button", { name: "Undo", exact: true }).click();
     else if (mutation === "block selection")
       await page.locator(".phrase-block").first().click();
     else if (mutation === "field selection")
-      await page
+      await (await listenView(page))
         .getByLabel("Select recording B", { exact: true })
         .selectOption("dswp-7");
     else {
@@ -978,8 +1091,8 @@ test("invalid TEST ONLY proposal and untrusted imports cannot alter the current 
   await routeFixture(page, mock.transport);
   await seed(page);
   const original = await storedDraft(page);
-  await page
-    .getByRole("button", { name: "Ask Astra for an edit", exact: true })
+  await (await composerView(page, "compare"))
+    .getByRole("button", { name: "Ask Astra", exact: true })
     .click();
   await expect(page.locator(".composer-notice")).toContainText(
     "could not be accepted",
@@ -1039,7 +1152,7 @@ test("audio and storage failure leave a keyboard-editable, exportable phrase", a
   });
   await seed(page);
   await page
-    .getByRole("button", { name: "▶ Play my synthetic phrase", exact: true })
+    .getByRole("button", { name: "Play whole phrase", exact: true })
     .click();
   await expect(page.locator(".composer-notice")).toContainText(
     "Synthetic audio is unavailable",
@@ -1047,7 +1160,7 @@ test("audio and storage failure leave a keyboard-editable, exportable phrase", a
   await expect(page.locator(".composer-storage")).toContainText(
     "Local saving failed",
   );
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Scale duration", exact: true })
     .press("Enter");
   const wav = await download(page, "Download synthetic WAV");
@@ -1059,37 +1172,37 @@ test("editing stops scheduled synthetic audio and field playback coordinates in 
   page,
 }) => {
   await seed(page);
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Duplicate block", exact: true })
     .click();
   await page
-    .getByRole("button", { name: "▶ Play my synthetic phrase", exact: true })
+    .getByRole("button", { name: "Play whole phrase", exact: true })
     .click();
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Scale duration", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "stopped",
+    "Stopped",
   );
   await page
-    .getByRole("button", { name: "▶ Play my synthetic phrase", exact: true })
+    .getByRole("button", { name: "Play whole phrase", exact: true })
     .click();
-  await page
+  await (await listenView(page))
     .getByRole("button", { name: "Play recording A", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "stopped",
+    "Stopped",
   );
   for (let i = 0; i < 3; i++) {
-    await page
-      .getByRole("button", { name: "Play synthetic seed timing", exact: true })
+    await (await composerView(page, "edit"))
+      .getByRole("button", { name: "Play seed timing", exact: true })
       .click();
     await page
-      .getByRole("button", { name: "Stop synthetic", exact: true })
+      .getByRole("button", { name: "Stop", exact: true })
       .click();
   }
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
-    "stopped",
+    "Stopped",
   );
 });
 test("mobile, enlarged text and unequal-count seed keep accessible controls and explicit limits", async ({
@@ -1097,7 +1210,7 @@ test("mobile, enlarged text and unequal-count seed keep accessible controls and 
 }) => {
   await page.setViewportSize({ width: 320, height: 850 });
   await seed(page);
-  await page
+  await (await composerView(page, "edit"))
     .getByLabel("Add seed block", { exact: true })
     .selectOption("dswp-7");
   await expect(
@@ -1123,7 +1236,7 @@ test("mobile, enlarged text and unequal-count seed keep accessible controls and 
       .slice(0, 30),
   }));
   expect(layout.width, JSON.stringify(layout)).toBeLessThanOrEqual(320);
-  await page
+  await (await composerView(page, "edit"))
     .getByRole("button", { name: "Move earlier", exact: true })
     .press("Enter");
   expect((await storedDraft(page)).blocks[0].seed.recordingId).toBe("dswp-7");

@@ -1,0 +1,366 @@
+{
+  "kind": "Actual local browser controls and downloads; no model fixture or model request",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "modelRequests": [],
+  "pageErrors": [],
+  "distinctControlCount": 8,
+  "comparison": {
+    "method": "paired-duration-gap-v1",
+    "unit": "seconds",
+    "status": "available",
+    "reason": null,
+    "pairCount": 7,
+    "uniqueCallCount": 14,
+    "aCallCount": 14,
+    "bCallCount": 9,
+    "observed": {
+      "offset": 0,
+      "assignments": [
+        {
+          "slotRowId": "row-10",
+          "durationFromRowId": "row-10",
+          "durationSeconds": 0.8711697
+        },
+        {
+          "slotRowId": "row-11",
+          "durationFromRowId": "row-11",
+          "durationSeconds": 0.967213
+        },
+        {
+          "slotRowId": "row-13",
+          "durationFromRowId": "row-13",
+          "durationSeconds": 0.946011
+        },
+        {
+          "slotRowId": "row-15",
+          "durationFromRowId": "row-15",
+          "durationSeconds": 1.0306499999999998
+        },
+        {
+          "slotRowId": "row-16",
+          "durationFromRowId": "row-16",
+          "durationSeconds": 1.0820167
+        },
+        {
+          "slotRowId": "row-19",
+          "durationFromRowId": "row-19",
+          "durationSeconds": 1.07565
+        },
+        {
+          "slotRowId": "row-20",
+          "durationFromRowId": "row-20",
+          "durationSeconds": 1.020525
+        },
+        {
+          "slotRowId": "row-22",
+          "durationFromRowId": "row-22",
+          "durationSeconds": 1.4634833
+        },
+        {
+          "slotRowId": "row-24",
+          "durationFromRowId": "row-24",
+          "durationSeconds": 0.9997651000000001
+        }
+      ],
+      "pairs": [
+        {
+          "aId": "row-9",
+          "bId": "row-10",
+          "overlapSeconds": 0.7865333000000021,
+          "aSourceLine": 9,
+          "bSlotSourceLine": 10,
+          "durationFromRowId": "row-10",
+          "durationFromSourceLine": 10,
+          "aDurationSeconds": 0.8447332999999999,
+          "originalBDurationSeconds": 0.8711697,
+          "assignedBDurationSeconds": 0.8711697,
+          "absoluteDifferenceSeconds": 0.026436400000000138
+        },
+        {
+          "aId": "row-12",
+          "bId": "row-11",
+          "overlapSeconds": 0.827512999999982,
+          "aSourceLine": 12,
+          "bSlotSourceLine": 11,
+          "durationFromRowId": "row-11",
+          "durationFromSourceLine": 11,
+          "aDurationSeconds": 0.8275417,
+          "originalBDurationSeconds": 0.967213,
+          "assignedBDurationSeconds": 0.967213,
+          "absoluteDifferenceSeconds": 0.13967129999999994
+        },
+        {
+          "aId": "row-14",
+          "bId": "row-13",
+          "overlapSeconds": 0.7651109999999903,
+          "aSourceLine": 14,
+          "bSlotSourceLine": 13,
+          "durationFromRowId": "row-13",
+          "durationFromSourceLine": 13,
+          "aDurationSeconds": 0.8468334000000001,
+          "originalBDurationSeconds": 0.946011,
+          "assignedBDurationSeconds": 0.946011,
+          "absoluteDifferenceSeconds": 0.09917759999999998
+        },
+        {
+          "aId": "row-17",
+          "bId": "row-16",
+          "overlapSeconds": 0.7479166999999904,
+          "aSourceLine": 17,
+          "bSlotSourceLine": 16,
+          "durationFromRowId": "row-16",
+          "durationFromSourceLine": 16,
+          "aDurationSeconds": 1.0484083,
+          "originalBDurationSeconds": 1.0820167,
+          "assignedBDurationSeconds": 1.0820167,
+          "absoluteDifferenceSeconds": 0.033608400000000094
+        },
+        {
+          "aId": "row-18",
+          "bId": "row-19",
+          "overlapSeconds": 0.7585333000000105,
+          "aSourceLine": 18,
+          "bSlotSourceLine": 19,
+          "durationFromRowId": "row-19",
+          "durationFromSourceLine": 19,
+          "aDurationSeconds": 0.9956332999999999,
+          "originalBDurationSeconds": 1.07565,
+          "assignedBDurationSeconds": 1.07565,
+          "absoluteDifferenceSeconds": 0.08001670000000005
+        },
+        {
+          "aId": "row-21",
+          "bId": "row-20",
+          "overlapSeconds": 0.9197249999999713,
+          "aSourceLine": 21,
+          "bSlotSourceLine": 20,
+          "durationFromRowId": "row-20",
+          "durationFromSourceLine": 20,
+          "aDurationSeconds": 0.9803084,
+          "originalBDurationSeconds": 1.020525,
+          "assignedBDurationSeconds": 1.020525,
+          "absoluteDifferenceSeconds": 0.040216599999999936
+        },
+        {
+          "aId": "row-23",
+          "bId": "row-22",
+          "overlapSeconds": 0.9525415999999893,
+          "aSourceLine": 23,
+          "bSlotSourceLine": 22,
+          "durationFromRowId": "row-22",
+          "durationFromSourceLine": 22,
+          "aDurationSeconds": 0.9525416,
+          "originalBDurationSeconds": 1.4634833,
+          "assignedBDurationSeconds": 1.4634833,
+          "absoluteDifferenceSeconds": 0.5109417
+        }
+      ],
+      "valueSeconds": 0.13286695714285718
+    },
+    "selected": {
+      "offset": 1,
+      "assignments": [
+        {
+          "slotRowId": "row-10",
+          "durationFromRowId": "row-11",
+          "durationSeconds": 0.967213
+        },
+        {
+          "slotRowId": "row-11",
+          "durationFromRowId": "row-13",
+          "durationSeconds": 0.946011
+        },
+        {
+          "slotRowId": "row-13",
+          "durationFromRowId": "row-15",
+          "durationSeconds": 1.0306499999999998
+        },
+        {
+          "slotRowId": "row-15",
+          "durationFromRowId": "row-16",
+          "durationSeconds": 1.0820167
+        },
+        {
+          "slotRowId": "row-16",
+          "durationFromRowId": "row-19",
+          "durationSeconds": 1.07565
+        },
+        {
+          "slotRowId": "row-19",
+          "durationFromRowId": "row-20",
+          "durationSeconds": 1.020525
+        },
+        {
+          "slotRowId": "row-20",
+          "durationFromRowId": "row-22",
+          "durationSeconds": 1.4634833
+        },
+        {
+          "slotRowId": "row-22",
+          "durationFromRowId": "row-24",
+          "durationSeconds": 0.9997651000000001
+        },
+        {
+          "slotRowId": "row-24",
+          "durationFromRowId": "row-10",
+          "durationSeconds": 0.8711697
+        }
+      ],
+      "pairs": [
+        {
+          "aId": "row-9",
+          "bId": "row-10",
+          "overlapSeconds": 0.7865333000000021,
+          "aSourceLine": 9,
+          "bSlotSourceLine": 10,
+          "durationFromRowId": "row-11",
+          "durationFromSourceLine": 11,
+          "aDurationSeconds": 0.8447332999999999,
+          "originalBDurationSeconds": 0.8711697,
+          "assignedBDurationSeconds": 0.967213,
+          "absoluteDifferenceSeconds": 0.12247970000000008
+        },
+        {
+          "aId": "row-12",
+          "bId": "row-11",
+          "overlapSeconds": 0.827512999999982,
+          "aSourceLine": 12,
+          "bSlotSourceLine": 11,
+          "durationFromRowId": "row-13",
+          "durationFromSourceLine": 13,
+          "aDurationSeconds": 0.8275417,
+          "originalBDurationSeconds": 0.967213,
+          "assignedBDurationSeconds": 0.946011,
+          "absoluteDifferenceSeconds": 0.1184693
+        },
+        {
+          "aId": "row-14",
+          "bId": "row-13",
+          "overlapSeconds": 0.7651109999999903,
+          "aSourceLine": 14,
+          "bSlotSourceLine": 13,
+          "durationFromRowId": "row-15",
+          "durationFromSourceLine": 15,
+          "aDurationSeconds": 0.8468334000000001,
+          "originalBDurationSeconds": 0.946011,
+          "assignedBDurationSeconds": 1.0306499999999998,
+          "absoluteDifferenceSeconds": 0.18381659999999977
+        },
+        {
+          "aId": "row-17",
+          "bId": "row-16",
+          "overlapSeconds": 0.7479166999999904,
+          "aSourceLine": 17,
+          "bSlotSourceLine": 16,
+          "durationFromRowId": "row-19",
+          "durationFromSourceLine": 19,
+          "aDurationSeconds": 1.0484083,
+          "originalBDurationSeconds": 1.0820167,
+          "assignedBDurationSeconds": 1.07565,
+          "absoluteDifferenceSeconds": 0.027241700000000035
+        },
+        {
+          "aId": "row-18",
+          "bId": "row-19",
+          "overlapSeconds": 0.7585333000000105,
+          "aSourceLine": 18,
+          "bSlotSourceLine": 19,
+          "durationFromRowId": "row-20",
+          "durationFromSourceLine": 20,
+          "aDurationSeconds": 0.9956332999999999,
+          "originalBDurationSeconds": 1.07565,
+          "assignedBDurationSeconds": 1.020525,
+          "absoluteDifferenceSeconds": 0.02489169999999996
+        },
+        {
+          "aId": "row-21",
+          "bId": "row-20",
+          "overlapSeconds": 0.9197249999999713,
+          "aSourceLine": 21,
+          "bSlotSourceLine": 20,
+          "durationFromRowId": "row-22",
+          "durationFromSourceLine": 22,
+          "aDurationSeconds": 0.9803084,
+          "originalBDurationSeconds": 1.020525,
+          "assignedBDurationSeconds": 1.4634833,
+          "absoluteDifferenceSeconds": 0.4831749000000001
+        },
+        {
+          "aId": "row-23",
+          "bId": "row-22",
+          "overlapSeconds": 0.9525415999999893,
+          "aSourceLine": 23,
+          "bSlotSourceLine": 22,
+          "durationFromRowId": "row-24",
+          "durationFromSourceLine": 24,
+          "aDurationSeconds": 0.9525416,
+          "originalBDurationSeconds": 1.4634833,
+          "assignedBDurationSeconds": 0.9997651000000001,
+          "absoluteDifferenceSeconds": 0.047223500000000085
+        }
+      ],
+      "valueSeconds": 0.1438996285714286
+    },
+    "controls": [
+      {
+        "offset": 1,
+        "valueSeconds": 0.1438996285714286,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 2,
+        "valueSeconds": 0.16230445714285716,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 3,
+        "valueSeconds": 0.1731750285714286,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 4,
+        "valueSeconds": 0.12168801428571423,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 5,
+        "valueSeconds": 0.19408779999999992,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 6,
+        "valueSeconds": 0.18218561428571428,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 7,
+        "valueSeconds": 0.16822005714285715,
+        "equivalentToOffset": null
+      },
+      {
+        "offset": 8,
+        "valueSeconds": 0.08378658571428575,
+        "equivalentToOffset": null
+      }
+    ],
+    "distinctControlCount": 8,
+    "equivalentControlCount": 0,
+    "controlSummary": {
+      "minSeconds": 0.08378658571428575,
+      "maxSeconds": 0.19408779999999992,
+      "medianSeconds": 0.16526225714285714
+    },
+    "limitations": [
+      "Timing reconstruction from research annotations — not the original recording. No mapping to the four field clips or your creation is established.",
+      "A and B are annotation-local caller labels, not verified identities across recordings or REC groups. Annotation precision is not accuracy.",
+      "Fixed positive-overlap pairs may reuse calls. This is a selected segment, not independent population samples.",
+      "Circular reassignment preserves B's duration inventory and circular order, but introduces a seam and may mix coda types or shared settings.",
+      "This descriptive sensitivity control is not the paper's type-conditioned permutation test or the planned predictive Dialogue Transfer experiment. It establishes no causality, independence, whale meaning or semantic confidence."
+    ]
+  },
+  "restoredDraft": true,
+  "restoredCodebook": true
+}

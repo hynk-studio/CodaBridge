@@ -1,3 +1,4 @@
+import { disclosure } from "./navigation.ts";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 
@@ -148,6 +149,7 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
     .getByText("Source & annotation details", { exact: true })
     .first()
     .click();
+  await disclosure(page, ".optional-investigation");
   await expect(
     page
       .getByRole("region", { name: "Ask about this pair." })

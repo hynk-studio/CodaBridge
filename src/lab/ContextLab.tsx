@@ -1,4 +1,6 @@
+import Notice, { useNotice } from "../Notice.tsx";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import {
   contextSegment as segment,
   contextSource,
@@ -17,6 +19,8 @@ import { SyntheticPlayer } from "../composer/sound.ts";
 import { deliver } from "../composer/project.ts";
 import { investigationCard, investigationPacket } from "./export.ts";
 import type { LabRequest, LabResult } from "./contract.ts";
+import ScoreChart from "./ScoreChart.tsx";
+import { pairingFinding } from "./presentation.ts";
 import "./lab.css";
 
 const seconds = (n: number | null, precision = 4) =>
@@ -42,6 +46,8 @@ export default function ContextLab({
   onReturn: () => void;
   stopField: () => void;
 }) {
+  const [panel, setPanel] = useState<"explore" | "compare" | "save">("explore");
+  const region = useRef<HTMLElement>(null);
   const [selectedId, setSelectedId] = useState(initialRow),
     [offset, setOffset] = useState(0);
   const [windowStart, setWindowStart] = useState(initialWindow),
@@ -52,7 +58,7 @@ export default function ContextLab({
     [available, setAvailable] = useState(false);
   const [pending, setPending] = useState(false),
     [result, setResult] = useState<LabResult | null>(null),
-    [notice, setNotice] = useState("");
+    [notice, setNotice] = useNotice();
   const player = useRef<SyntheticPlayer | null>(null),
     controller = useRef<AbortController | null>(null),
     generation = useRef(0);
@@ -91,6 +97,7 @@ export default function ContextLab({
   }, []);
   const comparison = comparePairing(segment, offset),
     selected = calls.find((c) => c.id === selectedId)!;
+  const selectedControl = comparison.controls.find(control => control.offset === offset);
   const end = Math.min(segment.end, windowStart + windowSize),
     width = 1000;
   const x = (time: number) =>
@@ -116,7 +123,7 @@ export default function ContextLab({
       );
     } catch {
       setNotice(
-        "Timing audio could not start. Visual exploration and saving remain available.",
+        "Timing audio could not start. Visual exploration and saving remain available.", "warning",
       );
     }
   }
@@ -162,7 +169,7 @@ export default function ContextLab({
     } catch {
       if (token === generation.current && !ac.signal.aborted)
         setNotice(
-          "Astra's result could not be accepted. The measured comparison is unchanged.",
+          "Astra's result could not be accepted. The measured comparison is unchanged.", "warning",
         );
     } finally {
       if (token === generation.current) setPending(false);
@@ -185,11 +192,19 @@ export default function ContextLab({
         "Investigation download requested. Saved analysis is a historical snapshot.",
       );
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : "Download failed.");
+      setNotice(error instanceof Error ? error.message : "Download failed.", "warning");
     }
+  }
+  function showPanel(next: typeof panel) {
+    player.current?.stop();
+    flushSync(() => setPanel(next));
+    region.current?.scrollIntoView({ block: "start" });
+    region.current?.focus({ preventScroll: true });
   }
   return (
     <section
+      ref={region}
+      tabIndex={-1}
       className="context-lab"
       hidden={!active}
       aria-labelledby="lab-title"
@@ -200,20 +215,26 @@ export default function ContextLab({
           <h1 id="lab-title">
             Does the pairing <em>matter?</em>
           </h1>
-          <p>
-            These two callers’ sounds seem to last a similar amount of time.
-            Does that depend on which calls we compare?
+          <p hidden={panel !== "explore"}>
+            Explore an annotated exchange. Test how call-duration comparisons
+            change when measured durations are reassigned.
           </p>
         </div>
         <button onClick={onReturn}>← Return to my Composer</button>
       </div>
-      <p className="lab-source-note">
+      <p hidden={panel !== "explore"} className="lab-source-note">
         A source-annotated exchange, separate from your creation and our four
         field clips.{" "}
         <a href={contextSource.recordUrl}>Sharma et al. · Zenodo release</a> ·
         CC BY 4.0
       </p>
-      <section className="lab-panel" aria-labelledby="exchange-title">
+      <nav className="workspace-steps" aria-label="Context Lab steps">
+        <button aria-pressed={panel === "explore"} onClick={() => showPanel("explore")}>Explore exchange</button>
+        <button aria-pressed={panel === "compare"} onClick={() => showPanel("compare")}>Compare pairings</button>
+        <button aria-pressed={panel === "save"} onClick={() => showPanel("save")}>Save investigation</button>
+      </nav>
+      {panel !== "compare" && <Notice className="lab-notice" message={notice} />}
+      <section hidden={panel !== "explore"} className="lab-panel" aria-labelledby="exchange-title">
         <div className="lab-section-heading">
           <div>
             <p className="eyebrow">01 Explore & listen</p>
@@ -228,6 +249,11 @@ export default function ContextLab({
           Timing reconstruction from research annotations — not the original
           recording.
         </p>
+        <div className="segment-overview" aria-label={`Viewing ${windowSize} seconds of the fixed 60-second segment`}>
+          <div><strong>Full fixed segment · 60 s</strong><span>Zoomed view · {windowSize} s</span></div>
+          <div className="segment-track" aria-hidden="true"><span style={{left: `${(windowStart - segment.start) / (segment.end - segment.start) * 100}%`, width: `${(end - windowStart) / (segment.end - segment.start) * 100}%`}} /></div>
+          <p className="lab-caption">Showing {seconds(windowStart, 2)}–{seconds(end, 2)} from the source file. All comparisons use the full {seconds(segment.start, 2)}–{seconds(segment.end, 2)} segment.</p>
+        </div>
         <div className="lab-window-controls">
           <label>
             View window
@@ -395,8 +421,7 @@ export default function ContextLab({
           </svg>
         </div>
         <p className="lab-caption">
-          Axis: seconds from the source file’s start. Shading marks actual
-          positive overlap. The control never changes this timeline or sound.
+          A and B are local caller labels. Marks are annotated clicks; shaded areas are overlapping calls. Scroll the timeline to see the zoomed window. Reassigning durations never changes this recording timeline or its reconstructed sound.
         </p>
         <div className="lab-audio">
           <button
@@ -455,7 +480,7 @@ export default function ContextLab({
             >
               {calls.map((c) => (
                 <option key={c.id} value={c.id}>
-                  {label(c.id)} · {c.onset.toFixed(4)} s
+                  {label(c.id)}
                 </option>
               ))}
             </select>
@@ -491,29 +516,32 @@ export default function ContextLab({
           </p>
           <pre>{JSON.stringify(selected, null, 2)}</pre>
         </details>
+        <button className="primary lab-next" onClick={() => showPanel("compare")}>Compare the duration pairings →</button>
       </section>
-      <section className="lab-panel" aria-labelledby="pairing-title">
+      <section hidden={panel !== "compare"} className="lab-panel" aria-labelledby="pairing-title">
         <p className="eyebrow">02 Change the comparison</p>
         <h2 id="pairing-title">Keep the calls. Reassign the durations.</h2>
         <p>
-          Freeze the {comparison.pairCount} original overlap pairs. Move caller
-          B’s measured durations around those same slots. Would the durations
-          still be close?
+          Compare how long the calls last, not how quickly one caller responds.
+          Keep all {comparison.pairCount} original overlap pairs from the full 60-second segment.
+          Reassign B’s durations to those same slots; the calls and their timing stay fixed.
         </p>
+        <p className="pairing-finding"><strong>{pairingFinding(comparison)}</strong> This is a descriptive comparison, not a probability or a test of whether whales communicate.</p>
+        <div className="comparison-visuals">
+        <ScoreChart comparison={comparison} onSelect={(value) => change(() => setOffset(value))} />
+        <div>
+        <div className="lab-control-detail">
         <label className="lab-offset">
-          Pairing to inspect
+          Duration assignment
           <select
-            aria-label="Control offset"
+            aria-label="Duration assignment" aria-describedby="control-assignment-description"
             value={offset}
             onChange={(e) => change(() => setOffset(Number(e.target.value)))}
           >
-            <option value={0}>Observed · offset 0</option>
+            <option value={0}>Observed</option>
             {comparison.controls.map((c) => (
               <option key={c.offset} value={c.offset}>
-                Control {c.offset} · rotate B by {c.offset}
-                {c.equivalentToOffset !== null
-                  ? ` (equivalent to ${c.equivalentToOffset})`
-                  : ""}
+                Control {c.offset}
               </option>
             ))}
           </select>
@@ -521,14 +549,19 @@ export default function ContextLab({
         <button onClick={() => change(() => setOffset(0))}>
           Reset to observed
         </button>
+        <p className="lab-caption" id="control-assignment-description">
+          {offset === 0 ? "Original duration assignments." : `B durations rotate by ${offset}; original calls stay fixed.`}
+          {selectedControl?.equivalentToOffset != null ? ` Equivalent to offset ${selectedControl.equivalentToOffset}.` : ""}
+        </p>
+        </div>
         <div
           className="lab-statistics"
           aria-label="Deterministic duration comparison"
         >
           <div>
-            <span>Observed mean absolute gap</span>
+            <span>Observed duration difference</span>
             <strong data-testid="lab-observed">
-              {seconds(comparison.observed.valueSeconds, 6)}
+              {seconds(comparison.observed.valueSeconds, 3)}
             </strong>
           </div>
           <div>
@@ -538,13 +571,13 @@ export default function ContextLab({
                 : "Selected reassignment control"}
             </span>
             <strong data-testid="lab-selected-score">
-              {seconds(comparison.selected.valueSeconds, 6)}
+              {seconds(comparison.selected.valueSeconds, 3)}
             </strong>
           </div>
           <div>
-            <span>Nonzero control median</span>
+            <span>Median of controls</span>
             <strong>
-              {seconds(comparison.controlSummary?.medianSeconds ?? null, 6)}
+              {seconds(comparison.controlSummary?.medianSeconds ?? null, 3)}
             </strong>
           </div>
         </div>
@@ -556,8 +589,8 @@ export default function ContextLab({
         </p>
         {comparison.controlSummary && (
           <p>
-            Control range: {seconds(comparison.controlSummary.minSeconds, 6)} to{" "}
-            {seconds(comparison.controlSummary.maxSeconds, 6)}.{" "}
+            Control range: {seconds(comparison.controlSummary.minSeconds, 3)} to{" "}
+            {seconds(comparison.controlSummary.maxSeconds, 3)}.{" "}
             {comparison.distinctControlCount} distinct controls;{" "}
             {comparison.equivalentControlCount} equivalent rotations.{" "}
             {comparison.controlSummary.minSeconds ===
@@ -584,15 +617,16 @@ export default function ContextLab({
               : "One reassigned comparison — not a recording"}
           </strong>
           {comparison.selected.pairs.slice(0, 1).map((p) => (
-            <p key={p.aId}>
-              {label(p.aId)} ({seconds(p.aDurationSeconds)}) stays paired with
-              the original slot {label(p.bId)}.{" "}
-              {offset === 0
-                ? "Its own duration is used."
-                : `That B slot now uses the duration from ${label(p.durationFromRowId)} (${seconds(p.assignedBDurationSeconds)}).`}{" "}
-              Absolute difference: {seconds(p.absoluteDifferenceSeconds)}.
-            </p>
+            <div className="pair-illustration" key={p.aId}>
+              <div><span>Fixed A call</span><strong>{label(p.aId)}</strong><span>{seconds(p.aDurationSeconds, 3)}</span></div>
+              <span className="pair-symbol" aria-hidden="true">↔</span>
+              <div><span>Fixed B slot</span><strong>{label(p.bId)}</strong><span>Original {seconds(p.originalBDurationSeconds, 3)}</span></div>
+              <div className="assigned-duration"><span>{offset === 0 ? "Original duration used" : "Duration reassigned from"}</span><strong>{label(p.durationFromRowId)} · {seconds(p.assignedBDurationSeconds, 3)}</strong><span>Pair’s duration difference: {seconds(p.absoluteDifferenceSeconds, 3)}</span></div>
+            </div>
           ))}
+          <p className="lab-caption">Illustration of the first fixed pair; separate from the selected coda and zoomed view. Only the B duration used in the calculation changes. No call moves or becomes a new recording.</p>
+        </div>
+        </div>
         </div>
         <details>
           <summary>
@@ -640,7 +674,7 @@ export default function ContextLab({
           different question from Composer’s unchanged equal-count
           normalized-rhythm metric. Method: {comparison.method}.
         </p>
-        <details open>
+        <details>
           <summary>What this comparison cannot establish</summary>
           <ul>
             {LAB_LIMITATIONS.slice(1).map((v) => (
@@ -649,12 +683,12 @@ export default function ContextLab({
           </ul>
         </details>
       </section>
-      <section className="lab-panel lab-ask" aria-labelledby="lab-ask-title">
+      <section hidden={panel !== "compare"} className="lab-panel lab-ask" aria-labelledby="lab-ask-title">
         <p className="eyebrow">03 Ask about the evidence · optional</p>
         <h2 id="lab-ask-title">What else could explain this?</h2>
         <p>
           {available
-            ? "Only an explicit Ask sends this source-bound question. Interpretation remains unverified."
+            ? "Ask about this exchange and its duration comparison. The answer is generated and unverified."
             : "Astra is unavailable here. Exploring, comparing, listening and saving work locally."}
         </p>
         <form
@@ -681,7 +715,7 @@ export default function ContextLab({
           >
             {pending
               ? "Investigating this comparison…"
-              : "Ask Astra about this comparison"}
+              : "Ask Astra"}
           </button>
           {pending && (
             <button type="button" onClick={cancel}>
@@ -689,20 +723,24 @@ export default function ContextLab({
             </button>
           )}
         </form>
+        {panel === "compare" && <Notice className="lab-notice" message={notice} />}
         {result && (
           <div className="lab-result" data-testid="lab-result">
-            <p className="reconstruction-label">
+            <p className="result-label" role="status">
+              Answer ready.{" "}
               {result.execution === "mock-transport-test"
                 ? "TEST ONLY · provider transport fixture · no live Astra call"
                 : "Astra provider result · generated and unverified"}
             </p>
-            <h3>Generated interpretation · unverified</h3>
+            <details className="exact-answer" open>
+            <summary>Exact generated answer · unverified</summary>
             {[
               ...result.explanation.possibleInterpretations,
               ...result.explanation.limitations,
             ].map((r, i) => (
               <p key={i}>{r.text}</p>
             ))}
+            </details>
             <details>
               <summary>
                 Exact generated answer, citations, tool evidence and receipts
@@ -711,17 +749,28 @@ export default function ContextLab({
             </details>
           </div>
         )}
+        <button className="lab-next" onClick={() => showPanel("save")}>Save this investigation →</button>
       </section>
-      <section className="lab-panel lab-save" aria-labelledby="lab-save-title">
+      <section hidden={panel !== "save"} className="lab-panel lab-save" aria-labelledby="lab-save-title">
         <p className="eyebrow">04 Keep the investigation</p>
         <h2 id="lab-save-title">A question worth keeping.</h2>
         <p>
-          Take the exact segment, computed values and row mappings with you. The
-          image is a readable card; JSON carries the full evidence. Saved
-          interpretation is historical, never a new live run.
+          Keep a readable PNG card and a JSON snapshot with the full precision,
+          source rows, pair mappings and any exact generated answer. The card is an image, not audio.
+          Saved interpretation is historical, never a new live run.
         </p>
-        <div>
-          <button onClick={() => void save("card")}>
+        <label className="save-question">Investigation question
+          <textarea value={question} maxLength={800} onChange={(e) => { cancel(); setQuestion(e.target.value); }} />
+        </label>
+        <div className="investigation-takeaway">
+          <p className="eyebrow">Computed from research annotations</p>
+          <h3>{pairingFinding(comparison)}</h3>
+          <p>Observed {seconds(comparison.observed.valueSeconds, 3)} · {offset === 0 ? "Original pairing" : `Control ${offset}`} {seconds(comparison.selected.valueSeconds, 3)} · {comparison.pairCount} fixed pairs</p>
+          <p>Duration difference is not response latency. This control does not establish meaning or causality.</p>
+          <p className="lab-caption">Sharma et al. / DSWP · CC BY 4.0 · Reconstruction from annotations; no original exchange audio.</p>
+        </div>
+        <div className="download-options">
+          <button className="primary" onClick={() => void save("card")}>
             Download investigation card
           </button>
           <button onClick={() => void save("json")}>
@@ -732,7 +781,6 @@ export default function ContextLab({
           </button>
         </div>
       </section>
-      <p role="status">{notice}</p>
       <details className="lab-source-details">
         <summary>Source audit, license and planned deeper work</summary>
         <p>

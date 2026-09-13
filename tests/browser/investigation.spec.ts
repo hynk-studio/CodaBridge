@@ -1,3 +1,4 @@
+import { disclosure } from "./navigation.ts";
 import { test, expect, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { createWorker } from "../../server/worker.ts";
@@ -82,6 +83,7 @@ test("mixed provider commentary remains pending until the grounded final answer 
     return mock.transport(url, init);
   });
   await page.goto("/");
+  await disclosure(page, ".optional-investigation");
   await page.getByRole("button", { name: "Investigate selection" }).click();
   const panel = page.getByRole("region", { name: "Ask about this pair." });
   try {
@@ -97,6 +99,7 @@ test("mixed provider commentary remains pending until the grounded final answer 
   await expect(
     panel.getByText("Investigation completed for the current selection."),
   ).toBeVisible();
+  await disclosure(page, ".investigation-result .exact-answer");
   await expect(
     panel.getByText(identifierExplanation().possibleInterpretations[0].text),
   ).toBeVisible();
@@ -131,8 +134,9 @@ test("grounded UI completes via mock provider transport and exports actual tool 
       external.push(request.url());
   });
   await page.goto("/");
+  await disclosure(page, ".optional-investigation");
   await expect(
-    page.getByText(/Listen to real sperm whale recordings/),
+    page.getByText(/A coda is a pattern of sperm whale clicks/),
   ).toBeVisible();
   await page
     .getByRole("button", { name: "Reveal measurements", exact: true })
@@ -155,11 +159,13 @@ test("grounded UI completes via mock provider transport and exports actual tool 
       "TEST ONLY · Mocked provider transport. This is not live Astra evidence.",
     ),
   ).toBeVisible();
+  await disclosure(page, ".investigation-result .exact-answer");
   await expect(
     panel.getByRole("heading", {
       name: "Possible interpretations · generated",
     }),
   ).toBeVisible();
+  await disclosure(page, ".supporting-evidence");
   await panel.getByText("retrieval:dswp-1:2", { exact: true }).last().click();
   await expect(
     panel.getByText(
@@ -212,6 +218,7 @@ test("selection change while pending obsoletes the result even if transport comp
     return response;
   });
   await page.goto("/");
+  await disclosure(page, ".optional-investigation");
   await page.getByRole("button", { name: "Investigate selection" }).click();
   await expect(page.getByText("Pending", { exact: true })).toBeVisible();
   await expect.poll(() => started).toBe(true);
@@ -241,6 +248,7 @@ test("failure and timeout stay explicit and listening remains available", async 
   ]);
   await connectMockTransport(page, mock.transport);
   await page.goto("/");
+  await disclosure(page, ".optional-investigation");
   await page
     .getByLabel("Your question")
     .fill("Could uncertain markers affect the comparison?");
@@ -273,6 +281,7 @@ test("private HTTP diagnostic stays outside the public UI, response and download
     diagnostics.push(item);
   });
   await page.goto("/");
+  await disclosure(page, ".optional-investigation");
   const pending = page.waitForResponse("**/api/investigate");
   await page.getByRole("button", { name: "Investigate selection" }).click();
   const response = await pending;
@@ -328,6 +337,7 @@ test("no comparable alternative is visible and changing a completed selection cl
   ]);
   await connectMockTransport(page, mock.transport);
   await page.goto("/");
+  await disclosure(page, ".optional-investigation");
   await page
     .getByLabel("Select recording A", { exact: true })
     .selectOption("dswp-7");
@@ -337,6 +347,7 @@ test("no comparable alternative is visible and changing a completed selection cl
     .selectOption("dswp-1");
   await page.getByRole("button", { name: "Investigate selection" }).click();
   await expect(page.getByText("Completed", { exact: true })).toBeVisible();
+  await disclosure(page, ".supporting-evidence");
   await page.getByText("retrieval:dswp-7:2", { exact: true }).last().click();
   await expect(
     page.getByText("No comparable alternative in this catalog."),

@@ -1,0 +1,16 @@
+{
+  "kind": "ACTUAL LOCAL BROWSER DOWNLOADS — no model calls",
+  "revision": 8,
+  "delivered": [
+    "codabridge-synthetic-timing-r8.wav",
+    "codabridge-synthetic-timing-r8-card.png",
+    "codabridge-synthetic-timing-r8-project.json"
+  ],
+  "wav": {
+    "duration": 4.293166666666667,
+    "rate": 48000,
+    "channels": 1,
+    "peak": 0.046357616782188416
+  },
+  "projectRestored": true
+}

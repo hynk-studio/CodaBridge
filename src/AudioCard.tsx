@@ -161,7 +161,7 @@ export default function AudioCard({
           >
             {recordings.map((item) => (
               <option key={item.id} value={item.id}>
-                {item.label}
+                Recording {item.source.filename.replace(/\.wav$/i, "")}
               </option>
             ))}
           </select>
