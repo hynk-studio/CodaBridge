@@ -23,7 +23,13 @@
     "analysis:v02:test": "analysis/dialogue-transfer/.venv/bin/python -m unittest discover -s analysis/dialogue-transfer-v02 -p 'test_*.py' -v",
     "analysis:v02:run": "analysis/dialogue-transfer/.venv/bin/python analysis/dialogue-transfer-v02/run.py",
     "analysis:v02:verify": "node --experimental-strip-types scripts/prepare-prediction-v02.ts --check && node --experimental-strip-types analysis/dialogue-transfer-v02/verify.ts && node --experimental-strip-types scripts/check-research-summary.ts",
-    "analysis:v02:reproduce": "analysis/dialogue-transfer/.venv/bin/python analysis/dialogue-transfer-v02/run.py --check"
+    "analysis:v02:reproduce": "analysis/dialogue-transfer/.venv/bin/python analysis/dialogue-transfer-v02/run.py --check",
+    "audit:metadata:fetch": "node --experimental-strip-types analysis/metadata-linkage-v1/retrieve.ts",
+    "audit:metadata:test": "node --experimental-strip-types --test tests/metadata-linkage.test.ts",
+    "audit:metadata:run": "node --experimental-strip-types analysis/metadata-linkage-v1/run.ts",
+    "audit:metadata:reproduce": "node --experimental-strip-types analysis/metadata-linkage-v1/run.ts --check",
+    "audit:metadata:verify": "python3 analysis/metadata-linkage-v1/verify.py",
+    "audit:metadata:history": "node --experimental-strip-types scripts/check-metadata-history.ts"
   },
   "dependencies": {
     "react": "^19.2.8",

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "maor/README.md",
+    "repo": "MaorAssayag/coda-sequences-relations-and-prediction",
+    "commit": "aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93",
+    "path": "README.md",
+    "url": "https://raw.githubusercontent.com/MaorAssayag/coda-sequences-relations-and-prediction/aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93/README.md",
+    "cachePath": "data/raw/metadata-linkage/maor/README.md",
+    "bytes": 3267,
+    "gitBlob": "b245016f9b7a82b0faaf883eb1feae21eac7c996",
+    "sha256": "407f766ceda23a0c8dd5aeb81592803a6dbb1de90d7a326a20e0ccf1913f89bc"
+  },
+  {
+    "id": "maor/LICENSE",
+    "repo": "MaorAssayag/coda-sequences-relations-and-prediction",
+    "commit": "aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93",
+    "path": "LICENSE",
+    "url": "https://raw.githubusercontent.com/MaorAssayag/coda-sequences-relations-and-prediction/aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93/LICENSE",
+    "cachePath": "data/raw/metadata-linkage/maor/LICENSE",
+    "bytes": 11357,
+    "gitBlob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "id": "maor/dataset/dswp-2014-2016-retagged-maor-2025.csv",
+    "repo": "MaorAssayag/coda-sequences-relations-and-prediction",
+    "commit": "aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93",
+    "path": "dataset/dswp-2014-2016-retagged-maor-2025.csv",
+    "url": "https://raw.githubusercontent.com/MaorAssayag/coda-sequences-relations-and-prediction/aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93/dataset/dswp-2014-2016-retagged-maor-2025.csv",
+    "cachePath": "data/raw/metadata-linkage/maor/dataset/dswp-2014-2016-retagged-maor-2025.csv",
+    "bytes": 2258170,
+    "gitBlob": "2a84f92cfd0ca4472e30b9913afc2c291b261834",
+    "sha256": "17b37605e56a21fb96bff301a2d43c4139693f7def23d4e3801d046026069856"
+  },
+  {
+    "id": "ceti/README.9t6qu.md",
+    "repo": "Project-CETI/coda-vowel-phonology",
+    "commit": "be751b8761c87813754dba10ad7068a9e71367c0",
+    "path": "README.9t6qu.md",
+    "url": "https://raw.githubusercontent.com/Project-CETI/coda-vowel-phonology/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+    "cachePath": "data/raw/metadata-linkage/ceti/README.9t6qu.md",
+    "bytes": 7146,
+    "gitBlob": "7f899a13500b6af1198143cc82530d89861b70a3",
+    "sha256": "253b5f51bb9585f8484b997970203c7f464e9790324adf722d85cd1283c3733f"
+  },
+  {
+    "id": "ceti/codamd.csv",
+    "repo": "Project-CETI/coda-vowel-phonology",
+    "commit": "be751b8761c87813754dba10ad7068a9e71367c0",
+    "path": "codamd.csv",
+    "url": "https://raw.githubusercontent.com/Project-CETI/coda-vowel-phonology/be751b8761c87813754dba10ad7068a9e71367c0/codamd.csv",
+    "cachePath": "data/raw/metadata-linkage/ceti/codamd.csv",
+    "bytes": 44407,
+    "gitBlob": "c0d521e4cfb4976eb204c9e86d4e082f6f1821ae",
+    "sha256": "e3fc6b402eeafa94a168ed215255255ed3d3acbeef2d65abe54312526b42a899"
+  },
+  {
+    "id": "ceti/codasp.csv",
+    "repo": "Project-CETI/coda-vowel-phonology",
+    "commit": "be751b8761c87813754dba10ad7068a9e71367c0",
+    "path": "codasp.csv",
+    "url": "https://raw.githubusercontent.com/Project-CETI/coda-vowel-phonology/be751b8761c87813754dba10ad7068a9e71367c0/codasp.csv",
+    "cachePath": "data/raw/metadata-linkage/ceti/codasp.csv",
+    "bytes": 81709,
+    "gitBlob": "d3713078091116066a15f91c906abff9b9efef33",
+    "sha256": "770af6f8057d6b88ccbf18b815015955795cbd7b20ae65733153d28cf117cb5b"
+  },
+  {
+    "id": "ceti/focal-coarticulation-metadata.csv",
+    "repo": "Project-CETI/coda-vowel-phonology",
+    "commit": "be751b8761c87813754dba10ad7068a9e71367c0",
+    "path": "focal-coarticulation-metadata.csv",
+    "url": "https://raw.githubusercontent.com/Project-CETI/coda-vowel-phonology/be751b8761c87813754dba10ad7068a9e71367c0/focal-coarticulation-metadata.csv",
+    "cachePath": "data/raw/metadata-linkage/ceti/focal-coarticulation-metadata.csv",
+    "bytes": 346249,
+    "gitBlob": "be0936d4826d53bd0724578d22ae84fc3aa320c1",
+    "sha256": "2033d4a9eb7a008ce369b613d637b365f704a9b4295db989204623f019d90f22"
+  },
+  {
+    "id": "maor/codaspred.ipynb",
+    "repo": "MaorAssayag/coda-sequences-relations-and-prediction",
+    "commit": "aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93",
+    "path": "codaspred.ipynb",
+    "url": "https://raw.githubusercontent.com/MaorAssayag/coda-sequences-relations-and-prediction/aab40e2bac7bf2dae2c3b9b2b752ba262b66fc93/codaspred.ipynb",
+    "cachePath": "data/raw/metadata-linkage/maor/codaspred.ipynb",
+    "bytes": 18685384,
+    "gitBlob": "4747d8da7e037e65e9f256c6de58849345d3e047",
+    "sha256": "4fd59a91ca6e3bcd872282f267ef32f1080a32b4e7b0d7dc137d4977b4a339c6"
+  }
+]

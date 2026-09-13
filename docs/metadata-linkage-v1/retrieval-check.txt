@@ -1,0 +1,12 @@
+
+> codabridge@0.2.0 audit:metadata:fetch
+> node --experimental-strip-types analysis/metadata-linkage-v1/retrieve.ts
+
+Verified pinned bytes: maor/README.md
+Verified pinned bytes: maor/LICENSE
+Verified pinned bytes: maor/dataset/dswp-2014-2016-retagged-maor-2025.csv
+Verified pinned bytes: ceti/README.9t6qu.md
+Verified pinned bytes: ceti/codamd.csv
+Verified pinned bytes: ceti/codasp.csv
+Verified pinned bytes: ceti/focal-coarticulation-metadata.csv
+Verified pinned bytes: maor/codaspred.ipynb

@@ -1,0 +1,893 @@
+
+> codabridge@0.2.0 audit:metadata:reproduce
+> node --experimental-strip-types analysis/metadata-linkage-v1/run.ts --check
+
+{
+  "status": "Exact deterministic reproduction passed; no outputs overwritten",
+  "preservation": {
+    "base": "b3fb7daaa6d851baf35b8224648c25d743ea466f",
+    "unchangedFiles": 462
+  },
+  "maor": {
+    "candidates": 3765,
+    "keyScopes": {
+      "exact-REC": 2796,
+      "same-six-character-root": 969
+    },
+    "compatibleKeyScopes": {
+      "exact-REC": 2738,
+      "same-six-character-root": 940
+    },
+    "onsetAgreement": {
+      "exact": 3761,
+      "rounding-compatible": 4
+    },
+    "callerDisagreements": 18,
+    "compatibleCallerDisagreements": 0,
+    "compatible": 3678,
+    "countConflicts": 70,
+    "iciConflictPairs": 85,
+    "declaredDurationConflicts": 42,
+    "multiCandidateOriginals": [
+      885,
+      886,
+      967,
+      968,
+      1999,
+      2000,
+      2300,
+      2301,
+      3020,
+      3021,
+      3038,
+      3039,
+      3073,
+      3074,
+      3156,
+      3157,
+      3384,
+      3385
+    ],
+    "inverseCollisions": [],
+    "unmatchedOriginalRows": [
+      177,
+      178,
+      187,
+      297,
+      401,
+      402,
+      652,
+      866,
+      870,
+      871,
+      903,
+      909,
+      1026,
+      1252,
+      1355,
+      1363,
+      1394,
+      1476,
+      1480,
+      1481,
+      1483,
+      1487,
+      1489,
+      1497,
+      1666,
+      1667,
+      1668,
+      1678,
+      1782,
+      1783,
+      1908,
+      1915,
+      1916,
+      2114,
+      2487,
+      2581,
+      2811,
+      2812,
+      3134,
+      3135,
+      3590,
+      3591,
+      3592,
+      3593,
+      3594,
+      3595,
+      3596,
+      3597,
+      3598,
+      3599,
+      3600,
+      3601,
+      3602,
+      3603,
+      3604,
+      3605,
+      3606,
+      3607,
+      3608,
+      3609,
+      3610,
+      3611,
+      3612,
+      3613,
+      3614,
+      3615,
+      3616,
+      3617,
+      3618,
+      3619,
+      3620,
+      3621,
+      3622,
+      3623,
+      3624,
+      3625,
+      3626,
+      3627,
+      3628,
+      3629,
+      3630,
+      3631,
+      3632,
+      3633,
+      3634,
+      3635,
+      3636,
+      3637,
+      3638,
+      3639,
+      3640,
+      3641,
+      3652
+    ],
+    "unmatchedCompatibleOriginalRows": [
+      106,
+      110,
+      156,
+      161,
+      166,
+      169,
+      175,
+      176,
+      177,
+      178,
+      184,
+      187,
+      272,
+      296,
+      297,
+      400,
+      401,
+      402,
+      471,
+      558,
+      561,
+      564,
+      650,
+      652,
+      786,
+      788,
+      866,
+      867,
+      868,
+      870,
+      871,
+      893,
+      902,
+      903,
+      907,
+      909,
+      1025,
+      1026,
+      1051,
+      1207,
+      1211,
+      1219,
+      1250,
+      1251,
+      1252,
+      1354,
+      1355,
+      1362,
+      1363,
+      1392,
+      1394,
+      1396,
+      1449,
+      1475,
+      1476,
+      1480,
+      1481,
+      1483,
+      1487,
+      1489,
+      1496,
+      1497,
+      1661,
+      1666,
+      1667,
+      1668,
+      1671,
+      1672,
+      1677,
+      1678,
+      1723,
+      1727,
+      1781,
+      1782,
+      1783,
+      1832,
+      1873,
+      1908,
+      1913,
+      1914,
+      1915,
+      1916,
+      2114,
+      2231,
+      2272,
+      2288,
+      2454,
+      2486,
+      2487,
+      2494,
+      2581,
+      2591,
+      2607,
+      2809,
+      2810,
+      2811,
+      2812,
+      2876,
+      2898,
+      3132,
+      3134,
+      3135,
+      3219,
+      3273,
+      3274,
+      3321,
+      3368,
+      3514,
+      3547,
+      3590,
+      3591,
+      3592,
+      3593,
+      3594,
+      3595,
+      3596,
+      3597,
+      3598,
+      3599,
+      3600,
+      3601,
+      3602,
+      3603,
+      3604,
+      3605,
+      3606,
+      3607,
+      3608,
+      3609,
+      3610,
+      3611,
+      3612,
+      3613,
+      3614,
+      3615,
+      3616,
+      3617,
+      3618,
+      3619,
+      3620,
+      3621,
+      3622,
+      3623,
+      3624,
+      3625,
+      3626,
+      3627,
+      3628,
+      3629,
+      3630,
+      3631,
+      3632,
+      3633,
+      3634,
+      3635,
+      3636,
+      3637,
+      3638,
+      3639,
+      3640,
+      3641,
+      3652
+    ],
+    "externalWithoutCompatibleLink": 255
+  },
+  "ceti": {
+    "onsetCandidates": 1115,
+    "compatible": 1103,
+    "sequenceSupportedCandidates": 1098,
+    "candidateConflicts": 12,
+    "multiCandidateOriginals": [],
+    "inverseCollisions": [],
+    "supportedSequencePairs": 965,
+    "sequenceGapConflicts": [],
+    "namespaceBridges": 1369,
+    "namespaceCountConflicts": [
+      "5092",
+      "5096",
+      "6627",
+      "6629",
+      "7115",
+      "7184",
+      "7644",
+      "8027",
+      "8078",
+      "8305",
+      "8306",
+      "8351"
+    ],
+    "namespaceDateStatus": {
+      "missing-CETI-date": 230,
+      "one-ambiguous-date-order-agrees": 324,
+      "unambiguous-written-date-agrees": 815
+    },
+    "seedReproduction": [
+      {
+        "sourceLine": 56,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4985",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "516.0025",
+        "duration": "0.39305",
+        "lastClickPosition": 9,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 2,
+            "role": "previous",
+            "position": 9
+          }
+        ]
+      },
+      {
+        "sourceLine": 57,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4986",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "521.3508",
+        "duration": "0.3561833",
+        "lastClickPosition": 8,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 3,
+            "role": "previous",
+            "position": 8
+          }
+        ]
+      },
+      {
+        "sourceLine": 58,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4987",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "526.7953",
+        "duration": "0.3098333",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 4,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 59,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4988",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "531.8491",
+        "duration": "0.341425",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 5,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 61,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4989",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "537.391",
+        "duration": "0.3734917",
+        "lastClickPosition": 6,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 6,
+            "role": "previous",
+            "position": 6
+          }
+        ]
+      },
+      {
+        "sourceLine": 64,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4990",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "555.8928",
+        "duration": "0.3405417",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 7,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 66,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4991",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "561.5909",
+        "duration": "0.3358584",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 8,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 68,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4992",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "567.3788",
+        "duration": "0.3282583",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 9,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 70,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4993",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "572.4057",
+        "duration": "0.3341",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 10,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 72,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4994",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "578.1766",
+        "duration": "0.317175",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 11,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 73,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4995",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "583.1763",
+        "duration": "0.390875",
+        "lastClickPosition": 6,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 12,
+            "role": "previous",
+            "position": 6
+          }
+        ]
+      },
+      {
+        "sourceLine": 75,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4996",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "588.3308",
+        "duration": "0.3297916",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 13,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 77,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4997",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "593.3884",
+        "duration": "0.3384333",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 14,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 79,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4998",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "597.804",
+        "duration": "0.3479833",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 15,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 81,
+        "rec": "sw061b001_513",
+        "caller": "1",
+        "codanum": "4999",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "602.2991",
+        "duration": "0.4075167",
+        "lastClickPosition": 6,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 16,
+            "role": "previous",
+            "position": 6
+          }
+        ]
+      },
+      {
+        "sourceLine": 83,
+        "rec": "sw061b001_629",
+        "caller": "1",
+        "codanum": "5012",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "631.1305",
+        "duration": "0.419425",
+        "lastClickPosition": 6,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 17,
+            "role": "previous",
+            "position": 6
+          }
+        ]
+      },
+      {
+        "sourceLine": 84,
+        "rec": "sw061b001_629",
+        "caller": "1",
+        "codanum": "5013",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "635.4536",
+        "duration": "0.3266",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 18,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 86,
+        "rec": "sw061b001_629",
+        "caller": "1",
+        "codanum": "5014",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "641.8896",
+        "duration": "0.3596916",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 19,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 88,
+        "rec": "sw061b001_629",
+        "caller": "1",
+        "codanum": "5015",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "647.5471",
+        "duration": "0.3793583",
+        "lastClickPosition": 6,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 672,
+            "role": "previous",
+            "position": 6
+          }
+        ]
+      },
+      {
+        "sourceLine": 135,
+        "rec": "sw061b001_4333",
+        "caller": "1",
+        "codanum": "5063",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "4337.4875",
+        "duration": "0.4051",
+        "lastClickPosition": 6,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 20,
+            "role": "previous",
+            "position": 6
+          }
+        ]
+      },
+      {
+        "sourceLine": 137,
+        "rec": "sw061b001_4333",
+        "caller": "1",
+        "codanum": "5064",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "4342.9585",
+        "duration": "0.3193417",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 21,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 139,
+        "rec": "sw061b001_4333",
+        "caller": "1",
+        "codanum": "5065",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "4348.5757",
+        "duration": "0.3226834",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 22,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 140,
+        "rec": "sw061b001_4333",
+        "caller": "1",
+        "codanum": "5066",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "4353.3251",
+        "duration": "0.3707417",
+        "lastClickPosition": 6,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 23,
+            "role": "previous",
+            "position": 6
+          }
+        ]
+      },
+      {
+        "sourceLine": 143,
+        "rec": "sw061b001_4333",
+        "caller": "1",
+        "codanum": "5067",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "4357.8601",
+        "duration": "0.3498417",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 24,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      },
+      {
+        "sourceLine": 145,
+        "rec": "sw061b001_4333",
+        "caller": "1",
+        "codanum": "5068",
+        "compatible": true,
+        "sequenceSupported": true,
+        "whale": "ATWOOD",
+        "tagOn": "2015-02-03 11:20:26",
+        "onset": "4367.6731",
+        "duration": "0.4289",
+        "lastClickPosition": 5,
+        "countEqual": true,
+        "lastClickEvidence": [
+          {
+            "coartLine": 25,
+            "role": "previous",
+            "position": 5
+          }
+        ]
+      }
+    ]
+  },
+  "rawCoverage": {
+    "rows": 3840,
+    "maorEventCandidates": 3747,
+    "maorUniqueCompatible": 3678,
+    "cetiTimedCompatible": 1103,
+    "cetiSequenceIdentified": 1098,
+    "maorFocalNamedCandidates": 1329,
+    "namedProducerCandidates": 1330,
+    "unitCandidates": 1329,
+    "identityConflicts": 0
+  },
+  "cohortStatuses": {
+    "core": {
+      "fully-identified-candidate": 0,
+      "partly-identified-candidate": 517,
+      "unidentified": 206
+    },
+    "coverage": {
+      "fully-identified-candidate": 0,
+      "partly-identified-candidate": 742,
+      "unidentified": 275
+    }
+  }
+}
