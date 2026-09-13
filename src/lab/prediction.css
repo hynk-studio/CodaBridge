@@ -1,0 +1,47 @@
+.lab-modes { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0; }
+.lab-modes button[aria-pressed="true"] { color: var(--a); border-color: var(--a); background: #203c3e; }
+.prediction-mode { max-width: 68rem; margin: 0 auto; }
+.prediction-identity { display: inline-block; border: 1px solid #526b62; border-radius: 5px; color: var(--a); padding: .5rem .75rem; font-size: var(--type-small); }
+.prediction-select { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin: 1rem 0; }
+.prediction-select select { max-width: 100%; min-width: 0; }
+.prediction-history-grid, .prediction-distributions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.prediction-history-grid article { padding: 1rem; border: 1px solid var(--line); border-radius: 8px; min-width: 0; }
+.prediction-history-grid article[data-caller-role="focal"] { border-left: 3px solid var(--a); }
+.prediction-history-grid article[data-caller-role="partner"] { border-left: 3px solid var(--b); }
+.prediction-history-grid span, .prediction-history-grid strong, .prediction-history-grid small { display: block; }
+.prediction-history-grid strong { font-weight: 500; font-variant-numeric: tabular-nums; }
+.prediction-history-grid small { margin-top: .5rem; color: var(--muted); line-height: 1.5; }
+.prediction-marks { width: 100%; max-width: 20rem; height: 2.5rem; color: var(--a); margin: .5rem 0; }
+.prediction-history-grid article[data-caller-role="partner"] .prediction-marks { color: var(--b); }
+.prediction-bins { display: flex; flex-wrap: wrap; gap: .65rem; font-size: var(--type-small); margin-top: 1.25rem; }
+.prediction-bins span { border-radius: 4px; padding: .4rem .6rem; background: #20383d; }
+.prediction-distribution { min-width: 0; padding: 1.25rem; border: 1px solid #496069; border-radius: 8px; }
+.prediction-distribution h3 { font-size: var(--type-panel); font-weight: 500; margin-top: 0; }
+.prediction-probability { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem; margin-top: 1rem; }
+.prediction-probability > span { overflow-wrap: anywhere; }
+.prediction-probability strong { font-variant-numeric: tabular-nums; font-weight: 500; }
+.probability-track { grid-column: 1 / -1; background: #243941; height: .7rem; border-radius: 2px; }
+.probability-track span { display: block; height: 100%; background: var(--a); border-radius: 2px; }
+.prediction-distributions > :nth-child(2) .probability-track span { background: var(--b); }
+.prediction-probability[data-actual="true"] { color: #e6f8be; }
+.prediction-target { border-left: 3px solid var(--a); background: #203a38; padding: 1.25rem; margin-top: 1.5rem; }
+.prediction-reveal { padding-top: .5rem; }
+.prediction-result { margin: 1.5rem 0; }
+.prediction-result strong { font-size: clamp(1.25rem, 5vw, 3.5rem); font-weight: 500; color: var(--a); display: block; overflow-wrap: anywhere; }
+.prediction-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1.5rem 0; }
+.prediction-metrics > div { border: 1px solid var(--line); padding: 1rem; border-radius: 6px; }
+.prediction-metrics span, .prediction-metrics small, .prediction-metrics strong { display: block; }
+.prediction-metrics strong { padding: .75rem 0; font-variant-numeric: tabular-nums; }
+.prediction-metrics small { color: var(--muted); }
+.prediction-mode details { margin-top: 1rem; line-height: 1.6; }
+.prediction-mode summary { cursor: pointer; }
+.prediction-source { margin: 1.5rem 0; }
+.prediction-group-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem 1rem; font-size: var(--type-small); }
+.prediction-group-list p { margin: .25rem 0; }
+@media (max-width: 650px) {
+  .prediction-history-grid, .prediction-distributions, .prediction-metrics, .prediction-group-list { grid-template-columns: 1fr; }
+  .prediction-distribution { padding: 1rem; }
+  .prediction-select { display: block; }
+  .prediction-select select { display: block; margin-top: .75rem; width: 100%; }
+  .lab-modes button { flex: 1 1 10rem; }
+}

@@ -14,6 +14,7 @@ const mean = (values: number[]) => values.reduce((s, v) => s + v, 0) / values.le
 const quantile = (v: number[], q: number) => { const a = [...v].sort((a, b) => a - b), index = (a.length - 1) * q, lo = Math.floor(index); return a[lo] + (a[Math.ceil(index)] - a[lo]) * (index - lo); };
 const category = (d: number, edges: number[]) => d <= edges[0] ? 0 : d <= edges[1] ? 1 : 2;
 const records = report.records as any[];
+let maximumReconstructedProbabilityDifference = 0, maximumTrainingGradient = 0;
 for (const [path, hash] of Object.entries(report.provenance.hashes)) {
   assert.equal(sha(readFileSync(path)), hash, `Input changed: ${path}`);
   assert.equal(sha(execFileSync("git", ["show", `${report.provenance.producerCommit}:${path}`], { maxBuffer: 16 * 1024 * 1024 })), hash, `Producer mismatch: ${path}`);
@@ -61,6 +62,27 @@ if (report.status !== "completed") {
         const filled = train.map((e: any) => e.features[model][j] ?? median), average = mean(filled), sd = Math.sqrt(mean(filled.map((x: number) => (x - average) ** 2)));
         near(d.mean[j], average); near(d.scale[j], sd < 1e-12 ? 1 : sd);
       }
+      // Scalar dot products + softmax also check the saved fit without NumPy/BLAS.
+      const reconstruct = (e: any) => {
+        const x = e.features[model].map((v: number | null, j: number) => ((v ?? d.imputer[j]) - d.mean[j]) / d.scale[j]);
+        const z = d.coefficients.map((w: number[], k: number) => w.reduce((sum, v, j) => sum + v * x[j], d.intercepts[k]));
+        const exp = z.map((v: number) => Math.exp(v - Math.max(...z))), sum = exp.reduce((a: number, b: number) => a + b, 0);
+        return { x, p: exp.map((v: number) => v / sum) };
+      };
+      for (const e of test) {
+        const r = records.find(r => r.id === e.id), p = reconstruct(e).p;
+        p.forEach((v: number, j: number) => { near(v, r.predictions[model].raw[j]); maximumReconstructedProbabilityDifference = Math.max(maximumReconstructedProbabilityDifference, Math.abs(v - r.predictions[model].raw[j])); });
+      }
+      const gradient = d.coefficients.map((w: number[]) => w.map(v => v / (train.length * report.protocol.logistic.C))), interceptGradient = [0, 0, 0];
+      for (const e of train) {
+        const { x, p } = reconstruct(e), y = category(e.targetDuration, edges);
+        for (let k = 0; k < 3; k++) {
+          const residual = (p[k] - Number(k === y)) / train.length;
+          interceptGradient[k] += residual;
+          x.forEach((v: number, j: number) => { gradient[k][j] += residual * v; });
+        }
+      }
+      maximumTrainingGradient = Math.max(maximumTrainingGradient, ...gradient.flat().map(Math.abs), ...interceptGradient.map(Math.abs));
     }
     for (const r of records.filter(r => r.fold === fold.fold)) r.predictions.M0.raw.forEach((p: number, i: number) => near(p, counts[i] / train.length));
   }
@@ -118,5 +140,5 @@ if (report.status !== "completed") {
     }
     for (const [kind, values] of [["pooled", pooled], ["groupMacro", macro]] as const) [.025, .975].forEach((q, j) => near(b.intervals[key][kind][j], quantile(values, q)));
   }
-  console.log(JSON.stringify({ status: "INDEPENDENT VERIFICATION PASS", examples: records.length, groups: report.metrics.perGroup.length, folds: report.folds.length, checks: "source/producer/freeze hashes; exact OOF support; train-only bins/imputation/scaling; original donor bindings; raw/floored probabilities; base-2 losses; paired gains; clipping; 2000 paired group-bootstrap draws and percentile weighting; delivered summary/report bytes" }));
+  console.log(JSON.stringify({ status: "INDEPENDENT VERIFICATION PASS", examples: records.length, groups: report.metrics.perGroup.length, folds: report.folds.length, maximumReconstructedProbabilityDifference, maximumTrainingGradient, checks: "source/producer/freeze hashes; exact OOF support; train-only bins/imputation/scaling; original donor bindings; scalar coefficient/softmax prediction replay; raw/floored probabilities; base-2 losses; paired gains; clipping; 2000 paired group-bootstrap draws and percentile weighting; delivered summary/report bytes" }));
 }

@@ -1,0 +1,23 @@
+{
+  "identity": "TEST ONLY finite random matrix backend diagnostic; no model fitting or source predictions",
+  "seedA": 1,
+  "seedB": 2,
+  "shapeA": [
+    600,
+    34
+  ],
+  "shapeB": [
+    34,
+    3
+  ],
+  "numpy": "2.2.6",
+  "warnings": [
+    "divide by zero encountered in matmul",
+    "invalid value encountered in matmul",
+    "overflow encountered in matmul"
+  ],
+  "finite": true,
+  "maxNonBlasDifference": 0.0,
+  "realExperimentProducer": "44c4a09b83308a909d2086ab620b30621458d509",
+  "upstream": "https://github.com/numpy/numpy/issues/28687"
+}
