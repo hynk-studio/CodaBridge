@@ -1,0 +1,18 @@
+{
+  "uiStartedAt": "2026-09-13T01:12:49.697Z",
+  "uiCompletedAt": "2026-09-13T01:13:07.208Z",
+  "uiLatencyMs": 17511,
+  "endpoints": "Immediately before sole Ask click to non-pending button and accepted result visibility (or failure outcome); not exact paint timing",
+  "browserResourceTiming": [
+    {
+      "durationMs": 17479.100000023842
+    }
+  ],
+  "labSubmissions": 1,
+  "otherModelSubmissions": 0,
+  "displayedResultEqualsAccepted": true,
+  "applicationHttpStatus": 200,
+  "applicationStatus": "completed",
+  "selectedRowId": "row-12",
+  "offset": "1"
+}

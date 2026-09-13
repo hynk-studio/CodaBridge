@@ -1,0 +1,26 @@
+{
+  "deliveries": [
+    {
+      "button": "Download investigation JSON",
+      "file": "investigation.json",
+      "suggestedFilename": "codabridge-context-offset-1.json",
+      "bytes": 89990,
+      "sha256": "03e1e6dfff8e830c8acafa9c5fffe69a665146942d6afc39083c70f2221fd167",
+      "delivered": true
+    },
+    {
+      "button": "Download investigation card",
+      "file": "investigation-card.png",
+      "suggestedFilename": "codabridge-context-offset-1.png",
+      "bytes": 531484,
+      "sha256": "4e7afc9026a287f4be281b19bc62c071c8edc2a48514b1bd4a5aceba9596621d",
+      "delivered": true
+    }
+  ],
+  "currentBindingMatches": true,
+  "acceptedResultMatches": true,
+  "deterministicComparisonMatches": true,
+  "sourceMatches": true,
+  "offlineReplay": false,
+  "savedAnalysisStatus": "Historical snapshot — not a fresh live run on reopen"
+}

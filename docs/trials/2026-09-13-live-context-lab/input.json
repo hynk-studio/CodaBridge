@@ -1,0 +1,12 @@
+{
+  "datasetId": "zenodo-10817697",
+  "segmentId": "sw061b001_124-from-row-2-60s-v1",
+  "callers": [
+    "1",
+    "2"
+  ],
+  "offset": 1,
+  "selectedRowId": "row-12",
+  "binding": "{\"datasetId\":\"zenodo-10817697\",\"releaseCommit\":\"7228c8eed2cc27ddd23b74c51aeccec9d762389e\",\"csvSha256\":\"1856c8bf915cc5ae6f928aaa2036cbbc6ad8840bb6e4f6a96aaeb96953215da2\",\"derivedVersion\":1,\"selectionRule\":\"quality-coverage-v1\",\"segmentId\":\"sw061b001_124-from-row-2-60s-v1\",\"callers\":[\"1\",\"2\"],\"method\":\"paired-duration-gap-v1\",\"offset\":1,\"selectedRowId\":\"row-12\"}",
+  "question": "Does the similarity depend on the pairing? Compare the observed calls with reassigned pairings and explain other possible explanations."
+}

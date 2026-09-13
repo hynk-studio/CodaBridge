@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-09-13T01:15:04.266Z",
+  "httpStatus": 200,
+  "result": {
+    "status": "unavailable",
+    "code": "NOT_CONFIGURED",
+    "message": "Astra investigation is unavailable. Server access has not been enabled for this workspace."
+  }
+}

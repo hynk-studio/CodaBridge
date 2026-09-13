@@ -1,0 +1,52 @@
+{
+  "applicationOutcome": "COMPLETED",
+  "applicationToolPathVerdict": "PASS",
+  "answerQualityVerdict": "PASS_FOR_THIS_CASE",
+  "materialDiscrepancies": [],
+  "observedProviderRequests": 2,
+  "usage": {
+    "inputTokens": 15596,
+    "outputTokens": 883,
+    "totalTokens": 16479
+  },
+  "exactSubmittedBindingMatches": true,
+  "modelInitiatedControlResult": true,
+  "offset": 1,
+  "selectedRowId": "row-12",
+  "replayEvidenceBasis": "Accepted model-initiated action and issued tool evidence; two provider receipts/HTTP diagnostics; reviewed handler appends function_call_output before the next provider request. Raw wire data was not retained.",
+  "independentArithmetic": "Raw CSV parsed with Python csv/Decimal, without the application parser or comparison helper. Floating agreement tolerance 1e-12 seconds.",
+  "fullSegmentCallAndPairMembershipMatches": true,
+  "allControlScoresMatch": true,
+  "observedAndSelectedInventoryAndPairMappingsMatch": true,
+  "allSourceClicksMatch": true,
+  "structuredCitationsResolve": true,
+  "freeTextSourceRowLabelsExist": true,
+  "sourceDataUnchanged": true,
+  "download": {
+    "actualJsonParsed": true,
+    "currentBindingMatches": true,
+    "entireComparisonMatches": true,
+    "observedAndSelectedPairAndControlMappingsMatch": true,
+    "exactGeneratedResultMatches": true,
+    "sourceAndSegmentMatch": true,
+    "actualPngDelivered": true,
+    "cardVisuallyInspected": true,
+    "reconstructionIdentityAndSourceCreditLegible": true,
+    "offlineReplay": false
+  },
+  "manualAnswerChecks": [
+    "All reported aggregate values, units, seven pairs and fourteen unique calls match independent source arithmetic; the full segment has 23 calls, 14 A and 9 B (not misstated in prose).",
+    "The observed mean lies inside the eight-control range; exactly offsets 4 and 8 are closer. The answer explicitly says two of eight controls are closer and does not claim unique observed matching.",
+    "All nine B slot-to-duration-source mappings match offset 1, including unpaired inventory rows. A row-12 has span 0.8275417 s; original row-11 duration 0.967213 s, reassigned row-13 duration 0.946011 s; pair differences 0.1396713 and 0.1184693 s are correct while the overall mean increases.",
+    "The answer consistently describes call-duration differences, not response latency or silence; it distinguishes the equal-count normalized-rhythm metric.",
+    "Fixed original pair slots, unchanged observed timing/audio, circular seam, analytical controls and lack of independent samples are stated.",
+    "Type composition, within-caller persistence, shared setting, selection and annotation uncertainty are possible accounts, not established causes.",
+    "Annotation reconstruction, local caller scope, unverified identities and precision versus accuracy are clear; no original-audio or Composer/field-clip link is fabricated.",
+    "No proof/disproof of communication, synchrony, meaning or intention is claimed. The answer distinguishes this descriptive control from the paper test and planned predictive experiment. It does not discuss or invent a resolution of the source-count discrepancy."
+  ],
+  "limitations": [
+    "Case-specific manual assessment is not automated factual verification or a general reliability claim.",
+    "Prose shows excessive floating precision, a readability issue; it also explicitly warns that precision does not establish accuracy.",
+    "No human listening, physical-device use, hosted runtime/download or broader reliability assessment occurred."
+  ]
+}

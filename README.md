@@ -4,7 +4,7 @@ Hear a real recording. Shape a personal synthetic phrase. Compare its timing and
 
 **The reviewed Composer foundation is integrated. MVP-04 Context Lab is implemented for separate Draft review.** Four attributed originals connect to the phrase editor, synthetic playback, source-aware comparison, personal codebook and WAV/card/project downloads. Enter Context Lab without losing the creation: explore a real annotated exchange, hear its clearly labeled timing reconstruction, compare observed overlap pairs with reassigned durations, and save a sourced investigation. [Lab contract and results](docs/MVP_04.md) · [listening pack and key-free handoff](docs/RELEASE_HANDOFF.md).
 
-**Default live access remains disabled on the server.** Earlier separately authorized Composer trials accepted a compound edit and, after a prose correction, an investigation of the restored modified creation; their historical failure and acceptance evidence is preserved. The new Lab tool path is tested only with visibly labeled provider fixtures. No new live model request was made for MVP-04. Broader live reliability, human listening and hosted Sites operation remain unverified.
+**Default live access remains disabled on the server.** Earlier separately authorized Composer trials accepted a compound edit and, after a prose correction, an investigation of the restored modified creation; their historical failure and acceptance evidence is preserved. The [first separately authorized live Lab investigation](docs/trials/2026-09-13-live-context-lab/README.md) accepted an actual model-initiated control lookup and explanation, with independent answer checks passing for that case. Broader live reliability, human listening and hosted Sites operation remain unverified.
 
 ## Run locally
 
@@ -49,6 +49,7 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 - [MVP-04 connected Lab contract and exact control](docs/MVP_04.md)
 - [Research annotation audit and deterministic selection](docs/CONTEXT_DATA.md)
 - [MVP-04 integration, tests, captures and delivered files](docs/MVP_04_VERIFICATION.md)
+- [First live Context Lab investigation: tool path, independent quality assessment and actual downloads](docs/trials/2026-09-13-live-context-lab/README.md)
 - [Key-free reviewed artifact, listening pack and Sites handoff](docs/RELEASE_HANDOFF.md)
 - [MVP-03 contract, engineering limits and implementation](docs/MVP_03.md)
 - [Composer quantitative-prose policy and correction checks](docs/MVP_03_NUMERIC_PROSE.md)
@@ -63,4 +64,4 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 - Historical [MVP-01 contract](docs/MVP_01.md) and [verification](docs/VERIFICATION.md)
 - [Parent issue #1](https://github.com/hynk-studio/CodaBridge/issues/1), integrated foundation [PR #2](https://github.com/hynk-studio/CodaBridge/pull/2) → [PR #3](https://github.com/hynk-studio/CodaBridge/pull/3) → [PR #5](https://github.com/hynk-studio/CodaBridge/pull/5)
 
-Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. Broader Composer live compatibility, the new Lab's live behavior, hosted Sites runtime/delivery and scientific validation remain unverified. The deeper predictive Context / Dialogue Transfer experiment remains planned; this descriptive Lab does not replace it. The parent launch issue remains open. Only the explicitly authorized reviewed foundation was merged; the new Lab PR remains Draft. No Site creation/save/deployment, account/database stack or WhAM is included. Project code licensing remains undecided; third-party licenses remain in force.
+Public live enablement awaits review of an actual access/budget path. Operator flags are **not authentication** and per-request limits are **not a shared spending cap**. Broader Composer/Lab live reliability, hosted Sites runtime/delivery and scientific validation remain unverified. The deeper predictive Context / Dialogue Transfer experiment remains planned; this descriptive Lab does not replace it. The parent launch issue remains open. Only the explicitly authorized reviewed foundation was merged; the new Lab PR remains Draft. No Site creation/save/deployment, account/database stack or WhAM is included. Project code licensing remains undecided; third-party licenses remain in force.

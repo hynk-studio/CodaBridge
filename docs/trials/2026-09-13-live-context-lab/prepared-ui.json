@@ -1,0 +1,17 @@
+{
+  "source": "6e83e7681ce705a4d052df517b9abdc118b135e3",
+  "applicationSource": "8cc61f7f240ce007c3263a13721edd2d06550606",
+  "preparedAt": "2026-09-13T01:12:26.434Z",
+  "datasetId": "zenodo-10817697",
+  "segmentId": "sw061b001_124-from-row-2-60s-v1",
+  "selectedRowId": "row-12",
+  "offset": 1,
+  "question": "Does the similarity depend on the pairing? Compare the observed calls with reassigned pairings and explain other possible explanations.",
+  "selectedOption": "A · row 12 · 152.9482 s",
+  "observedDisplay": "0.132867 s",
+  "controlDisplay": "0.143900 s",
+  "browserVersion": "153.0.8010.12",
+  "labSubmissions": 0,
+  "otherModelSubmissions": 0,
+  "isolatedContext": true
+}
