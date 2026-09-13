@@ -1,3 +1,4 @@
+import Notice, { useNotice } from "../Notice.tsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import {
@@ -57,7 +58,7 @@ export default function ContextLab({
     [available, setAvailable] = useState(false);
   const [pending, setPending] = useState(false),
     [result, setResult] = useState<LabResult | null>(null),
-    [notice, setNotice] = useState("");
+    [notice, setNotice] = useNotice();
   const player = useRef<SyntheticPlayer | null>(null),
     controller = useRef<AbortController | null>(null),
     generation = useRef(0);
@@ -96,6 +97,7 @@ export default function ContextLab({
   }, []);
   const comparison = comparePairing(segment, offset),
     selected = calls.find((c) => c.id === selectedId)!;
+  const selectedControl = comparison.controls.find(control => control.offset === offset);
   const end = Math.min(segment.end, windowStart + windowSize),
     width = 1000;
   const x = (time: number) =>
@@ -121,7 +123,7 @@ export default function ContextLab({
       );
     } catch {
       setNotice(
-        "Timing audio could not start. Visual exploration and saving remain available.",
+        "Timing audio could not start. Visual exploration and saving remain available.", "warning",
       );
     }
   }
@@ -167,7 +169,7 @@ export default function ContextLab({
     } catch {
       if (token === generation.current && !ac.signal.aborted)
         setNotice(
-          "Astra's result could not be accepted. The measured comparison is unchanged.",
+          "Astra's result could not be accepted. The measured comparison is unchanged.", "warning",
         );
     } finally {
       if (token === generation.current) setPending(false);
@@ -190,7 +192,7 @@ export default function ContextLab({
         "Investigation download requested. Saved analysis is a historical snapshot.",
       );
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : "Download failed.");
+      setNotice(error instanceof Error ? error.message : "Download failed.", "warning");
     }
   }
   function showPanel(next: typeof panel) {
@@ -231,7 +233,7 @@ export default function ContextLab({
         <button aria-pressed={panel === "compare"} onClick={() => showPanel("compare")}>Compare pairings</button>
         <button aria-pressed={panel === "save"} onClick={() => showPanel("save")}>Save investigation</button>
       </nav>
-      {panel !== "compare" && notice && <p className="lab-notice" role="status">{notice}</p>}
+      {panel !== "compare" && <Notice className="lab-notice" message={notice} />}
       <section hidden={panel !== "explore"} className="lab-panel" aria-labelledby="exchange-title">
         <div className="lab-section-heading">
           <div>
@@ -478,7 +480,7 @@ export default function ContextLab({
             >
               {calls.map((c) => (
                 <option key={c.id} value={c.id}>
-                  {label(c.id)} · {c.onset.toFixed(4)} s
+                  {label(c.id)}
                 </option>
               ))}
             </select>
@@ -530,19 +532,16 @@ export default function ContextLab({
         <div>
         <div className="lab-control-detail">
         <label className="lab-offset">
-          Pairing to inspect
+          Duration assignment
           <select
-            aria-label="Control offset"
+            aria-label="Duration assignment" aria-describedby="control-assignment-description"
             value={offset}
             onChange={(e) => change(() => setOffset(Number(e.target.value)))}
           >
-            <option value={0}>Observed · offset 0</option>
+            <option value={0}>Observed</option>
             {comparison.controls.map((c) => (
               <option key={c.offset} value={c.offset}>
-                Control {c.offset} · rotate B by {c.offset}
-                {c.equivalentToOffset !== null
-                  ? ` (equivalent to ${c.equivalentToOffset})`
-                  : ""}
+                Control {c.offset}
               </option>
             ))}
           </select>
@@ -550,6 +549,10 @@ export default function ContextLab({
         <button onClick={() => change(() => setOffset(0))}>
           Reset to observed
         </button>
+        <p className="lab-caption" id="control-assignment-description">
+          {offset === 0 ? "Original duration assignments." : `B durations rotate by ${offset}; original calls stay fixed.`}
+          {selectedControl?.equivalentToOffset != null ? ` Equivalent to offset ${selectedControl.equivalentToOffset}.` : ""}
+        </p>
         </div>
         <div
           className="lab-statistics"
@@ -685,7 +688,7 @@ export default function ContextLab({
         <h2 id="lab-ask-title">What else could explain this?</h2>
         <p>
           {available
-            ? "Only an explicit Ask sends this source-bound question. Interpretation remains unverified."
+            ? "Ask about this exchange and its duration comparison. The answer is generated and unverified."
             : "Astra is unavailable here. Exploring, comparing, listening and saving work locally."}
         </p>
         <form
@@ -712,7 +715,7 @@ export default function ContextLab({
           >
             {pending
               ? "Investigating this comparison…"
-              : "Ask Astra about this comparison"}
+              : "Ask Astra"}
           </button>
           {pending && (
             <button type="button" onClick={cancel}>
@@ -720,10 +723,10 @@ export default function ContextLab({
             </button>
           )}
         </form>
-        {panel === "compare" && notice && <p className="lab-notice" role="status">{notice}</p>}
+        {panel === "compare" && <Notice className="lab-notice" message={notice} />}
         {result && (
           <div className="lab-result" data-testid="lab-result">
-            <p className="reconstruction-label" role="status">
+            <p className="result-label" role="status">
               Answer ready.{" "}
               {result.execution === "mock-transport-test"
                 ? "TEST ONLY · provider transport fixture · no live Astra call"

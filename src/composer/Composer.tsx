@@ -43,6 +43,7 @@ import {
 import { SyntheticPlayer, wavBytes } from "./sound.ts";
 import { durationHint, operationLabels, timingChange } from "./presentation.ts";
 import type { ComposerRequest, ComposerResult } from "./contract.ts";
+import Notice, { useNotice } from "../Notice.tsx";
 import "./composer.css";
 
 export interface ComposerHandle {
@@ -181,8 +182,8 @@ const Composer = forwardRef<
   const [savedAnalysis, setSavedAnalysis] = useState<unknown>(
     initial.project?.savedAnalysis ?? null,
   );
-  const [notice, setNotice] = useState(initial.error || (initial.project ? "Restored saved work from this browser." : ""));
-  const [storage, setStorage] = useState(
+  const [notice, setNotice] = useNotice(initial.error || (initial.project ? "Restored saved work from this browser." : ""), initial.error ? "warning" : "info");
+  const [storage, setStorage] = useNotice(
     initial.error ? "File saving available" : "Saved only in this browser",
   );
   const [availability, setAvailability] = useState(
@@ -262,7 +263,7 @@ const Composer = forwardRef<
         setAvailable(v.status === "available");
         setAvailability(
           v.status === "available"
-            ? "Optional · draft timing and your question are sent only when you ask."
+            ? "Asking sends your whole phrase, creator text and question, plus any previous timing for this block."
             : "Astra is unavailable here. All creative tools work locally.",
         );
       })
@@ -284,7 +285,7 @@ const Composer = forwardRef<
       setStorage("Saved only in this browser");
     } catch {
       setStorage(
-        "Local saving failed. Download project JSON to keep your work.",
+        "Local saving failed. Download project JSON to keep your work.", "warning",
       );
     }
   }, [draft, codebook, savedAnalysis, active?.id]);
@@ -294,7 +295,7 @@ const Composer = forwardRef<
       setNotice("");
     } catch (e) {
       setNotice(
-        e instanceof Error ? e.message : "The change could not be made.",
+        e instanceof Error ? e.message : "The change could not be made.", "warning",
       );
     }
   }
@@ -384,7 +385,7 @@ const Composer = forwardRef<
     try {
       await player.current?.play(selected);
     } catch (e) {
-      setNotice(e instanceof Error ? e.message : "Audio unavailable.");
+      setNotice(e instanceof Error ? e.message : "Audio unavailable.", "warning");
     }
   }
   async function ask() {
@@ -443,7 +444,7 @@ const Composer = forwardRef<
         generation.current === currentGeneration &&
         !controller.signal.aborted
       )
-        setNotice(e instanceof Error ? e.message : "Astra request failed.");
+        setNotice(e instanceof Error ? e.message : "Astra request failed.", "warning");
     } finally {
       if (generation.current === currentGeneration) {
         setPending(false);
@@ -486,7 +487,7 @@ const Composer = forwardRef<
         `${kind === "wav" ? "Synthetic WAV" : kind === "card" ? "Coda Card image" : "Project JSON"} download requested. Keep the audio and project with the image.`,
       );
     } catch (e) {
-      setNotice(e instanceof Error ? e.message : "Download failed.");
+      setNotice(e instanceof Error ? e.message : "Download failed.", "warning");
     }
   }
   async function importFile(file: File | undefined) {
@@ -520,7 +521,7 @@ const Composer = forwardRef<
     } catch (e) {
       if (generation.current === token)
         setNotice(
-          e instanceof Error ? e.message : "Project could not be opened.",
+          e instanceof Error ? e.message : "Project could not be opened.", "warning",
         );
     }
   }
@@ -588,12 +589,8 @@ const Composer = forwardRef<
           />
         </label>
       </div>
-      <p className="composer-storage" role="status">
-        {storage}
-      </p>
-      {panel !== "compare" && <p className="composer-notice" role="status">
-        {notice}
-      </p>}
+      <Notice className="composer-storage" message={storage} />
+      {panel !== "compare" && <Notice className="composer-notice" message={notice} />}
       {!draft || !active ? (
         <div className="composer-empty">
           <span className="empty-pattern" aria-hidden="true">
@@ -700,11 +697,16 @@ const Composer = forwardRef<
             ))}
           </div>
           <p className="composer-meta">
-            Choose a block to edit. The phrase plays every block in order, including the pauses between them.
+            Choose a block to edit. The whole phrase includes every block and the pauses between them.
           </p>
+          <div role="group" aria-labelledby="synthetic-playback-title" aria-describedby="synthetic-playback-description" className="synthetic-playback">
+          <h3 id="synthetic-playback-title">Synthetic playback</h3>
+          <p className="composer-meta" id="synthetic-playback-description">Seed timing and your edits use synthesized clicks. Hear the original field audio in Listen.</p>
           <div className="composer-actions playback-controls">
-            <button className="primary" onClick={() => void play("phrase")}>
-              ▶ Play my synthetic phrase
+            <button onClick={() => void play("seed")}>Play seed timing</button>
+            <button className="primary" onClick={() => void play("block")}>Play this block</button>
+            <button onClick={() => void play("phrase")}>
+              Play whole phrase
             </button>
             <button
               disabled={
@@ -714,11 +716,11 @@ const Composer = forwardRef<
               onClick={() => void player.current?.pauseResume()}
             >
               {soundStatus.includes("paused")
-                ? "Resume synthetic"
-                : "Pause synthetic"}
+                ? "Resume"
+                : "Pause"}
             </button>
             <button onClick={() => player.current?.stop()}>
-              Stop synthetic
+              Stop
             </button>
           </div>
           <p
@@ -726,8 +728,9 @@ const Composer = forwardRef<
             role="status"
             aria-label="Synthetic playback status"
           >
-            {soundStatus}. All Composer playback is synthetic.
+            {soundStatus === "Playing synthetic clicks" ? "Playing" : soundStatus === "Synthetic playback paused" ? "Paused" : soundStatus === "Synthetic playback stopped" ? "Stopped" : soundStatus}
           </p>
+          </div>
           <div className={`composer-workbench ${panel === "compare" ? "compare-workbench" : ""}`}>
             <section hidden={panel !== "edit"} className="block-editor" aria-label="Active block editor">
               <div className="small-heading">
@@ -738,10 +741,6 @@ const Composer = forwardRef<
                 <span>
                   {active.times.length} clicks · seed {recordings.find((r) => r.id === active.seed.recordingId)!.source.filename}
                 </span>
-              </div>
-              <div className="block-audition">
-                <button onClick={() => void play("seed")}>Play synthetic seed timing</button>
-                <button className="primary" onClick={() => void play("block")}>Play selected synthetic block</button>
               </div>
               <Pattern
                 block={active}
@@ -982,14 +981,12 @@ const Composer = forwardRef<
                 aria-label="Seed and selected block durations"
               >
                 <div>
-                  <span>Synthetic seed timing</span>
+                  <span>Seed timing</span>
                   <strong>{analysis!.seed.spanSeconds.toFixed(3)} s</strong>
-                  <button hidden={panel === "edit"} onClick={() => void play("seed")}>Play synthetic seed timing</button>
                 </div>
                 <div>
-                  <span>Selected synthetic block</span>
+                  <span>This block</span>
                   <strong>{span(active).toFixed(3)} s</strong>
-                  <button hidden={panel === "edit"} className="primary" onClick={() => void play("block")}>Play selected synthetic block</button>
                 </div>
               </div>
               {previous && (
@@ -998,7 +995,6 @@ const Composer = forwardRef<
                   {timingChange(previous, active)}
                 </p>
               )}
-              <p className="composer-meta">The seed and selected block use the same synthetic click sound. The field recording keeps the whale’s original sound.</p>
               {panel === "edit" && <button onClick={() => showPanel("compare")}>Compare with real recordings →</button>}
               <div hidden={panel !== "compare"}>
               <details>
@@ -1028,16 +1024,21 @@ const Composer = forwardRef<
               <h4>Other real examples</h4>
               <p>
                 {analysis!.eligibleCount} eligible / {analysis!.catalogCount}{" "}
-                catalog recordings. Seed ancestry and duplicate bytes excluded.
+                catalog recordings. Your seeds and repeated copies are excluded.
               </p>
+              <p className="composer-meta">Lower timing distance means closer relative spacing, not shared meaning.</p>
               <ol className="alternative-list">
-                {analysis!.matches.map((row, rank) => (
-                  <li key={row.sourceId}>
+                {analysis!.matches.map((row, rank) => {
+                  const source = recordings.find(r => r.id === row.sourceId)!;
+                  const name = `Recording ${source.source.filename.replace(/\.wav$/i, "")}`;
+                  return <li key={row.sourceId}>
                     <div>
-                      <strong>#{rank + 1} · {recordings.find((r) => r.id === row.sourceId)!.label}</strong>
-                      <span>Distance {row.comparison.status === "comparable" ? row.comparison.value.toFixed(3) : "Not comparable"}</span>
+                      <strong>{name}</strong>
+                      <p className="composer-meta">{rank === 0 ? "Closest timing match in this catalog" : `Timing match ${rank + 1} in this catalog`}</p>
+                      <span>Timing distance {row.comparison.status === "comparable" ? row.comparison.value.toFixed(3) : "Not comparable"}</span>
                     </div>
-                    <p className="composer-meta">{recordings.find((r) => r.id === row.sourceId)!.annotation.clickTimesSeconds.length} estimated clicks · {span(seedBlock(row.sourceId)).toFixed(2)} s click span. Lower distance means closer relative spacing, not shared meaning.</p>
+                    <p className="composer-meta">{source.annotation.clickTimesSeconds.length} estimated clicks · {span(seedBlock(row.sourceId)).toFixed(2)} s click span</p>
+                    <details className="candidate-source"><summary>Source & exact metric</summary><p>{source.label} · {row.sourceId}</p><p>Normalized interval MAD: {row.comparison.status === "comparable" ? row.comparison.value : "Not comparable"}</p></details>
                     <button
                       onClick={() => {
                         cancel();
@@ -1045,10 +1046,10 @@ const Composer = forwardRef<
                         onExample(row.sourceId);
                       }}
                     >
-                      Listen / compare {row.sourceId}
+                      Open {name.toLowerCase()}
                     </button>
-                  </li>
-                ))}
+                  </li>;
+                })}
               </ol>
               {!analysis!.matches.length && (
                 <p>No eligible other example in this small catalog.</p>
@@ -1104,8 +1105,8 @@ const Composer = forwardRef<
             aria-labelledby="composer-astra-title"
           >
             <div>
-              <p className="eyebrow">03 Ask & test · optional</p>
-              <h3 id="composer-astra-title">Astra, at your editing desk.</h3>
+              <p className="eyebrow">Ask Astra · optional</p>
+              <h3 id="composer-astra-title">Ask about your creation</h3>
               <p>{availability}</p>
             </div>
             <form
@@ -1118,14 +1119,14 @@ const Composer = forwardRef<
               }}
             >
               <label>
-                What would you like to do?
+                Request type
                 <select
-                  aria-label="What would you like to do?"
+                  aria-label="Request type"
                   value={mode}
                   onChange={(e) => chooseRequestMode(e.target.value as ComposerRequest["mode"])}
                 >
-                  <option value="edit">Propose a timing edit</option>
-                  <option value="investigate">Investigate this block</option>
+                  <option value="edit">Edit timing</option>
+                  <option value="investigate">Explain timing</option>
                 </select>
               </label>
               <label>
@@ -1146,9 +1147,7 @@ const Composer = forwardRef<
                 >
                   {pending
                     ? "Working with this revision…"
-                    : mode === "edit"
-                      ? "Ask Astra for an edit"
-                      : "Ask Astra to investigate"}
+                    : "Ask Astra"}
                 </button>
                 {pending && (
                   <button
@@ -1165,14 +1164,14 @@ const Composer = forwardRef<
                 )}
               </div>
             </form>
-            {panel === "compare" && notice && <p className="composer-notice" role="status">{notice}</p>}
+            {panel === "compare" && <Notice className="composer-notice" message={notice} />}
             {result && (
               <div className="composer-result" data-testid="composer-result">
                 <p className="result-label" role="status">
                   {result.proposal ? "Edit proposal ready. " : "Answer ready. "}
                   {result.execution === "mock-transport-test"
                     ? "TEST ONLY · model transport fixture · no live Astra call"
-                    : "Astra provider response · interpretation remains unverified"}
+                    : "Generated with Astra · unverified"}
                 </p>
                 {result.proposal && (
                   <>
@@ -1403,7 +1402,7 @@ const Composer = forwardRef<
                     localStorage.removeItem(STORAGE_KEY);
                   } catch {
                     setStorage(
-                      "Storage could not be cleared. Close this browser to end the session.",
+                      "Storage could not be cleared. Close this browser to end the session.", "warning",
                     );
                   }
                 }}
@@ -1427,7 +1426,6 @@ const Composer = forwardRef<
                 · <a href={s.url}>Original {s.filename}</a>
               </p>
             ))}
-            <p>{storage}</p>
             <button
               onClick={() => {
                 cancel();
@@ -1440,7 +1438,7 @@ const Composer = forwardRef<
                   setNotice("Local phrase and codebook cleared.");
                 } catch {
                   setNotice(
-                    "The session was cleared, but browser storage could not be removed.",
+                    "The session was cleared, but browser storage could not be removed.", "warning",
                   );
                 }
               }}

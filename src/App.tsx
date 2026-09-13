@@ -17,6 +17,8 @@ import { measuredObservation } from "./domain/observation.ts";
 import Composer, { type ComposerHandle } from "./composer/Composer.tsx";
 import { stopSynthetic } from "./composer/sound.ts";
 import ContextLab from "./lab/ContextLab.tsx";
+import WorkspaceHeader from "./WorkspaceHeader.tsx";
+import Notice, { useNotice } from "./Notice.tsx";
 
 const seconds = (value: number) => `${value.toFixed(3)} s`;
 
@@ -132,7 +134,7 @@ export default function App() {
     B: recordings[1].id,
   });
   const [view, setView] = useState<ViewMode>("absolute");
-  const [downloadStatus, setDownloadStatus] = useState("");
+  const [downloadStatus, setDownloadStatus] = useNotice();
   const [revealed, setRevealed] = useState(false);
   const composer = useRef<ComposerHandle>(null);
   const audioElements = useRef(new Map<Side, HTMLAudioElement>());
@@ -221,11 +223,11 @@ export default function App() {
       link.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       setDownloadStatus(
-        "Recording-comparison JSON download requested for A/B. Save your Composer project in Keep my coda.",
+        "Recording-comparison JSON download requested. Creation files are in Composer → Save & codebook.",
       );
     } catch (cause) {
       setDownloadStatus(
-        cause instanceof Error ? cause.message : "Evidence download failed.",
+        cause instanceof Error ? cause.message : "Evidence download failed.", "warning",
       );
     }
   }
@@ -235,29 +237,7 @@ export default function App() {
       <a className="skip-link" href="#workspace">
         Skip to workspace
       </a>
-      <header className="site-header">
-        <a href="#workspace" className="wordmark" aria-label="CodaBridge home" onClick={(e) => { e.preventDefault(); navigate("listen"); }}>
-          <span className="brand-mark" aria-hidden="true">
-            ı┃ı┃ı
-          </span>
-          CodaBridge
-        </a>
-        <nav className="product-navigation" aria-label="CodaBridge workspace">
-          <button aria-pressed={section === "listen"} onClick={() => navigate("listen")}>Listen</button>
-          <button
-            aria-pressed={section === "composer"}
-            onClick={() => navigate("composer")}
-          >
-            Composer
-          </button>
-          <button
-            aria-pressed={section === "lab"}
-            onClick={() => navigate("lab")}
-          >
-            Context Lab
-          </button>
-        </nav>
-      </header>
+      <WorkspaceHeader current={section} onNavigate={navigate} />
       <main id="workspace" tabIndex={-1}>
         <div hidden={section !== "listen"}>
           <div className="intro">
@@ -503,9 +483,7 @@ export default function App() {
               <InvestigationPanel investigation={investigation} />
             </details>
           </div>
-          <p className="download-status" role="status">
-            {downloadStatus}
-          </p>
+          <Notice className="download-status" message={downloadStatus} />
         </div>
         <div hidden={section !== "composer"}>
           <Composer

@@ -67,11 +67,11 @@ test("focused follow-up: Lab answer opens once without moving focus or scroll, a
   await seed(page);
   const draft = await stored(page);
   await labView(page, "compare");
-  await page.getByLabel("Control offset", { exact: true }).selectOption("1");
+  await page.getByLabel("Duration assignment", { exact: true }).selectOption("1");
   const measured = await page.locator(".lab-statistics").innerText();
   const question = page.getByRole("textbox", { name: "Context question", exact: true });
   await question.fill("Does the observed pairing look different from reassigned durations, and what remains uncertain?");
-  await page.getByRole("button", { name: "Ask Astra about this comparison", exact: true }).click();
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
   await expect(page.getByRole("button", { name: "Investigating this comparison…", exact: true })).toBeDisabled();
   await question.click();
   const scrollBefore = await page.evaluate(() => scrollY);
@@ -91,22 +91,25 @@ test("focused follow-up: Lab answer opens once without moving focus or scroll, a
   await labView(page, "compare");
   await expect(answer).not.toHaveAttribute("open");
   expect(mock.calls).toHaveLength(2);
-  await page.getByRole("button", { name: "Ask Astra about this comparison", exact: true }).click();
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
   await expect(answer).toHaveAttribute("open");
   fail = true;
-  await page.getByRole("button", { name: "Ask Astra about this comparison", exact: true }).click();
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
   await expect(page.locator(".lab-ask .lab-notice")).toContainText("The measured comparison is unchanged");
+  await expect(page.locator(".lab-ask .lab-notice")).toHaveAttribute("data-tone", "warning");
   await expect(result).toHaveCount(0);
   expect(await page.locator(".lab-statistics").innerText()).toBe(measured);
   expect(await stored(page)).toEqual(draft);
   const packet = await download(page, "Download investigation JSON");
+  await expect(page.locator(".lab-notice")).toHaveAttribute("data-tone", "info");
+  await expect(page.locator(".lab-notice")).toHaveAttribute("role", "status");
   expect(JSON.parse(packet.bytes.toString()).generated).toBeNull();
   expect(JSON.parse(packet.bytes.toString()).comparison).toEqual(comparePairing(contextSegment, 1));
   await labView(page, "compare");
   await page.setViewportSize({ width: 320, height: 844 });
   await page.addStyleTag({ content: "html { font-size: 200%; }" });
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
-  await page.getByRole("button", { name: "Ask Astra about this comparison", exact: true }).scrollIntoViewIfNeeded();
+  await page.getByRole("button", { name: "Ask Astra", exact: true }).scrollIntoViewIfNeeded();
   await page.screenshot({ path: "test-results/followup-lab-320-enlarged.png", fullPage: false });
 });
 async function download(page: Page, name: string) {
@@ -170,7 +173,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
     path: `${directory}/${info.project.name}-composer-entry.png`,
   });
   await (await composerView(page, "edit"))
-    .getByRole("button", { name: "▶ Play my synthetic phrase", exact: true })
+    .getByRole("button", { name: "Play whole phrase", exact: true })
     .click();
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
     "Playing",
@@ -230,7 +233,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
     20.09,
     4,
   );
-  await (await labView(page, "compare")).getByLabel("Control offset", { exact: true }).selectOption("1");
+  await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
   const comparison = comparePairing(contextSegment, 1);
   await expect(page.getByTestId("lab-observed")).toHaveText(
     `${comparison.observed.valueSeconds!.toFixed(3)} s`,
@@ -245,7 +248,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
   await expect(page.getByTestId("lab-selected-score")).toHaveText(
     `${comparison.observed.valueSeconds!.toFixed(3)} s`,
   );
-  await (await labView(page, "compare")).getByLabel("Control offset", { exact: true }).selectOption("1");
+  await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
   await (await labView(page, "explore")).getByRole("button", { name: "Later window", exact: true }).click();
   await (await labView(page, "explore"))
     .getByLabel("Selected exchange coda", { exact: true })
@@ -267,7 +270,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
   ).toBe(true);
   await (await labView(page, "compare"))
     .getByRole("button", {
-      name: "Ask Astra about this comparison",
+      name: "Ask Astra",
       exact: true,
     })
     .click();
@@ -375,17 +378,17 @@ for (const change of ["offset", "row", "question", "navigation"])
     await page
       .getByRole("button", { name: "Context Lab", exact: true })
       .click();
-    await (await labView(page, "compare")).getByLabel("Control offset", { exact: true }).selectOption("1");
+    await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
     await (await labView(page, "compare"))
       .getByRole("button", {
-        name: "Ask Astra about this comparison",
+        name: "Ask Astra",
         exact: true,
       })
       .click();
     await expect.poll(() => waiting).toBe(true);
     if (change === "offset")
       await (await labView(page, "compare"))
-        .getByLabel("Control offset", { exact: true })
+        .getByLabel("Duration assignment", { exact: true })
         .selectOption("2");
     if (change === "row")
       await (await labView(page, "explore"))
@@ -426,7 +429,7 @@ test("ordinary disabled Lab: no model requests/autoplay, untrusted question is p
   await labView(page, "compare");
   await expect(
     page.getByRole("button", {
-      name: "Ask Astra about this comparison",
+      name: "Ask Astra",
       exact: true,
     }),
   ).toBeDisabled();
@@ -435,7 +438,7 @@ test("ordinary disabled Lab: no model requests/autoplay, untrusted question is p
     .click();
   await expect(
     page
-      .getByRole("status")
+      .getByRole("alert")
       .filter({ hasText: "Timing audio could not start" }),
   ).toBeVisible();
   const malicious = "<img src=x onerror=alert(1)>".repeat(15);
