@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-09-13T17:40:19.245926+00:00",
+  "snapshot": "821b0cd43d710c0f5f710cbece25257c5ae794fb",
+  "tree": "2a1d21e193e0318c9b2c4d655cdeddf0ec411b38",
+  "checkout": "Disposable detached git worktree; no tracked changes after replay",
+  "cache": "Eight existing pinned files verified in original checkout, copied, then reverified inside replay checkout; no downloaded code execution",
+  "cacheFiles": 8,
+  "commands": [
+    {
+      "command": "env -u OPENAI_API_KEY npm run audit:metadata:fetch",
+      "exitCode": 0
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run audit:metadata:test",
+      "exitCode": 0,
+      "passedTests": 10,
+      "context": "Original snapshot tests, newly executed; not the corrected current suite"
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run audit:metadata:verify",
+      "exitCode": 0
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run audit:metadata:reproduce",
+      "exitCode": 0,
+      "overwrittenOutputs": false
+    }
+  ],
+  "node": "v25.9.0",
+  "npm": "11.12.1",
+  "python": "Python 3.9.6"
+}

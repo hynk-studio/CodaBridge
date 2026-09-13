@@ -1,14 +1,15 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { appendFileSync, copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { parseCsv } from "../analysis/metadata-linkage-v1/csv.ts";
 import { agrees, civilTime, compare, decimal, difference, format, measure } from "../analysis/metadata-linkage-v1/precision.ts";
 import { compareMaor, linkMaor, maorMetadata, uniqueCompatible } from "../analysis/metadata-linkage-v1/maor.ts";
 import { joinCeti, linkCeti } from "../analysis/metadata-linkage-v1/ceti.ts";
 import { parseAnnotations } from "../src/lab/parse.ts";
-import { checkedBytes, checkPreservation, identity } from "../analysis/metadata-linkage-v1/io.ts";
+import { checkedBytes, identity } from "../analysis/metadata-linkage-v1/io.ts";
+import { AUDIT_BASE, AUDIT_SNAPSHOT, checkFrozenArtifacts, checkHistoricalFiles, checkHistoricalPreservation, frozenFiles } from "../analysis/metadata-linkage-v1/preservation-checks.ts";
 import { dateCandidates } from "../analysis/metadata-linkage-v1/dates.ts";
 
 // TEST ONLY invented metadata/annotations; no source files or results are edited.
@@ -90,10 +91,67 @@ test("TEST ONLY conflicting CETI duplicates and inconsistent metadata never choo
   assert.ok(altered.events[0].conflicts.includes("conflicting-timing-observations"));
   assert.equal(altered.events[0].timing, null);
 });
-test("Original source validation and every historical tracked artifact remain unchanged", () => {
+test("Original source validation and current frozen data/results retain their recorded identities", () => {
   const parsed = parseAnnotations(readFileSync("data/context/sperm-whale-dialogues.csv", "utf8"));
   assert.equal(parsed.calls.length, 3790); assert.equal(parsed.excluded.length, 50);
-  assert.equal(checkPreservation().unchangedFiles, 462);
+  assert.equal(checkFrozenArtifacts().frozenFiles, frozenFiles().length);
+});
+test("TEST ONLY application edits pass the current guard; changed frozen source, cohort and results fail", () => {
+  const dir = mkdtempSync(join(tmpdir(), "codabridge-metadata-frozen-test-"));
+  try {
+    // Private copies only: never edit an owner file, even while other tests run.
+    for (const f of frozenFiles()) {
+      const destination = join(dir, f.path);
+      mkdirSync(dirname(destination), { recursive: true }); copyFileSync(f.path, destination);
+    }
+    const applicationPaths = ["src/App.tsx", "src/composer/Composer.tsx", "src/styles.css", "server/worker.ts"];
+    for (const path of applicationPaths) {
+      const destination = join(dir, path);
+      mkdirSync(dirname(destination), { recursive: true });
+      copyFileSync(path, destination);
+    }
+    const before = checkFrozenArtifacts(dir);
+    for (const path of applicationPaths) appendFileSync(join(dir, path), "\n/* TEST ONLY legitimate application edit, outside frozen artifacts */\n");
+    assert.deepEqual(checkFrozenArtifacts(dir), before);
+    for (const path of ["data/context/sperm-whale-dialogues.csv", "analysis/dialogue-transfer/inputs/cohort.json",
+      "analysis/dialogue-transfer-v02/inputs/core.json", "analysis/dialogue-transfer-v02/results/fold-fits.json",
+      "public/prediction/dialogue-transfer-report.json", "docs/dialogue-transfer-v0.2/browser-delivered.json",
+      "analysis/metadata-linkage-v1/results/candidate-mapping.json", "analysis/metadata-linkage-v1/protocol.json",
+      "analysis/metadata-linkage-v1/preservation-manifest.json", "docs/metadata-linkage-v1/manifest.json"]) {
+      const destination = join(dir, path);
+      writeFileSync(destination, "TEST ONLY tampered frozen bytes\n");
+      assert.throws(() => checkFrozenArtifacts(dir), { message: new RegExp(`${path.replaceAll(".", "\\.")}.*SHA-256 mismatch`) });
+      copyFileSync(path, destination);
+    }
+    unlinkSync(join(dir, "analysis/dialogue-transfer-v02/inputs/coverage.json"));
+    assert.throws(() => checkFrozenArtifacts(dir), /ENOENT.*coverage\.json/);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+test("TEST ONLY historical preservation checks both recorded snapshots and rejects missing/tampered bytes", () => {
+  const dir = mkdtempSync(join(tmpdir(), "codabridge-metadata-history-test-"));
+  const bytes = Buffer.from("TEST ONLY historical source\n");
+  const files = ["src/App.tsx", "data/source.csv"].map(path => ({ path, ...identity(bytes) }));
+  const read = (revision: string, path: string) => readFileSync(join(dir, revision, path));
+  try {
+    for (const revision of [AUDIT_BASE, AUDIT_SNAPSHOT]) for (const f of files) {
+      const path = join(dir, revision, f.path);
+      mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, bytes);
+    }
+    checkHistoricalFiles(files, read);
+    for (const revision of [AUDIT_BASE, AUDIT_SNAPSHOT]) {
+      const path = join(dir, revision, files[0].path);
+      writeFileSync(path, "TEST ONLY tampered historical application\n");
+      assert.throws(() => checkHistoricalFiles(files, read), new RegExp(`${revision}:src/App.tsx: SHA-256 mismatch`));
+      unlinkSync(path); assert.throws(() => checkHistoricalFiles(files, read), /ENOENT/);
+      writeFileSync(path, bytes);
+    }
+    // Removing entries or replacing the full manifest cannot weaken the historical claim.
+    assert.throws(() => checkHistoricalPreservation(read), /ENOENT.*preservation-manifest\.json/);
+    const manifestPath = join(dir, AUDIT_SNAPSHOT, "analysis/metadata-linkage-v1/preservation-manifest.json");
+    mkdirSync(dirname(manifestPath), { recursive: true });
+    writeFileSync(manifestPath, JSON.stringify({ base: AUDIT_BASE, files: [] }));
+    assert.throws(() => checkHistoricalPreservation(read), /preservation-manifest\.json: SHA-256 mismatch/);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 test("TEST ONLY missing or tampered source bytes fail before completed audit output", () => {
   const dir = mkdtempSync(join(tmpdir(), "codabridge-metadata-test-")), file = join(dir, "synthetic.csv");

@@ -28,7 +28,8 @@
     "audit:metadata:test": "node --experimental-strip-types --test tests/metadata-linkage.test.ts",
     "audit:metadata:run": "node --experimental-strip-types analysis/metadata-linkage-v1/run.ts",
     "audit:metadata:reproduce": "node --experimental-strip-types analysis/metadata-linkage-v1/run.ts --check",
-    "audit:metadata:verify": "python3 analysis/metadata-linkage-v1/verify.py"
+    "audit:metadata:verify": "python3 analysis/metadata-linkage-v1/verify.py",
+    "audit:metadata:history": "node --experimental-strip-types scripts/check-metadata-history.ts"
   },
   "dependencies": {
     "react": "^19.2.8",
