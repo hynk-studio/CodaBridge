@@ -1,0 +1,95 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test tests/browser/sealed.spec.ts tests/browser/exchange.spec.ts tests/browser/composer.spec.ts tests/browser/context.spec.ts tests/browser/polish.spec.ts --max-failures=1
+
+
+Running 112 tests using 1 worker
+
+(node:19946) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [desktop-chromium] › tests/browser/composer.spec.ts:72:1 › focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo (3.5s)
+  ✓    2 [desktop-chromium] › tests/browser/composer.spec.ts:206:3 › TEST ONLY numeric Composer prose supported: tool loop, unverified UI and separate downloaded evidence (2.9s)
+  ✓    3 [desktop-chromium] › tests/browser/composer.spec.ts:206:3 › TEST ONLY numeric Composer prose incorrect-limitation: tool loop, unverified UI and separate downloaded evidence (3.3s)
+  ✓    4 [desktop-chromium] › tests/browser/composer.spec.ts:311:1 › late TEST ONLY numeric Composer investigation cannot describe or enter the export of a changed draft (2.8s)
+  ✓    5 [desktop-chromium] › tests/browser/composer.spec.ts:377:3 › sequential Phrase title typing is one undo transaction and rejects a pending TEST ONLY proposal (3.2s)
+  ✓    6 [desktop-chromium] › tests/browser/composer.spec.ts:377:3 › sequential My intention typing is one undo transaction and rejects a pending TEST ONLY investigation (3.8s)
+  ✓    7 [desktop-chromium] › tests/browser/composer.spec.ts:377:3 › sequential Meaning I assign typing is one undo transaction and rejects a pending TEST ONLY proposal (3.1s)
+  ✓    8 [desktop-chromium] › tests/browser/composer.spec.ts:450:1 › entry navigation preserves a draft and the secondary download is explicitly A/B evidence (2.1s)
+  ✓    9 [desktop-chromium] › tests/browser/composer.spec.ts:494:1 › selected-block audition uses its own schedule, coordinates playback, and quick edits explain the timing (2.5s)
+  ✓   10 [desktop-chromium] › tests/browser/composer.spec.ts:591:1 › local complete journey: field audio, independent edits, playback, comparison, codebook and real downloads (5.3s)
+  ✓   11 [desktop-chromium] › tests/browser/composer.spec.ts:871:1 › TEST ONLY running-app co-edit and model-requested retrieval demonstration (18.6s)
+  ✓   12 [desktop-chromium] › tests/browser/composer.spec.ts:1027:3 › late TEST ONLY proposal is discarded after edit (2.1s)
+  ✓   13 [desktop-chromium] › tests/browser/composer.spec.ts:1027:3 › late TEST ONLY proposal is discarded after undo (2.0s)
+  ✓   14 [desktop-chromium] › tests/browser/composer.spec.ts:1027:3 › late TEST ONLY proposal is discarded after block selection (1.8s)
+  ✓   15 [desktop-chromium] › tests/browser/composer.spec.ts:1027:3 › late TEST ONLY proposal is discarded after field selection (1.8s)
+  ✓   16 [desktop-chromium] › tests/browser/composer.spec.ts:1027:3 › late TEST ONLY proposal is discarded after import (3.0s)
+  ✓   17 [desktop-chromium] › tests/browser/composer.spec.ts:1080:1 › invalid TEST ONLY proposal and untrusted imports cannot alter the current draft or execute text (3.2s)
+  ✓   18 [desktop-chromium] › tests/browser/composer.spec.ts:1142:1 › audio and storage failure leave a keyboard-editable, exportable phrase (2.0s)
+  ✓   19 [desktop-chromium] › tests/browser/composer.spec.ts:1169:1 › editing stops scheduled synthetic audio and field playback coordinates in both directions (2.8s)
+  ✓   20 [desktop-chromium] › tests/browser/composer.spec.ts:1206:1 › mobile, enlarged text and unequal-count seed keep accessible controls and explicit limits (1.3s)
+(node:20120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   21 [desktop-chromium] › tests/browser/context.spec.ts:56:1 › focused follow-up: Lab answer opens once without moving focus or scroll, and failure preserves the comparison (2.4s)
+  ✓   22 [desktop-chromium] › tests/browser/context.spec.ts:130:1 › TEST ONLY connected journey: preserve Composer, hear annotation timing, compare controls, real tool dispatch and delivered investigation (6.0s)
+  ✓   23 [desktop-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after offset (1.2s)
+  ✓   24 [desktop-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after row (1.2s)
+  ✓   25 [desktop-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after question (1.2s)
+  ✓   26 [desktop-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after navigation (1.3s)
+  ✓   27 [desktop-chromium] › tests/browser/context.spec.ts:410:1 › ordinary disabled Lab: no model requests/autoplay, untrusted question is plain text, audio failure still permits downloads (1.3s)
+(node:20153) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   28 [desktop-chromium] › tests/browser/exchange.spec.ts:88:1 › actual isolated A1/B1/A2 file round trip preserves both private Composer histories; cold reopen and seed reply (13.6s)
+  ✓   29 [desktop-chromium] › tests/browser/exchange.spec.ts:207:1 › full phrase copying, saved analysis, outgoing cancel and navigation preserve personal work (1.2s)
+  ✓   30 [desktop-chromium] › tests/browser/exchange.spec.ts:228:1 › imports are atomic, duplicate snapshots preserve unfinished text, alternatives require explicit replacement (1.3s)
+  ✓   31 [desktop-chromium] › tests/browser/exchange.spec.ts:267:1 › late file reads, hashes and resumed audio cannot resurrect obsolete work after replacement/navigation (882ms)
+  ✓   32 [desktop-chromium] › tests/browser/exchange.spec.ts:317:1 › TEST ONLY native-share bridge checks the actual File; cancellation/rejection never download or duplicate turns (820ms)
+  ✓   33 [desktop-chromium] › tests/browser/exchange.spec.ts:347:1 › 320px/enlarged-text/keyboard controls and audio failure keep messages, timing and downloads usable (922ms)
+  ✓   34 [desktop-chromium] › tests/browser/exchange.spec.ts:373:1 › Exchange shares the exclusive sound owner and preserves Atlas comparison and both Prediction Reveal resets (3.1s)
+  ✓   35 [desktop-chromium] › tests/browser/exchange.spec.ts:413:1 › eight-turn files remain readable and downloadable at the reply limit (547ms)
+(node:20185) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   36 [desktop-chromium] › tests/browser/polish.spec.ts:11:1 › visible local journey: separate workspaces, all scores, saved evidence and continuous editing (1.1m)
+  ✓   37 [desktop-chromium] › tests/browser/polish.spec.ts:132:1 › progression stops hidden playback, retains keyboard focus, and fits narrow enlarged layouts (2.4s)
+  ✓   38 [desktop-chromium] › tests/browser/polish.spec.ts:168:1 › responsive navigation keeps complete labels, focus, creation and playback context at enlarged text (3.2s)
+(node:20282) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   39 [desktop-chromium] › tests/browser/sealed.spec.ts:108:1 › real Web Crypto isolated A1/B1/A2 sealed files, private Composer preservation, lock/reopen and cold C reply (10.8s)
+  ✓   40 [desktop-chromium] › tests/browser/sealed.spec.ts:176:1 › independent fixture, same-digest downgrade prevention, explicit export expiry and private intent before writing (621ms)
+  ✓   41 [desktop-chromium] › tests/browser/sealed.spec.ts:194:1 › failed candidates preserve current work; malformed/header/encoding/inner-authentication errors install nothing (558ms)
+  ✓   42 [desktop-chromium] › tests/browser/sealed.spec.ts:207:1 › key copy denial/manual fallback, ciphertext-only share cancellation and visibility preserve unfinished work (539ms)
+  ✓   43 [desktop-chromium] › tests/browser/sealed.spec.ts:224:67 › private rng failure keeps draft/history and never prepares plaintext fallback (272ms)
+  ✓   44 [desktop-chromium] › tests/browser/sealed.spec.ts:224:67 › private encrypt failure keeps draft/history and never prepares plaintext fallback (272ms)
+  ✓   45 [desktop-chromium] › tests/browser/sealed.spec.ts:224:67 › private unsupported failure keeps draft/history and never prepares plaintext fallback (344ms)
+  ✓   46 [desktop-chromium] › tests/browser/sealed.spec.ts:236:94 › lock invalidates delayed encrypt and prevents stale content, key, status or export restoration (658ms)
+  ✓   47 [desktop-chromium] › tests/browser/sealed.spec.ts:236:94 › lock invalidates delayed decrypt and prevents stale content, key, status or export restoration (527ms)
+  ✓   48 [desktop-chromium] › tests/browser/sealed.spec.ts:236:94 › lock invalidates delayed read and prevents stale content, key, status or export restoration (463ms)
+  ✓   49 [desktop-chromium] › tests/browser/sealed.spec.ts:236:94 › lock invalidates delayed hash and prevents stale content, key, status or export restoration (561ms)
+  ✓   50 [desktop-chromium] › tests/browser/sealed.spec.ts:236:94 › lock invalidates delayed clipboard and prevents stale content, key, status or export restoration (559ms)
+  ✓   51 [desktop-chromium] › tests/browser/sealed.spec.ts:236:94 › lock invalidates delayed audio and prevents stale content, key, status or export restoration (493ms)
+  ✘   52 [desktop-chromium] › tests/browser/sealed.spec.ts:266:1 › double preparation, reseal and arrangement bind the matching fresh key; lock revokes owned download URLs (752ms)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [desktop-chromium] › tests/browser/sealed.spec.ts:266:1 › double preparation, reseal and arrangement bind the matching fresh key; lock revokes owned download URLs
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+      287 |   await button(page, "Export unencrypted copy").click(); const requested = page.waitForEvent("download"); await accept(page, "Download this unencrypted JSON"); await requested;
+      288 |   await button(page, "Lock and forget key").click();
+    > 289 |   expect(await page.evaluate(() => (window as any).__urls.size)).toBe(0); await expect(region(page)).toHaveAttribute("data-mode", "locked");
+          |                                                                  ^
+      290 | });
+      291 |
+      292 | test("keyboard unlock, real page leave/back and empty private lock require explicit return to content", async ({ page }) => {
+        at /Users/hynk/code/CodaBridge/tests/browser/sealed.spec.ts:289:66
+
+    Error Context: test-results/sealed-double-preparation--6d657-revokes-owned-download-URLs-desktop-chromium/error-context.md
+
+  1 failed
+    [desktop-chromium] › tests/browser/sealed.spec.ts:266:1 › double preparation, reseal and arrangement bind the matching fresh key; lock revokes owned download URLs
+  60 did not run
+  51 passed (3.4m)
+  1 error was not a part of any test, see above for details

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "sealed:test"
+  ],
+  "exitCode": 0,
+  "seconds": 0.655,
+  "log": "checks/sealed-tests-final.txt",
+  "openingCodesRedacted": 0
+}

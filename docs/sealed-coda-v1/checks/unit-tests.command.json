@@ -1,0 +1,13 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "test"
+  ],
+  "exitCode": 0,
+  "seconds": 7.053,
+  "log": "checks/unit-tests.txt",
+  "openingCodesRedacted": 0
+}

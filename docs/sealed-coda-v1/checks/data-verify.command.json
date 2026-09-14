@@ -1,0 +1,14 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "data:verify"
+  ],
+  "exitCode": 0,
+  "seconds": 0.858,
+  "log": "checks/data-verify.txt",
+  "openingCodesRedacted": 0
+}

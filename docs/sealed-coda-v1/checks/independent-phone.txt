@@ -1,0 +1,535 @@
+
+> codabridge@0.2.0 sealed:verify
+> node scripts/verify-sealed.mjs docs/sealed-coda-v1/phone/PUBLIC-TEST-ONLY-keys.json
+
+{
+  "label": "PUBLIC TEST ONLY verification; not cryptographic certification",
+  "node": "v25.9.0",
+  "checker": "Node createDecipheriv + independent Python Exchange verifier",
+  "results": [
+    {
+      "file": "A1.coda.sealed.json",
+      "sealedBytes": 2730,
+      "sealedSha256": "4ebe9ce27011ad531f8a1aa8df9bd5e93003c49f7c2d11dc250b36248552c51b",
+      "plaintextBytes": 1938,
+      "plaintextSha256": "73fd70315cb9bf1a4e284b57b95a9dfd36c01cb3df943b11b747005eb02a4c67",
+      "turns": 1,
+      "innerProtection": "none",
+      "authenticated": true,
+      "exactOriginalBytes": true,
+      "independentExchange": {
+        "status": "Independent source/hash/parent/timing verification passed",
+        "files": [
+          {
+            "path": "/Users/hynk/code/CodaBridge/docs/sealed-coda-v1/phone/A1.PUBLIC-TEST-ONLY.json",
+            "bytes": 1938,
+            "sha256": "73fd70315cb9bf1a4e284b57b95a9dfd36c01cb3df943b11b747005eb02a4c67",
+            "payloadSha256": "7d00363938a8903ba56690afafa216cb1720e50421c041a9f59038211af728fe",
+            "turns": 1,
+            "messages": [
+              "PUBLIC_TEST_ONLY_SEALED_A1 · A note across the water. 🌊"
+            ],
+            "sources": [
+              "dswp-1"
+            ],
+            "events": [
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 0,
+                "seconds": 0.05
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 1,
+                "seconds": 0.19827097505668934
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 2,
+                "seconds": 0.7178004535147393
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 3,
+                "seconds": 1.4739229024943312
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 4,
+                "seconds": 1.701729024943311
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 5,
+                "seconds": 2.023015873015873
+              }
+            ],
+            "phraseSpans": [
+              1.9730158730158731
+            ],
+            "span": 1.9730158730158731,
+            "duration": 2.063015873015873
+          }
+        ],
+        "wav": null
+      }
+    },
+    {
+      "file": "A1-B1.coda.sealed.json",
+      "sealedBytes": 4892,
+      "sealedSha256": "e6c5f002d64be8378a11ef4a91aba27db173e97d48463fa85ba3cd6a818905fd",
+      "plaintextBytes": 3560,
+      "plaintextSha256": "6df3a3797a5e366a43d8d6de87c332429b0b9fae82ae757493106fb515690009",
+      "turns": 2,
+      "innerProtection": "none",
+      "authenticated": true,
+      "exactOriginalBytes": true,
+      "independentExchange": {
+        "status": "Independent source/hash/parent/timing verification passed",
+        "files": [
+          {
+            "path": "/Users/hynk/code/CodaBridge/docs/sealed-coda-v1/phone/A1-B1.PUBLIC-TEST-ONLY.json",
+            "bytes": 3560,
+            "sha256": "6df3a3797a5e366a43d8d6de87c332429b0b9fae82ae757493106fb515690009",
+            "payloadSha256": "ad8d6acf3801e7c07feb32050e6ca38272ea501d8cb177ae99c7fae29d6fd355",
+            "turns": 2,
+            "messages": [
+              "PUBLIC_TEST_ONLY_SEALED_A1 · A note across the water. 🌊",
+              "PUBLIC_TEST_ONLY_SEALED_B1 · My own timing. 안녕"
+            ],
+            "sources": [
+              "dswp-1",
+              "dswp-2"
+            ],
+            "events": [
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 0,
+                "seconds": 0.05
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 1,
+                "seconds": 0.19827097505668934
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 2,
+                "seconds": 0.7178004535147393
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 3,
+                "seconds": 1.4739229024943312
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 4,
+                "seconds": 1.701729024943311
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 5,
+                "seconds": 2.023015873015873
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 0,
+                "seconds": 2.523015873015873
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 1,
+                "seconds": 3.1578231292517005
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 2,
+                "seconds": 3.6291666666666664
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 3,
+                "seconds": 3.8336451247165533
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 4,
+                "seconds": 4.066638321995464
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 5,
+                "seconds": 4.440674603174603
+              }
+            ],
+            "phraseSpans": [
+              1.9730158730158731,
+              1.91765873015873
+            ],
+            "span": 4.390674603174603,
+            "duration": 4.480674603174603
+          }
+        ],
+        "wav": null
+      }
+    },
+    {
+      "file": "A1-B1-A2.coda.sealed.json",
+      "sealedBytes": 7078,
+      "sealedSha256": "00816f7102f320d3b6c2cced64e7454cebd27363aaf6fb4e45e930490253021a",
+      "plaintextBytes": 5199,
+      "plaintextSha256": "43cc0fc6b95db5195186ceb916f3723c04fe14ac3e09ff99c877813358b5c390",
+      "turns": 3,
+      "innerProtection": "none",
+      "authenticated": true,
+      "exactOriginalBytes": true,
+      "independentExchange": {
+        "status": "Independent source/hash/parent/timing verification passed",
+        "files": [
+          {
+            "path": "/Users/hynk/code/CodaBridge/docs/sealed-coda-v1/phone/A1-B1-A2.PUBLIC-TEST-ONLY.json",
+            "bytes": 5199,
+            "sha256": "43cc0fc6b95db5195186ceb916f3723c04fe14ac3e09ff99c877813358b5c390",
+            "payloadSha256": "163df304c3e4a4870f1b19850529755555194ef3db403879bc1cc9cce79b66cc",
+            "turns": 3,
+            "messages": [
+              "PUBLIC_TEST_ONLY_SEALED_A1 · A note across the water. 🌊",
+              "PUBLIC_TEST_ONLY_SEALED_B1 · My own timing. 안녕",
+              "PUBLIC_TEST_ONLY_SEALED_A2 · This file includes our complete history."
+            ],
+            "sources": [
+              "dswp-1",
+              "dswp-2"
+            ],
+            "events": [
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 0,
+                "seconds": 0.05
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 1,
+                "seconds": 0.19827097505668934
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 2,
+                "seconds": 0.7178004535147393
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 3,
+                "seconds": 1.4739229024943312
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 4,
+                "seconds": 1.701729024943311
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 5,
+                "seconds": 2.023015873015873
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 0,
+                "seconds": 2.523015873015873
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 1,
+                "seconds": 3.1578231292517005
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 2,
+                "seconds": 3.6291666666666664
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 3,
+                "seconds": 3.8336451247165533
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 4,
+                "seconds": 4.066638321995464
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 5,
+                "seconds": 4.440674603174603
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 0,
+                "seconds": 4.940674603174603
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 1,
+                "seconds": 5.088945578231293
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 2,
+                "seconds": 5.608475056689342
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 3,
+                "seconds": 6.364597505668934
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 4,
+                "seconds": 6.592403628117914
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 5,
+                "seconds": 6.913690476190476
+              }
+            ],
+            "phraseSpans": [
+              1.9730158730158731,
+              1.91765873015873,
+              1.9730158730158731
+            ],
+            "span": 6.8636904761904765,
+            "duration": 6.953690476190476
+          }
+        ],
+        "wav": null
+      }
+    },
+    {
+      "file": "cold-reply.coda.sealed.json",
+      "sealedBytes": 9280,
+      "sealedSha256": "01531dba98f29b1255ea5851861f467984b3994b503a802c19ca926f038c0bd8",
+      "plaintextBytes": 6851,
+      "plaintextSha256": "68f47fa5a2cae2386f0721c75b45350553a770d3b1068569077e4d7465332a5f",
+      "turns": 4,
+      "innerProtection": "none",
+      "authenticated": true,
+      "exactOriginalBytes": true,
+      "independentExchange": {
+        "status": "Independent source/hash/parent/timing verification passed",
+        "files": [
+          {
+            "path": "/Users/hynk/code/CodaBridge/docs/sealed-coda-v1/phone/cold-reply.PUBLIC-TEST-ONLY.json",
+            "bytes": 6851,
+            "sha256": "68f47fa5a2cae2386f0721c75b45350553a770d3b1068569077e4d7465332a5f",
+            "payloadSha256": "89b1f390ffd6f78fd4a6c52793d1e973d1c0510c15c9ea21fa2edb970c44548d",
+            "turns": 4,
+            "messages": [
+              "PUBLIC_TEST_ONLY_SEALED_A1 · A note across the water. 🌊",
+              "PUBLIC_TEST_ONLY_SEALED_B1 · My own timing. 안녕",
+              "PUBLIC_TEST_ONLY_SEALED_A2 · This file includes our complete history.",
+              "PUBLIC_TEST_ONLY_SEALED_COLD_REPLY · Supported seed, no Composer required."
+            ],
+            "sources": [
+              "dswp-1",
+              "dswp-11",
+              "dswp-2"
+            ],
+            "events": [
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 0,
+                "seconds": 0.05
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 1,
+                "seconds": 0.19827097505668934
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 2,
+                "seconds": 0.7178004535147393
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 3,
+                "seconds": 1.4739229024943312
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 4,
+                "seconds": 1.701729024943311
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 5,
+                "seconds": 2.023015873015873
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 0,
+                "seconds": 2.523015873015873
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 1,
+                "seconds": 3.1578231292517005
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 2,
+                "seconds": 3.6291666666666664
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 3,
+                "seconds": 3.8336451247165533
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 4,
+                "seconds": 4.066638321995464
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 5,
+                "seconds": 4.440674603174603
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 0,
+                "seconds": 4.940674603174603
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 1,
+                "seconds": 5.088945578231293
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 2,
+                "seconds": 5.608475056689342
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 3,
+                "seconds": 6.364597505668934
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 4,
+                "seconds": 6.592403628117914
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 5,
+                "seconds": 6.913690476190476
+              },
+              {
+                "turn": 4,
+                "block": 1,
+                "marker": 0,
+                "seconds": 7.413690476190476
+              },
+              {
+                "turn": 4,
+                "block": 1,
+                "marker": 1,
+                "seconds": 7.6136904761904765
+              },
+              {
+                "turn": 4,
+                "block": 1,
+                "marker": 2,
+                "seconds": 7.947590702947846
+              },
+              {
+                "turn": 4,
+                "block": 1,
+                "marker": 3,
+                "seconds": 8.09468820861678
+              },
+              {
+                "turn": 4,
+                "block": 1,
+                "marker": 4,
+                "seconds": 8.274869614512472
+              },
+              {
+                "turn": 4,
+                "block": 1,
+                "marker": 5,
+                "seconds": 8.484642857142857
+              }
+            ],
+            "phraseSpans": [
+              1.9730158730158731,
+              1.91765873015873,
+              1.9730158730158731,
+              1.0709523809523809
+            ],
+            "span": 8.434642857142858,
+            "duration": 8.524642857142856
+          }
+        ],
+        "wav": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "atlas:verify"
+  ],
+  "exitCode": 0,
+  "seconds": 1.383,
+  "log": "checks/atlas-verify.txt",
+  "openingCodesRedacted": 0
+}

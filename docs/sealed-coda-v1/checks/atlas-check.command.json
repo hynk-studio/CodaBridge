@@ -1,0 +1,14 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "atlas:check"
+  ],
+  "exitCode": 0,
+  "seconds": 0.733,
+  "log": "checks/atlas-check.txt",
+  "openingCodesRedacted": 0
+}

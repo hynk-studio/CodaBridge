@@ -1,0 +1,3 @@
+
+> codabridge@0.2.0 preview
+> WRANGLER_SEND_METRICS=false wrangler dev --local --config wrangler.local.json --ip 127.0.0.1 --port 4173 --log-level error --show-interactive-dev-session=false

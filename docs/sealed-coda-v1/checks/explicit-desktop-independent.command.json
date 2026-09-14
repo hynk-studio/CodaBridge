@@ -1,0 +1,18 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "exchange:verify",
+    "--",
+    "docs/sealed-coda-v1/desktop/explicit-unencrypted-copy.coda.json",
+    "--wav",
+    "docs/sealed-coda-v1/desktop/explicit-unencrypted-audio.wav"
+  ],
+  "exitCode": 0,
+  "seconds": 0.336,
+  "log": "checks/explicit-desktop-independent.txt",
+  "openingCodesRedacted": 0
+}

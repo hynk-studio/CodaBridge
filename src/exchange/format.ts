@@ -1,3 +1,4 @@
+import { scanJson } from "./json.ts";
 import { CATALOG_VERSION } from "../domain/catalog.ts";
 import { RENDERER } from "../composer/sound.ts";
 import { EXCHANGE_LIMITS, INTERPRETATION, digestText, exactShape, guardStructure, parsePayload, parseTurnContent, turnContent, type Envelope, type Payload, type TurnContent } from "./model.ts";
@@ -42,32 +43,7 @@ export async function changeArrangement(envelope: Envelope, index: number, secon
 }
 export function decodeJson(text: string): unknown {
   if (utf8(text).length > EXCHANGE_LIMITS.bytes) throw new Error("Coda file exceeds 512 KiB.");
-  // Bound nesting before JSON.parse; quoted brackets do not count.
-  let quoted = false, escaped = false, start = 0;
-  const stack: { object: boolean; key: boolean; keys: Set<string> }[] = [];
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-    if (quoted) {
-      if (escaped) escaped = false;
-      else if (c === "\\") escaped = true;
-      else if (c === '"') {
-        quoted = false;
-        const top = stack.at(-1);
-        if (top?.object && top.key) {
-          let key: string;
-          try { key = JSON.parse(text.slice(start, i + 1)); } catch { throw new Error("Invalid coda JSON."); }
-          if (top.keys.has(key)) throw new Error("Duplicate JSON field.");
-          top.keys.add(key); top.key = false;
-        }
-      }
-    } else if (c === '"') { quoted = true; start = i; }
-    else if (c === "{" || c === "[") {
-      stack.push({ object: c === "{", key: c === "{", keys: new Set() });
-      if (stack.length > EXCHANGE_LIMITS.depth) throw new Error("Coda nesting is too deep.");
-    } else if (c === "}" || c === "]") stack.pop();
-    else if (c === "," && stack.at(-1)?.object) stack.at(-1)!.key = true;
-  }
-  try { return JSON.parse(text); } catch { throw new Error("Invalid coda JSON."); }
+  return scanJson(text, EXCHANGE_LIMITS.bytes, EXCHANGE_LIMITS.depth);
 }
 export async function parseEnvelope(text: string): Promise<Envelope> {
   const raw = decodeJson(text); guardStructure(raw);

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "lint"
+  ],
+  "exitCode": 0,
+  "seconds": 0.26,
+  "log": "checks/lint-closeout.txt",
+  "openingCodesRedacted": 0
+}

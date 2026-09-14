@@ -1,0 +1,23 @@
+{
+  "label": "PUBLIC TEST ONLY - NIST CAVP known-answer vector, never production randomness",
+  "source": "https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/mac/gcmtestvectors.zip",
+  "archiveSha256": "f9fc479e134cde2980b3bb7cddbcb567b2cd96fd753835243ed067699f26a023",
+  "member": "gcmEncryptExtIV256.rsp",
+  "memberSha256": "4448b4998c3f58cd9f5542ddf7c573189a721ff3d3ac24cd5177bb4910a787f8",
+  "parameters": {
+    "Keylen": 256,
+    "IVlen": 96,
+    "PTlen": 128,
+    "AADlen": 128,
+    "Taglen": 128
+  },
+  "vector": {
+    "Count": "0",
+    "Key": "92e11dcdaa866f5ce790fd24501f92509aacf4cb8b1339d50c9c1240935dd08b",
+    "IV": "ac93a1a6145299bde902f21a",
+    "PT": "2d71bcfa914e4ac045b2aa60955fad24",
+    "AAD": "1e0889016f67601c8ebea4943bc23ad6",
+    "CT": "8995ae2e6df3dbf96fac7b7137bae67f",
+    "Tag": "eca5aa77d51d4a0a14d9c51e1da474ab"
+  }
+}

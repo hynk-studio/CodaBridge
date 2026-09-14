@@ -1,0 +1,14 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "typecheck"
+  ],
+  "exitCode": 0,
+  "seconds": 4.093,
+  "log": "checks/typecheck-closeout.txt",
+  "openingCodesRedacted": 0
+}

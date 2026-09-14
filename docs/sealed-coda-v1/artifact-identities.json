@@ -1,0 +1,550 @@
+{
+  "label": "PUBLIC TEST ONLY acceptance artifacts and separately labeled public verification keys; no future application freeze",
+  "sealedRun": "checks/sealed-browser-complete.txt",
+  "plainRun": "checks/browser-final.txt",
+  "files": [
+    {
+      "path": "docs/sealed-coda-v1/desktop/320px-enlarged-key.png",
+      "bytes": 60614,
+      "sha256": "43ef0142dc4856db158225794346a8d715afdc98916f9faca77dbed5a20c5d7d",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/320px-enlarged-timing.png",
+      "bytes": 64343,
+      "sha256": "d4068b7c73e7e6fc69b60e7dd80b0dc18af3b7c1ae6cc12b02d3c413e7bc528f",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/320px-enlarged.png",
+      "bytes": 60002,
+      "sha256": "714dff7fd9e920ae5ee20d3016cc330b363c733608bdf03a6828489a6fa2fdb1",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/320px.png",
+      "bytes": 64943,
+      "sha256": "227d79061ec4a70d139641ea0ee67955152b5bac233b3d415db90eed6c7667c5",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/A1-B1-A2.PUBLIC-TEST-ONLY.json",
+      "bytes": 5199,
+      "sha256": "a3edde50af60e39921ab4a674ca6e8bf5426b4eca5e83c08d03a25caed2640bc"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/A1-B1-A2.coda.sealed.json",
+      "bytes": 7078,
+      "sha256": "a2dfffa02f858ffe4ef55a55a8aca4e21ef4ce780725cdb886b745b08839a32a"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/A1-B1.PUBLIC-TEST-ONLY.json",
+      "bytes": 3560,
+      "sha256": "3badf110fa267b39e604a5422dd0c4e7b3277e84a90fd55926fe1aa1be0d7d2c"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/A1-B1.coda.sealed.json",
+      "bytes": 4892,
+      "sha256": "c8f96f51c9b443bfdd0db8ef7a067ec7f2cf425c945c97f177d762abd4411a01"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/A1-prepared.png",
+      "bytes": 120485,
+      "sha256": "7b9509c9025d1d6ec0dd0ed8fb740c43b53fe5f6feb1edad6c187f0086784068",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/A1-repeat.coda.sealed.json",
+      "bytes": 2730,
+      "sha256": "ed692535333a39f794fc398d87fa543e9bf3415e18131c2ec29c444c73a1a325"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/A1.PUBLIC-TEST-ONLY.json",
+      "bytes": 1938,
+      "sha256": "68c2aaaa8cbc232962bf84a7f731ac3c924d3918e7391462cfa5e8e2a86f7cf8"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/A1.coda.sealed.json",
+      "bytes": 2730,
+      "sha256": "ed692535333a39f794fc398d87fa543e9bf3415e18131c2ec29c444c73a1a325"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/PUBLIC-TEST-ONLY-keys.json",
+      "bytes": 903,
+      "sha256": "328ba0a1e72a33da7c31f42e13a7b072dba21f8ac55581eebd98624fe33149bb"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/cold-reply.PUBLIC-TEST-ONLY.json",
+      "bytes": 6851,
+      "sha256": "fcf55642551b6ab19be4fe09aae96d50de5ad41bd63b04f5080b370d4625e04e"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/cold-reply.coda.sealed.json",
+      "bytes": 9280,
+      "sha256": "ccb5d3c366b5c2a13d3a542e9a84f3622d47ef2aa742e2360cad62dc75428b00"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/explicit-unencrypted-audio.wav",
+      "bytes": 669752,
+      "sha256": "84538f32699fad8e7047d66499ea311470055908e5d3bbea9ab7e356bc440d93"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/explicit-unencrypted-copy.coda.json",
+      "bytes": 5199,
+      "sha256": "a3edde50af60e39921ab4a674ca6e8bf5426b4eca5e83c08d03a25caed2640bc"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/final-unlocked.png",
+      "bytes": 134421,
+      "sha256": "769842acf1f2050fd293020b7fe831835f33af487dab887c7b3d6a45c4cadfbb",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/fresh-reopened.coda.sealed.json",
+      "bytes": 7078,
+      "sha256": "a2dfffa02f858ffe4ef55a55a8aca4e21ef4ce780725cdb886b745b08839a32a"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/locked-after-discard.png",
+      "bytes": 106556,
+      "sha256": "ef88ac1fd982d36a263809e9b778a53b86e87ef979916fa9aef6cca6f5d95c1c",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/locked.png",
+      "bytes": 99486,
+      "sha256": "01624fb7de45fb4df9d35c40fe2efce5262426fff8effbdf02f2f06964b09efa",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/reunlocked.coda.sealed.json",
+      "bytes": 7078,
+      "sha256": "a2dfffa02f858ffe4ef55a55a8aca4e21ef4ce780725cdb886b745b08839a32a"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/round-trip.json",
+      "bytes": 3379,
+      "sha256": "bc6af11fd518ddd75f341a53b168a562cdd76eca78f9679a121c1a1f910daf4f"
+    },
+    {
+      "path": "docs/sealed-coda-v1/desktop/unlocked-turns.png",
+      "bytes": 92069,
+      "sha256": "d01ef4f7234e9fe800369a0f5dc9f116b3317aa92b8c3774d8404ea3f0a7f3e6",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/320px-enlarged-key.png",
+      "bytes": 60614,
+      "sha256": "43ef0142dc4856db158225794346a8d715afdc98916f9faca77dbed5a20c5d7d",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/320px-enlarged-timing.png",
+      "bytes": 64343,
+      "sha256": "d4068b7c73e7e6fc69b60e7dd80b0dc18af3b7c1ae6cc12b02d3c413e7bc528f",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/320px-enlarged.png",
+      "bytes": 60002,
+      "sha256": "714dff7fd9e920ae5ee20d3016cc330b363c733608bdf03a6828489a6fa2fdb1",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/320px.png",
+      "bytes": 64943,
+      "sha256": "227d79061ec4a70d139641ea0ee67955152b5bac233b3d415db90eed6c7667c5",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/A1-B1-A2.PUBLIC-TEST-ONLY.json",
+      "bytes": 5199,
+      "sha256": "75201eb5826464085a87d956fdedb637f2f78823c545dffe89c6073183b0b789"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/A1-B1-A2.coda.sealed.json",
+      "bytes": 7078,
+      "sha256": "9ea369e7adc218f6c68a78fe5424126aa41ea9a1d3c1637bfdfd49352986ce3d"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/A1-B1.PUBLIC-TEST-ONLY.json",
+      "bytes": 3560,
+      "sha256": "7cca3897ec3cfee041e2dc8f814dcfb946aea4aab20c61e74d8aa5679a5330d0"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/A1-B1.coda.sealed.json",
+      "bytes": 4892,
+      "sha256": "905402b4105232eb1f3b68bb059803e0ebec0ca3972836b1991c1ebfecb2a231"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/A1-prepared.png",
+      "bytes": 69376,
+      "sha256": "8ec28017f0da398507d499748954264be18109af1a6e77a10549c8265bc3ae8f",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/A1-repeat.coda.sealed.json",
+      "bytes": 2730,
+      "sha256": "a70327f8f2824a0f7886e2db00ac56dffc9d459849438f91fc98ecced499ff8f"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/A1.PUBLIC-TEST-ONLY.json",
+      "bytes": 1938,
+      "sha256": "9dda8ebc2cc7542c56075ba7c68e53c73d18513d13c9425f7b3f2c09c6b5b9b4"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/A1.coda.sealed.json",
+      "bytes": 2730,
+      "sha256": "a70327f8f2824a0f7886e2db00ac56dffc9d459849438f91fc98ecced499ff8f"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/PUBLIC-TEST-ONLY-keys.json",
+      "bytes": 903,
+      "sha256": "74bd2751cc42d1ff094ea5f8ec9eaeac99c2b7df6f5767c4b9e4dc780174a75d"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/cold-reply.PUBLIC-TEST-ONLY.json",
+      "bytes": 6851,
+      "sha256": "3b65bdf120910195ce5ce47dcf32bee9a8ae609bbb55198458d1e15524fe6a53"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/cold-reply.coda.sealed.json",
+      "bytes": 9280,
+      "sha256": "7dd4315321df1cee1a31671acaf47dc6af4430b3fc54b6bef3854d331bde6780"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/explicit-unencrypted-audio.wav",
+      "bytes": 669752,
+      "sha256": "84538f32699fad8e7047d66499ea311470055908e5d3bbea9ab7e356bc440d93"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/explicit-unencrypted-copy.coda.json",
+      "bytes": 5199,
+      "sha256": "75201eb5826464085a87d956fdedb637f2f78823c545dffe89c6073183b0b789"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/final-unlocked.png",
+      "bytes": 71291,
+      "sha256": "c01a634a6126495a47f742bf44b34bbc327e7f1ba5c6d23b62d8c5104114ffb2",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/fresh-reopened.coda.sealed.json",
+      "bytes": 7078,
+      "sha256": "9ea369e7adc218f6c68a78fe5424126aa41ea9a1d3c1637bfdfd49352986ce3d"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/locked-after-discard.png",
+      "bytes": 66315,
+      "sha256": "7e9f3cbf59adb80440fb663dccd502646e721f9866f2edbee485c799c739504c",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/locked.png",
+      "bytes": 60226,
+      "sha256": "19981c51cbdb6e3b90908a06c9acb70082a4a5b4ac787cd85779366995c4a0e1",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/reunlocked.coda.sealed.json",
+      "bytes": 7078,
+      "sha256": "9ea369e7adc218f6c68a78fe5424126aa41ea9a1d3c1637bfdfd49352986ce3d"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/round-trip.json",
+      "bytes": 3379,
+      "sha256": "4de4bac45d0e15cda0b8764763c05c090ce6174876b0bbdc95be70b91b98dc2d"
+    },
+    {
+      "path": "docs/sealed-coda-v1/phone/unlocked-turns.png",
+      "bytes": 61447,
+      "sha256": "f3c3b7c17387a6f13d16cf53920bc7cf6052ecb01aa23df686d0019cd365e7f2",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/320px-enlarged-editor.png",
+      "bytes": 63734,
+      "sha256": "ddaf517180a22f610e4e8c047e9a003a7185f4ad1d5f4c1d43ad6e03ae15d67d",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/320px-enlarged-timing.png",
+      "bytes": 53036,
+      "sha256": "35d9d3b614dac7386192e23e1544de2cc26d485daed83ad847b8c541f345945f",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/320px-enlarged.png",
+      "bytes": 60001,
+      "sha256": "737a92c08fd3253d29202ec8ff11ae394502216fb13849b1c46ff1ef2533de67",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/320px.png",
+      "bytes": 56930,
+      "sha256": "d14f5b5b5c202a46047a13129c543bd768be29a251d3170e43c2464298c0764e",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1-B1-A2.coda.json",
+      "bytes": 5198,
+      "sha256": "3fd43ee4f1eb1085c21e3a274d48949691a881c2f4b9fc245939f747bf927b69"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1-B1-A2.wav",
+      "bytes": 706818,
+      "sha256": "9be65f7d2a890efbd8688f0a248feb3d49788f2fd7164221642f3088e594ebec"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1-B1.coda.json",
+      "bytes": 3544,
+      "sha256": "0e66100e001ecf985917bcd1cd355ab2289af8345349a45631424c35f88cbb94"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1-preview.png",
+      "bytes": 120024,
+      "sha256": "d726399695e800e6eb07a66506ddbe77d26976f90750bcf3fc64d19d40b48705",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1-repeat.coda.json",
+      "bytes": 1906,
+      "sha256": "13386a31b0fda9b0147a9427a44516aa9b6dcdacddc636380bf966754303bf43"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1.coda.json",
+      "bytes": 1906,
+      "sha256": "13386a31b0fda9b0147a9427a44516aa9b6dcdacddc636380bf966754303bf43"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/after-composer-edits.coda.json",
+      "bytes": 5198,
+      "sha256": "3fd43ee4f1eb1085c21e3a274d48949691a881c2f4b9fc245939f747bf927b69"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/cold-reply.coda.json",
+      "bytes": 6839,
+      "sha256": "678a6ee74c8e7959bdcf8fdf07548abd4762df6e885c92a2a45722361a53cf7d"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/final-exchange.png",
+      "bytes": 138233,
+      "sha256": "edf1a4fee7e6655f32c651cedecca09a30d1d78279d2bafe7f1ebe4ca9607eba",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/final-turns.png",
+      "bytes": 86679,
+      "sha256": "e615dc0700362e55e3614a47c0cd1ea11c7a5ccb463c1746cd05a39411063f09",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/fresh-reopened.coda.json",
+      "bytes": 5198,
+      "sha256": "3fd43ee4f1eb1085c21e3a274d48949691a881c2f4b9fc245939f747bf927b69"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/round-trip.json",
+      "bytes": 7553,
+      "sha256": "855ce369888a35a626537ceb89a9b6930e8dfee9d50d76f1514f54c29c5c0b76"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/320px-enlarged-editor.png",
+      "bytes": 63658,
+      "sha256": "0bd491e625767f6a1cd76cad58a142b22791941c549b8a05fa673d5ede64fa87",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/320px-enlarged-timing.png",
+      "bytes": 52935,
+      "sha256": "7bddacb74c4fcfea44e3058fd5cbf8afeebecc3547764d582af70c49fef86e28",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/320px-enlarged.png",
+      "bytes": 60001,
+      "sha256": "737a92c08fd3253d29202ec8ff11ae394502216fb13849b1c46ff1ef2533de67",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/320px.png",
+      "bytes": 56927,
+      "sha256": "0d3d6f2bff2b25ef1489223444de8987b0b21ce930c67bf0190713e102c06b3b",
+      "pixels": [
+        320,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/A1-B1-A2.coda.json",
+      "bytes": 5198,
+      "sha256": "71d7578e58619f2eac98108a8477b73a72ff0b55f6b0fe14018e35d3b4902b18"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/A1-B1-A2.wav",
+      "bytes": 706818,
+      "sha256": "9be65f7d2a890efbd8688f0a248feb3d49788f2fd7164221642f3088e594ebec"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/A1-B1.coda.json",
+      "bytes": 3544,
+      "sha256": "6921741282e485a34d049fb9b9d7597f9d07f6c1db18fedba17ab71f62312c59"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/A1-preview.png",
+      "bytes": 57425,
+      "sha256": "96d225e134983d88f5fcf99887073cc3135a651fe595564a7e22f93bb00682a6",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/A1-repeat.coda.json",
+      "bytes": 1906,
+      "sha256": "91e8a87c559827dcfc7e62ed8d964b81a245f5f2d075ac231a214f1a01e9763c"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/A1.coda.json",
+      "bytes": 1906,
+      "sha256": "91e8a87c559827dcfc7e62ed8d964b81a245f5f2d075ac231a214f1a01e9763c"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/after-composer-edits.coda.json",
+      "bytes": 5198,
+      "sha256": "71d7578e58619f2eac98108a8477b73a72ff0b55f6b0fe14018e35d3b4902b18"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/cold-reply.coda.json",
+      "bytes": 6839,
+      "sha256": "0e40d88deeffac9311bb75e534a6bfec42ac3491256e794ea3ccb952cc90a3f2"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/final-exchange.png",
+      "bytes": 64351,
+      "sha256": "6930207a306c636d0c5344929d5bcd44fde84288241252bae3421ece02926285",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/final-turns.png",
+      "bytes": 59895,
+      "sha256": "8aa3336f7e9a5cdef4b8ad59fc95d52a0a2f18b9f42f27b731692903f1beb9c3",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/fresh-reopened.coda.json",
+      "bytes": 5198,
+      "sha256": "71d7578e58619f2eac98108a8477b73a72ff0b55f6b0fe14018e35d3b4902b18"
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-phone/round-trip.json",
+      "bytes": 7545,
+      "sha256": "a897926e54ce411d1feac7d2d4aff947572884e32d11ff608e0ae782169ebf57"
+    },
+    {
+      "path": "tests/fixtures/sealed/PUBLIC-TEST-ONLY-keys.json",
+      "bytes": 284,
+      "sha256": "03a8c8051cc83693b4f1a77ad66a532ea3915824c0c8034d51869d5289288c20"
+    },
+    {
+      "path": "tests/fixtures/sealed/independent.coda.sealed.json",
+      "bytes": 2439,
+      "sha256": "dfd8a5eaabc5e9de2c7f16f8b963b6e1e48825fd79a244ee1ccd3f6d398f4590"
+    },
+    {
+      "path": "tests/fixtures/sealed/nist-gcm-256.json",
+      "bytes": 892,
+      "sha256": "f1308317f7caa421262bf2ce50db2537617ab290dd1f9ad89580f9f72d7cd184"
+    }
+  ]
+}

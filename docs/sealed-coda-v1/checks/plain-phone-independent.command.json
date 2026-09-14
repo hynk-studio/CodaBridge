@@ -1,0 +1,20 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "exchange:verify",
+    "--",
+    "docs/sealed-coda-v1/plain-phone/A1.coda.json",
+    "docs/sealed-coda-v1/plain-phone/A1-B1.coda.json",
+    "docs/sealed-coda-v1/plain-phone/A1-B1-A2.coda.json",
+    "--wav",
+    "docs/sealed-coda-v1/plain-phone/A1-B1-A2.wav"
+  ],
+  "exitCode": 0,
+  "seconds": 0.342,
+  "log": "checks/plain-phone-independent.txt",
+  "openingCodesRedacted": 0
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "node",
+    "--experimental-strip-types",
+    "docs/sealed-coda-v1/check-served.ts"
+  ],
+  "exitCode": 0,
+  "seconds": 0.24,
+  "log": "checks/served-final.txt",
+  "openingCodesRedacted": 0
+}

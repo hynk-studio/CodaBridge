@@ -1,0 +1,244 @@
+{
+  "identity": "TEST ONLY automated isolated-browser acceptance; no human listening or real delivery",
+  "browser": "mobile-chromium",
+  "isolatedContexts": 3,
+  "originalPrivateStateSha256": [
+    "e836bd14cbd5512b8837bd09e5454841d468655dfc502617f38ede528da1ff41",
+    "bde6b98b9fcb3791a32ed750975782872c19ab6cde91f61c98d4875e26257260"
+  ],
+  "privateStatePreserved": true,
+  "undoRedoExercised": true,
+  "completePriorTurnsPreserved": true,
+  "fullReplayObservedAllThreeTurns": true,
+  "freshReopenByteIdentical": true,
+  "refreshClearedExchangeMemory": true,
+  "coldReplyWithoutComposer": true,
+  "originalComposerEditsCannotMutateTurns": true,
+  "artifacts": [
+    {
+      "path": "test-results/coda-exchange/mobile-chromium/A1.coda.json",
+      "filename": "codabridge-e-b8822287-f060-4ec1-beb6-95b6a2842a66-1.coda.json",
+      "bytes": 1906,
+      "sha256": "91e8a87c559827dcfc7e62ed8d964b81a245f5f2d075ac231a214f1a01e9763c"
+    },
+    {
+      "path": "test-results/coda-exchange/mobile-chromium/A1-B1.coda.json",
+      "filename": "codabridge-e-b8822287-f060-4ec1-beb6-95b6a2842a66-2.coda.json",
+      "bytes": 3544,
+      "sha256": "6921741282e485a34d049fb9b9d7597f9d07f6c1db18fedba17ab71f62312c59"
+    },
+    {
+      "path": "test-results/coda-exchange/mobile-chromium/A1-B1-A2.coda.json",
+      "filename": "codabridge-e-b8822287-f060-4ec1-beb6-95b6a2842a66-3.coda.json",
+      "bytes": 5198,
+      "sha256": "71d7578e58619f2eac98108a8477b73a72ff0b55f6b0fe14018e35d3b4902b18"
+    },
+    {
+      "path": "test-results/coda-exchange/mobile-chromium/A1-B1-A2.wav",
+      "filename": "codabridge-e-b8822287-f060-4ec1-beb6-95b6a2842a66-3.wav",
+      "bytes": 706818,
+      "sha256": "9be65f7d2a890efbd8688f0a248feb3d49788f2fd7164221642f3088e594ebec"
+    },
+    {
+      "path": "test-results/coda-exchange/mobile-chromium/fresh-reopened.coda.json",
+      "filename": "codabridge-e-b8822287-f060-4ec1-beb6-95b6a2842a66-3.coda.json",
+      "bytes": 5198,
+      "sha256": "71d7578e58619f2eac98108a8477b73a72ff0b55f6b0fe14018e35d3b4902b18"
+    },
+    {
+      "path": "test-results/coda-exchange/mobile-chromium/cold-reply.coda.json",
+      "filename": "codabridge-e-b8822287-f060-4ec1-beb6-95b6a2842a66-4.coda.json",
+      "bytes": 6839,
+      "sha256": "0e40d88deeffac9311bb75e534a6bfec42ac3491256e794ea3ccb952cc90a3f2"
+    },
+    {
+      "path": "test-results/coda-exchange/mobile-chromium/after-composer-edits.coda.json",
+      "filename": "codabridge-e-b8822287-f060-4ec1-beb6-95b6a2842a66-3.coda.json",
+      "bytes": 5198,
+      "sha256": "71d7578e58619f2eac98108a8477b73a72ff0b55f6b0fe14018e35d3b4902b18"
+    }
+  ],
+  "audits": [
+    {
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/assets/index-C4iM6UGX.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/assets/index-DYXf6Mb8.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/audio/dswp-1.wav"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/audio/dswp-2.wav"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "blob:http://127.0.0.1:4173/46ab8f64-0aab-4a22-93d3-7f2e56257661"
+        },
+        {
+          "method": "GET",
+          "url": "blob:http://127.0.0.1:4173/62d655b3-6951-4b7f-9af8-76b26b7a727b"
+        }
+      ],
+      "errors": [],
+      "logs": [],
+      "privateTextInNetworkOrLogs": false
+    },
+    {
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/assets/index-C4iM6UGX.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/assets/index-DYXf6Mb8.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/audio/dswp-1.wav"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/audio/dswp-2.wav"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "blob:http://127.0.0.1:4173/ddbff1f6-2158-4b00-80a5-8b578232109b"
+        },
+        {
+          "method": "GET",
+          "url": "blob:http://127.0.0.1:4173/4d2da51f-cece-47f6-b5df-9b0c25b878a0"
+        }
+      ],
+      "errors": [],
+      "logs": [],
+      "privateTextInNetworkOrLogs": false
+    },
+    {
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/assets/index-C4iM6UGX.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/assets/index-DYXf6Mb8.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/audio/dswp-1.wav"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/audio/dswp-2.wav"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "blob:http://127.0.0.1:4173/f5252d87-12ba-4485-90f4-598d108f63d7"
+        },
+        {
+          "method": "GET",
+          "url": "blob:http://127.0.0.1:4173/7b8c8a44-af52-4b4a-88e1-09e85f9c53f3"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/assets/index-C4iM6UGX.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/assets/index-DYXf6Mb8.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/audio/dswp-1.wav"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/audio/dswp-2.wav"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:4173/api/investigation/status"
+        },
+        {
+          "method": "GET",
+          "url": "blob:http://127.0.0.1:4173/836cd303-2981-4ed5-9629-241ece03dea2"
+        },
+        {
+          "method": "GET",
+          "url": "blob:http://127.0.0.1:4173/6ab28639-eeae-426e-a2d5-d7bdcd6a8d54"
+        }
+      ],
+      "errors": [],
+      "logs": [],
+      "privateTextInNetworkOrLogs": false
+    }
+  ]
+}

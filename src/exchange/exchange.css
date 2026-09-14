@@ -67,3 +67,11 @@
   .exchange-filebar label { width: 100%; }
   .exchange-actions > button { flex: 1 1 8rem; }
 }
+
+.sealed-mode { display: grid; gap: 12px; margin: 20px 0; max-width: 680px; }
+.sealed-tools, .sealed-locked { margin: 20px 0 26px; }
+.sealed-tools { border-color: #738c76; }
+.exchange .sealed-ack { display: flex; align-items: center; gap: 12px; }
+.exchange .sealed-ack input { width: 22px; height: 22px; flex-shrink: 0; }
+.exchange fieldset { min-width: 0; padding: 0; border: 0; margin: 0; }
+.exchange input[readonly] { font-family: ui-monospace, monospace; }

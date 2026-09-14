@@ -1,0 +1,21 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "test:browser",
+    "--",
+    "tests/browser/sealed.spec.ts",
+    "tests/browser/exchange.spec.ts",
+    "tests/browser/composer.spec.ts",
+    "tests/browser/context.spec.ts",
+    "tests/browser/polish.spec.ts",
+    "--max-failures=1"
+  ],
+  "exitCode": 0,
+  "seconds": 311.628,
+  "log": "checks/browser-final.txt",
+  "openingCodesRedacted": 0
+}

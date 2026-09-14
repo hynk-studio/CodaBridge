@@ -33,7 +33,10 @@
     "atlas:generate": "node --experimental-strip-types scripts/prepare-atlas.ts",
     "atlas:check": "node --experimental-strip-types scripts/prepare-atlas.ts --check",
     "atlas:verify": "node --experimental-strip-types scripts/check-atlas.ts",
-    "exchange:verify": "python3 scripts/verify-exchange.py"
+    "exchange:verify": "python3 scripts/verify-exchange.py",
+    "sealed:test": "node --experimental-strip-types --test tests/sealed*.test.ts",
+    "sealed:verify": "node scripts/verify-sealed.mjs",
+    "sealed:test:browser": "playwright test tests/browser/sealed.spec.ts"
   },
   "dependencies": {
     "react": "^19.2.8",

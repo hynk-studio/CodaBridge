@@ -1,0 +1,49 @@
+
+> codabridge@0.2.0 sealed:test:browser
+> playwright test tests/browser/sealed.spec.ts --max-failures=1
+
+
+Running 36 tests using 1 worker
+
+(node:21632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop-chromium] › tests/browser/sealed.spec.ts:108:1 › real Web Crypto isolated A1/B1/A2 sealed files, private Composer preservation, lock/reopen and cold C reply (14.6s)
+  ✓   2 [desktop-chromium] › tests/browser/sealed.spec.ts:181:1 › independent fixture, same-digest downgrade prevention, explicit export expiry and private intent before writing (809ms)
+  ✓   3 [desktop-chromium] › tests/browser/sealed.spec.ts:199:1 › failed candidates preserve current work; malformed/header/encoding/inner-authentication errors install nothing (636ms)
+  ✓   4 [desktop-chromium] › tests/browser/sealed.spec.ts:212:1 › key copy denial/manual fallback, ciphertext-only share cancellation and visibility preserve unfinished work (578ms)
+  ✓   5 [desktop-chromium] › tests/browser/sealed.spec.ts:229:67 › private rng failure keeps draft/history and never prepares plaintext fallback (292ms)
+  ✓   6 [desktop-chromium] › tests/browser/sealed.spec.ts:229:67 › private encrypt failure keeps draft/history and never prepares plaintext fallback (293ms)
+  ✓   7 [desktop-chromium] › tests/browser/sealed.spec.ts:229:67 › private unsupported failure keeps draft/history and never prepares plaintext fallback (434ms)
+  ✓   8 [desktop-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed encrypt and prevents stale content, key, status or export restoration (556ms)
+  ✓   9 [desktop-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed decrypt and prevents stale content, key, status or export restoration (524ms)
+  ✓  10 [desktop-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed read and prevents stale content, key, status or export restoration (585ms)
+  ✓  11 [desktop-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed hash and prevents stale content, key, status or export restoration (561ms)
+  ✓  12 [desktop-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed clipboard and prevents stale content, key, status or export restoration (568ms)
+  ✓  13 [desktop-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed audio and prevents stale content, key, status or export restoration (499ms)
+  ✓  14 [desktop-chromium] › tests/browser/sealed.spec.ts:271:1 › double preparation, reseal and arrangement bind the matching fresh key; lock revokes owned download URLs (767ms)
+  ✓  15 [desktop-chromium] › tests/browser/sealed.spec.ts:299:1 › keyboard unlock, real page leave/back and empty private lock require explicit return to content (465ms)
+  ✓  16 [desktop-chromium] › tests/browser/sealed.spec.ts:312:72 › private optional share success has no plaintext/key fallback or false delivery claim (382ms)
+  ✓  17 [desktop-chromium] › tests/browser/sealed.spec.ts:312:72 › private optional share rejected has no plaintext/key fallback or false delivery claim (304ms)
+  ✓  18 [desktop-chromium] › tests/browser/sealed.spec.ts:312:72 › private optional share unsupported has no plaintext/key fallback or false delivery claim (269ms)
+(node:21796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [mobile-chromium] › tests/browser/sealed.spec.ts:108:1 › real Web Crypto isolated A1/B1/A2 sealed files, private Composer preservation, lock/reopen and cold C reply (10.9s)
+  ✓  20 [mobile-chromium] › tests/browser/sealed.spec.ts:181:1 › independent fixture, same-digest downgrade prevention, explicit export expiry and private intent before writing (555ms)
+  ✓  21 [mobile-chromium] › tests/browser/sealed.spec.ts:199:1 › failed candidates preserve current work; malformed/header/encoding/inner-authentication errors install nothing (568ms)
+  ✓  22 [mobile-chromium] › tests/browser/sealed.spec.ts:212:1 › key copy denial/manual fallback, ciphertext-only share cancellation and visibility preserve unfinished work (525ms)
+  ✓  23 [mobile-chromium] › tests/browser/sealed.spec.ts:229:67 › private rng failure keeps draft/history and never prepares plaintext fallback (286ms)
+  ✓  24 [mobile-chromium] › tests/browser/sealed.spec.ts:229:67 › private encrypt failure keeps draft/history and never prepares plaintext fallback (292ms)
+  ✓  25 [mobile-chromium] › tests/browser/sealed.spec.ts:229:67 › private unsupported failure keeps draft/history and never prepares plaintext fallback (310ms)
+  ✓  26 [mobile-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed encrypt and prevents stale content, key, status or export restoration (517ms)
+  ✓  27 [mobile-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed decrypt and prevents stale content, key, status or export restoration (527ms)
+  ✓  28 [mobile-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed read and prevents stale content, key, status or export restoration (593ms)
+  ✓  29 [mobile-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed hash and prevents stale content, key, status or export restoration (562ms)
+  ✓  30 [mobile-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed clipboard and prevents stale content, key, status or export restoration (571ms)
+  ✓  31 [mobile-chromium] › tests/browser/sealed.spec.ts:241:94 › lock invalidates delayed audio and prevents stale content, key, status or export restoration (515ms)
+  ✓  32 [mobile-chromium] › tests/browser/sealed.spec.ts:271:1 › double preparation, reseal and arrangement bind the matching fresh key; lock revokes owned download URLs (735ms)
+  ✓  33 [mobile-chromium] › tests/browser/sealed.spec.ts:299:1 › keyboard unlock, real page leave/back and empty private lock require explicit return to content (446ms)
+  ✓  34 [mobile-chromium] › tests/browser/sealed.spec.ts:312:72 › private optional share success has no plaintext/key fallback or false delivery claim (402ms)
+  ✓  35 [mobile-chromium] › tests/browser/sealed.spec.ts:312:72 › private optional share rejected has no plaintext/key fallback or false delivery claim (299ms)
+  ✓  36 [mobile-chromium] › tests/browser/sealed.spec.ts:312:72 › private optional share unsupported has no plaintext/key fallback or false delivery claim (288ms)
+
+  36 passed (43.7s)

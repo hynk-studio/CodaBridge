@@ -1,0 +1,156 @@
+
+> codabridge@0.2.0 exchange:verify
+> python3 scripts/verify-exchange.py docs/sealed-coda-v1/desktop/explicit-unencrypted-copy.coda.json --wav docs/sealed-coda-v1/desktop/explicit-unencrypted-audio.wav
+
+{
+  "status": "Independent source/hash/parent/timing verification passed",
+  "files": [
+    {
+      "path": "docs/sealed-coda-v1/desktop/explicit-unencrypted-copy.coda.json",
+      "bytes": 5199,
+      "sha256": "a3edde50af60e39921ab4a674ca6e8bf5426b4eca5e83c08d03a25caed2640bc",
+      "payloadSha256": "7d574d1d71af87280f73303d7dd1789f6bd88856c153735f0f21a8b034162dc8",
+      "turns": 3,
+      "messages": [
+        "PUBLIC_TEST_ONLY_SEALED_A1 · A note across the water. 🌊",
+        "PUBLIC_TEST_ONLY_SEALED_B1 · My own timing. 안녕",
+        "PUBLIC_TEST_ONLY_SEALED_A2 · This file includes our complete history."
+      ],
+      "sources": [
+        "dswp-1",
+        "dswp-2"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.19827097505668934
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.7178004535147393
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 3,
+          "seconds": 1.4739229024943312
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 4,
+          "seconds": 1.701729024943311
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 5,
+          "seconds": 2.023015873015873
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 0,
+          "seconds": 2.523015873015873
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 1,
+          "seconds": 3.1578231292517005
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 2,
+          "seconds": 3.6291666666666664
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 3,
+          "seconds": 3.8336451247165533
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 4,
+          "seconds": 4.066638321995464
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 5,
+          "seconds": 4.440674603174603
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 0,
+          "seconds": 4.940674603174603
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 1,
+          "seconds": 5.088945578231293
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 2,
+          "seconds": 5.608475056689342
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 3,
+          "seconds": 6.364597505668934
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 4,
+          "seconds": 6.592403628117914
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 5,
+          "seconds": 6.913690476190476
+        }
+      ],
+      "phraseSpans": [
+        1.9730158730158731,
+        1.91765873015873,
+        1.9730158730158731
+      ],
+      "span": 6.8636904761904765,
+      "duration": 6.953690476190476
+    }
+  ],
+  "wav": {
+    "path": "docs/sealed-coda-v1/desktop/explicit-unencrypted-audio.wav",
+    "bytes": 669752,
+    "sha256": "84538f32699fad8e7047d66499ea311470055908e5d3bbea9ab7e356bc440d93",
+    "sampleRate": 48000,
+    "channels": 1,
+    "bits": 16,
+    "frames": 333778,
+    "durationSeconds": 6.953708333333333,
+    "independentlyCheckedPulses": 18,
+    "outsideScheduleIsSilent": true,
+    "sourceMetadataMatches": true,
+    "metadataContainsOnlyTechnicalSourceFields": true
+  }
+}
