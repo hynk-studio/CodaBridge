@@ -1,0 +1,163 @@
+{
+  "status": "Independent source/hash/parent/timing verification passed",
+  "files": [
+    {
+      "path": "docs/ux-01/public-test-only/baseline/plain-A1.coda.json",
+      "bytes": 1890,
+      "sha256": "bb70370b9700f0db15e6cd0ed20d3e149c10da73f0dd304016a5ef5202676d5f",
+      "payloadSha256": "db8c88fab22432126df897bc82e4f5cf7471dfc1c4e103a1f68cd8862e2747bc",
+      "turns": 1,
+      "messages": [
+        "PUBLIC TEST ONLY A1 안녕 🐋 긴 쉼을 보냅니다."
+      ],
+      "sources": [
+        "dswp-1"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.19827097505668934
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.7178004535147393
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 3,
+          "seconds": 1.4739229024943312
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 4,
+          "seconds": 1.701729024943311
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 5,
+          "seconds": 2.023015873015873
+        }
+      ],
+      "phraseSpans": [
+        1.9730158730158731
+      ],
+      "span": 1.9730158730158731,
+      "duration": 2.063015873015873
+    },
+    {
+      "path": "docs/ux-01/public-test-only/baseline/plain-B1.coda.json",
+      "bytes": 3500,
+      "sha256": "1c793787b4229666fb7238054af7a275c0f79d2a8918d6f192480f4e111a7d83",
+      "payloadSha256": "652423690a8cc49df6a5ab70f7a8830d781aec6a0ba1243be905ef60fc2aa76e",
+      "turns": 2,
+      "messages": [
+        "PUBLIC TEST ONLY A1 안녕 🐋 긴 쉼을 보냅니다.",
+        "PUBLIC TEST ONLY B1 답장 🌊 짧은 리듬"
+      ],
+      "sources": [
+        "dswp-1",
+        "dswp-7"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.19827097505668934
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.7178004535147393
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 3,
+          "seconds": 1.4739229024943312
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 4,
+          "seconds": 1.701729024943311
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 5,
+          "seconds": 2.023015873015873
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 0,
+          "seconds": 2.523015873015873
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 1,
+          "seconds": 2.7748526077097506
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 2,
+          "seconds": 3.0270068027210884
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 3,
+          "seconds": 3.1642630385487527
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 4,
+          "seconds": 3.5247392290249433
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 5,
+          "seconds": 3.672312925170068
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 6,
+          "seconds": 3.8385260770975056
+        }
+      ],
+      "phraseSpans": [
+        1.9730158730158731,
+        1.3155102040816327
+      ],
+      "span": 3.7885260770975058,
+      "duration": 3.8785260770975056
+    }
+  ],
+  "wav": null
+}

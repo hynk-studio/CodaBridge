@@ -1,0 +1,227 @@
+[
+  {
+    "label": "After: desktop home to Exchange",
+    "at": "2026-09-14T04:18:53.798Z",
+    "ms": 216
+  },
+  {
+    "label": "After: choose sealed before note",
+    "at": "2026-09-14T04:18:53.827Z",
+    "ms": 28
+  },
+  {
+    "label": "After: start A1",
+    "at": "2026-09-14T04:18:53.858Z",
+    "ms": 31
+  },
+  {
+    "label": "After: finalize A1",
+    "at": "2026-09-14T04:18:53.908Z",
+    "ms": 43
+  },
+  {
+    "label": "After desktop: prepare sealed file",
+    "at": "2026-09-14T04:19:12.490Z",
+    "ms": 38
+  },
+  {
+    "label": "After desktop: masked Copy with denied clipboard",
+    "at": "2026-09-14T04:19:12.535Z",
+    "ms": 36
+  },
+  {
+    "label": "After desktop: explicit Reveal",
+    "at": "2026-09-14T04:19:12.653Z",
+    "ms": 31
+  },
+  {
+    "label": "After desktop: explicit Select",
+    "at": "2026-09-14T04:19:12.685Z",
+    "ms": 32
+  },
+  {
+    "label": "After desktop: explicit Hide",
+    "at": "2026-09-14T04:19:12.719Z",
+    "ms": 34
+  },
+  {
+    "label": "After desktop: acknowledge separately retained TEST key",
+    "at": "2026-09-14T04:19:12.752Z",
+    "ms": 33
+  },
+  {
+    "label": "After desktop: Download sealed A1",
+    "at": "2026-09-14T04:19:12.786Z",
+    "ms": 33
+  },
+  {
+    "label": "After cold phone: home to Exchange",
+    "at": "2026-09-14T04:19:30.243Z",
+    "ms": 82
+  },
+  {
+    "label": "After cold phone: open actual A1 (assisted chooser)",
+    "at": "2026-09-14T04:19:30.287Z",
+    "ms": 44
+  },
+  {
+    "label": "After cold phone: wrong-key attempt",
+    "at": "2026-09-14T04:19:30.448Z",
+    "ms": 37
+  },
+  {
+    "label": "After cold phone: unlock with matching separate key",
+    "at": "2026-09-14T04:19:30.491Z",
+    "ms": 35
+  },
+  {
+    "label": "After phone: start distinct B1 reply",
+    "at": "2026-09-14T04:19:30.533Z",
+    "ms": 35
+  },
+  {
+    "label": "After phone: finalize B1",
+    "at": "2026-09-14T04:19:30.568Z",
+    "ms": 30
+  },
+  {
+    "label": "After phone: prepare B1",
+    "at": "2026-09-14T04:19:30.600Z",
+    "ms": 28
+  },
+  {
+    "label": "After phone: masked Copy denied",
+    "at": "2026-09-14T04:19:44.698Z",
+    "ms": 27
+  },
+  {
+    "label": "After phone: explicitly reveal to retain B1 test key",
+    "at": "2026-09-14T04:19:44.846Z",
+    "ms": 34
+  },
+  {
+    "label": "After phone: Hide key",
+    "at": "2026-09-14T04:19:44.880Z",
+    "ms": 31
+  },
+  {
+    "label": "After phone: save encrypted B1",
+    "at": "2026-09-14T04:19:44.947Z",
+    "ms": 34
+  },
+  {
+    "label": "After A1: explicit verification-only unencrypted export",
+    "at": "2026-09-14T04:20:07.835Z",
+    "ms": 29
+  },
+  {
+    "label": "After B1: explicit verification-only unencrypted export",
+    "at": "2026-09-14T04:20:07.879Z",
+    "ms": 12
+  },
+  {
+    "label": "After desktop: open returned B1 (assisted chooser)",
+    "at": "2026-09-14T04:20:07.952Z",
+    "ms": 37
+  },
+  {
+    "label": "After desktop: old key must fail on reply",
+    "at": "2026-09-14T04:20:08.018Z",
+    "ms": 33
+  },
+  {
+    "label": "After desktop: unlock B1 with new key",
+    "at": "2026-09-14T04:20:08.052Z",
+    "ms": 30
+  },
+  {
+    "label": "After desktop: confirm explicit replacement",
+    "at": "2026-09-14T04:20:08.084Z",
+    "ms": 29
+  },
+  {
+    "label": "After desktop: finalize A2",
+    "at": "2026-09-14T04:20:08.151Z",
+    "ms": 31
+  },
+  {
+    "label": "After desktop: save A1/B1/A2",
+    "at": "2026-09-14T04:20:08.316Z",
+    "ms": 34
+  },
+  {
+    "label": "After A2: explicit verification-only unencrypted export",
+    "at": "2026-09-14T04:20:08.349Z",
+    "ms": 32
+  },
+  {
+    "label": "After phone: repeat stable encrypted download",
+    "at": "2026-09-14T04:21:20.990Z",
+    "ms": 10
+  },
+  {
+    "label": "After phone: start unfinished A2",
+    "at": "2026-09-14T04:21:21.027Z",
+    "ms": 35
+  },
+  {
+    "label": "After phone: leave Exchange",
+    "at": "2026-09-14T04:21:21.039Z",
+    "ms": 8
+  },
+  {
+    "label": "After phone: resume Exchange",
+    "at": "2026-09-14T04:21:21.045Z",
+    "ms": 5
+  },
+  {
+    "label": "After phone: request cancellation",
+    "at": "2026-09-14T04:21:21.076Z",
+    "ms": 27
+  },
+  {
+    "label": "After phone: reject wrong-format project without losing note",
+    "at": "2026-09-14T04:21:21.143Z",
+    "ms": 35
+  },
+  {
+    "label": "After phone: lock saved B1",
+    "at": "2026-09-14T04:21:21.277Z",
+    "ms": 33
+  },
+  {
+    "label": "After phone: re-unlock same file",
+    "at": "2026-09-14T04:21:21.314Z",
+    "ms": 34
+  },
+  {
+    "label": "After phone: refresh",
+    "at": "2026-09-14T04:21:21.347Z",
+    "ms": 30
+  },
+  {
+    "label": "After phone: reopen saved file after refresh",
+    "at": "2026-09-14T04:21:21.491Z",
+    "ms": 39
+  },
+  {
+    "label": "After preservation: Composer to Exchange",
+    "at": "2026-09-14T04:22:32.717Z",
+    "ms": 37
+  },
+  {
+    "label": "After plain: open original actual A1 (assisted chooser)",
+    "at": "2026-09-14T04:22:32.750Z",
+    "ms": 33
+  },
+  {
+    "label": "After plain: finalize B1",
+    "at": "2026-09-14T04:22:32.867Z",
+    "ms": 47
+  },
+  {
+    "label": "After plain: fresh phone opens returned actual file",
+    "at": "2026-09-14T04:22:33.278Z",
+    "ms": 40
+  }
+]

@@ -121,6 +121,47 @@ async function prepareDisplayedKey(p: Page) {
   await expect(region(p).getByLabel("Opening key", { exact: true })).toHaveAttribute("type", "password");
 }
 
+test("UX-01 sealed guidance and file identifier follow the current snapshot and locked candidate", async ({ page }, info) => {
+  const dir = `test-results/ux-01/regression/${info.project.name}`; await mkdir(dir, { recursive: true });
+  await entry(page);
+  await region(page).getByLabel("File protection").selectOption("sealed");
+  await button(page, "Start a transmission").click();
+  await finalize(page, "A1", "PUBLIC TEST ONLY UX-01 안녕 🐋");
+  await expect(region(page).getByRole("status").first()).toContainText("Prepare the sealed file, then save its separate opening key before downloading.");
+  await expect(button(page, "Download sealed file")).toBeDisabled();
+  await expect(region(page).locator(".sealed-file-identity")).toHaveCount(0);
+  await button(page, "Prepare sealed file").click();
+  const identifier = region(page).locator(".sealed-tools .sealed-file-identity code");
+  await expect(identifier).toBeVisible();
+  const firstName = await identifier.innerText();
+  await expect(region(page).getByLabel("Opening key", { exact: true })).toHaveAttribute("type", "password");
+  await expect(button(page, "Download sealed file")).toBeDisabled();
+  await region(page).getByLabel("I have saved the opening key").check();
+  const first = await download(page, `${dir}/A1.coda.sealed.json`);
+  expect(first.name).toBe(firstName);
+
+  await button(page, "Reply with my style").click();
+  await finalize(page, "B1", "PUBLIC TEST ONLY UX-01 reply 🌊");
+  await expect(region(page).locator(".sealed-file-identity")).toHaveCount(0);
+  await button(page, "Prepare sealed file").click();
+  await expect(identifier).toBeVisible();
+  const secondName = await identifier.innerText();
+  expect(secondName !== firstName).toBe(true);
+  await region(page).getByLabel("I have saved the opening key").check();
+  const second = await download(page, `${dir}/B1.coda.sealed.json`);
+  expect(second.name).toBe(secondName);
+
+  // The parser's existing canonical download name is the identifier, even
+  // when the selected local filename was renamed. It is not sender identity.
+  await open(page, first.bytes);
+  await expect(region(page).locator(".sealed-locked .sealed-file-identity code")).toHaveText(firstName);
+  await expect(identifier).toHaveText(secondName);
+  await button(page, "Cancel candidate").click();
+  await button(page, "Lock and forget key").click();
+  await expect(region(page).locator(".sealed-locked .sealed-file-identity code")).toHaveText(secondName);
+  await expect(region(page).getByLabel("Opening key", { exact: true })).toHaveCount(0);
+});
+
 test("unsupported crypto leaves a truthful locked preview with no content or export", async ({ page }) => {
   await page.addInitScript(() => { Object.defineProperty(window.crypto.subtle, "decrypt", { value: undefined }); });
   await entry(page); await open(page, fixture);
@@ -251,6 +292,11 @@ for (const clipboard of ["missing", "rejected"] as const) test(`key copy ${clipb
   await prepareDisplayedKey(page);
   const shown = region(page).getByLabel("Opening key", { exact: true });
   await button(page, "Copy opening key").click(); await expect(region(page).getByRole("alert")).toContainText("copy manually"); await expect(shown).toHaveAttribute("type", "password");
+  // UX-01: the failure is readable beside Copy without scrolling back to the
+  // top of Exchange. It does not focus, select or reveal the key.
+  const feedback = region(page).getByRole("alert");
+  await expect(feedback).toBeInViewport({ ratio: 1 });
+  await expect(button(page, "Copy opening key")).toBeFocused();
   expect(await shown.evaluate((n: HTMLInputElement) => n.selectionStart === n.selectionEnd)).toBe(true);
   await expect(region(page).getByLabel("I have saved the opening key")).not.toBeChecked(); await expect(button(page, "Download sealed file")).toBeDisabled();
   const dir = `test-results/sealed-key-display/${info.project.name}`; await mkdir(dir, { recursive: true });
@@ -442,7 +488,7 @@ for (const outcome of ["success", "rejected", "unsupported"] as const) test(`pri
   expect(downloads).toBe(0); await expect(region(page)).toHaveAttribute("data-mode", "private"); await expect(button(page, "Download sealed file")).toBeEnabled();
   if (outcome === "success") {
     await button(page, "Create a new seal").click(); await button(page, "Copy opening key").click();
-    await expect(region(page).getByRole("status").first()).toContainText("Opening key copied");
+    await expect(region(page).getByRole("status").filter({ hasText: "Opening key copied" })).toBeInViewport({ ratio: 1 });
     await expect(region(page).getByLabel("Opening key", { exact: true })).toHaveAttribute("type", "password");
     expect(await region(page).getByLabel("Opening key", { exact: true }).evaluate((n: HTMLInputElement) => { const same = n.value === (window as any).__publicCopiedKey; delete (window as any).__publicCopiedKey; return same; })).toBe(true);
     await expect(region(page).getByLabel("I have saved the opening key")).not.toBeChecked(); await expect(button(page, "Download sealed file")).toBeDisabled();

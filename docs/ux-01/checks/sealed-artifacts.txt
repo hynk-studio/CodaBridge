@@ -1,0 +1,358 @@
+
+> codabridge@0.2.0 sealed:verify
+> node scripts/verify-sealed.mjs docs/ux-01/public-test-only/final/PUBLIC-TEST-ONLY-keys.json
+
+{
+  "label": "PUBLIC TEST ONLY verification; not cryptographic certification",
+  "node": "v25.9.0",
+  "checker": "Node createDecipheriv + independent Python Exchange verifier",
+  "results": [
+    {
+      "file": "A1.coda.sealed.json",
+      "sealedBytes": 2640,
+      "sealedSha256": "25bd36e65ae78b329076da74fbc2c88c77e6fe26d66ca706b8a83eaf214dc4b9",
+      "plaintextBytes": 1871,
+      "plaintextSha256": "4da6f33bffc03bc7acae847352d09b7202e32924f833d8e7181036c20fb1eb6f",
+      "turns": 1,
+      "innerProtection": "none",
+      "authenticated": true,
+      "exactOriginalBytes": true,
+      "independentExchange": {
+        "status": "Independent source/hash/parent/timing verification passed",
+        "files": [
+          {
+            "path": "/Users/hynk/code/CodaBridge-ux-01/docs/ux-01/public-test-only/final/A1.expected.coda.json",
+            "bytes": 1871,
+            "sha256": "4da6f33bffc03bc7acae847352d09b7202e32924f833d8e7181036c20fb1eb6f",
+            "payloadSha256": "2ba15697038f584ee798a90b3949270f301b2bd20f04e172a3c758b892e1d8fe",
+            "turns": 1,
+            "messages": [
+              "PUBLIC TEST ONLY after A1 안녕 🐋"
+            ],
+            "sources": [
+              "dswp-1"
+            ],
+            "events": [
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 0,
+                "seconds": 0.05
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 1,
+                "seconds": 0.16861678004535147
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 2,
+                "seconds": 0.5842403628117915
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 3,
+                "seconds": 1.189138321995465
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 4,
+                "seconds": 1.3713832199546487
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 5,
+                "seconds": 1.6284126984126985
+              }
+            ],
+            "phraseSpans": [
+              1.5784126984126985
+            ],
+            "span": 1.5784126984126985,
+            "duration": 1.6684126984126986
+          }
+        ],
+        "wav": null
+      }
+    },
+    {
+      "file": "B1.coda.sealed.json",
+      "sealedBytes": 4776,
+      "sealedSha256": "e87d935a4fd2b969670aa01c89af24f0c4770339e50efa7a865e0a5a4a0be2fe",
+      "plaintextBytes": 3473,
+      "plaintextSha256": "91bd0e40f0053a1aa9a613dddd611302624c919e4134d3929e994b817acf8ba7",
+      "turns": 2,
+      "innerProtection": "none",
+      "authenticated": true,
+      "exactOriginalBytes": true,
+      "independentExchange": {
+        "status": "Independent source/hash/parent/timing verification passed",
+        "files": [
+          {
+            "path": "/Users/hynk/code/CodaBridge-ux-01/docs/ux-01/public-test-only/final/B1.expected.coda.json",
+            "bytes": 3473,
+            "sha256": "91bd0e40f0053a1aa9a613dddd611302624c919e4134d3929e994b817acf8ba7",
+            "payloadSha256": "108914944f8ca4fdf7577d7cd1eba3356e5b75ac16dc6c5e0abadcd8e1602c15",
+            "turns": 2,
+            "messages": [
+              "PUBLIC TEST ONLY after A1 안녕 🐋",
+              "PUBLIC TEST ONLY after B1 답장 🌊"
+            ],
+            "sources": [
+              "dswp-1",
+              "dswp-7"
+            ],
+            "events": [
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 0,
+                "seconds": 0.05
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 1,
+                "seconds": 0.16861678004535147
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 2,
+                "seconds": 0.5842403628117915
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 3,
+                "seconds": 1.189138321995465
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 4,
+                "seconds": 1.3713832199546487
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 5,
+                "seconds": 1.6284126984126985
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 0,
+                "seconds": 2.1284126984126983
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 1,
+                "seconds": 2.380249433106576
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 2,
+                "seconds": 2.6324036281179137
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 3,
+                "seconds": 2.769659863945578
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 4,
+                "seconds": 3.1301360544217687
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 5,
+                "seconds": 3.2777097505668933
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 6,
+                "seconds": 3.443922902494331
+              }
+            ],
+            "phraseSpans": [
+              1.5784126984126985,
+              1.3155102040816327
+            ],
+            "span": 3.393922902494331,
+            "duration": 3.483922902494331
+          }
+        ],
+        "wav": null
+      }
+    },
+    {
+      "file": "A2.coda.sealed.json",
+      "sealedBytes": 6867,
+      "sealedSha256": "1704f8103b4ec2972ee57b78a4b891915e6246649802ed6548fb18ae867654d1",
+      "plaintextBytes": 5041,
+      "plaintextSha256": "3fc09294c38eedc27381d8a6d8fd9e2d304889f10de8ddb928018e032585545b",
+      "turns": 3,
+      "innerProtection": "none",
+      "authenticated": true,
+      "exactOriginalBytes": true,
+      "independentExchange": {
+        "status": "Independent source/hash/parent/timing verification passed",
+        "files": [
+          {
+            "path": "/Users/hynk/code/CodaBridge-ux-01/docs/ux-01/public-test-only/final/A2.expected.coda.json",
+            "bytes": 5041,
+            "sha256": "3fc09294c38eedc27381d8a6d8fd9e2d304889f10de8ddb928018e032585545b",
+            "payloadSha256": "a27f9e0d1d5cf47724e93ebf7ea5ff2ef91702427e744e607c665b69fbf5336f",
+            "turns": 3,
+            "messages": [
+              "PUBLIC TEST ONLY after A1 안녕 🐋",
+              "PUBLIC TEST ONLY after B1 답장 🌊",
+              "PUBLIC TEST ONLY after A2 다시 안녕 💙"
+            ],
+            "sources": [
+              "dswp-1",
+              "dswp-7"
+            ],
+            "events": [
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 0,
+                "seconds": 0.05
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 1,
+                "seconds": 0.16861678004535147
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 2,
+                "seconds": 0.5842403628117915
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 3,
+                "seconds": 1.189138321995465
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 4,
+                "seconds": 1.3713832199546487
+              },
+              {
+                "turn": 1,
+                "block": 1,
+                "marker": 5,
+                "seconds": 1.6284126984126985
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 0,
+                "seconds": 2.1284126984126983
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 1,
+                "seconds": 2.380249433106576
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 2,
+                "seconds": 2.6324036281179137
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 3,
+                "seconds": 2.769659863945578
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 4,
+                "seconds": 3.1301360544217687
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 5,
+                "seconds": 3.2777097505668933
+              },
+              {
+                "turn": 2,
+                "block": 1,
+                "marker": 6,
+                "seconds": 3.443922902494331
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 0,
+                "seconds": 3.943922902494331
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 1,
+                "seconds": 4.062539682539683
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 2,
+                "seconds": 4.478163265306122
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 3,
+                "seconds": 5.083061224489796
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 4,
+                "seconds": 5.26530612244898
+              },
+              {
+                "turn": 3,
+                "block": 1,
+                "marker": 5,
+                "seconds": 5.522335600907029
+              }
+            ],
+            "phraseSpans": [
+              1.5784126984126985,
+              1.3155102040816327,
+              1.5784126984126985
+            ],
+            "span": 5.47233560090703,
+            "duration": 5.562335600907029
+          }
+        ],
+        "wav": null
+      }
+    }
+  ]
+}

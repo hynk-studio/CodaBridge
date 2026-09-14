@@ -1,0 +1,44 @@
+[
+  {
+    "path": "captures/finalize-guidance-after.png",
+    "bytes": 145366,
+    "sha256": "1c70e738389bbbc0ea90d82d0a2226a3b933ded0a56b4c98bf2866e8c52d3fc9",
+    "keyState": "masked or absent",
+    "beforeCapture": null
+  },
+  {
+    "path": "captures/finalize-guidance-before.png",
+    "bytes": 143694,
+    "sha256": "6713d87149a2769cdfa252528b777bb9197d4ce00e9715800ddfeecd6e204109",
+    "keyState": "masked or absent",
+    "beforeCapture": "unchanged-base replay after runner cleanup"
+  },
+  {
+    "path": "captures/phone-copy-after.png",
+    "bytes": 73930,
+    "sha256": "8b35684ac3a99c18f54ace1a501e281de6744dc27428ed4cc774fc5a676c4bbc",
+    "keyState": "masked or absent",
+    "beforeCapture": null
+  },
+  {
+    "path": "captures/phone-copy-before.png",
+    "bytes": 63449,
+    "sha256": "d8f642b7c12958e1310e6ecb6a916a494cdf703d825bf9fb53d728604b18c667",
+    "keyState": "masked or absent",
+    "beforeCapture": "unchanged-base replay after runner cleanup"
+  },
+  {
+    "path": "captures/phone-locked-after.png",
+    "bytes": 74061,
+    "sha256": "868c7822575c9c8e01d9e7c96e6bb04b868f7728eefd2596939ed47e30baca28",
+    "keyState": "masked or absent",
+    "beforeCapture": null
+  },
+  {
+    "path": "captures/phone-locked-before.png",
+    "bytes": 66089,
+    "sha256": "a03191d9c1ada925e9b743339a87515487c026083e8be37517006be59f97a51d",
+    "keyState": "masked or absent",
+    "beforeCapture": "unchanged-base replay after runner cleanup"
+  }
+]

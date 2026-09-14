@@ -1,0 +1,20 @@
+{
+  "label": "PUBLIC TEST ONLY - never use these opening keys for private content",
+  "entries": [
+    {
+      "file": "A1.coda.sealed.json",
+      "expected": "A1.expected.coda.json",
+      "openingCode": "cbsk1-hb-keT9Q9BWW_AnJjwChBjFE_Z62oxtVqivug_2vwHY"
+    },
+    {
+      "file": "B1.coda.sealed.json",
+      "expected": "B1.expected.coda.json",
+      "openingCode": "cbsk1-V_9AOLDtxkEfdXo8zhPTg7noskNN83iyIyqxs42GViA"
+    },
+    {
+      "file": "A2.coda.sealed.json",
+      "expected": "A2.expected.coda.json",
+      "openingCode": "cbsk1-0IqicqbIoJn3eMElluQ8YAwVe_EjrjLvnjB3KDEnyx0"
+    }
+  ]
+}

@@ -1,0 +1,677 @@
+[
+  {
+    "label": "A home: Play original Recording A",
+    "at": "2026-09-14T04:07:39.921Z",
+    "ms": 64
+  },
+  {
+    "label": "A: Make my version from 1.wav",
+    "at": "2026-09-14T04:07:39.978Z",
+    "ms": 52
+  },
+  {
+    "label": "A: Lengthen selected block ×1.25",
+    "at": "2026-09-14T04:07:47.696Z",
+    "ms": 35
+  },
+  {
+    "label": "A: Undo",
+    "at": "2026-09-14T04:07:47.743Z",
+    "ms": 44
+  },
+  {
+    "label": "A: Redo",
+    "at": "2026-09-14T04:07:47.774Z",
+    "ms": 29
+  },
+  {
+    "label": "A: Play this synthetic block",
+    "at": "2026-09-14T04:07:47.812Z",
+    "ms": 38
+  },
+  {
+    "label": "A: Add personal meaning",
+    "at": "2026-09-14T04:07:47.823Z",
+    "ms": 11
+  },
+  {
+    "label": "A: Save & codebook",
+    "at": "2026-09-14T04:07:47.862Z",
+    "ms": 39
+  },
+  {
+    "label": "A: Save selected block to codebook",
+    "at": "2026-09-14T04:07:56.263Z",
+    "ms": 19
+  },
+  {
+    "label": "A: retain Composer project",
+    "at": "2026-09-14T04:07:56.295Z",
+    "ms": 30
+  },
+  {
+    "label": "A: Compare & ask",
+    "at": "2026-09-14T04:07:56.328Z",
+    "ms": 31
+  },
+  {
+    "label": "A: expand nearest actual references",
+    "at": "2026-09-14T04:08:05.245Z",
+    "ms": 37
+  },
+  {
+    "label": "A: Inspect annotated row 2412",
+    "at": "2026-09-14T04:08:09.425Z",
+    "ms": 40
+  },
+  {
+    "label": "A: Return to Composer",
+    "at": "2026-09-14T04:08:19.735Z",
+    "ms": 35
+  },
+  {
+    "label": "A: Edit phrase after reference",
+    "at": "2026-09-14T04:08:19.776Z",
+    "ms": 41
+  },
+  {
+    "label": "A: Duplicate to distinguish block/whole phrase",
+    "at": "2026-09-14T04:08:19.827Z",
+    "ms": 44
+  },
+  {
+    "label": "A: Save & codebook",
+    "at": "2026-09-14T04:08:19.859Z",
+    "ms": 32
+  },
+  {
+    "label": "A: selected-block transmission (whole phrase unchecked)",
+    "at": "2026-09-14T04:08:19.899Z",
+    "ms": 39
+  },
+  {
+    "label": "Phone B: Play original A",
+    "at": "2026-09-14T04:08:29.375Z",
+    "ms": 40
+  },
+  {
+    "label": "Phone B: Make my version",
+    "at": "2026-09-14T04:08:29.433Z",
+    "ms": 57
+  },
+  {
+    "label": "Phone B: change first gap",
+    "at": "2026-09-14T04:08:29.472Z",
+    "ms": 39
+  },
+  {
+    "label": "Phone B: undo",
+    "at": "2026-09-14T04:08:29.505Z",
+    "ms": 32
+  },
+  {
+    "label": "Phone B: redo",
+    "at": "2026-09-14T04:08:29.538Z",
+    "ms": 32
+  },
+  {
+    "label": "Phone B: personal label",
+    "at": "2026-09-14T04:08:29.547Z",
+    "ms": 9
+  },
+  {
+    "label": "Phone B: save panel",
+    "at": "2026-09-14T04:08:29.592Z",
+    "ms": 44
+  },
+  {
+    "label": "Phone B: retain project",
+    "at": "2026-09-14T04:08:29.622Z",
+    "ms": 30
+  },
+  {
+    "label": "Phone B: compare panel",
+    "at": "2026-09-14T04:08:29.658Z",
+    "ms": 35
+  },
+  {
+    "label": "A: write plain A1",
+    "at": "2026-09-14T04:08:29.676Z",
+    "ms": 9
+  },
+  {
+    "label": "A: finalize plain A1",
+    "at": "2026-09-14T04:08:29.712Z",
+    "ms": 33
+  },
+  {
+    "label": "Phone B: show actual nearest references",
+    "at": "2026-09-14T04:08:37.357Z",
+    "ms": 30
+  },
+  {
+    "label": "A: download reopenable plain A1",
+    "at": "2026-09-14T04:08:37.388Z",
+    "ms": 20
+  },
+  {
+    "label": "Cold phone C: choose Exchange from workspace selector",
+    "at": "2026-09-14T04:08:37.589Z",
+    "ms": 101
+  },
+  {
+    "label": "Assisted file plumbing: Open a coda file",
+    "at": "2026-09-14T04:08:45.509Z",
+    "ms": 30
+  },
+  {
+    "label": "Phone B: inspect source row 2412",
+    "at": "2026-09-14T04:08:45.613Z",
+    "ms": 34
+  },
+  {
+    "label": "Phone B: return to Composer",
+    "at": "2026-09-14T04:08:45.762Z",
+    "ms": 33
+  },
+  {
+    "label": "Phone B: edit again",
+    "at": "2026-09-14T04:08:45.806Z",
+    "ms": 43
+  },
+  {
+    "label": "Cold phone C: choose distinct seed 7.wav",
+    "at": "2026-09-14T04:08:53.950Z",
+    "ms": 6
+  },
+  {
+    "label": "Cold phone C: reply with chosen style",
+    "at": "2026-09-14T04:08:53.996Z",
+    "ms": 46
+  },
+  {
+    "label": "Cold phone C: write plain B1",
+    "at": "2026-09-14T04:08:54.003Z",
+    "ms": 7
+  },
+  {
+    "label": "Cold phone C: finalize B1",
+    "at": "2026-09-14T04:08:54.044Z",
+    "ms": 41
+  },
+  {
+    "label": "Cold phone C: save complete returned prefix",
+    "at": "2026-09-14T04:08:58.490Z",
+    "ms": 28
+  },
+  {
+    "label": "Assisted file plumbing: Open a coda file",
+    "at": "2026-09-14T04:08:58.503Z",
+    "ms": 11
+  },
+  {
+    "label": "A: explicitly replace with returned plain prefix",
+    "at": "2026-09-14T04:09:08.593Z",
+    "ms": 24
+  },
+  {
+    "label": "A: Reset Exchange for separate sealed intent",
+    "at": "2026-09-14T04:09:08.639Z",
+    "ms": 42
+  },
+  {
+    "label": "A: confirm reset after saving plain file",
+    "at": "2026-09-14T04:09:15.705Z",
+    "ms": 18
+  },
+  {
+    "label": "A: choose sealed intent before note",
+    "at": "2026-09-14T04:09:15.712Z",
+    "ms": 6
+  },
+  {
+    "label": "A: choose entire Composer phrase for sealed A1",
+    "at": "2026-09-14T04:09:15.720Z",
+    "ms": 5
+  },
+  {
+    "label": "A: start sealed transmission",
+    "at": "2026-09-14T04:09:15.756Z",
+    "ms": 35
+  },
+  {
+    "label": "A: write sealed A1",
+    "at": "2026-09-14T04:09:15.763Z",
+    "ms": 6
+  },
+  {
+    "label": "A: finalize sealed A1",
+    "at": "2026-09-14T04:09:15.792Z",
+    "ms": 29
+  },
+  {
+    "label": "A: prepare sealed A1",
+    "at": "2026-09-14T04:09:24.259Z",
+    "ms": 42
+  },
+  {
+    "label": "A: masked Copy with clipboard denied for isolation",
+    "at": "2026-09-14T04:09:41.171Z",
+    "ms": 21
+  },
+  {
+    "label": "A: explicitly reveal TEST ONLY key for separate retention",
+    "at": "2026-09-14T04:09:41.270Z",
+    "ms": 37
+  },
+  {
+    "label": "A: explicitly select opening key",
+    "at": "2026-09-14T04:09:41.302Z",
+    "ms": 28
+  },
+  {
+    "label": "A: explicitly hide opening key",
+    "at": "2026-09-14T04:09:41.336Z",
+    "ms": 29
+  },
+  {
+    "label": "A: acknowledge separately retained key",
+    "at": "2026-09-14T04:09:41.369Z",
+    "ms": 33
+  },
+  {
+    "label": "A: download sealed A1",
+    "at": "2026-09-14T04:09:41.403Z",
+    "ms": 33
+  },
+  {
+    "label": "Cold phone D: choose Exchange",
+    "at": "2026-09-14T04:09:41.596Z",
+    "ms": 88
+  },
+  {
+    "label": "Assisted file plumbing: Open a coda file",
+    "at": "2026-09-14T04:09:41.642Z",
+    "ms": 45
+  },
+  {
+    "label": "Cold phone D: enter well-formed wrong test key",
+    "at": "2026-09-14T04:10:00.088Z",
+    "ms": 7
+  },
+  {
+    "label": "Cold phone D: wrong-key attempt",
+    "at": "2026-09-14T04:10:00.130Z",
+    "ms": 41
+  },
+  {
+    "label": "Cold phone D: enter matching retained TEST ONLY key",
+    "at": "2026-09-14T04:10:00.138Z",
+    "ms": 4
+  },
+  {
+    "label": "Cold phone D: unlock actual A1",
+    "at": "2026-09-14T04:10:00.184Z",
+    "ms": 46
+  },
+  {
+    "label": "Cold phone D: play received A1",
+    "at": "2026-09-14T04:10:00.229Z",
+    "ms": 40
+  },
+  {
+    "label": "Cold phone D: choose independent reply seed 2.wav",
+    "at": "2026-09-14T04:10:00.233Z",
+    "ms": 3
+  },
+  {
+    "label": "Cold phone D: start sealed reply",
+    "at": "2026-09-14T04:10:00.261Z",
+    "ms": 28
+  },
+  {
+    "label": "Cold phone D: write B1",
+    "at": "2026-09-14T04:10:00.267Z",
+    "ms": 6
+  },
+  {
+    "label": "Cold phone D: cancel outgoing draft request",
+    "at": "2026-09-14T04:10:00.309Z",
+    "ms": 42
+  },
+  {
+    "label": "Cold phone D: keep unfinished reply",
+    "at": "2026-09-14T04:10:12.209Z",
+    "ms": 43
+  },
+  {
+    "label": "Cold phone D: switch to Composer",
+    "at": "2026-09-14T04:10:12.219Z",
+    "ms": 9
+  },
+  {
+    "label": "Cold phone D: return Exchange",
+    "at": "2026-09-14T04:10:12.225Z",
+    "ms": 6
+  },
+  {
+    "label": "Cold phone D: finalize sealed B1",
+    "at": "2026-09-14T04:10:12.261Z",
+    "ms": 31
+  },
+  {
+    "label": "Cold phone D: prepare reply sealed file",
+    "at": "2026-09-14T04:10:12.326Z",
+    "ms": 43
+  },
+  {
+    "label": "Cold phone D: masked Copy with isolated clipboard denial",
+    "at": "2026-09-14T04:10:12.356Z",
+    "ms": 26
+  },
+  {
+    "label": "Cold phone D: backtrack upward to read copy denial",
+    "at": "2026-09-14T04:10:27.436Z",
+    "ms": 17
+  },
+  {
+    "label": "Cold phone D: explicit reveal for separate key retention",
+    "at": "2026-09-14T04:10:27.506Z",
+    "ms": 39
+  },
+  {
+    "label": "Cold phone D: hide key",
+    "at": "2026-09-14T04:10:27.539Z",
+    "ms": 30
+  },
+  {
+    "label": "Cold phone D: acknowledge saved B1 key",
+    "at": "2026-09-14T04:10:27.573Z",
+    "ms": 34
+  },
+  {
+    "label": "Cold phone D: save sealed B1",
+    "at": "2026-09-14T04:10:27.608Z",
+    "ms": 34
+  },
+  {
+    "label": "Assisted file plumbing: Open a coda file",
+    "at": "2026-09-14T04:10:27.633Z",
+    "ms": 24
+  },
+  {
+    "label": "A: try previous A1 key on new B1 snapshot",
+    "at": "2026-09-14T04:10:48.806Z",
+    "ms": 6
+  },
+  {
+    "label": "A: reject old key for new reply",
+    "at": "2026-09-14T04:10:48.836Z",
+    "ms": 29
+  },
+  {
+    "label": "A: supply new B1 key",
+    "at": "2026-09-14T04:10:48.850Z",
+    "ms": 5
+  },
+  {
+    "label": "A: unlock B1 candidate",
+    "at": "2026-09-14T04:10:48.885Z",
+    "ms": 34
+  },
+  {
+    "label": "A: confirm returned sealed prefix",
+    "at": "2026-09-14T04:10:48.918Z",
+    "ms": 28
+  },
+  {
+    "label": "A: choose selected Composer block for A2",
+    "at": "2026-09-14T04:10:48.922Z",
+    "ms": 4
+  },
+  {
+    "label": "A: begin A2",
+    "at": "2026-09-14T04:10:48.950Z",
+    "ms": 27
+  },
+  {
+    "label": "A: write A2",
+    "at": "2026-09-14T04:10:48.955Z",
+    "ms": 5
+  },
+  {
+    "label": "A: finalize A2",
+    "at": "2026-09-14T04:10:48.986Z",
+    "ms": 31
+  },
+  {
+    "label": "A: prepare A2",
+    "at": "2026-09-14T04:10:49.017Z",
+    "ms": 26
+  },
+  {
+    "label": "A: explicit reveal final TEST key for separate retention",
+    "at": "2026-09-14T04:10:49.049Z",
+    "ms": 27
+  },
+  {
+    "label": "A: hide final key",
+    "at": "2026-09-14T04:10:49.081Z",
+    "ms": 28
+  },
+  {
+    "label": "A: acknowledge retained final key",
+    "at": "2026-09-14T04:10:49.115Z",
+    "ms": 34
+  },
+  {
+    "label": "A: save complete sealed A1/B1/A2",
+    "at": "2026-09-14T04:10:49.150Z",
+    "ms": 35
+  },
+  {
+    "label": "A: request explicit TEST ONLY plaintext for independent comparison",
+    "at": "2026-09-14T04:11:04.016Z",
+    "ms": 23
+  },
+  {
+    "label": "A: confirm separate unencrypted TEST ONLY export",
+    "at": "2026-09-14T04:11:15.950Z",
+    "ms": 18
+  },
+  {
+    "label": "B1: request explicit unencrypted TEST ONLY copy",
+    "at": "2026-09-14T04:11:15.970Z",
+    "ms": 19
+  },
+  {
+    "label": "B1: confirm protected export",
+    "at": "2026-09-14T04:11:16.004Z",
+    "ms": 33
+  },
+  {
+    "label": "A: reveal then leave workspace",
+    "at": "2026-09-14T04:11:16.029Z",
+    "ms": 24
+  },
+  {
+    "label": "A: visit Composer",
+    "at": "2026-09-14T04:11:16.069Z",
+    "ms": 39
+  },
+  {
+    "label": "A: return Exchange",
+    "at": "2026-09-14T04:11:16.104Z",
+    "ms": 34
+  },
+  {
+    "label": "A: start unfinished B2",
+    "at": "2026-09-14T04:11:16.149Z",
+    "ms": 40
+  },
+  {
+    "label": "A: write unfinished note",
+    "at": "2026-09-14T04:11:16.155Z",
+    "ms": 6
+  },
+  {
+    "label": "Assisted file plumbing: Open a coda file",
+    "at": "2026-09-14T04:11:16.196Z",
+    "ms": 41
+  },
+  {
+    "label": "A: Lock with unfinished note",
+    "at": "2026-09-14T04:11:16.264Z",
+    "ms": 34
+  },
+  {
+    "label": "A: cancel lock to retain unfinished note",
+    "at": "2026-09-14T04:11:29.099Z",
+    "ms": 29
+  },
+  {
+    "label": "A: cancel only outgoing draft",
+    "at": "2026-09-14T04:11:29.132Z",
+    "ms": 32
+  },
+  {
+    "label": "A: discard only unfinished draft",
+    "at": "2026-09-14T04:11:29.166Z",
+    "ms": 34
+  },
+  {
+    "label": "A: explicit lock saved A2",
+    "at": "2026-09-14T04:11:29.198Z",
+    "ms": 32
+  },
+  {
+    "label": "A: re-enter saved A2 code",
+    "at": "2026-09-14T04:11:29.210Z",
+    "ms": 3
+  },
+  {
+    "label": "A: re-unlock retained file",
+    "at": "2026-09-14T04:11:29.253Z",
+    "ms": 42
+  },
+  {
+    "label": "A: intentional refresh",
+    "at": "2026-09-14T04:11:29.278Z",
+    "ms": 22
+  },
+  {
+    "label": "A: find Exchange after refresh",
+    "at": "2026-09-14T04:11:29.346Z",
+    "ms": 67
+  },
+  {
+    "label": "Assisted file plumbing: Open a coda file",
+    "at": "2026-09-14T04:11:29.377Z",
+    "ms": 28
+  },
+  {
+    "label": "A: supply A2 key after refresh",
+    "at": "2026-09-14T04:11:29.411Z",
+    "ms": 4
+  },
+  {
+    "label": "A: reopen final saved file after refresh",
+    "at": "2026-09-14T04:11:29.453Z",
+    "ms": 41
+  },
+  {
+    "label": "Real desktop E: home to Exchange",
+    "at": "2026-09-14T04:11:31.739Z",
+    "ms": 458
+  },
+  {
+    "label": "Assisted file plumbing: Open a coda file",
+    "at": "2026-09-14T04:11:32.609Z",
+    "ms": 870
+  },
+  {
+    "label": "Real desktop E: supply A1 TEST ONLY code",
+    "at": "2026-09-14T04:11:38.199Z",
+    "ms": 5
+  },
+  {
+    "label": "Real desktop E: unlock A1",
+    "at": "2026-09-14T04:11:38.237Z",
+    "ms": 38
+  },
+  {
+    "label": "A1: request explicit unencrypted TEST ONLY copy",
+    "at": "2026-09-14T04:11:38.275Z",
+    "ms": 34
+  },
+  {
+    "label": "A1: confirm protected export",
+    "at": "2026-09-14T04:11:38.338Z",
+    "ms": 62
+  },
+  {
+    "label": "Real desktop E: explicit fresh seal for display lifecycle check",
+    "at": "2026-09-14T04:11:52.840Z",
+    "ms": 51
+  },
+  {
+    "label": "Real desktop E: explicit Reveal",
+    "at": "2026-09-14T04:11:52.871Z",
+    "ms": 26
+  },
+  {
+    "label": "Real desktop E: explicitly Hide after unavailable automation background",
+    "at": "2026-09-14T04:11:59.202Z",
+    "ms": 19
+  },
+  {
+    "label": "Real desktop E: acknowledge separately retained lifecycle key",
+    "at": "2026-09-14T04:12:28.680Z",
+    "ms": 31
+  },
+  {
+    "label": "Real desktop E: open native file share chooser",
+    "at": "2026-09-14T04:12:28.713Z",
+    "ms": 32
+  },
+  {
+    "label": "Phone B: play retained synthetic phrase after Atlas return",
+    "at": "2026-09-14T04:13:04.049Z",
+    "ms": 26
+  },
+  {
+    "label": "Phone D: lock saved reply",
+    "at": "2026-09-14T04:13:25.902Z",
+    "ms": 19
+  },
+  {
+    "label": "Phone D: re-enter matching B1 code",
+    "at": "2026-09-14T04:13:25.906Z",
+    "ms": 3
+  },
+  {
+    "label": "Phone D: re-unlock reply",
+    "at": "2026-09-14T04:13:25.940Z",
+    "ms": 33
+  },
+  {
+    "label": "Phone D: refresh explicitly",
+    "at": "2026-09-14T04:13:25.966Z",
+    "ms": 22
+  },
+  {
+    "label": "Phone D: return Exchange after refresh",
+    "at": "2026-09-14T04:13:26.039Z",
+    "ms": 72
+  },
+  {
+    "label": "Assisted file plumbing: Open a coda file",
+    "at": "2026-09-14T04:13:26.082Z",
+    "ms": 41
+  },
+  {
+    "label": "Phone D: reopen saved reply after refresh",
+    "at": "2026-09-14T04:13:26.172Z",
+    "ms": 49
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "base": "c10f1adb35c9729550adc97a5974696cf65008fa",
+  "baseTree": "241f5f109a56bf672cb5f3a1fc23e91ad2314515",
+  "applicationCommit": "d38fe7fee4b568ebe73452c0543e760ed6aecb8f",
+  "allowedExistingEdits": [
+    "src/exchange/Exchange.tsx",
+    "tests/browser/sealed.spec.ts"
+  ],
+  "unchangedBaseFiles": 879,
+  "orderedIdentitySha256": "0c78b15549e1fd209870380af6ab20601324dda26ae93b9bc260e86c7718a8d9",
+  "mismatches": [],
+  "groups": {
+    "analysis/": 62,
+    "data/": 11,
+    "public/": 10,
+    "src/atlas/": 9,
+    "src/exchange/": 8,
+    "tests/fixtures/": 10,
+    "docs/sealed-coda-v1/": 165,
+    "docs/sealed-key-display-correction/": 39,
+    "docs/coda-exchange-v1/": 66
+  },
+  "scope": "One-time byte comparison to the task base, not a future application freeze."
+}
