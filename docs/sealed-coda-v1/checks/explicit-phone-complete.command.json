@@ -1,0 +1,18 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "exchange:verify",
+    "--",
+    "docs/sealed-coda-v1/phone/explicit-unencrypted-copy.coda.json",
+    "--wav",
+    "docs/sealed-coda-v1/phone/explicit-unencrypted-audio.wav"
+  ],
+  "exitCode": 0,
+  "seconds": 0.381,
+  "log": "checks/explicit-phone-complete.txt",
+  "openingCodesRedacted": 0
+}

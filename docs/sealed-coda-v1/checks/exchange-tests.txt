@@ -1,0 +1,24 @@
+✔ Exchange projection copies only chosen timing/current source, never private work or removed ancestry (3.983ms)
+✔ Outgoing editing reuses atomic Composer operations and undo/redo without mutating its source (0.803583ms)
+✔ A1/B1/A2 snapshots are immutable, independently sourced, parent-linked and stable across downloads (12.585417ms)
+✔ Canonical encoding ignores object order/whitespace, retains Unicode and normalizes negative zero only (1.61475ms)
+✔ TEST ONLY fixed encoding fixture has independently recorded bytes and hashes (1.000583ms)
+✔ Checksums bind text, ordered blocks, arrangement and exact source references (6.353125ms)
+✔ Exact duplicate IDs, broken parents, cycles, reordering and role/exchange mismatches fail (3.808334ms)
+✔ Consistently rewritten labels/tied timestamps are not authentication or ordering authority (3.338834ms)
+✔ Arrangement edits change envelope identity without rewriting immutable turns (4.591875ms)
+✔ Malformed/version/protection/unknown/deep/prototype/duplicate-key/nonfinite input fails boundedly (1.480625ms)
+✔ Input byte cap applies before reading and to actual UTF-8 bytes; invalid UTF-8 fails (23.134208ms)
+✔ Text uses strict UTF-16 bounds, preserves whitespace and rejects controls/unpaired Unicode (0.274875ms)
+✔ Phrase dimensions/gaps/source and <=8 turn / <=120 second arrangement limits stay enforced (15.972666ms)
+✔ Independent hand-computable schedule/WAV checks use one lead/tail and no message metadata (19.100292ms)
+✔ All four pinned source credits fit the bounded WAV without being dropped (9.122083ms)
+✔ Generation cancellation prevents late reads/hashes from installing an obsolete snapshot (0.173042ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 296.018916

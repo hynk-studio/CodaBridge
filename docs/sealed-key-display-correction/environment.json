@@ -1,0 +1,15 @@
+{
+  "node": "v25.9.0",
+  "npm": "11.12.1",
+  "playwright": "1.63.0",
+  "python": "3.9.6",
+  "pythonExecutable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "macOS": "26.6.2",
+  "arch": "arm64",
+  "browserProfile": "Chromium desktop 1440x1000 and phone 390x844 emulation",
+  "visibilityCoverage": "document.hidden and document.visibilityState explicitly simulated; no real background-tab claim",
+  "traces": "off",
+  "automaticFailureScreenshots": "off",
+  "automaticFailurePageSnapshots": "suppressed with PLAYWRIGHT_NO_COPY_PROMPT",
+  "chromium": "153.0.8010.12"
+}

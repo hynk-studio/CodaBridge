@@ -1,0 +1,15 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "preview"
+  ],
+  "scope": "Fresh local preview after final build; no hosted activation",
+  "log": "checks/preview-complete.txt",
+  "servedProbe": "checks/served-complete.txt",
+  "termination": "Owned process stopped with SIGINT after successful probe",
+  "exitCode": 130
+}

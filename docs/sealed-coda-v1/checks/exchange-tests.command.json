@@ -1,0 +1,15 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "node",
+    "--experimental-strip-types",
+    "--test",
+    "tests/exchange.test.ts"
+  ],
+  "exitCode": 0,
+  "seconds": 0.394,
+  "log": "checks/exchange-tests.txt",
+  "openingCodesRedacted": 0
+}

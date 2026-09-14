@@ -1,0 +1,23 @@
+{
+  "node": "v25.9.0",
+  "npm": "11.12.1",
+  "openssl": "3.6.3",
+  "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]\n/Library/Developer/CommandLineTools/usr/bin/python3",
+  "macOS": "26.6.2",
+  "arch": "arm64",
+  "playwright": "1.63.0",
+  "installedBrowsers": {
+    "chromium": {
+      "path": "/Users/hynk/Library/Caches/ms-playwright/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+      "available": true
+    },
+    "firefox": {
+      "path": "/Users/hynk/Library/Caches/ms-playwright/firefox-1543/firefox/Nightly.app/Contents/MacOS/firefox",
+      "available": false
+    },
+    "webkit": {
+      "path": "/Users/hynk/Library/Caches/ms-playwright/webkit-2359/pw_run.sh",
+      "available": false
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "label": "PUBLIC TEST ONLY - never use these opening keys for private content",
+  "entries": [
+    {
+      "file": "independent.coda.sealed.json",
+      "expected": "../exchange-canonical.json",
+      "openingCode": "cbsk1-FxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxc"
+    }
+  ]
+}

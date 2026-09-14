@@ -1,0 +1,24 @@
+
+> codabridge@0.2.0 sealed:test
+> node --experimental-strip-types --test tests/sealed*.test.ts
+
+✔ PUBLIC TEST ONLY pinned NIST AES-256-GCM vector matches Web Crypto and Node native APIs (11.743041ms)
+✔ production seal uses fresh independent 32/12-byte RNG calls, nonextractable minimum usages, exact inner bytes (14.096208ms)
+✔ reverse interoperability opens independently encrypted fixed fixture without changing historical inner flags/bytes (2.7535ms)
+✔ decryption drops mutable key/plaintext buffers after success and authenticated-invalid-inner failure (2.927583ms)
+✔ opening-code syntax is bounded and canonical; surrounding ASCII whitespace and correctly sized zero key are allowed (2.802542ms)
+✔ wrong key, changed IV, ciphertext/tag bits, truncation and append all fail authentication generically (6.493334ms)
+✔ outer header is exact, shallow, bounded and duplicate-safe with canonical unpadded base64url (12.074ms)
+✔ input checks declared and actual bytes before crypto, fatal UTF-8, and never widens plaintext validation (30.077542ms)
+✔ valid authentication around invalid inner UTF-8/JSON/source/checksum/parent/catalog is never accepted (11.692958ms)
+✔ unsupported crypto, insecure context, RNG/encrypt failures never return a plaintext artifact (1.940833ms)
+✔ session lock clears all owned content/key/digest refs and rejects obsolete preparation; repeated bytes are stable (2.071916ms)
+✔ new reply and arrangement seal freshly and preserve exact prefix; old seal is never current export (5.535167ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 359.565417

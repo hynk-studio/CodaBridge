@@ -1,0 +1,14 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "test:server-build"
+  ],
+  "exitCode": 0,
+  "seconds": 4.073,
+  "log": "checks/server-build.txt",
+  "openingCodesRedacted": 0
+}

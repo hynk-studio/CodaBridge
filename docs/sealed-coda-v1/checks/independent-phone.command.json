@@ -1,0 +1,16 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "sealed:verify",
+    "--",
+    "docs/sealed-coda-v1/phone/PUBLIC-TEST-ONLY-keys.json"
+  ],
+  "exitCode": 0,
+  "seconds": 0.572,
+  "log": "checks/independent-phone.txt",
+  "openingCodesRedacted": 0
+}

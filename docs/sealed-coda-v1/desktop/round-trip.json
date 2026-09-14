@@ -1,0 +1,80 @@
+{
+  "label": "PUBLIC TEST ONLY real Web Crypto; keys are in the separate explicit fixture",
+  "browser": "153.0.8010.12",
+  "isolatedContexts": 3,
+  "priorTurnsExact": true,
+  "stableDownloads": true,
+  "freshKeysAndIVs": true,
+  "privateComposer": {
+    "A": "51ce89bc290372359f8919f1c59b6c896e396b331c8b478a188ce5ccfc631703",
+    "B": "2f9d97256389d2818594153ffc3df3283b2e48411644b261c7a90625e7b8484f",
+    "preserved": true
+  },
+  "lockedDomCleared": true,
+  "originalReloadRequiresKey": true,
+  "nativeShareDelivery": "not tested",
+  "humanListening": "not performed",
+  "audits": [
+    {
+      "leak": false,
+      "errors": [],
+      "requests": [
+        "GET http://127.0.0.1:4173/",
+        "GET http://127.0.0.1:4173/assets/index-Brr_smPC.js",
+        "GET http://127.0.0.1:4173/assets/index-DYXf6Mb8.css",
+        "GET http://127.0.0.1:4173/audio/dswp-1.wav",
+        "GET http://127.0.0.1:4173/audio/dswp-2.wav",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET blob:http://127.0.0.1:4173/0de69005-496f-494e-ae93-ecb73c2cbd66",
+        "GET blob:http://127.0.0.1:4173/85b2c735-3e2a-449f-8424-3d624f57fc5c"
+      ],
+      "storageLeak": false
+    },
+    {
+      "leak": false,
+      "errors": [],
+      "requests": [
+        "GET http://127.0.0.1:4173/",
+        "GET http://127.0.0.1:4173/assets/index-Brr_smPC.js",
+        "GET http://127.0.0.1:4173/assets/index-DYXf6Mb8.css",
+        "GET http://127.0.0.1:4173/audio/dswp-1.wav",
+        "GET http://127.0.0.1:4173/audio/dswp-2.wav",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET blob:http://127.0.0.1:4173/52f0cc56-ad40-4d6a-8468-157c008eb8d4",
+        "GET blob:http://127.0.0.1:4173/aa2b59dd-df59-4a2f-adaa-cc3ef1d615af"
+      ],
+      "storageLeak": false
+    },
+    {
+      "leak": false,
+      "errors": [],
+      "requests": [
+        "GET http://127.0.0.1:4173/",
+        "GET http://127.0.0.1:4173/assets/index-Brr_smPC.js",
+        "GET http://127.0.0.1:4173/assets/index-DYXf6Mb8.css",
+        "GET http://127.0.0.1:4173/audio/dswp-1.wav",
+        "GET http://127.0.0.1:4173/audio/dswp-2.wav",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET blob:http://127.0.0.1:4173/c07d5226-40c2-4132-97ee-51edad0ddc9d",
+        "GET blob:http://127.0.0.1:4173/71a82e10-ece7-4284-98e3-a98353bf00bc",
+        "GET http://127.0.0.1:4173/",
+        "GET http://127.0.0.1:4173/assets/index-Brr_smPC.js",
+        "GET http://127.0.0.1:4173/assets/index-DYXf6Mb8.css",
+        "GET http://127.0.0.1:4173/audio/dswp-1.wav",
+        "GET http://127.0.0.1:4173/audio/dswp-2.wav",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET http://127.0.0.1:4173/api/investigation/status",
+        "GET blob:http://127.0.0.1:4173/3a62c2d4-a438-4ef7-9795-742d921be023",
+        "GET blob:http://127.0.0.1:4173/96bafd00-3ccb-486f-8608-7f8ac28f822d"
+      ],
+      "storageLeak": false
+    }
+  ]
+}

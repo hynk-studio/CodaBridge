@@ -1,0 +1,13 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "python3",
+    "docs/sealed-key-display-correction/verify-preservation.py"
+  ],
+  "exitCode": 0,
+  "seconds": 0.552,
+  "log": "checks/preservation-final.txt",
+  "openingCodesRedacted": 0
+}

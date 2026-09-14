@@ -1,0 +1,307 @@
+
+> codabridge@0.2.0 exchange:verify
+> python3 scripts/verify-exchange.py docs/sealed-coda-v1/plain-desktop/A1.coda.json docs/sealed-coda-v1/plain-desktop/A1-B1.coda.json docs/sealed-coda-v1/plain-desktop/A1-B1-A2.coda.json --wav docs/sealed-coda-v1/plain-desktop/A1-B1-A2.wav
+
+{
+  "status": "Independent source/hash/parent/timing verification passed",
+  "files": [
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1.coda.json",
+      "bytes": 1906,
+      "sha256": "13386a31b0fda9b0147a9427a44516aa9b6dcdacddc636380bf966754303bf43",
+      "payloadSha256": "a62c4cca4f63ed5bce18833459b2f2420700364348762507393b36a709beb04f",
+      "turns": 1,
+      "messages": [
+        "TEST ONLY A1: A small signal across the water. 🌊"
+      ],
+      "sources": [
+        "dswp-1"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.25
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.8994118480725625
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 3,
+          "seconds": 1.8445649092970522
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 4,
+          "seconds": 2.129322562358277
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 5,
+          "seconds": 2.5309311224489797
+        }
+      ],
+      "phraseSpans": [
+        2.48093112244898
+      ],
+      "span": 2.48093112244898,
+      "duration": 2.5709311224489797
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1-B1.coda.json",
+      "bytes": 3544,
+      "sha256": "0e66100e001ecf985917bcd1cd355ab2289af8345349a45631424c35f88cbb94",
+      "payloadSha256": "aba0ebb4d9b20b3f05bac20f369bb6f7419b379c0a7cf06c9b1921885f91a23a",
+      "turns": 2,
+      "messages": [
+        "TEST ONLY A1: A small signal across the water. 🌊",
+        "TEST ONLY B1: Received as a local file. Here is a different rhythm. 안녕"
+      ],
+      "sources": [
+        "dswp-1",
+        "dswp-2"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.25
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.8994118480725625
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 3,
+          "seconds": 1.8445649092970522
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 4,
+          "seconds": 2.129322562358277
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 5,
+          "seconds": 2.5309311224489797
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 0,
+          "seconds": 3.0309311224489797
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 1,
+          "seconds": 3.5387769274376417
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 2,
+          "seconds": 3.9158517573696145
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 3,
+          "seconds": 4.079434523809524
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 4,
+          "seconds": 4.265829081632653
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 5,
+          "seconds": 4.565058106575964
+        }
+      ],
+      "phraseSpans": [
+        2.48093112244898,
+        1.534126984126984
+      ],
+      "span": 4.515058106575964,
+      "duration": 4.605058106575964
+    },
+    {
+      "path": "docs/sealed-coda-v1/plain-desktop/A1-B1-A2.coda.json",
+      "bytes": 5198,
+      "sha256": "3fd43ee4f1eb1085c21e3a274d48949691a881c2f4b9fc245939f747bf927b69",
+      "payloadSha256": "0523ec9f06ae3372c60aebb0bb4e0cb3dcee9fa105e196555d27b33ed457c80a",
+      "turns": 3,
+      "messages": [
+        "TEST ONLY A1: A small signal across the water. 🌊",
+        "TEST ONLY B1: Received as a local file. Here is a different rhythm. 안녕",
+        "TEST ONLY A2: Keeping your reply with mine. This is a human exchange, not whale translation."
+      ],
+      "sources": [
+        "dswp-1",
+        "dswp-2"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.25
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.8994118480725625
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 3,
+          "seconds": 1.8445649092970522
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 4,
+          "seconds": 2.129322562358277
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 5,
+          "seconds": 2.5309311224489797
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 0,
+          "seconds": 3.2809311224489797
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 1,
+          "seconds": 3.7887769274376417
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 2,
+          "seconds": 4.165851757369614
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 3,
+          "seconds": 4.329434523809524
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 4,
+          "seconds": 4.515829081632653
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 5,
+          "seconds": 4.815058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 0,
+          "seconds": 5.315058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 1,
+          "seconds": 5.475058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 2,
+          "seconds": 5.994587585034013
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 3,
+          "seconds": 6.750710034013606
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 4,
+          "seconds": 6.978516156462586
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 5,
+          "seconds": 7.299803004535148
+        }
+      ],
+      "phraseSpans": [
+        2.48093112244898,
+        1.534126984126984,
+        1.984744897959184
+      ],
+      "span": 7.249803004535147,
+      "duration": 7.339803004535148
+    }
+  ],
+  "wav": {
+    "path": "docs/sealed-coda-v1/plain-desktop/A1-B1-A2.wav",
+    "bytes": 706818,
+    "sha256": "9be65f7d2a890efbd8688f0a248feb3d49788f2fd7164221642f3088e594ebec",
+    "sampleRate": 48000,
+    "channels": 1,
+    "bits": 16,
+    "frames": 352311,
+    "durationSeconds": 7.3398125,
+    "independentlyCheckedPulses": 18,
+    "outsideScheduleIsSilent": true,
+    "sourceMetadataMatches": true,
+    "metadataContainsOnlyTechnicalSourceFields": true
+  }
+}

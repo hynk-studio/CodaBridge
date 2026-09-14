@@ -1,0 +1,16 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "sealed:verify",
+    "--",
+    "tests/fixtures/sealed/PUBLIC-TEST-ONLY-keys.json"
+  ],
+  "exitCode": 0,
+  "seconds": 0.473,
+  "log": "checks/independent-fixture.txt",
+  "openingCodesRedacted": 0
+}

@@ -1,0 +1,80 @@
+{
+  "label": "PUBLIC TEST ONLY; keys masked before each capture; no revealed keys retained",
+  "run": "checks/browser-final.txt",
+  "visibility": "Simulated document.hidden and document.visibilityState, not actual tab backgrounding",
+  "files": [
+    {
+      "path": "desktop/clipboard-missing-fallback.png",
+      "bytes": 120707,
+      "sha256": "a3242d3bd75733490eddfa68d1517223d1238b803a2356f3599abfbf93ee9b72",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "desktop/clipboard-missing-masked.png",
+      "bytes": 120706,
+      "sha256": "f3ed6303e57a5ef330f560bfd3ebbf4b4d33e60863aa068dace39406aab50478",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "desktop/clipboard-rejected-fallback.png",
+      "bytes": 120707,
+      "sha256": "a3242d3bd75733490eddfa68d1517223d1238b803a2356f3599abfbf93ee9b72",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "desktop/clipboard-rejected-masked.png",
+      "bytes": 120706,
+      "sha256": "f3ed6303e57a5ef330f560bfd3ebbf4b4d33e60863aa068dace39406aab50478",
+      "pixels": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "phone/clipboard-missing-fallback.png",
+      "bytes": 72422,
+      "sha256": "2694e3d5810c0adcd484e08740163a9451b3d66dca4c3e9e6e2a90adfcba79e6",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "phone/clipboard-missing-masked.png",
+      "bytes": 63408,
+      "sha256": "f3ce954dc51590c5cb1976a2fa975bd6e11177f71443d6e775276f25bc538ae7",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "phone/clipboard-rejected-fallback.png",
+      "bytes": 72422,
+      "sha256": "2694e3d5810c0adcd484e08740163a9451b3d66dca4c3e9e6e2a90adfcba79e6",
+      "pixels": [
+        390,
+        844
+      ]
+    },
+    {
+      "path": "phone/clipboard-rejected-masked.png",
+      "bytes": 63408,
+      "sha256": "f3ce954dc51590c5cb1976a2fa975bd6e11177f71443d6e775276f25bc538ae7",
+      "pixels": [
+        390,
+        844
+      ]
+    }
+  ],
+  "inspection": "All listed desktop/phone captures inspected: bounded fallback text, masked key, explicit controls, unchecked acknowledgement. Phone uses two scroll positions."
+}

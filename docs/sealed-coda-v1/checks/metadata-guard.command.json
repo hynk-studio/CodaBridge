@@ -1,0 +1,16 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "node",
+    "--experimental-strip-types",
+    "--input-type=module",
+    "-e",
+    "import {checkFrozenArtifacts} from \"./analysis/metadata-linkage-v1/preservation-checks.ts\"; console.log(JSON.stringify(checkFrozenArtifacts()));"
+  ],
+  "exitCode": 0,
+  "seconds": 0.375,
+  "log": "checks/metadata-guard.txt",
+  "openingCodesRedacted": 0
+}

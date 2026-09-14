@@ -1,0 +1,580 @@
+{
+  "scope": "Actual MVP-08 execution records; browser.txt is the retained initial failure, not a final pass; earlier artifact reports refer to their earlier run, final sealed artifacts use complete reports",
+  "commands": [
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "atlas:check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.733,
+      "log": "checks/atlas-check.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "atlas:verify"
+      ],
+      "exitCode": 0,
+      "seconds": 1.383,
+      "log": "checks/atlas-verify.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/sealed.spec.ts",
+        "tests/browser/exchange.spec.ts",
+        "tests/browser/composer.spec.ts",
+        "tests/browser/context.spec.ts",
+        "tests/browser/polish.spec.ts",
+        "--max-failures=1"
+      ],
+      "exitCode": 0,
+      "seconds": 311.628,
+      "log": "checks/browser-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/sealed.spec.ts",
+        "tests/browser/exchange.spec.ts",
+        "tests/browser/composer.spec.ts",
+        "tests/browser/context.spec.ts",
+        "tests/browser/polish.spec.ts",
+        "--max-failures=1"
+      ],
+      "exitCode": 1,
+      "seconds": 204.244,
+      "log": "checks/browser.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 4.769,
+      "log": "checks/build-complete.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 5.837,
+      "log": "checks/build-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 5.404,
+      "log": "checks/build.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "data:verify"
+      ],
+      "exitCode": 0,
+      "seconds": 0.858,
+      "log": "checks/data-verify.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "tests/exchange.test.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 0.394,
+      "log": "checks/exchange-tests.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "exchange:verify",
+        "--",
+        "docs/sealed-coda-v1/desktop/explicit-unencrypted-copy.coda.json",
+        "--wav",
+        "docs/sealed-coda-v1/desktop/explicit-unencrypted-audio.wav"
+      ],
+      "exitCode": 0,
+      "seconds": 0.385,
+      "log": "checks/explicit-desktop-complete.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "exchange:verify",
+        "--",
+        "docs/sealed-coda-v1/desktop/explicit-unencrypted-copy.coda.json",
+        "--wav",
+        "docs/sealed-coda-v1/desktop/explicit-unencrypted-audio.wav"
+      ],
+      "exitCode": 0,
+      "seconds": 0.336,
+      "log": "checks/explicit-desktop-independent.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "exchange:verify",
+        "--",
+        "docs/sealed-coda-v1/phone/explicit-unencrypted-copy.coda.json",
+        "--wav",
+        "docs/sealed-coda-v1/phone/explicit-unencrypted-audio.wav"
+      ],
+      "exitCode": 0,
+      "seconds": 0.381,
+      "log": "checks/explicit-phone-complete.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "exchange:verify",
+        "--",
+        "docs/sealed-coda-v1/phone/explicit-unencrypted-copy.coda.json",
+        "--wav",
+        "docs/sealed-coda-v1/phone/explicit-unencrypted-audio.wav"
+      ],
+      "exitCode": 0,
+      "seconds": 0.339,
+      "log": "checks/explicit-phone-independent.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:verify",
+        "--",
+        "docs/sealed-coda-v1/desktop/PUBLIC-TEST-ONLY-keys.json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.594,
+      "log": "checks/independent-desktop-complete.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:verify",
+        "--",
+        "docs/sealed-coda-v1/desktop/PUBLIC-TEST-ONLY-keys.json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.591,
+      "log": "checks/independent-desktop.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:verify",
+        "--",
+        "tests/fixtures/sealed/PUBLIC-TEST-ONLY-keys.json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.473,
+      "log": "checks/independent-fixture.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:verify",
+        "--",
+        "docs/sealed-coda-v1/phone/PUBLIC-TEST-ONLY-keys.json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.573,
+      "log": "checks/independent-phone-complete.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:verify",
+        "--",
+        "docs/sealed-coda-v1/phone/PUBLIC-TEST-ONLY-keys.json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.572,
+      "log": "checks/independent-phone.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 0.26,
+      "log": "checks/lint-closeout.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 0.263,
+      "log": "checks/lint-complete.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 0.622,
+      "log": "checks/lint-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 0.763,
+      "log": "checks/lint.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "node",
+        "--experimental-strip-types",
+        "--input-type=module",
+        "-e",
+        "import {checkFrozenArtifacts} from \"./analysis/metadata-linkage-v1/preservation-checks.ts\"; console.log(JSON.stringify(checkFrozenArtifacts()));"
+      ],
+      "exitCode": 0,
+      "seconds": 0.375,
+      "log": "checks/metadata-guard.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "exchange:verify",
+        "--",
+        "docs/sealed-coda-v1/plain-desktop/A1.coda.json",
+        "docs/sealed-coda-v1/plain-desktop/A1-B1.coda.json",
+        "docs/sealed-coda-v1/plain-desktop/A1-B1-A2.coda.json",
+        "--wav",
+        "docs/sealed-coda-v1/plain-desktop/A1-B1-A2.wav"
+      ],
+      "exitCode": 0,
+      "seconds": 0.352,
+      "log": "checks/plain-desktop-independent.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "exchange:verify",
+        "--",
+        "docs/sealed-coda-v1/plain-phone/A1.coda.json",
+        "docs/sealed-coda-v1/plain-phone/A1-B1.coda.json",
+        "docs/sealed-coda-v1/plain-phone/A1-B1-A2.coda.json",
+        "--wav",
+        "docs/sealed-coda-v1/plain-phone/A1-B1-A2.wav"
+      ],
+      "exitCode": 0,
+      "seconds": 0.342,
+      "log": "checks/plain-phone-independent.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:test:browser",
+        "--",
+        "--max-failures=1"
+      ],
+      "exitCode": 0,
+      "seconds": 38.518,
+      "log": "checks/sealed-browser-complete.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:test:browser",
+        "--",
+        "--max-failures=1"
+      ],
+      "exitCode": 0,
+      "seconds": 44.385,
+      "log": "checks/sealed-browser-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:test"
+      ],
+      "exitCode": 0,
+      "seconds": 0.655,
+      "log": "checks/sealed-tests-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:test"
+      ],
+      "exitCode": 0,
+      "seconds": 0.541,
+      "log": "checks/sealed-tests.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "node",
+        "--experimental-strip-types",
+        "docs/sealed-coda-v1/check-served.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 0.232,
+      "log": "checks/served-complete.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "node",
+        "--experimental-strip-types",
+        "docs/sealed-coda-v1/check-served.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 0.24,
+      "log": "checks/served-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "test:server-build"
+      ],
+      "exitCode": 0,
+      "seconds": 4.073,
+      "log": "checks/server-build.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 4.093,
+      "log": "checks/typecheck-closeout.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 10.432,
+      "log": "checks/typecheck-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 13.367,
+      "log": "checks/typecheck.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "test"
+      ],
+      "exitCode": 0,
+      "seconds": 7.324,
+      "log": "checks/unit-tests-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "test"
+      ],
+      "exitCode": 0,
+      "seconds": 7.053,
+      "log": "checks/unit-tests.txt",
+      "openingCodesRedacted": 0
+    }
+  ]
+}

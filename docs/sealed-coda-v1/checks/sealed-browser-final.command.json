@@ -1,0 +1,16 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "sealed:test:browser",
+    "--",
+    "--max-failures=1"
+  ],
+  "exitCode": 0,
+  "seconds": 44.385,
+  "log": "checks/sealed-browser-final.txt",
+  "openingCodesRedacted": 0
+}

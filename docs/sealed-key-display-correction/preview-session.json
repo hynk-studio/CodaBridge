@@ -1,0 +1,16 @@
+{
+  "command": [
+    "env",
+    "-u",
+    "OPENAI_API_KEY",
+    "npm",
+    "run",
+    "preview"
+  ],
+  "log": "checks/preview.txt",
+  "sourceBuild": "checks/build.txt",
+  "servedBytes": "checks/served-build.txt",
+  "stopped": true,
+  "exitCode": 130,
+  "termination": "Owned preview stopped by SIGINT after successful browser and served-build checks"
+}

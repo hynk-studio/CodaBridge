@@ -1,0 +1,49 @@
+{
+  "scope": "Local built preview; no hosting or live model evidence",
+  "base": "http://127.0.0.1:4173",
+  "html": {
+    "bytes": 651,
+    "sha256": "8aa4c6966cf26d71ae99963c9a6f837483ffb9fd6c2d5d2f7ebc309624655c01",
+    "exactBuiltBytes": true
+  },
+  "assets": [
+    {
+      "path": "/assets/index-fVX2loRR.js",
+      "bytes": 486283,
+      "sha256": "277e897f521c6c687a47e54be6dd6496d6c62cad07e8f7c6d04409e917b3382c",
+      "exactBuiltBytes": true
+    },
+    {
+      "path": "/assets/index-DYXf6Mb8.css",
+      "bytes": 54446,
+      "sha256": "874c02d23548233b049f12f37f15393f72379cd7a33bcd56e91703fff9c7fe23",
+      "exactBuiltBytes": true
+    }
+  ],
+  "serverBuildSha256": "1c55d2d7f4f46b224bb6f73a9dff480e4812d17ff3a3f32c0b1a05109db742d9",
+  "availability": {
+    "status": "unavailable",
+    "code": "NOT_CONFIGURED",
+    "message": "Astra investigation is unavailable. Server access has not been enabled for this workspace."
+  },
+  "refusals": [
+    {
+      "path": "/api/investigate",
+      "httpStatus": 503,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/composer",
+      "httpStatus": 503,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED"
+    },
+    {
+      "path": "/api/lab",
+      "httpStatus": 503,
+      "status": "unavailable",
+      "code": "NOT_CONFIGURED"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "label": "PUBLIC TEST ONLY - never use these opening keys for private content",
+  "entries": [
+    {
+      "file": "A1.coda.sealed.json",
+      "expected": "A1.PUBLIC-TEST-ONLY.json",
+      "openingCode": "cbsk1-YHn_Qr361O95MEKZhOeXh1Y3c74scaUpD_gECrqXqzE",
+      "prefix": false
+    },
+    {
+      "file": "A1-B1.coda.sealed.json",
+      "expected": "A1-B1.PUBLIC-TEST-ONLY.json",
+      "openingCode": "cbsk1-yhnJx_9FP_BoUCw7g13CZH6Wrz4jag6qwQOJ7ZHMz_c",
+      "prefix": true
+    },
+    {
+      "file": "A1-B1-A2.coda.sealed.json",
+      "expected": "A1-B1-A2.PUBLIC-TEST-ONLY.json",
+      "openingCode": "cbsk1-hRAMc4FkzhFBxfbHm4TocsxckP26_dsUGni4U1KVyHI",
+      "prefix": true
+    },
+    {
+      "file": "cold-reply.coda.sealed.json",
+      "expected": "cold-reply.PUBLIC-TEST-ONLY.json",
+      "openingCode": "cbsk1-HG3LYEdqEtY6_2rR2mkNFj9Vhj8qkh6ipVznz1ptrrg",
+      "prefix": true
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "scope": "Manual inspection plus actual retained Playwright captures; PUBLIC TEST ONLY",
+  "passes": [
+    {
+      "finding": "Preparation panel consumed space above an unfinished note",
+      "change": "Render sealed preparation controls only after finalization; use compact expandable privacy details",
+      "recheck": "319px in-app viewport: note controls reachable with no horizontal overflow"
+    },
+    {
+      "finding": "Locked retention copy described unlocked content; modal close restored focus away from opening input",
+      "change": "Separate locked retention text and focus empty opening input after closing confirmation dialog",
+      "recheck": {
+        "width": 319,
+        "height": 734,
+        "overflow": 0,
+        "mode": "locked",
+        "focus": "Opening code",
+        "turns": 0,
+        "privateNotePresent": false
+      }
+    }
+  ],
+  "manualSurface": "Codex in-app browser at localhost:4173, disposable TEST ONLY seed-based exchange",
+  "manualObservation": "Native UI / accessibility observation and read-only CDP Runtime.evaluate; no opening-key value inspected or copied in this manual pass",
+  "inspectedCaptures": [
+    "desktop/A1-prepared.png",
+    "desktop/unlocked-turns.png",
+    "phone/locked-after-discard.png",
+    "phone/320px.png",
+    "phone/320px-enlarged-timing.png",
+    "phone/320px-enlarged-key.png",
+    "plain-phone/320px-enlarged-editor.png"
+  ],
+  "captureResult": "Keys masked or absent. Wrapped text/numbers and visible control focus; vertical scrolling at 200% text, no horizontal page overflow.",
+  "pageLifetime": {
+    "simulated": [
+      "pagehide",
+      "persisted pageshow"
+    ],
+    "actual": "Navigation to about:blank and back, plus full reload/file reopen",
+    "nativeBFCacheHitProven": false
+  },
+  "cleanup": {
+    "ownedBrowserTab": "closed",
+    "ownedPreviewSessions": "stopped",
+    "ownedKeepAwakeLease": "stopped"
+  },
+  "limits": [
+    "No human listening",
+    "No native external share delivery",
+    "No physical device or professional security assessment"
+  ]
+}

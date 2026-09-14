@@ -2,7 +2,7 @@
 
 Hear a real recording. Shape a personal synthetic phrase. Compare its timing and keep your coda.
 
-**Personal Coda / Exchange** adds a local file conversation: Composer → **Save & codebook → Make a transmission**, write a separate human note, then pass the downloaded `.coda.json` file to another browser. Replies carry the complete A1/B1/A2 history with independent timing copies; opening or replying preserves personal Composer work. Messages are **plaintext, not encrypted**. Save a file before refresh. [Demo route, format and verification](docs/MVP_07.md).
+**Sealed Coda** adds encrypted local files inside Exchange: choose **Sealed with an opening key**, finalize a transmission, prepare the file and retain its opening key separately. Another browser unlocks, listens and replies with a fresh key; local lock removes decrypted Exchange work without changing Composer. Plain JSON/WAV files remain supported. [MVP-08 demo, format and limits](docs/MVP_08.md) · [Plain Exchange v1](docs/MVP_07.md).
 
 **Composer, Context Lab #8, UI polish #9, corrected Dialogue Transfer v0.1 #11 and executed v0.2 research #13 are integrated.** Four attributed originals connect to the phrase editor, synthetic playback, source-aware comparison, personal codebook and WAV/card/project downloads. Enter Context Lab without losing the creation: explore a real annotated exchange, compare descriptive pairings, or choose **Dialogue Transfer / Prediction** to compare held-out predictions, reveal the next recorded coda and download the sourced experiment. [v0.2 results and decision note](docs/MVP_05B.md) · [original prediction](docs/MVP_05.md) · [descriptive Lab](docs/MVP_04.md) · [listening pack](docs/RELEASE_HANDOFF.md).
 
@@ -56,6 +56,7 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 
 ## Review and compatibility
 
+- [MVP-08 Sealed Coda, local lock and independent encrypted-file verification](docs/MVP_08.md)
 - [MVP-07 Personal Coda / file-based Exchange, format and browser round trip](docs/MVP_07.md)
 - [MVP-06 observed Timing / Style Atlas and read-only Composer reference](docs/MVP_06.md) · [generate/check/independent verification](analysis/style-atlas-v1/README.md)
 - [Full-file metadata linkage audit, coverage and decision note](docs/METADATA_LINKAGE_AUDIT.md)
