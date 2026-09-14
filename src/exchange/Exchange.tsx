@@ -37,6 +37,9 @@ function Timing({ phrase }: { phrase: Phrase }) {
     </details>
   </div>)}</div>;
 }
+function FileIdentity({ artifact }: { artifact: SealedArtifact }) {
+  return <p className="sealed-file-identity">File identifier / download name<br /><code>{artifact.file.name}</code><br />Match this file with its separately saved opening key. Renaming the file does not change this identifier.</p>;
+}
 
 const Exchange = forwardRef<ExchangeHandle, {
   active: boolean; stopField: () => void; hasComposer: () => boolean;
@@ -51,6 +54,8 @@ const Exchange = forwardRef<ExchangeHandle, {
   const keyInput = useRef<HTMLInputElement>(null), displayedKey = useRef<HTMLInputElement>(null);
   const [reveal, setReveal] = useState(false);
   const copyFeedback = useRef(0);
+  const [keyCopyResult, setKeyCopyResult] = useState<{ error: boolean; text: string } | null>(null);
+  const keyCopyStatus = useRef<HTMLParagraphElement>(null);
   const [source, setSource] = useState("composer-selected");
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
@@ -65,7 +70,7 @@ const Exchange = forwardRef<ExchangeHandle, {
   const dialog = useRef<HTMLDialogElement>(null);
 
   function working(value: boolean, phase: SessionOwner<Outgoing>["phase"] = "hashing") { owner.setPhase(value ? phase : "idle"); }
-  function invalidate() { generation.current.next(); player.current?.stop(); ranges.current = []; setActiveTurn(""); working(false); setSharing(false); setConfirmation(null); }
+  function invalidate() { generation.current.next(); player.current?.stop(); ranges.current = []; setActiveTurn(""); working(false); setSharing(false); setConfirmation(null); setKeyCopyResult(null); }
   function clearSecrets() {
     invalidate(); downloads.clear(); candidateRef.current = null; setCandidate(null); setReveal(false);
     if (keyInput.current) keyInput.current.value = "";
@@ -122,11 +127,14 @@ const Exchange = forwardRef<ExchangeHandle, {
   useEffect(() => {
     // Display lifetime only: leave the conversation and pending crypto intact.
     const remask = () => {
-      if (document.hidden) { copyFeedback.current++; setReveal(false); }
+      if (document.hidden) { copyFeedback.current++; setReveal(false); setKeyCopyResult(null); }
     };
     document.addEventListener("visibilitychange", remask);
     return () => document.removeEventListener("visibilitychange", remask);
   }, []);
+  useEffect(() => {
+    if (active && keyCopyResult) keyCopyStatus.current?.scrollIntoView({ block: "nearest" });
+  }, [active, keyCopyResult]);
   useEffect(() => {
     if (confirmation) dialog.current?.showModal(); else dialog.current?.close();
   }, [confirmation]);
@@ -232,8 +240,8 @@ const Exchange = forwardRef<ExchangeHandle, {
     try {
       if (!navigator.clipboard?.writeText) throw new Error();
       await navigator.clipboard.writeText(prepared.code);
-      if (current()) setNotice("Opening key copied. Pass it through a separately trusted route.");
-    } catch { if (current()) setError("Clipboard copy was unavailable. You can reveal the opening key and select it to copy manually."); }
+      if (current()) setKeyCopyResult({ error: false, text: "Opening key copied. Pass it through a separately trusted route." });
+    } catch { if (current()) setKeyCopyResult({ error: true, text: "Clipboard copy was unavailable. You can reveal the opening key and select it to copy manually." }); }
   }
   function unencryptedExport(kind: "json" | "wav") {
     if (!envelope || outgoing || owner.pending) return;
@@ -255,7 +263,7 @@ const Exchange = forwardRef<ExchangeHandle, {
       const value = await appendTurn(current.envelope, { id: draft.id, exchangeId: draft.exchangeId, role: nextIndex % 2 ? "B" : "A",
         alias: draft.alias, label: draft.label, message: draft.message, createdAt: null,
         phrase: phraseFromBlocks(draft.history.present.blocks), parent: parent ? { turnId: parent.id, digest: parent.digest } : null });
-      if (generation.current.current(token)) { install({ envelope: value, outgoing: null }); setReveal(false); setNotice(`${turnName(nextIndex)} finalized. Download the file to keep and share this snapshot.`); }
+      if (generation.current.current(token)) { install({ envelope: value, outgoing: null }); setReveal(false); setNotice(`${turnName(nextIndex)} finalized. ${current.mode === "private" ? "Prepare the sealed file, then save its separate opening key before downloading." : "Download the file to keep and share this snapshot."}`); }
     } catch (e) { if (generation.current.current(token)) setError(e instanceof Error ? e.message : "Finalization failed; your draft is unchanged."); }
     finally { if (generation.current.current(token)) working(false); }
   }
@@ -315,6 +323,7 @@ const Exchange = forwardRef<ExchangeHandle, {
     {(candidate || session.mode === "locked") && <div className="exchange-panel sealed-locked" data-testid="sealed-locked">
       <h2>{candidate ? "Locked candidate · current work is still open" : "Locked file"}</h2>
       {(candidate ?? session.encrypted) ? <><p>Sealed Coda v1 · {(candidate ?? session.encrypted)!.file.size} bytes. Contents appear only after authenticated decryption and complete validation.</p>
+        <FileIdentity artifact={(candidate ?? session.encrypted)!} />
         <label>Opening code<input ref={keyInput} autoFocus type="password" autoComplete="off" spellCheck={false} autoCapitalize="none" maxLength={80} onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); void unlock(); } }} /></label>
         <button className="primary" disabled={busy || !cryptoAvailable()} onClick={() => void unlock()}>Unlock file</button>
         {!cryptoAvailable() && <p role="alert">Sealed files are unavailable here. A secure context and native Web Crypto are required. No plaintext fallback.</p>}
@@ -330,10 +339,12 @@ const Exchange = forwardRef<ExchangeHandle, {
     {privateMode && envelope && !outgoing && <div className="exchange-panel sealed-tools">
       <h2>{session.prepared ? "Your sealed file and separate key" : "Prepare a sealed snapshot"}</h2>
       <p>{outgoing ? "Finalize or cancel the outgoing draft before exporting. The next recipient can read every included turn." : "Encrypt the complete finalized history. A new seal uses a fresh independent opening key."}</p>
+      {session.encrypted && session.sealedDigest === envelope.digest && <FileIdentity artifact={session.encrypted} />}
       {!cryptoAvailable() && <p role="alert">Sealed files are unavailable here. A secure context and native Web Crypto are required. No plaintext fallback.</p>}
       {session.prepared && <>
         <label>Opening key<input ref={displayedKey} autoFocus readOnly type={reveal ? "text" : "password"} value={session.prepared.code} autoComplete="off" spellCheck={false} autoCapitalize="none" /></label>
-        <div className="exchange-actions"><button onClick={() => { copyFeedback.current++; setReveal(v => !v); }}>{reveal ? "Hide opening key" : "Reveal opening key"}</button><button onClick={() => displayedKey.current?.select()}>Select opening key</button><button onClick={() => void copyKey()}>Copy opening key</button></div>
+        <div className="exchange-actions"><button onClick={() => { copyFeedback.current++; setKeyCopyResult(null); setReveal(v => !v); }}>{reveal ? "Hide opening key" : "Reveal opening key"}</button><button onClick={() => displayedKey.current?.select()}>Select opening key</button><button onClick={() => void copyKey()}>Copy opening key</button></div>
+        {keyCopyResult && <p ref={keyCopyStatus} className={keyCopyResult.error ? "exchange-error" : "exchange-status"} role={keyCopyResult.error ? "alert" : "status"}>{keyCopyResult.text}</p>}
         <label className="sealed-ack"><input type="checkbox" checked={session.keySaved} onChange={e => owner.acknowledge(e.target.checked)} />I have saved the opening key</label>
         <p>Keep the file and key separately. The app cannot recover a lost key. Use a separately trusted route; two messages on one compromised service do not create that separation.</p>
       </>}
