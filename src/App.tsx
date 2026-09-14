@@ -24,6 +24,16 @@ import type { AtlasEntry } from "./atlas/Atlas.tsx";
 
 const seconds = (value: number) => `${value.toFixed(3)} s`;
 
+function workspaceFromHash(hash: string): Workspace | undefined {
+  switch (hash) {
+    case "": case "#listen": return "listen";
+    case "#composer": return "composer";
+    case "#context-lab": return "lab";
+    case "#exchange": return "exchange";
+    default: return undefined; // In-page anchors are not workspace routes.
+  }
+}
+
 function TimingPlot({
   a,
   b,
@@ -130,7 +140,7 @@ function TimingPlot({
 }
 
 export default function App() {
-  const [section, setSection] = useState<Workspace>(() => location.hash === "#exchange" ? "exchange" : location.hash === "#composer" ? "composer" : location.hash === "#context-lab" ? "lab" : "listen");
+  const [section, setSection] = useState<Workspace>(() => workspaceFromHash(location.hash) ?? "listen");
   const [selection, setSelection] = useState({
     A: recordings[0].id,
     B: recordings[1].id,
@@ -180,7 +190,10 @@ export default function App() {
     document.getElementById("workspace")?.focus({ preventScroll: true });
   }
   useEffect(() => {
-    const restore = () => navigate(location.hash === "#exchange" ? "exchange" : location.hash === "#composer" ? "composer" : location.hash === "#context-lab" ? "lab" : "listen", true);
+    const restore = () => {
+      const next = workspaceFromHash(location.hash);
+      if (next) navigate(next, true);
+    };
     window.addEventListener("popstate", restore);
     return () => window.removeEventListener("popstate", restore);
   });
@@ -243,7 +256,12 @@ export default function App() {
 
   return (
     <>
-      <a className="skip-link" href="#workspace">
+      <a className="skip-link" href="#workspace" onClick={event => {
+        event.preventDefault();
+        const target = document.getElementById("workspace");
+        target?.focus({ preventScroll: true });
+        target?.scrollIntoView({ block: "start" });
+      }}>
         Skip to workspace
       </a>
       <WorkspaceHeader current={section} onNavigate={navigate} />
