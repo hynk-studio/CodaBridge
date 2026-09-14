@@ -167,18 +167,23 @@ export default function App() {
   const a = recordings.find((recording) => recording.id === selection.A)!;
   const b = recordings.find((recording) => recording.id === selection.B)!;
   const investigation = useInvestigation(a, b);
-  function navigate(next: Workspace) {
+  function navigate(next: Workspace, fromHistory = false) {
     stopAudio();
     stopSynthetic();
     if (next !== section) {
       composer.current?.leave();
       investigation.cancel("View changed. Previous investigation is obsolete.");
     }
-    history.replaceState(null, "", `#${next === "lab" ? "context-lab" : next}`);
+    if (!fromHistory && next !== section) history.pushState(null, "", `#${next === "lab" ? "context-lab" : next}`);
     flushSync(() => setSection(next));
     window.scrollTo(0, 0);
     document.getElementById("workspace")?.focus({ preventScroll: true });
   }
+  useEffect(() => {
+    const restore = () => navigate(location.hash === "#exchange" ? "exchange" : location.hash === "#composer" ? "composer" : location.hash === "#context-lab" ? "lab" : "listen", true);
+    window.addEventListener("popstate", restore);
+    return () => window.removeEventListener("popstate", restore);
+  });
   const comparison = compareTiming(timingInput(a), timingInput(b));
   const measurements = [a, b].map((recording) =>
     measureTiming(timingInput(recording)),
@@ -256,6 +261,12 @@ export default function App() {
               </p>
             </div>
           </div>
+          <section className="quick-start" aria-label="Make and exchange a coda">
+            <p><strong>The file carries the conversation.</strong> Send it to the other person; they open it in CodaBridge and send back a new file with their reply.</p>
+            <ol><li>Make a rhythm</li><li>Put it in a message file</li><li>Pass it back and forth</li></ol>
+            <div className="composer-actions"><button className="primary" onClick={() => { navigate("composer"); if (composer.current?.hasDraft()) composer.current.resume(); else composer.current?.makeVersion(a.id); }}>Make my coda</button><button onClick={() => { navigate("exchange"); exchange.current?.receive(); }}>Open a coda file</button></div>
+            <p className="composer-meta">Open a received file or your own saved copy. Making a coda resumes your editable Composer draft if you have one.</p>
+          </section>
           <div className="workspace-label" id="listen">
             <span>
               <strong>Press Play. Then make your version.</strong>
@@ -492,7 +503,7 @@ export default function App() {
         <div hidden={section !== "composer"}>
           <Composer
             ref={composer}
-            onTransmission={phrase => { exchange.current?.start(phrase); navigate("exchange"); }}
+            onTransmission={phrase => { navigate("exchange"); exchange.current?.start(phrase); }}
             workspaceActive={section === "composer"}
             onExploreAtlas={(clickCount, sourceLine) => {
               setAtlasEntry(previous => ({ clickCount, sourceLine, request: (previous?.request ?? 0) + 1 }));

@@ -1,3 +1,4 @@
+import { exchangeAction, receiveArea, setupMessage, conversation, resumeNote, handoffView } from "./exchange-navigation.ts";
 import { test, expect, type Browser, type BrowserContext, type Page, type TestInfo } from "@playwright/test";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -15,13 +16,14 @@ const stored = (page: Page) => page.evaluate(key => localStorage.getItem(key), S
 const confirmReplace = (page: Page) => page.getByRole("dialog").getByRole("button", { name: "Discard current work and continue", exact: true }).click();
 async function packet(page: Page, path: string, button = "Download coda JSON") {
   const promise = page.waitForEvent("download");
-  await region(page).getByRole("button", { name: button, exact: true }).click();
+  await exchangeAction(page, button);
   const download = await promise; await download.saveAs(path);
   const bytes = await readFile(path);
   return { bytes, path, name: download.suggestedFilename(), sha256: hash(bytes) };
 }
 async function open(page: Page, path: string | { name: string; mimeType: string; buffer: Buffer }) {
-  await region(page).getByLabel("Open a coda file", { exact: true }).setInputFiles(path);
+  await receiveArea(page);
+  await region(page).getByLabel("Choose coda file", { exact: true }).setInputFiles(path);
 }
 async function observe(context: BrowserContext) {
   await context.addInitScript(() => {
@@ -92,21 +94,21 @@ test("actual isolated A1/B1/A2 file round trip preserves both private Composer h
   try {
     const originalA = await privateProject(A.page, "A"), originalB = await privateProject(B.page, "B");
     expect(originalA === originalB).toBe(false);
-    await composerView(A.page, "save");
+    await composerView(A.page, "edit");
     await expect(A.page.getByLabel("Include the whole phrase", { exact: true })).not.toBeChecked();
-    await A.page.getByRole("button", { name: "Make a transmission", exact: true }).click();
-    await expect(region(A.page).getByLabel("Message to include")).toHaveValue("");
+    await A.page.getByRole("button", { name: "Use this coda in a message", exact: true }).click(); await exchangeAction(A.page, "Start a transmission");
+    await resumeNote(A.page); await expect(region(A.page).getByLabel("Message to include")).toHaveValue("");
     expect(await region(A.page).getByLabel("Outgoing block", { exact: true }).locator("option").count()).toBe(1);
     await fillTurn(A.page, "TEST ONLY A1: A small signal across the water. 🌊", "TEST ONLY A");
-    await region(A.page).getByRole("button", { name: "Lengthen ×1.25", exact: true }).click();
-    await region(A.page).getByRole("button", { name: "Undo timing", exact: true }).click();
-    await region(A.page).getByRole("button", { name: "Redo timing", exact: true }).click();
+    await exchangeAction(A.page, "Lengthen ×1.25");
+    await exchangeAction(A.page, "Undo timing");
+    await exchangeAction(A.page, "Redo timing");
     await region(A.page).getByText("Adjust individual gaps", { exact: true }).click();
     const gap = region(A.page).getByLabel("Outgoing gap 1 (seconds)", { exact: true });
     await gap.fill("0.2"); await gap.locator("xpath=ancestor::form").getByRole("button", { name: "Set", exact: true }).click();
     await unchanged(A.page, originalA);
     await A.page.evaluate(() => window.scrollTo(0, 0)); await A.page.screenshot({ path: `${dir}/A1-preview.png` });
-    await region(A.page).getByRole("button", { name: "Finalize A1", exact: true }).click();
+    await exchangeAction(A.page, "Finalize A1");
     await expect(region(A.page).getByTestId("exchange-turn")).toHaveCount(1);
     const a1 = await packet(A.page, `${dir}/A1.coda.json`), repeated = await packet(A.page, `${dir}/A1-repeat.coda.json`);
     expect(repeated.bytes.equals(a1.bytes)).toBe(true);
@@ -117,15 +119,15 @@ test("actual isolated A1/B1/A2 file round trip preserves both private Composer h
     await workspaceView(B.page, "Exchange"); await open(B.page, a1.path);
     await expect(region(B.page).getByTestId("exchange-turn")).toHaveCount(1);
     expect(await B.page.evaluate(() => (window as any).__exchangeStarts.length)).toBe(0);
-    await region(B.page).getByRole("button", { name: "Play A1 only", exact: true }).click();
+    await exchangeAction(B.page, "Play A1 only");
     await expect(region(B.page).getByTestId("exchange-turn")).toHaveClass(/is-playing/);
-    await region(B.page).getByRole("button", { name: "Stop Exchange audio", exact: true }).click();
+    await exchangeAction(B.page, "Stop Exchange audio");
     await unchanged(B.page, originalB);
-    await region(B.page).getByRole("button", { name: "Reply with my style", exact: true }).click();
-    await expect(region(B.page).getByLabel("Message to include")).toHaveValue("");
+    await exchangeAction(B.page, "Reply with my style");
+    await resumeNote(B.page); await expect(region(B.page).getByLabel("Message to include")).toHaveValue("");
     await fillTurn(B.page, "TEST ONLY B1: Received as a local file. Here is a different rhythm. 안녕", "TEST ONLY B");
-    await region(B.page).getByRole("button", { name: "Shorten ×0.8", exact: true }).click();
-    await region(B.page).getByRole("button", { name: "Finalize B1", exact: true }).click();
+    await exchangeAction(B.page, "Shorten ×0.8");
+    await exchangeAction(B.page, "Finalize B1");
     await expect(region(B.page).getByTestId("exchange-turn")).toHaveCount(2);
     const b1 = await packet(B.page, `${dir}/A1-B1.coda.json`), second: Envelope = JSON.parse(b1.bytes.toString());
     expect(second.turns[0]).toEqual(first.turns[0]); expect(second.turns[1].phrase.blocks[0].source.recordingId).toBe("dswp-2");
@@ -137,24 +139,24 @@ test("actual isolated A1/B1/A2 file round trip preserves both private Composer h
     await open(A.page, b1.path); await confirmReplace(A.page);
     await expect(region(A.page).getByTestId("exchange-turn")).toHaveCount(2);
     await unchanged(A.page, originalA);
-    await region(A.page).getByLabel("Pattern for this turn", { exact: true }).selectOption(`turn:${first.turns[0].id}`);
-    await region(A.page).getByRole("button", { name: "Reply with my style", exact: true }).click();
+    await setupMessage(A.page); await region(A.page).getByLabel("Pattern for this turn", { exact: true }).selectOption(`turn:${first.turns[0].id}`);
+    await exchangeAction(A.page, "Reply with my style");
     await fillTurn(A.page, "TEST ONLY A2: Keeping your reply with mine. This is a human exchange, not whale translation.", "TEST ONLY A");
-    await region(A.page).getByRole("button", { name: "Shorten ×0.8", exact: true }).click();
-    await region(A.page).getByRole("button", { name: "Finalize A2", exact: true }).click();
+    await exchangeAction(A.page, "Shorten ×0.8");
+    await exchangeAction(A.page, "Finalize A2");
     await expect(region(A.page).getByTestId("exchange-turn")).toHaveCount(3);
-    await expect(region(A.page).getByLabel("Pattern for this turn", { exact: true })).toHaveValue("composer-selected");
-    const gapBetween = region(A.page).getByLabel("Gap after A1 (seconds)", { exact: true });
+    await setupMessage(A.page); await expect(region(A.page).getByLabel("Pattern for this turn", { exact: true })).toHaveValue("composer-selected");
+    await conversation(A.page); const gapBetween = region(A.page).getByLabel("Gap after A1 (seconds)", { exact: true });
     await gapBetween.fill("0.75"); await gapBetween.locator("xpath=ancestor::form").getByRole("button", { name: "Set", exact: true }).click();
-    await expect(region(A.page).getByRole("status").first()).toContainText("Playback gap updated");
-    await region(A.page).getByRole("button", { name: "Play complete exchange", exact: true }).click();
+    await expect(region(A.page).locator(".exchange-status, .file-result").filter({ visible: true }).first()).toContainText("Playback gap updated");
+    await exchangeAction(A.page, "Play complete exchange");
     await expect(region(A.page).locator(".exchange-sound")).toContainText("Playing synthetic clicks");
     await expect(region(A.page).getByTestId("exchange-turn").first()).toHaveClass(/is-playing/);
     await expect(region(A.page).getByTestId("exchange-turn").nth(1)).toHaveClass(/is-playing/);
     await expect(region(A.page).getByTestId("exchange-turn").nth(2)).toHaveClass(/is-playing/);
     await expect(region(A.page).locator(".exchange-sound")).toContainText("stopped");
-    await region(A.page).getByRole("button", { name: "Play complete exchange", exact: true }).click();
-    await region(A.page).getByRole("button", { name: "Stop Exchange audio", exact: true }).click();
+    await exchangeAction(A.page, "Play complete exchange");
+    await exchangeAction(A.page, "Stop Exchange audio");
     await expect(region(A.page).locator(".exchange-sound")).toContainText("stopped");
     await A.page.evaluate(() => window.scrollTo(0, 0)); await A.page.screenshot({ path: `${dir}/final-exchange.png` });
     await region(A.page).getByTestId("exchange-turn").first().scrollIntoViewIfNeeded(); await A.page.screenshot({ path: `${dir}/final-turns.png` });
@@ -177,10 +179,10 @@ test("actual isolated A1/B1/A2 file round trip preserves both private Composer h
     C.page.on("dialog", dialog => dialog.accept()); await C.page.reload();
     await expect(region(C.page).getByTestId("exchange-turn")).toHaveCount(0);
     await open(C.page, final.path); await expect(region(C.page).getByTestId("exchange-turn")).toHaveCount(3);
-    await region(C.page).getByLabel("Pattern for this turn", { exact: true }).selectOption("seed:dswp-11");
-    await region(C.page).getByRole("button", { name: "Reply with my style", exact: true }).click();
+    await setupMessage(C.page); await region(C.page).getByLabel("Pattern for this turn", { exact: true }).selectOption("seed:dswp-11");
+    await exchangeAction(C.page, "Reply with my style");
     await fillTurn(C.page, "TEST ONLY cold-profile reply from a supported catalog seed.", "TEST ONLY cold visitor");
-    await region(C.page).getByRole("button", { name: "Finalize B2", exact: true }).click();
+    await exchangeAction(C.page, "Finalize B2");
     await expect(region(C.page).getByTestId("exchange-turn")).toHaveCount(4);
     const cold = await packet(C.page, `${dir}/cold-reply.coda.json`);
     expect(JSON.parse(cold.bytes.toString()).turns[3].phrase.blocks[0].source.recordingId).toBe("dswp-11");
@@ -207,21 +209,21 @@ test("actual isolated A1/B1/A2 file round trip preserves both private Composer h
 test("full phrase copying, saved analysis, outgoing cancel and navigation preserve personal work", async ({ page }) => {
   const before = await privateProject(page, "A", false);
   expect(JSON.parse(before).savedAnalysis !== null).toBe(true);
-  await composerView(page, "save"); await page.getByLabel("Include the whole phrase", { exact: true }).check();
-  await page.getByRole("button", { name: "Make a transmission", exact: true }).click();
+  await composerView(page, "edit"); await page.getByLabel("Include the whole phrase", { exact: true }).check();
+  await page.getByRole("button", { name: "Use this coda in a message", exact: true }).click(); await exchangeAction(page, "Start a transmission");
   expect(await region(page).getByLabel("Outgoing block", { exact: true }).locator("option").count()).toBe(2);
   await fillTurn(page, "TEST ONLY pending note survives workspace navigation.", "TEST ONLY author");
   for (const workspace of ["Listen", "Composer", "Context Lab", "Exchange"] as const) await workspaceView(page, workspace);
-  await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY pending note survives workspace navigation.");
+  await resumeNote(page); await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY pending note survives workspace navigation.");
   await unchanged(page, before);
-  await region(page).getByRole("button", { name: "Cancel outgoing draft", exact: true }).click();
+  await exchangeAction(page, "Cancel outgoing draft");
   await page.getByRole("button", { name: "Keep current work", exact: true }).click();
   await expect(region(page).getByTestId("outgoing-draft")).toBeVisible();
-  await region(page).getByRole("button", { name: "Cancel outgoing draft", exact: true }).click(); await confirmReplace(page);
+  await exchangeAction(page, "Cancel outgoing draft"); await confirmReplace(page);
   await expect(region(page).getByTestId("outgoing-draft")).toHaveCount(0); await unchanged(page, before);
   await open(page, { name: "actual-test-fixture.coda.json", mimeType: "application/json", buffer: fixture });
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(1); await unchanged(page, before);
-  await region(page).getByRole("button", { name: "Reset Exchange", exact: true }).click(); await confirmReplace(page);
+  await exchangeAction(page, "Reset Exchange"); await confirmReplace(page);
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(0); await unchanged(page, before);
 });
 
@@ -229,22 +231,22 @@ test("imports are atomic, duplicate snapshots preserve unfinished text, alternat
   await page.goto("/#exchange");
   await open(page, { name: "safe.coda.json", mimeType: "application/json", buffer: fixture });
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(1);
-  await region(page).getByRole("button", { name: "Reply with my style", exact: true }).click();
+  await exchangeAction(page, "Reply with my style");
   await fillTurn(page, "TEST ONLY do not discard this unfinished reply.", "TEST ONLY B");
   await region(page).getByLabel("Message to include").fill("x".repeat(2001));
   await expect(region(page).getByRole("alert")).toContainText("allowed size");
-  await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY do not discard this unfinished reply.");
+  await resumeNote(page); await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY do not discard this unfinished reply.");
   await region(page).getByLabel("Display alias (optional)").fill("x".repeat(49));
   await expect(region(page).getByLabel("Display alias (optional)")).toHaveValue("TEST ONLY B");
   await open(page, { name: "same.coda.json", mimeType: "application/json", buffer: fixture });
-  await expect(region(page).getByRole("status").first()).toContainText("already open");
-  await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY do not discard this unfinished reply.");
+  await expect(region(page).locator(".exchange-status, .file-result").filter({ visible: true }).first()).toContainText("already open");
+  await resumeNote(page); await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY do not discard this unfinished reply.");
   const bad = JSON.parse(fixture.toString()); bad.turns[0].phrase.blocks[0].source.sourceRevision = "wrong";
   for (const bytes of [Buffer.from("{"), Buffer.from(JSON.stringify(bad)), Buffer.from("[".repeat(200) + "0" + "]".repeat(200)), Buffer.alloc(512 * 1024 + 1)]) {
     await open(page, { name: "broken.coda.json", mimeType: "application/json", buffer: bytes });
     await expect(region(page).getByRole("alert")).toBeVisible();
     await expect(region(page).getByTestId("exchange-turn")).toHaveCount(1);
-    await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY do not discard this unfinished reply.");
+    await resumeNote(page); await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY do not discard this unfinished reply.");
   }
   const variant = JSON.parse(fixture.toString()).turns[0]; delete variant.digest;
   variant.id = "outgoing"; // A valid imported ID must not collide with a UI-only draft cue.
@@ -253,15 +255,15 @@ test("imports are atomic, duplicate snapshots preserve unfinished text, alternat
   const outgoing: string[] = []; page.on("request", r => outgoing.push(r.url()));
   await open(page, { name: "alternative.coda.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(alternate)) });
   await expect(page.getByRole("dialog")).toBeVisible(); await page.getByRole("button", { name: "Keep current work", exact: true }).click();
-  await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY do not discard this unfinished reply.");
+  await resumeNote(page); await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY do not discard this unfinished reply.");
   await open(page, { name: "alternative.coda.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(alternate)) }); await confirmReplace(page);
   await expect(region(page).getByTestId("outgoing-draft")).toHaveCount(0);
   await expect(region(page).getByTestId("exchange-turn")).toContainText(variant.message);
   expect(await region(page).getByTestId("exchange-turn").locator("a, img").count()).toBe(0);
   expect(outgoing.some(u => u.includes("invalid.example"))).toBe(false);
-  await region(page).getByRole("button", { name: "Play A1 only", exact: true }).click();
+  await exchangeAction(page, "Play A1 only");
   await expect(region(page).locator(".exchange-sound")).toContainText(" · A1");
-  await region(page).getByRole("button", { name: "Stop Exchange audio", exact: true }).click();
+  await exchangeAction(page, "Stop Exchange audio");
 });
 
 test("late file reads, hashes and resumed audio cannot resurrect obsolete work after replacement/navigation", async ({ page }) => {
@@ -283,7 +285,7 @@ test("late file reads, hashes and resumed audio cannot resurrect obsolete work a
   await expect.poll(() => page.evaluate(() => typeof (window as any).__releaseRead)).toBe("function");
   await open(page, { name: "fast.coda.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(b)) });
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(2);
-  await region(page).getByLabel("Pattern for this turn", { exact: true }).selectOption(`turn:${a.turns[0].id}`);
+  await setupMessage(page); await region(page).getByLabel("Pattern for this turn", { exact: true }).selectOption(`turn:${a.turns[0].id}`);
   const readHashes = await page.evaluate(() => (window as any).__digestsCompleted);
   await page.evaluate(() => (window as any).__releaseRead());
   await expect.poll(() => page.evaluate(() => (window as any).__digestsCompleted)).toBe(readHashes + 2);
@@ -292,26 +294,26 @@ test("late file reads, hashes and resumed audio cannot resurrect obsolete work a
   const different = await changeArrangement(b, 0, .75);
   await open(page, { name: "explicit-alternative.coda.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(different)) });
   await confirmReplace(page);
-  await expect(region(page).getByLabel("Pattern for this turn", { exact: true })).toHaveValue("seed:dswp-1");
-  await region(page).getByRole("button", { name: "Reply with my style", exact: true }).click();
+  await setupMessage(page); await expect(region(page).getByLabel("Pattern for this turn", { exact: true })).toHaveValue("seed:dswp-1");
+  await exchangeAction(page, "Reply with my style");
   await fillTurn(page, "TEST ONLY unfinished latest edit", "TEST ONLY A");
   const beforeFinalize = await page.evaluate(() => { (window as any).__delayHash = true; return (window as any).__digestsCompleted; });
-  await region(page).getByRole("button", { name: "Finalize A2", exact: true }).click();
+  await exchangeAction(page, "Finalize A2");
   await expect.poll(() => page.evaluate(() => typeof (window as any).__releaseHash)).toBe("function");
-  await region(page).getByRole("button", { name: "Lengthen ×1.25", exact: true }).click();
+  await exchangeAction(page, "Cancel finalization"); await exchangeAction(page, "Lengthen ×1.25");
   await page.evaluate(() => (window as any).__releaseHash());
   // Wait for prefix verification (3), new turn hash (1), envelope hash (1).
   await expect.poll(() => page.evaluate(() => (window as any).__digestsCompleted)).toBe(beforeFinalize + 5);
   await expect(region(page).getByTestId("outgoing-draft")).toBeVisible();
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(2);
   await page.evaluate(() => { (window as any).__delayResume = true; });
-  await region(page).getByRole("button", { name: "Play complete exchange", exact: true }).click();
+  await exchangeAction(page, "Play complete exchange");
   await expect.poll(() => page.evaluate(() => typeof (window as any).__releaseResume)).toBe("function");
   await workspaceView(page, "Listen"); await page.evaluate(() => (window as any).__releaseResume());
   await workspaceView(page, "Exchange");
   expect(await page.evaluate(() => (window as any).__exchangeStarts)).toEqual([]);
   await expect(region(page).locator(".exchange-sound")).toContainText("stopped");
-  await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY unfinished latest edit");
+  await resumeNote(page); await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY unfinished latest edit");
 });
 
 test("TEST ONLY native-share bridge checks the actual File; cancellation/rejection never download or duplicate turns", async ({ page }) => {
@@ -329,25 +331,26 @@ test("TEST ONLY native-share bridge checks the actual File; cancellation/rejecti
   });
   await page.goto("/#exchange"); await open(page, { name: "test.coda.json", mimeType: "application/json", buffer: fixture });
   const downloads: string[] = []; page.on("download", d => downloads.push(d.suggestedFilename()));
+  await conversation(page); await region(page).getByRole("button", { name: "Save and share this file", exact: true }).click();
   const button = region(page).getByRole("button", { name: "Share file", exact: true });
   await expect(button).toBeEnabled(); await button.click();
-  await expect(region(page).getByRole("status").first()).toContainText("Share cancelled");
+  await expect(region(page).locator(".exchange-status, .file-result").filter({ visible: true }).first()).toContainText("Share cancelled");
   expect(downloads).toEqual([]); expect(await page.evaluate(() => (window as any).__sharedBytes)).toBe(fixture.toString());
   await page.evaluate(() => { (window as any).__shareMode = "reject"; }); await button.click();
   await expect(region(page).getByRole("alert")).toContainText("Sharing could not complete"); expect(downloads).toEqual([]);
   await page.evaluate(() => { (window as any).__shareMode = "success"; }); await button.click();
-  await expect(region(page).getByRole("status").first()).toContainText("Recipient delivery and reading are unknown");
+  await expect(region(page).locator(".exchange-status, .file-result").filter({ visible: true }).first()).toContainText("Recipient delivery and reading are unknown");
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(1); expect(downloads).toEqual([]);
   await page.evaluate(() => { (window as any).__shareMode = "unsupported"; });
   await workspaceView(page, "Listen"); await workspaceView(page, "Exchange"); await expect(button).toBeDisabled();
-  const pending = page.waitForEvent("download"); await region(page).getByRole("button", { name: "Download coda JSON", exact: true }).click(); await pending;
+  const pending = page.waitForEvent("download"); await exchangeAction(page, "Download coda JSON"); await pending;
   expect(downloads).toHaveLength(1); expect(await page.evaluate(() => (window as any).__fileChecked)).toBe(true);
 });
 
 test("320px/enlarged-text/keyboard controls and audio failure keep messages, timing and downloads usable", async ({ page }, info) => {
   const dir = `test-results/coda-exchange/${info.project.name}`; await mkdir(dir, { recursive: true });
   await page.goto("/#exchange"); await open(page, { name: "test.coda.json", mimeType: "application/json", buffer: fixture });
-  await region(page).getByRole("button", { name: "Reply with my style", exact: true }).click();
+  await exchangeAction(page, "Reply with my style");
   await fillTurn(page, "TEST ONLY keyboard-accessible reply with numeric timing.", "TEST ONLY author");
   await page.setViewportSize({ width: 320, height: 844 });
   await page.evaluate(() => window.scrollTo(0, 0)); await page.screenshot({ path: `${dir}/320px.png` });
@@ -363,19 +366,19 @@ test("320px/enlarged-text/keyboard controls and audio failure keep messages, tim
   await input.fill("0.2"); await input.press("Enter"); await expect(input).toHaveValue("0.2");
   await page.screenshot({ path: `${dir}/320px-enlarged-timing.png` });
   await page.evaluate(() => { Object.defineProperty(window, "AudioContext", { configurable: true, value: undefined }); });
-  await region(page).getByRole("button", { name: "Audition outgoing pattern", exact: true }).click();
+  await exchangeAction(page, "Audition outgoing pattern");
   await expect(region(page).getByRole("alert")).toContainText("audio is unavailable");
-  await region(page).getByRole("button", { name: "Finalize B1", exact: true }).click();
+  await exchangeAction(page, "Finalize B1");
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(2);
-  const download = page.waitForEvent("download"); await region(page).getByRole("button", { name: "Download coda JSON", exact: true }).click(); await download;
+  const download = page.waitForEvent("download"); await exchangeAction(page, "Download coda JSON"); await download;
 });
 
 test("Exchange shares the exclusive sound owner and preserves Atlas comparison and both Prediction Reveal resets", async ({ page }) => {
   const before = await privateProject(page, "A", false);
   await workspaceView(page, "Exchange"); await open(page, { name: "test.coda.json", mimeType: "application/json", buffer: fixture });
-  await region(page).getByRole("button", { name: "Reply with my style", exact: true }).click();
+  await exchangeAction(page, "Reply with my style");
   await fillTurn(page, "TEST ONLY pending through sound and research navigation.", "TEST ONLY author");
-  await region(page).getByRole("button", { name: "Audition outgoing pattern", exact: true }).click();
+  await exchangeAction(page, "Audition outgoing pattern");
   await expect(region(page).locator(".exchange-sound")).toContainText("Playing");
   await composerView(page, "compare");
   await expect(region(page).locator(".exchange-sound")).toContainText("stopped");
@@ -406,7 +409,7 @@ test("Exchange shares the exclusive sound owner and preserves Atlas comparison a
   await expect(page.getByTestId("research-target")).toHaveCount(0);
   await composerView(page, "compare"); await expect(page.getByTestId("composer-atlas-comparison")).toHaveAttribute("data-binding", binding!);
   await workspaceView(page, "Exchange");
-  await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY pending through sound and research navigation.");
+  await resumeNote(page); await expect(region(page).getByLabel("Message to include")).toHaveValue("TEST ONLY pending through sound and research navigation.");
   await unchanged(page, before);
 });
 
@@ -421,9 +424,9 @@ test("eight-turn files remain readable and downloadable at the reply limit", asy
   await page.goto("/#exchange");
   await open(page, { name: "eight-turns.coda.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(envelope)) });
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(8);
-  await expect(region(page).getByRole("button", { name: "Reply with my style", exact: true })).toBeDisabled();
-  await expect(region(page).getByRole("button", { name: "Download coda JSON", exact: true })).toBeEnabled();
-  await region(page).getByRole("button", { name: "Reset Exchange", exact: true }).click();
+  await expect(region(page).getByRole("button", { name: "Reply", exact: true })).toBeDisabled();
+  await handoffView(page); await expect(region(page).getByRole("button", { name: "Download conversation file", exact: true })).toBeEnabled();
+  await exchangeAction(page, "Reset Exchange");
   await page.getByRole("button", { name: "Keep current work", exact: true }).click();
   await expect(region(page).getByTestId("exchange-turn").last()).toContainText("TEST ONLY bounded turn 8");
 });

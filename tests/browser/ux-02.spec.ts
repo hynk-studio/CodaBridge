@@ -1,0 +1,66 @@
+import { test, expect } from "@playwright/test";
+import { readFile } from "node:fs/promises";
+import { STORAGE_KEY } from "../../src/composer/project.ts";
+import { workspaceView, composerView } from "./navigation.ts";
+import { receiveArea } from "./exchange-navigation.ts";
+const plain = await readFile("tests/fixtures/exchange-canonical.json");
+const exchange = (page: import("@playwright/test").Page) => page.getByTestId("exchange");
+
+test("UX-02 home to message, explicit review/back, scope and Composer history survive browser navigation", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Make my coda", exact: true }).click();
+  await page.getByRole("button", { name: "Lengthen ×1.25", exact: true }).click();
+  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  const before = await page.evaluate(k => localStorage.getItem(k), STORAGE_KEY);
+  await expect(page.getByRole("button", { name: "Redo", exact: true })).toBeEnabled();
+  await expect(page.locator(".transmission-entry")).toContainText("Selected block 1");
+  await page.getByRole("button", { name: "Use this coda in a message", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Choose your rhythm and protection", exact: true })).toBeFocused();
+  await expect(exchange(page).getByLabel("Message to include")).toHaveCount(0);
+  await exchange(page).getByRole("button", { name: "Write a note", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Rhythm and note", exact: true })).toBeFocused();
+  await exchange(page).getByLabel("Message to include").fill("PUBLIC TEST ONLY · 안녕하세요 🐋 리듬");
+  await expect(exchange(page).getByRole("button", { name: "Finalize A1", exact: true })).toHaveCount(0);
+  await exchange(page).getByRole("button", { name: "Review message", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Review your message", exact: true })).toBeFocused();
+  await expect(exchange(page).locator(".exchange-preview")).toContainText("PUBLIC TEST ONLY · 안녕하세요 🐋 리듬");
+  await expect(exchange(page).getByTestId("exchange-turn")).toHaveCount(0);
+  await exchange(page).getByRole("button", { name: "Back to note", exact: true }).click();
+  await page.goBack(); await expect(page.locator("#composer")).toBeVisible();
+  await page.goForward(); await expect(exchange(page).getByLabel("Message to include")).toHaveValue("PUBLIC TEST ONLY · 안녕하세요 🐋 리듬");
+  await composerView(page, "edit"); await expect(page.getByRole("button", { name: "Redo", exact: true })).toBeEnabled();
+  expect(await page.evaluate(k => localStorage.getItem(k), STORAGE_KEY)).toBe(before);
+  await composerView(page, "save"); await workspaceView(page, "Listen"); await page.getByRole("button", { name: "Make my coda", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Edit phrase", exact: true })).toHaveAttribute("aria-pressed", "true");
+  expect(await page.evaluate(k => localStorage.getItem(k), STORAGE_KEY)).toBe(before);
+});
+
+test("UX-02 cold recipient, same-file result, cancelled picker and rejected formats retain unfinished work", async ({ page }) => {
+  await page.goto("/"); await page.getByRole("button", { name: "Open a coda file", exact: true }).click();
+  expect(await page.evaluate(k => localStorage.getItem(k), STORAGE_KEY)).toBeNull();
+  const filename = "PUBLIC TEST ONLY 안녕 🐋 " + "long-name-".repeat(24) + ".coda.json";
+  await exchange(page).getByLabel("Choose coda file", { exact: true }).setInputFiles({ name: filename, mimeType: "application/json", buffer: plain });
+  await expect(exchange(page).getByTestId("file-result")).toContainText("File opened.");
+  await expect(exchange(page).getByTestId("file-result")).toContainText("1 included message");
+  await exchange(page).getByRole("button", { name: "Reply", exact: true }).click();
+  await exchange(page).getByRole("button", { name: "Write a note", exact: true }).click();
+  await exchange(page).getByLabel("Message to include").fill("PUBLIC TEST ONLY unfinished 안녕 🐋");
+  await receiveArea(page);
+  const chooser = exchange(page).getByLabel("Choose coda file", { exact: true });
+  await chooser.setInputFiles({ name: filename, mimeType: "application/json", buffer: plain });
+  await expect(exchange(page).getByTestId("file-result")).toContainText("File checked — already open.");
+  await expect(exchange(page).getByTestId("file-result")).toContainText("No messages were added. Unfinished work was kept.");
+  await expect(chooser).toBeVisible();
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.addStyleTag({ content: "html {font-size:200% !important}" });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  // Automated empty selection represents chooser cancellation; no fake file.
+  await chooser.setInputFiles([]);
+  await expect(exchange(page).getByTestId("file-result")).toContainText("already open");
+  await chooser.setInputFiles({ name: "PUBLIC TEST ONLY project.json", mimeType: "application/json", buffer: Buffer.from('{"format":"codabridge-project"}') });
+  await expect(exchange(page).getByTestId("file-result")).toContainText("File could not be opened.");
+  await expect(exchange(page).getByTestId("file-result")).toContainText("Composer → Open project");
+  await exchange(page).getByRole("button", { name: "Continue your unfinished reply", exact: true }).click();
+  await expect(exchange(page).getByLabel("Message to include")).toHaveValue("PUBLIC TEST ONLY unfinished 안녕 🐋");
+  await expect(exchange(page).getByTestId("exchange-turn")).toHaveCount(1);
+});
