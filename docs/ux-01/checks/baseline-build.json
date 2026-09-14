@@ -1,0 +1,20 @@
+{
+  "source": "c10f1adb35c9729550adc97a5974696cf65008fa",
+  "tree": "241f5f109a56bf672cb5f3a1fc23e91ad2314515",
+  "initialOrigin": "http://127.0.0.1:4173",
+  "captureReplayOrigin": "http://127.0.0.1:4174",
+  "assets": [
+    {
+      "asset": "index-fVX2loRR.js",
+      "bytes": 486283,
+      "sha256": "277e897f521c6c687a47e54be6dd6496d6c62cad07e8f7c6d04409e917b3382c",
+      "servedEqualsBuilt": true
+    },
+    {
+      "asset": "index-DYXf6Mb8.css",
+      "bytes": 54446,
+      "sha256": "874c02d23548233b049f12f37f15393f72379cd7a33bcd56e91703fff9c7fe23",
+      "servedEqualsBuilt": true
+    }
+  ]
+}

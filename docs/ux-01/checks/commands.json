@@ -1,0 +1,68 @@
+[
+  {
+    "command": "env -u OPENAI_API_KEY npm run typecheck",
+    "exitCode": 0,
+    "seconds": 3.75,
+    "log": "typecheck.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm test",
+    "exitCode": 0,
+    "seconds": 2.701,
+    "log": "unit.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run sealed:test",
+    "exitCode": 0,
+    "seconds": 0.504,
+    "log": "sealed-unit.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run lint",
+    "exitCode": 0,
+    "seconds": 0.288,
+    "log": "lint.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run build",
+    "exitCode": 0,
+    "seconds": 4.225,
+    "log": "build.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run sealed:test:browser -- --max-failures=1",
+    "exitCode": 0,
+    "seconds": 49.287,
+    "log": "sealed-browser.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run test:browser -- tests/browser/exchange.spec.ts --max-failures=1",
+    "exitCode": 0,
+    "log": "exchange-browser.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY node --experimental-strip-types docs/sealed-coda-v1/check-served.ts",
+    "exitCode": 0,
+    "log": "served.json"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run sealed:verify -- docs/ux-01/public-test-only/final/PUBLIC-TEST-ONLY-keys.json",
+    "exitCode": 0,
+    "log": "sealed-artifacts.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY python3 scripts/verify-exchange.py docs/ux-01/public-test-only/baseline/plain-A1.coda.json docs/ux-01/public-test-only/baseline/plain-B1.coda.json docs/ux-01/public-test-only/final/plain-B1.coda.json",
+    "exitCode": 1,
+    "reason": "Harness supplied two alternative B1 branches as a sequential chain; verifier correctly rejected prior turns changed."
+  },
+  {
+    "command": "env -u OPENAI_API_KEY python3 scripts/verify-exchange.py docs/ux-01/public-test-only/baseline/plain-A1.coda.json docs/ux-01/public-test-only/baseline/plain-B1.coda.json",
+    "exitCode": 0,
+    "log": "plain-baseline.json"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY python3 scripts/verify-exchange.py docs/ux-01/public-test-only/baseline/plain-A1.coda.json docs/ux-01/public-test-only/final/plain-B1.coda.json",
+    "exitCode": 0,
+    "log": "plain-after.json"
+  }
+]

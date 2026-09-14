@@ -1,0 +1,10 @@
+{
+  "stableBytes": true,
+  "unfinishedNoteRetained": true,
+  "rejectedImportPreserved": true,
+  "reopenedAfterRefresh": true,
+  "distinctKeys": true,
+  "copyAlertFullyWithinPhone": true,
+  "actualCopyPermission": "denied for isolation",
+  "physicalIme": "not tested"
+}

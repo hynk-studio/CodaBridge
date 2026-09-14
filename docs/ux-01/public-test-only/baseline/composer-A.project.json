@@ -1,0 +1,336 @@
+{
+  "format": "codabridge-project",
+  "version": 1,
+  "draft": {
+    "version": 1,
+    "id": "p-701ee9b4-6ef9-4bcf-bb1f-eade83ef22ec",
+    "revision": 4,
+    "title": "My first coda",
+    "intention": "",
+    "blocks": [
+      {
+        "id": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+        "times": [
+          0,
+          0.14827097505668935,
+          0.6678004535147393,
+          1.4239229024943312,
+          1.651729024943311,
+          1.9730158730158731
+        ],
+        "spacingAfter": 0.5,
+        "meaning": "PUBLIC TEST ONLY 안녕 🐋 — 긴 쉼",
+        "seed": {
+          "recordingId": "dswp-1",
+          "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "annotationVersion": "1.0.0",
+          "originalOffsetSeconds": 0.3827891156462585
+        }
+      }
+    ],
+    "ancestry": [
+      {
+        "recordingId": "dswp-1",
+        "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "annotationVersion": "1.0.0",
+        "originalOffsetSeconds": 0.3827891156462585
+      }
+    ]
+  },
+  "activeId": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+  "codebook": [
+    {
+      "id": "b-65e53049-dd9f-42eb-a1c1-5965ea1d821e",
+      "times": [
+        0,
+        0.14827097505668935,
+        0.6678004535147393,
+        1.4239229024943312,
+        1.651729024943311,
+        1.9730158730158731
+      ],
+      "spacingAfter": 0.5,
+      "meaning": "PUBLIC TEST ONLY 안녕 🐋 — 긴 쉼",
+      "seed": {
+        "recordingId": "dswp-1",
+        "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "annotationVersion": "1.0.0",
+        "originalOffsetSeconds": 0.3827891156462585
+      }
+    }
+  ],
+  "savedAnalysis": {
+    "label": "Saved analysis — unverified on reopen",
+    "deterministic": {
+      "identity": "Human-created · synthetic timing sonification",
+      "meaningToSpermWhales": "unknown",
+      "sourceLinkIsNotAuthenticatedEditHistory": true,
+      "draft": {
+        "version": 1,
+        "id": "p-701ee9b4-6ef9-4bcf-bb1f-eade83ef22ec",
+        "revision": 4,
+        "title": "My first coda",
+        "intention": "",
+        "blocks": [
+          {
+            "id": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+            "times": [
+              0,
+              0.14827097505668935,
+              0.6678004535147393,
+              1.4239229024943312,
+              1.651729024943311,
+              1.9730158730158731
+            ],
+            "spacingAfter": 0.5,
+            "meaning": "PUBLIC TEST ONLY 안녕 🐋 — 긴 쉼",
+            "seed": {
+              "recordingId": "dswp-1",
+              "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+              "annotationVersion": "1.0.0",
+              "originalOffsetSeconds": 0.3827891156462585
+            }
+          }
+        ],
+        "ancestry": [
+          {
+            "recordingId": "dswp-1",
+            "sourceRevision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+            "annotationVersion": "1.0.0",
+            "originalOffsetSeconds": 0.3827891156462585
+          }
+        ]
+      },
+      "schedule": {
+        "renderer": {
+          "version": "click-pulse-1",
+          "sampleRate": 48000,
+          "gain": 0.16,
+          "pulseSeconds": 0.012,
+          "leadSeconds": 0.05,
+          "tailSeconds": 0.04
+        },
+        "events": [
+          {
+            "blockId": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+            "marker": 0,
+            "seconds": 0.05
+          },
+          {
+            "blockId": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+            "marker": 1,
+            "seconds": 0.19827097505668934
+          },
+          {
+            "blockId": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+            "marker": 2,
+            "seconds": 0.7178004535147393
+          },
+          {
+            "blockId": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+            "marker": 3,
+            "seconds": 1.4739229024943312
+          },
+          {
+            "blockId": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+            "marker": 4,
+            "seconds": 1.701729024943311
+          },
+          {
+            "blockId": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+            "marker": 5,
+            "seconds": 2.023015873015873
+          }
+        ],
+        "duration": 2.063015873015873
+      },
+      "analysis": {
+        "blockId": "b-b34e3169-1342-492c-b963-e300468dd0f8",
+        "metric": {
+          "id": "normalized-interval-mad",
+          "version": "1.0.0",
+          "name": "Mean absolute normalized interval difference",
+          "unit": "dimensionless",
+          "interpretation": "Smaller means closer under this timing metric."
+        },
+        "measurements": {
+          "status": "valid",
+          "measurements": {
+            "clickCount": 6,
+            "recordingDurationSeconds": 1.9730158730158731,
+            "clickSpanSeconds": 1.9730158730158731,
+            "intervalsSeconds": [
+              0.14827097505668935,
+              0.51952947845805,
+              0.7561224489795919,
+              0.2278061224489798,
+              0.32128684807256214
+            ],
+            "normalizedIntervals": [
+              0.07514940811400989,
+              0.2633174347776118,
+              0.38323181243535226,
+              0.11546086656706135,
+              0.16284047810596472
+            ],
+            "normalizedClickPositions": [
+              0,
+              0.07514940811400989,
+              0.33846684289162166,
+              0.721698655326974,
+              0.8371595218940353,
+              1
+            ]
+          }
+        },
+        "seed": {
+          "sourceId": "dswp-1",
+          "comparison": {
+            "status": "comparable",
+            "metric": {
+              "id": "normalized-interval-mad",
+              "version": "1.0.0",
+              "name": "Mean absolute normalized interval difference",
+              "unit": "dimensionless",
+              "interpretation": "Smaller means closer under this timing metric."
+            },
+            "value": 3.3306690738754695e-17
+          },
+          "originalOffsetSeconds": 0.3827891156462585,
+          "spanSeconds": 1.5784126984126985,
+          "currentSpanSeconds": 1.9730158730158731
+        },
+        "previous": null,
+        "catalogCount": 4,
+        "candidateCount": 3,
+        "eligibleCount": 2,
+        "excludedIds": [
+          "dswp-1"
+        ],
+        "excludedDuplicates": [],
+        "matches": [
+          {
+            "sourceId": "dswp-11",
+            "comparison": {
+              "status": "comparable",
+              "metric": {
+                "id": "normalized-interval-mad",
+                "version": "1.0.0",
+                "name": "Mean absolute normalized interval difference",
+                "unit": "dimensionless",
+                "interpretation": "Smaller means closer under this timing metric."
+              },
+              "value": 0.09835190471540153
+            }
+          },
+          {
+            "sourceId": "dswp-2",
+            "comparison": {
+              "status": "comparable",
+              "metric": {
+                "id": "normalized-interval-mad",
+                "version": "1.0.0",
+                "name": "Mean absolute normalized interval difference",
+                "unit": "dimensionless",
+                "interpretation": "Smaller means closer under this timing metric."
+              },
+              "value": 0.11765155166768507
+            }
+          }
+        ],
+        "rejected": [
+          {
+            "sourceId": "dswp-7",
+            "comparison": {
+              "status": "not-comparable",
+              "metric": {
+                "id": "normalized-interval-mad",
+                "version": "1.0.0",
+                "name": "Mean absolute normalized interval difference",
+                "unit": "dimensionless",
+                "interpretation": "Smaller means closer under this timing metric."
+              },
+              "code": "UNEQUAL_CLICK_COUNTS",
+              "reason": "Equal click counts are required. No alignment, padding, or truncation is applied."
+            }
+          }
+        ]
+      },
+      "sources": [
+        {
+          "id": "dswp-1",
+          "dataset": "orrp/DSWP",
+          "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+          "filename": "1.wav",
+          "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+          "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+          "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+          "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+          "paperUrl": "https://arxiv.org/abs/2512.02206",
+          "acquiredOn": "2026-09-12",
+          "originalOffsetSeconds": 0.3827891156462585,
+          "originalTimes": [
+            0.3827891156462585,
+            0.50140589569161,
+            0.9170294784580499,
+            1.5219274376417233,
+            1.704172335600907,
+            1.9612018140589569
+          ],
+          "annotationStatus": "machine-estimated",
+          "humanReview": "not-performed"
+        }
+      ],
+      "limitations": [
+        "Meaning to sperm whales: unknown. Creator-assigned meaning is personal, not a translation.",
+        "Seed markers are machine estimates, not verified coda boundaries or human-reviewed onsets.",
+        "Timing similarity is descriptive. It does not establish identity, intent, biological naturalness or shared meaning.",
+        "Each block is compared separately in a four-recording catalog. Unequal counts are not aligned or padded.",
+        "Synthetic clicks illustrate timing; they do not reproduce a whale's voice. No wildlife playback use."
+      ]
+    },
+    "generated": null
+  },
+  "credits": {
+    "identity": "Human-created · synthetic timing sonification",
+    "meaningToSpermWhales": "unknown",
+    "sources": [
+      {
+        "id": "dswp-1",
+        "dataset": "orrp/DSWP",
+        "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "filename": "1.wav",
+        "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+        "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+        "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+        "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+        "paperUrl": "https://arxiv.org/abs/2512.02206",
+        "acquiredOn": "2026-09-12",
+        "originalOffsetSeconds": 0.3827891156462585,
+        "originalTimes": [
+          0.3827891156462585,
+          0.50140589569161,
+          0.9170294784580499,
+          1.5219274376417233,
+          1.704172335600907,
+          1.9612018140589569
+        ],
+        "annotationStatus": "machine-estimated",
+        "humanReview": "not-performed"
+      }
+    ],
+    "limitations": [
+      "Meaning to sperm whales: unknown. Creator-assigned meaning is personal, not a translation.",
+      "Seed markers are machine estimates, not verified coda boundaries or human-reviewed onsets.",
+      "Timing similarity is descriptive. It does not establish identity, intent, biological naturalness or shared meaning.",
+      "Each block is compared separately in a four-recording catalog. Unequal counts are not aligned or padded.",
+      "Synthetic clicks illustrate timing; they do not reproduce a whale's voice. No wildlife playback use."
+    ]
+  }
+}
