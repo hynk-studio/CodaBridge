@@ -1,0 +1,156 @@
+{
+  "reviewedHead": "00594407396953aa2020e751b6ea0f2db4e53d87",
+  "origin": "http://127.0.0.1:4184",
+  "method": "Computer Use keyboard Shift+Tab to skip link, then Return; read-only CDP diagnostics",
+  "before": {
+    "composerVisible": true,
+    "focused": "skip-link",
+    "hash": "#composer",
+    "historyLength": 2
+  },
+  "afterActivationBeforeCorrection": {
+    "composerVisible": false,
+    "focused": "workspace",
+    "hash": "#workspace",
+    "historyLength": 3
+  },
+  "reviewedBuild": {
+    "dist/client/assets/index-Bj9gvzcJ.css": "917be312f1d7ba07d9acf26693ddda1c2a8a4d24f1e6253588c7e43df24eaf5e",
+    "dist/client/assets/index-D26suJqV.js": "bafd147c3a7bf6b0e2a9288cd2d1003cce79e857cf0e06f29222e5a3c8f87daf",
+    "dist/server/index.js": "1c55d2d7f4f46b224bb6f73a9dff480e4812d17ff3a3f32c0b1a05109db742d9"
+  },
+  "correctedBeforeActivation": {
+    "composerVisible": true,
+    "focused": "skip-link",
+    "hash": "#composer",
+    "historyLength": 2,
+    "mainTop": 73,
+    "redoEnabled": true,
+    "selected": [
+      "Block 2 \u00b7 selected 1.58 s123456No personal label yet"
+    ],
+    "undoEnabled": true
+  },
+  "correctedAfterActivation": {
+    "composerVisible": true,
+    "focused": "workspace",
+    "hash": "#composer",
+    "historyLength": 2,
+    "mainTop": 73,
+    "redoEnabled": true,
+    "selected": [
+      "Block 2 \u00b7 selected 1.58 s123456No personal label yet"
+    ],
+    "undoEnabled": true
+  },
+  "browser": {
+    "script": [
+      "http://127.0.0.1:4184/assets/index-DgoaVtwf.js"
+    ],
+    "touchPoints": 0,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+    "viewport": [
+      1365,
+      695
+    ]
+  },
+  "base": "985c883bb6b8cd5bc9084ce77142dc8d6768b17c",
+  "testedApplicationCommit": "eba5a6e42cf72f27520cc65fbe50516f6c314643",
+  "testedApplicationTree": "f6dbe1fe9150a6d493bd8310fd1f1fb424677ed1",
+  "correctedBuild": {
+    "dist/client/assets/index-Bj9gvzcJ.css": "917be312f1d7ba07d9acf26693ddda1c2a8a4d24f1e6253588c7e43df24eaf5e",
+    "dist/client/assets/index-DgoaVtwf.js": "f2de9f96ad00b47069e8001718040067fa1e69df59eccc816e5aaf1b02a9b7ed",
+    "dist/server/index.js": "1c55d2d7f4f46b224bb6f73a9dff480e4812d17ff3a3f32c0b1a05109db742d9"
+  },
+  "unchangedGitObjectsFromReviewedHead": {
+    "src/exchange": "a2b4936ac27ec2c169eba2f37ab5fe951cb1da6e",
+    "src/composer": "fd017a77736616e2541e094078e481747b4dcca0",
+    "src/atlas": "a40540e6438e20dc4700f2ed8e4c3cb662728fd9",
+    "src/lab": "a90cc3123247deb233aa5fc17a909fb6786785e7",
+    "src/domain": "36fda015c73f7de0467df59ee87df7f822d7ae02",
+    "server": "f4e9d1dd870f92a798f69bb0648c9b51cf108639",
+    "analysis": "053d58de3f0898d8c5c3f72ff7b6ae1cdb187179",
+    "public": "96b3035523c37fb07ccc4b73cdd07df5227971c4",
+    ".openai": "957b492ba3b1ddc772912c6c5cf2b0050d6249cc",
+    "tests/research-analysis.test.ts": "e0ebacdb395217209596e93abd95cd8ddfc0231d",
+    "docs/ux-01": "95f51744c8c5190a22509c5c6a8a495f9784db9b",
+    "docs/ux-02/README.md": "d9d09ae27b95ff2187dad5c301dcb699c8cbef8a",
+    "docs/ux-02/verification.json": "4cbb31c39c50dd63887589f50878d4b08a5c9cbb",
+    "docs/ux-02/captures": "d3ab4496dac6904e9a84c195339e1b6e1c7a7bb7"
+  },
+  "captures": {
+    "after-composer-skip.png": {
+      "bytes": 190416,
+      "sha256": "3e8edf2f7ca1e7e48a3f3e8dd164d7f263ce1a94d7cf7fd0dd33256066946e88",
+      "pixelDimensions": [
+        2730,
+        1390
+      ]
+    },
+    "before-composer-skip.png": {
+      "bytes": 219991,
+      "sha256": "f5f3bcd8bfba255b8441999e6f754e4534a291c12b12d5ba7265b8818bd760ac",
+      "pixelDimensions": [
+        2730,
+        1502
+      ]
+    }
+  },
+  "computerUseStorageOrClipboardRead": false,
+  "automatedBrowserProfiles": {
+    "isolation": "fresh Playwright contexts; only test-owned storage",
+    "desktop": {
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    "mobile": {
+      "viewport": [
+        390,
+        844
+      ],
+      "isMobile": true,
+      "hasTouch": true
+    },
+    "trace": "off for new skip-link and sealed cases",
+    "screenshots": "off for new skip-link and sealed failure cases"
+  },
+  "openingKeyValuesIncludedInEvidence": false,
+  "checks": [
+    {
+      "command": "env -u OPENAI_API_KEY npm run typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm test",
+      "result": "249 passed; 0 failed/skipped"
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run lint",
+      "result": "passed"
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npm run build",
+      "result": "passed; completed before browser verification"
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npx playwright test tests/browser/skip-link.spec.ts --project=desktop-chromium --grep 'retains Composer' --max-failures=1",
+      "result": "reviewed build: 1 expected failure; URL changed to #workspace"
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npx playwright test tests/browser/skip-link.spec.ts --max-failures=1",
+      "result": "corrected build: 14 passed"
+    },
+    {
+      "command": "env -u OPENAI_API_KEY npx playwright test tests/browser/ux-02.spec.ts tests/browser/workspace.spec.ts tests/browser/composer.spec.ts tests/browser/atlas.spec.ts tests/browser/exchange.spec.ts tests/browser/sealed.spec.ts tests/browser/polish.spec.ts --max-failures=1",
+      "result": "corrected build: 146 passed"
+    }
+  ],
+  "runtime": {
+    "node": "v25.9.0",
+    "npm": "11.12.1",
+    "playwright": "1.63.0",
+    "automatedChromium": "153.0.8010.12"
+  }
+}

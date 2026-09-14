@@ -52,6 +52,7 @@ import { copyComposerTiming, type Phrase } from "../exchange/model.ts";
 export interface ComposerHandle {
   makeVersion(sourceId: string): void;
   leave(): void;
+  resume(): void;
   hasDraft(): boolean;
   copyTiming(scope: "selected" | "phrase"): Phrase | null;
 }
@@ -253,6 +254,7 @@ const Composer = forwardRef<
   }
   useImperativeHandle(ref, () => ({
     makeVersion,
+    resume: () => showPanel("edit"),
     hasDraft: () => Boolean(historyRef.current),
     copyTiming: scope => historyRef.current ? copyComposerTiming(historyRef.current.present, activeId, scope) : null,
     leave: () => {
@@ -648,6 +650,14 @@ const Composer = forwardRef<
           >
             {soundStatus === "Playing synthetic clicks" ? "Playing" : soundStatus === "Synthetic playback paused" ? "Paused" : soundStatus === "Synthetic playback stopped" ? "Stopped" : soundStatus}
           </p>
+          </div>
+          <div className="transmission-entry">
+            <h3>Put your coda in a message</h3>
+            <p>This prepares a separate message. It does not send anything yet.</p>
+            <label><input type="checkbox" checked={transmitWhole} onChange={e => setTransmitWhole(e.target.checked)} /> Include the whole phrase</label>
+            <p>{transmitWhole ? `Whole phrase · ${draft.blocks.length} ${draft.blocks.length === 1 ? "block" : "blocks"} · ${phraseDuration(draft).toFixed(3)} s` : `Selected block ${draft.blocks.findIndex(b => b.id === active.id) + 1} · ${active.times.length} clicks · ${span(active).toFixed(3)} s`}</p>
+            <button className="primary" onClick={() => attempt(() => onTransmission(copyComposerTiming(draft, active.id, transmitWhole ? "phrase" : "selected")))}>Use this coda in a message</button>
+            <small>Only timing and source credits are copied. Your editable project, title, intention, codebook and saved analysis stay here. Project backup, listening WAV and image card are in Save &amp; codebook.</small>
           </div>
           <div className={`composer-workbench ${panel === "compare" ? "compare-workbench" : ""}`}>
             <section hidden={panel !== "edit"} className="block-editor" aria-label="Active block editor">
@@ -1205,13 +1215,6 @@ const Composer = forwardRef<
                 <button onClick={() => void exportFile("json")}>
                   Download project JSON
                 </button>
-              </div>
-              <div className="transmission-entry">
-                <h4>Send a personal coda</h4>
-                <p>Copy the selected timing into Exchange, then write a separate message.</p>
-                <label><input type="checkbox" checked={transmitWhole} onChange={e => setTransmitWhole(e.target.checked)} /> Include the whole phrase</label>
-                <button onClick={() => attempt(() => onTransmission(copyComposerTiming(draft, active.id, transmitWhole ? "phrase" : "selected")))}>Make a transmission</button>
-                <small>Creator text, codebook and saved analysis stay in Composer.</small>
               </div>
               <div className="coda-card" data-testid="coda-card">
                 <span className="eyebrow">CodaBridge / Coda Card</span>
