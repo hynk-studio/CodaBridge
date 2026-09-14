@@ -1,0 +1,331 @@
+{
+  "base": "985c883bb6b8cd5bc9084ce77142dc8d6768b17c",
+  "applicationCommit": "03ab94dac974b2311bfcb1e724358a65f03c8b75",
+  "applicationCommitTree": "43bf6527bba7e028344187f96f56fb23c6b3973d",
+  "hostedBaseline": {
+    "url": "https://codabridge-android-check.hynk1240.chatgpt.site/",
+    "commit": "a6c79b6265033521f423f5884322c1d6b177b7cb",
+    "changed": false
+  },
+  "build": {
+    "dist/client/assets/index-Bj9gvzcJ.css": "917be312f1d7ba07d9acf26693ddda1c2a8a4d24f1e6253588c7e43df24eaf5e",
+    "dist/client/assets/index-D26suJqV.js": "bafd147c3a7bf6b0e2a9288cd2d1003cce79e857cf0e06f29222e5a3c8f87daf",
+    "dist/server/index.js": "1c55d2d7f4f46b224bb6f73a9dff480e4812d17ff3a3f32c0b1a05109db742d9",
+    "dist/.openai/hosting.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "runtime": {
+    "node": "v25.9.0",
+    "npm": "11.12.1",
+    "playwright": "1.63.0",
+    "chromium": "153.0.8010.12",
+    "computerUseChrome": "152.0.0.0",
+    "mobileViewport": [
+      390,
+      844
+    ],
+    "desktopViewport": [
+      1440,
+      1000
+    ],
+    "additionalWidth": 320,
+    "enlargedText": "200%",
+    "touch": true,
+    "userAgentOverride": false
+  },
+  "finalFocusedBrowserCasesPassed": 78,
+  "earlierBroadBrowserCasesPassed": 102,
+  "requiredSealedBrowserCasesPassed": 58,
+  "unitTestsPassed": 249,
+  "sealedUnitTestsPassed": 12,
+  "artifactTestsPassed": 15,
+  "preservedPathsByteIdenticalToBase": [
+    "src/exchange/session.ts",
+    "src/exchange/sealed.ts",
+    "src/exchange/format.ts",
+    "src/exchange/model.ts",
+    "src/exchange/json.ts",
+    "src/exchange/sound.ts",
+    "src/exchange/downloads.ts",
+    "src/composer/model.ts",
+    "src/composer/project.ts",
+    "src/composer/sound.ts",
+    "src/domain",
+    "src/server",
+    "analysis",
+    "public",
+    ".openai",
+    "docs/ux-01",
+    "docs/MVP_07.md",
+    "docs/MVP_08.md"
+  ],
+  "actualDownloads": {
+    "desktop": {
+      "plain": [
+        {
+          "path": "test-results/coda-exchange/desktop-chromium/A1.coda.json",
+          "sha256": "055ad4692fe6ff8afbfbf02215e30755d2ca598f6ffe5a12b0898a8b13f617ac",
+          "bytes": 1906
+        },
+        {
+          "path": "test-results/coda-exchange/desktop-chromium/A1-B1.coda.json",
+          "sha256": "f7494ee8e603dbe9e766d7b8ead182cecf3f1535678b4092049f784eefecdaba",
+          "bytes": 3544
+        },
+        {
+          "path": "test-results/coda-exchange/desktop-chromium/A1-B1-A2.coda.json",
+          "sha256": "78a787c7260cea63d07c5ae39e5a9ee3f0e22489503a79f21bd6bc92740afbd6",
+          "bytes": 5198
+        }
+      ],
+      "wav": {
+        "sha256": "9be65f7d2a890efbd8688f0a248feb3d49788f2fd7164221642f3088e594ebec",
+        "bytes": 706818,
+        "independentlyCheckedPulses": 18,
+        "outsideScheduleIsSilent": true,
+        "sourceMetadataMatches": true
+      },
+      "sealed": [
+        {
+          "file": "A1.coda.sealed.json",
+          "sealedSha256": "4021de773860f9ac0fb16d5102a4b41605d16b392afdedc82968e0dd54263ac9",
+          "sealedBytes": 2730,
+          "plaintextSha256": "51c7ac4ce942d158e64cc959c089467acf659411a8a3cdb6336f32007158b5e4",
+          "turns": 1,
+          "authenticated": true,
+          "exactOriginalBytes": true
+        },
+        {
+          "file": "A1-B1.coda.sealed.json",
+          "sealedSha256": "adc20c7e25f09bce6913e139b3d6b1cd01f5b805e9b393aa66953b2154107e17",
+          "sealedBytes": 4892,
+          "plaintextSha256": "f8a1ae234317321974f73db0c5a7ab7f3de10d01d8fe01b8ac4c2ea2e06b0b26",
+          "turns": 2,
+          "authenticated": true,
+          "exactOriginalBytes": true
+        },
+        {
+          "file": "A1-B1-A2.coda.sealed.json",
+          "sealedSha256": "9f4c76c7228eff4cbd908c5cb32d22706cbf35b7bb7bb071413c97bb104f272e",
+          "sealedBytes": 7078,
+          "plaintextSha256": "2fd239d96dcf26aa65f9c2871920320bd4e3459919a689048d66afea5a654a31",
+          "turns": 3,
+          "authenticated": true,
+          "exactOriginalBytes": true
+        },
+        {
+          "file": "cold-reply.coda.sealed.json",
+          "sealedSha256": "77f3c9eabb3b620335660e6edfc48af37cac6a71c18f836ded94df4fc1049ebd",
+          "sealedBytes": 9280,
+          "plaintextSha256": "9486b20d3378492dc0be69f48ffab76da91b730727e1fdba96209ecd804f5b34",
+          "turns": 4,
+          "authenticated": true,
+          "exactOriginalBytes": true
+        }
+      ],
+      "independentCheckers": "Existing Python source/hash/parent/timing/WAV checker and Node AES-GCM checker; all passed"
+    },
+    "mobile": {
+      "plain": [
+        {
+          "path": "test-results/coda-exchange/mobile-chromium/A1.coda.json",
+          "sha256": "e7ef3aff572a1c348d3161447bbbc5194362a57a3bbb4655538309a6f97c70a1",
+          "bytes": 1906
+        },
+        {
+          "path": "test-results/coda-exchange/mobile-chromium/A1-B1.coda.json",
+          "sha256": "80d5a0fa6c4d1851b0959962fd6f422a5944402daded1986a1318bdd74166330",
+          "bytes": 3544
+        },
+        {
+          "path": "test-results/coda-exchange/mobile-chromium/A1-B1-A2.coda.json",
+          "sha256": "d1b2113157cc853552879e092e441a1898177dd9c2f9c7140f20e6459d650947",
+          "bytes": 5198
+        }
+      ],
+      "wav": {
+        "sha256": "9be65f7d2a890efbd8688f0a248feb3d49788f2fd7164221642f3088e594ebec",
+        "bytes": 706818,
+        "independentlyCheckedPulses": 18,
+        "outsideScheduleIsSilent": true,
+        "sourceMetadataMatches": true
+      },
+      "sealed": [
+        {
+          "file": "A1.coda.sealed.json",
+          "sealedSha256": "6a673141636694d559a1c017fbc26ffc2c869a10b6f4e08de543422089f50edc",
+          "sealedBytes": 2730,
+          "plaintextSha256": "c8cf98278b1830697549cc35e8719bd5fe0729ac803078371c051c95abbd6adf",
+          "turns": 1,
+          "authenticated": true,
+          "exactOriginalBytes": true
+        },
+        {
+          "file": "A1-B1.coda.sealed.json",
+          "sealedSha256": "843d4e268d836dabe6a1596a3e820b6b9bcc1204113dd4b758d33dee81e7856d",
+          "sealedBytes": 4892,
+          "plaintextSha256": "e619996110d7f782d561545d1ea19da1f7c850941f904384f314fe35fbc3d088",
+          "turns": 2,
+          "authenticated": true,
+          "exactOriginalBytes": true
+        },
+        {
+          "file": "A1-B1-A2.coda.sealed.json",
+          "sealedSha256": "098778ff846f4ce7edefa5068bff494cc1c3367a6c4976c11fd6fb90788a953b",
+          "sealedBytes": 7078,
+          "plaintextSha256": "ab3bd1d7117a915dfe36b0cae12f9567557b07e9cbd02cf21a7a021f7a750c9b",
+          "turns": 3,
+          "authenticated": true,
+          "exactOriginalBytes": true
+        },
+        {
+          "file": "cold-reply.coda.sealed.json",
+          "sealedSha256": "55104b72b9d8825972eb38d69bd81c4eeaf32cc6040709cae7ed45c666b16b82",
+          "sealedBytes": 9280,
+          "plaintextSha256": "4ff05e190b9526a7f1402daeed881ad8d706a6f817b45ebce358892a9838ce32",
+          "turns": 4,
+          "authenticated": true,
+          "exactOriginalBytes": true
+        }
+      ],
+      "independentCheckers": "Existing Python source/hash/parent/timing/WAV checker and Node AES-GCM checker; all passed"
+    }
+  },
+  "network": {
+    "plain-desktop": {
+      "isolatedProfiles": 3,
+      "pageErrors": 0,
+      "leakDetected": false,
+      "methods": [
+        "GET"
+      ],
+      "origins": [
+        "127.0.0.1:4173"
+      ],
+      "paths": [
+        "/",
+        "/api/investigation/status",
+        "/assets/index-Bj9gvzcJ.css",
+        "/assets/index-D26suJqV.js",
+        "/audio/dswp-1.wav",
+        "/audio/dswp-2.wav"
+      ],
+      "localBlobDownloadsObserved": true
+    },
+    "plain-mobile": {
+      "isolatedProfiles": 3,
+      "pageErrors": 0,
+      "leakDetected": false,
+      "methods": [
+        "GET"
+      ],
+      "origins": [
+        "127.0.0.1:4173"
+      ],
+      "paths": [
+        "/",
+        "/api/investigation/status",
+        "/assets/index-Bj9gvzcJ.css",
+        "/assets/index-D26suJqV.js",
+        "/audio/dswp-1.wav",
+        "/audio/dswp-2.wav"
+      ],
+      "localBlobDownloadsObserved": true
+    },
+    "sealed-desktop": {
+      "isolatedProfiles": 3,
+      "pageErrors": 0,
+      "leakDetected": false,
+      "methods": [
+        "GET"
+      ],
+      "origins": [
+        "127.0.0.1:4173"
+      ],
+      "paths": [
+        "/",
+        "/api/investigation/status",
+        "/assets/index-Bj9gvzcJ.css",
+        "/assets/index-D26suJqV.js",
+        "/audio/dswp-1.wav",
+        "/audio/dswp-2.wav"
+      ],
+      "localBlobDownloadsObserved": true
+    },
+    "sealed-mobile": {
+      "isolatedProfiles": 3,
+      "pageErrors": 0,
+      "leakDetected": false,
+      "methods": [
+        "GET"
+      ],
+      "origins": [
+        "127.0.0.1:4173"
+      ],
+      "paths": [
+        "/",
+        "/api/investigation/status",
+        "/assets/index-Bj9gvzcJ.css",
+        "/assets/index-D26suJqV.js",
+        "/audio/dswp-1.wav",
+        "/audio/dswp-2.wav"
+      ],
+      "localBlobDownloadsObserved": true
+    }
+  },
+  "captures": {
+    "baseline-composer-send.png": {
+      "bytes": 144864,
+      "sha256": "5ab3a6f1c3a6f8da374e6b30520a4e69199176cd194b72c565cf67a354987e2f"
+    },
+    "baseline-receive-mobile.png": {
+      "bytes": 58283,
+      "sha256": "8719a6c8cc026516a3dc0057200aa507478339dea1de3a646121cf70827ac3db"
+    },
+    "candidate-already-open-mobile.png": {
+      "bytes": 75071,
+      "sha256": "490ff27b1406608eb6f7b5256593387f1e110462fa91a73bb5d50e8c8c055f44"
+    },
+    "candidate-composer-desktop.png": {
+      "bytes": 133115,
+      "sha256": "921d2a8f68b484f48ecbc0fcce022a74f71e5f55c86656435d63ed57c076626a"
+    },
+    "candidate-file-opened-mobile.png": {
+      "bytes": 68838,
+      "sha256": "61a996c02768e6f83ba00154797bdb4271767dace1b176e9bd6c24a3d5d32645"
+    },
+    "candidate-home-mobile.png": {
+      "bytes": 73531,
+      "sha256": "cc0dade6ce3f1b5967e3b89dddb824b3c2cf0c373742621b61912306289c9338"
+    },
+    "candidate-review-desktop.png": {
+      "bytes": 102049,
+      "sha256": "2c2407ac3aebf1034b4553c6a222d272184d5267917b14e7e608ee84f852254c"
+    },
+    "candidate-sealed-handoff-mobile.png": {
+      "bytes": 72477,
+      "sha256": "32b952f5f5d7cd3631e44726f38f6036abce7ae07f4bcc2a52f3f0f7e06e2f1b"
+    }
+  },
+  "additionalEarlierKeyUiRoundTripsPassed": 2,
+  "computerUseDownloads": {
+    "plain": [
+      {
+        "path": "/Users/hynk/Downloads/codabridge-e-14fe1dd3-a750-4f91-b213-fe0cd241387a-1.coda.json",
+        "bytes": 1895,
+        "sha256": "dcf83692f397e69175ee980c83892287c5bb2f5ff3dd98b5c1ba8198cce80c81"
+      },
+      {
+        "path": "/Users/hynk/Downloads/codabridge-e-14fe1dd3-a750-4f91-b213-fe0cd241387a-2.coda.json",
+        "bytes": 3468,
+        "sha256": "934b72b801780cac7fb9eaffb7b0098c70da4ed5400a7b7ad4234425125031f5"
+      }
+    ],
+    "sealed": {
+      "filename": "codabridge-sealed-uZ_WQz2-pG3rqMs8.coda.sealed.json",
+      "sha256": "0c85332c2254cc72b43bac4181f80f3019aadba17b3757b822693b47da185f8c",
+      "bytes": 2646,
+      "independentAuthenticationAndInnerFormat": "passed"
+    }
+  },
+  "additionalResealHandoffCasesPassed": 2
+}
