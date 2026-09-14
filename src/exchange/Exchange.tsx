@@ -50,6 +50,7 @@ const Exchange = forwardRef<ExchangeHandle, {
   const candidateRef = useRef<SealedArtifact | null>(null);
   const keyInput = useRef<HTMLInputElement>(null), displayedKey = useRef<HTMLInputElement>(null);
   const [reveal, setReveal] = useState(false);
+  const copyFeedback = useRef(0);
   const [source, setSource] = useState("composer-selected");
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
@@ -118,6 +119,14 @@ const Exchange = forwardRef<ExchangeHandle, {
     return () => { leave(); window.removeEventListener("beforeunload", unload); window.removeEventListener("pagehide", leave); window.removeEventListener("pageshow", restore); };
   }, []);
   useEffect(() => { if (!active) { invalidate(); setReveal(false); } }, [active]);
+  useEffect(() => {
+    // Display lifetime only: leave the conversation and pending crypto intact.
+    const remask = () => {
+      if (document.hidden) { copyFeedback.current++; setReveal(false); }
+    };
+    document.addEventListener("visibilitychange", remask);
+    return () => document.removeEventListener("visibilitychange", remask);
+  }, []);
   useEffect(() => {
     if (confirmation) dialog.current?.showModal(); else dialog.current?.close();
   }, [confirmation]);
@@ -217,12 +226,14 @@ const Exchange = forwardRef<ExchangeHandle, {
   }
   async function copyKey() {
     const prepared = owner.current.prepared; if (!prepared) return;
-    invalidate(); const token = generation.current.next();
+    invalidate(); const token = generation.current.next(), feedback = ++copyFeedback.current;
+    const current = () => generation.current.current(token) && copyFeedback.current === feedback;
+    setError(""); setNotice("");
     try {
       if (!navigator.clipboard?.writeText) throw new Error();
       await navigator.clipboard.writeText(prepared.code);
-      if (generation.current.current(token)) setNotice("Opening key copied. Pass it through a separately trusted route.");
-    } catch { if (generation.current.current(token)) { setReveal(true); setError("Clipboard copy was unavailable. Reveal the opening key, select it and copy manually."); } }
+      if (current()) setNotice("Opening key copied. Pass it through a separately trusted route.");
+    } catch { if (current()) setError("Clipboard copy was unavailable. You can reveal the opening key and select it to copy manually."); }
   }
   function unencryptedExport(kind: "json" | "wav") {
     if (!envelope || outgoing || owner.pending) return;
@@ -322,7 +333,7 @@ const Exchange = forwardRef<ExchangeHandle, {
       {!cryptoAvailable() && <p role="alert">Sealed files are unavailable here. A secure context and native Web Crypto are required. No plaintext fallback.</p>}
       {session.prepared && <>
         <label>Opening key<input ref={displayedKey} autoFocus readOnly type={reveal ? "text" : "password"} value={session.prepared.code} autoComplete="off" spellCheck={false} autoCapitalize="none" /></label>
-        <div className="exchange-actions"><button onClick={() => setReveal(v => !v)}>{reveal ? "Hide opening key" : "Reveal opening key"}</button><button onClick={() => displayedKey.current?.select()}>Select opening key</button><button onClick={() => void copyKey()}>Copy opening key</button></div>
+        <div className="exchange-actions"><button onClick={() => { copyFeedback.current++; setReveal(v => !v); }}>{reveal ? "Hide opening key" : "Reveal opening key"}</button><button onClick={() => displayedKey.current?.select()}>Select opening key</button><button onClick={() => void copyKey()}>Copy opening key</button></div>
         <label className="sealed-ack"><input type="checkbox" checked={session.keySaved} onChange={e => owner.acknowledge(e.target.checked)} />I have saved the opening key</label>
         <p>Keep the file and key separately. The app cannot recover a lost key. Use a separately trusted route; two messages on one compromised service do not create that separation.</p>
       </>}

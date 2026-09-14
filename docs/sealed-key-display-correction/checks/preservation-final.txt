@@ -1,0 +1,53 @@
+{
+  "scope": "Read-only delivery comparison, not a future application guard",
+  "reviewedHead": "c13210ad9d4aec4a0e146a3732e82b4a95cb7756",
+  "reviewedTree": "26dad428a2e36a9cff2c04ef58c8e42741877de1",
+  "allowedExistingEdits": [
+    "docs/MVP_08.md",
+    "src/exchange/Exchange.tsx",
+    "tests/browser/sealed.spec.ts"
+  ],
+  "unchangedTrackedFiles": 839,
+  "comparedBytes": 127010456,
+  "orderedFileIdentitiesSha256": "7898c237b55e9d44634555d663295914a69745b215be0971bba494772d9d63e7",
+  "priorSealedEvidenceFiles": 165,
+  "cryptographicAndSessionFiles": [
+    {
+      "path": "scripts/verify-sealed.mjs",
+      "bytes": 4554,
+      "gitBlob": "adfcbf9b2897b3a05013d4776f65e46df0dbcc8f",
+      "sha256": "20e9bb76b03ddc5cf5e142a740101fbdad10312030a4facc0befc1d489d62162"
+    },
+    {
+      "path": "src/exchange/format.ts",
+      "bytes": 4758,
+      "gitBlob": "165ff8c86b7d00868b771dd55d99a4756fe77fbd",
+      "sha256": "154ce75188902c46306dc8be8eedd7afe391f304f2e360e12d6390315556f3cb"
+    },
+    {
+      "path": "src/exchange/json.ts",
+      "bytes": 1860,
+      "gitBlob": "b9f4505c50efc5a86e7d3a3a2d1abb8105d16e90",
+      "sha256": "d1e96d856eb9df763d33bb3da44cb5ee5509631abcc7974a827cb96d86572a72"
+    },
+    {
+      "path": "src/exchange/sealed.ts",
+      "bytes": 7233,
+      "gitBlob": "b485f2dbb447832a2b023dca68c2e2d2fed51d43",
+      "sha256": "297d7b5608eab6bfba3f05d11cf1fb0d960ccbc38d78ae8ad55f3e87a8882bbe"
+    },
+    {
+      "path": "src/exchange/session.ts",
+      "bytes": 3646,
+      "gitBlob": "3d721b3aac63b04b5a843828277b0c757a9e0544",
+      "sha256": "c44bd367909166a1960852777f5630bb0d06784e7634a82c81fabd13f95f4674"
+    },
+    {
+      "path": "tests/sealed.test.ts",
+      "bytes": 14096,
+      "gitBlob": "362c87ad1dfa3d885d26e6caa603debca35ccddd",
+      "sha256": "52acafa7f2d358b53d9beb4a824a0b42b8c0504df1073a95b33f4c86f9f70a68"
+    }
+  ],
+  "allOtherReviewedFilesExact": true
+}

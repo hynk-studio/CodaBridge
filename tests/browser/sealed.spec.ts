@@ -9,6 +9,9 @@ import { composerView, workspaceView } from "./navigation.ts";
 // Opening codes may appear in DOM action arguments. Never retain traces or
 // failure snapshots. Only explicit masked screenshots below become evidence.
 test.use({ trace: "off", screenshot: "off" });
+// Playwright's automatic error-context page snapshot can include revealed input
+// values even with traces/screenshots off. Keep failure output free of keys too.
+process.env.PLAYWRIGHT_NO_COPY_PROMPT = "1";
 const fixture = await readFile("tests/fixtures/sealed/independent.coda.sealed.json");
 const manifest = JSON.parse(await readFile("tests/fixtures/sealed/PUBLIC-TEST-ONLY-keys.json", "utf8"));
 const code: string = manifest.entries[0].openingCode;
@@ -103,6 +106,19 @@ async function maskedCapture(p: Page, path: string) {
   const shown = region(p).getByLabel("Opening key", { exact: true });
   if (await shown.count()) { if (await shown.getAttribute("type") === "text") await button(p, "Hide opening key").click(); }
   await p.screenshot({ path });
+}
+async function visibility(p: Page, state: "hidden" | "visible") {
+  // Explicit simulation of the state, not just an event on a visible document.
+  await p.evaluate(state => {
+    Object.defineProperty(document, "visibilityState", { configurable: true, value: state });
+    Object.defineProperty(document, "hidden", { configurable: true, value: state === "hidden" });
+    document.dispatchEvent(new Event("visibilitychange"));
+  }, state);
+  expect(await p.evaluate(() => [document.visibilityState, document.hidden])).toEqual([state, state === "hidden"]);
+}
+async function prepareDisplayedKey(p: Page) {
+  await entry(p); await open(p, originalPlain); await button(p, "Seal this finalized exchange").click(); await button(p, "Prepare sealed file").click();
+  await expect(region(p).getByLabel("Opening key", { exact: true })).toHaveAttribute("type", "password");
 }
 
 test("unsupported crypto leaves a truthful locked preview with no content or export", async ({ page }) => {
@@ -220,21 +236,111 @@ test("failed candidates preserve current work; malformed/header/encoding/inner-a
   await expect(region(page).getByTestId("exchange-turn")).toHaveCount(1);
 });
 
-test("key copy denial/manual fallback, ciphertext-only share cancellation and visibility preserve unfinished work", async ({ page }) => {
-  await page.addInitScript(() => {
+for (const clipboard of ["missing", "rejected"] as const) test(`key copy ${clipboard} stays masked; explicit display/manual selection and simulated share visibility preserve work`, async ({ page }, info) => {
+  await page.addInitScript(clipboard => {
     const w = window as any; w.__shares = [];
-    Object.defineProperty(navigator, "clipboard", { value: { writeText: async () => { throw new DOMException("denied", "NotAllowedError"); } } });
+    Object.defineProperty(navigator, "clipboard", { value: clipboard === "missing" ? undefined : { writeText: async () => { throw new DOMException("denied", "NotAllowedError"); } } });
     Object.defineProperty(navigator, "canShare", { value: (v: ShareData) => v.files?.[0] instanceof File });
-    Object.defineProperty(navigator, "share", { value: async (v: ShareData) => { w.__shares.push({ keys: Object.keys(v), text: v.text, file: await v.files![0].text(), name: v.files![0].name }); document.dispatchEvent(new Event("visibilitychange")); throw new DOMException("cancelled", "AbortError"); } });
-  });
-  await entry(page); await open(page, originalPlain); await button(page, "Seal this finalized exchange").click(); await button(page, "Prepare sealed file").click();
-  await button(page, "Copy opening key").click(); await expect(region(page).getByRole("alert")).toContainText("copy manually"); await expect(region(page).getByLabel("Opening key", { exact: true })).toHaveAttribute("type", "text");
-  await button(page, "Select opening key").click(); expect(await region(page).getByLabel("Opening key", { exact: true }).evaluate((n: HTMLInputElement) => n.selectionEnd === n.value.length && n.selectionStart === 0)).toBe(true);
+    Object.defineProperty(navigator, "share", { value: async (v: ShareData) => {
+      w.__shares.push({ keys: Object.keys(v), text: v.text, file: await v.files![0].text(), name: v.files![0].name });
+      Object.defineProperty(document, "visibilityState", { configurable: true, value: "hidden" });
+      Object.defineProperty(document, "hidden", { configurable: true, value: true });
+      document.dispatchEvent(new Event("visibilitychange")); throw new DOMException("cancelled", "AbortError");
+    } });
+  }, clipboard);
+  await prepareDisplayedKey(page);
+  const shown = region(page).getByLabel("Opening key", { exact: true });
+  await button(page, "Copy opening key").click(); await expect(region(page).getByRole("alert")).toContainText("copy manually"); await expect(shown).toHaveAttribute("type", "password");
+  expect(await shown.evaluate((n: HTMLInputElement) => n.selectionStart === n.selectionEnd)).toBe(true);
+  await expect(region(page).getByLabel("I have saved the opening key")).not.toBeChecked(); await expect(button(page, "Download sealed file")).toBeDisabled();
+  const dir = `test-results/sealed-key-display/${info.project.name}`; await mkdir(dir, { recursive: true });
+  await region(page).getByRole("alert").scrollIntoViewIfNeeded(); await page.screenshot({ path: `${dir}/clipboard-${clipboard}-fallback.png` });
+  await shown.scrollIntoViewIfNeeded(); await page.screenshot({ path: `${dir}/clipboard-${clipboard}-masked.png` });
+  await button(page, "Reveal opening key").click(); await expect(shown).toHaveAttribute("type", "text");
+  await button(page, "Select opening key").click(); expect(await shown.evaluate((n: HTMLInputElement) => n.selectionEnd === n.value.length && n.selectionStart === 0)).toBe(true);
+  await expect(region(page).getByLabel("I have saved the opening key")).not.toBeChecked();
   await button(page, "Hide opening key").click(); await region(page).getByLabel("I have saved the opening key").check();
+  await expect(shown).toHaveAttribute("type", "password"); await button(page, "Reveal opening key").click();
   let downloads = 0; page.on("download", () => downloads++); await button(page, "Share sealed file").click(); await expect(region(page).getByRole("status").first()).toContainText("Share cancelled");
+  expect(await page.evaluate(() => [document.hidden, document.visibilityState])).toEqual([true, "hidden"]);
+  await expect(shown).toHaveAttribute("type", "password"); await visibility(page, "visible"); await expect(shown).toHaveAttribute("type", "password");
+  await expect(region(page).getByLabel("I have saved the opening key")).toBeChecked();
   const shared = await page.evaluate(() => (window as any).__shares); expect(shared.length).toBe(1); expect(shared[0].keys).toEqual(["files"]); expect(JSON.parse(shared[0].file).format).toBe("codabridge-sealed"); expect(shared[0].file.includes("cbsk1-")).toBe(false); expect(downloads).toBe(0);
   await button(page, "Reply with my style").click(); await region(page).getByLabel("Message to include").fill("PUBLIC_TEST_ONLY_SEALED_NOTE");
-  await page.evaluate(() => document.dispatchEvent(new Event("visibilitychange"))); await expect(region(page).getByLabel("Message to include")).toHaveValue("PUBLIC_TEST_ONLY_SEALED_NOTE"); await expect(button(page, "Share sealed file")).toHaveCount(0);
+  await visibility(page, "hidden"); await visibility(page, "visible"); await expect(region(page).getByLabel("Message to include")).toHaveValue("PUBLIC_TEST_ONLY_SEALED_NOTE"); await expect(button(page, "Share sealed file")).toHaveCount(0);
+});
+
+for (const after of ["hide", "hidden document", "workspace navigation", "lock", "replacement"] as const) test(`delayed clipboard rejection after ${after} cannot reveal, select or restore stale feedback`, async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "clipboard", { value: { writeText: () => new Promise<void>((_, reject) => {
+      (window as any).__rejectCopy = () => reject(new DOMException("PUBLIC TEST ONLY denial", "NotAllowedError"));
+    }) } });
+  });
+  await prepareDisplayedKey(page); await region(page).getByLabel("I have saved the opening key").check();
+  await button(page, "Reveal opening key").click(); await button(page, "Copy opening key").click();
+  await expect.poll(() => page.evaluate(() => typeof (window as any).__rejectCopy)).toBe("function");
+  if (after === "hide") await button(page, "Hide opening key").click();
+  if (after === "hidden document") { await visibility(page, "hidden"); await visibility(page, "visible"); }
+  if (after === "workspace navigation") { await workspaceView(page, "Listen"); await workspaceView(page, "Exchange"); }
+  if (after === "lock") await button(page, "Lock and forget key").click();
+  if (after === "replacement") {
+    await open(page, await readFile("docs/sealed-coda-v1/desktop/A1-B1-A2.PUBLIC-TEST-ONLY.json")); await accept(page);
+    await button(page, "Seal this finalized exchange").click(); await button(page, "Prepare sealed file").click();
+    await expect(region(page).getByLabel("Opening key", { exact: true })).toBeVisible();
+  }
+  const before = await region(page).locator('[role="status"], [role="alert"]').allTextContents();
+  await page.evaluate(async () => { (window as any).__rejectCopy(); await new Promise(r => setTimeout(r, 0)); });
+  expect(await region(page).locator('[role="status"], [role="alert"]').allTextContents()).toEqual(before);
+  expect(await region(page).innerText()).not.toContain("Clipboard copy was unavailable");
+  expect(await region(page).innerText()).not.toContain("Opening key copied");
+  const shown = region(page).getByLabel("Opening key", { exact: true });
+  if (after === "lock") await expect(shown).toHaveCount(0);
+  else {
+    await expect(shown).toHaveAttribute("type", "password");
+    expect(await shown.evaluate((n: HTMLInputElement) => n.selectionStart === n.selectionEnd)).toBe(true);
+    if (after === "replacement") await expect(region(page).getByLabel("I have saved the opening key")).not.toBeChecked();
+    else await expect(region(page).getByLabel("I have saved the opening key")).toBeChecked();
+  }
+});
+
+test("simulated hidden/visible document preserves envelope, prepared bytes, matching key, acknowledgement and unfinished reply", async ({ page }, info) => {
+  await prepareDisplayedKey(page);
+  const shown = region(page).getByLabel("Opening key", { exact: true }), saved = region(page).getByLabel("I have saved the opening key");
+  const key = await shown.inputValue();
+  await button(page, "Reveal opening key").click(); await visibility(page, "hidden"); await expect(shown).toHaveAttribute("type", "password");
+  await visibility(page, "visible"); await expect(shown).toHaveAttribute("type", "password");
+  await expect(saved).not.toBeChecked(); await expect(button(page, "Download sealed file")).toBeDisabled();
+  expect(await shown.inputValue() === key).toBe(true);
+  await saved.check();
+  const dir = `test-results/sealed-key-display/${info.project.name}`; await mkdir(dir, { recursive: true });
+  const before = await download(page, `${dir}/visibility-before.coda.sealed.json`);
+  await button(page, "Reveal opening key").click(); await visibility(page, "hidden"); await visibility(page, "visible");
+  await expect(shown).toHaveAttribute("type", "password"); await expect(saved).toBeChecked();
+  const after = await download(page, `${dir}/visibility-after.coda.sealed.json`);
+  expect(after.bytes.equals(before.bytes)).toBe(true); expect(decryptArtifact(after.bytes, key).equals(originalPlain)).toBe(true);
+  expect(await shown.inputValue() === key).toBe(true); await expect(region(page)).toHaveAttribute("data-mode", "private");
+  await button(page, "Reply with my style").click(); await region(page).getByLabel("Message to include").fill("PUBLIC TEST ONLY unfinished visibility note");
+  const turns = await region(page).getByTestId("exchange-turn").evaluateAll(nodes => nodes.map(n => n.getAttribute("data-digest")));
+  await visibility(page, "hidden"); await visibility(page, "visible");
+  await expect(region(page).getByLabel("Message to include")).toHaveValue("PUBLIC TEST ONLY unfinished visibility note");
+  expect(await region(page).getByTestId("exchange-turn").evaluateAll(nodes => nodes.map(n => n.getAttribute("data-digest")))).toEqual(turns);
+  await button(page, "Cancel outgoing draft").click(); await accept(page);
+  expect(await shown.inputValue() === key).toBe(true); await expect(saved).toBeChecked(); await expect(shown).toHaveAttribute("type", "password");
+  const resumed = await download(page, `${dir}/visibility-after-reply.coda.sealed.json`); expect(resumed.bytes.equals(before.bytes)).toBe(true);
+});
+
+test("simulated document hiding during encryption remasks display without cancelling preparation", async ({ page }) => {
+  await entry(page); await open(page, originalPlain); await button(page, "Seal this finalized exchange").click();
+  await page.evaluate(() => {
+    const encrypt = crypto.subtle.encrypt.bind(crypto.subtle);
+    crypto.subtle.encrypt = async (...args) => { await new Promise<void>(r => { (window as any).__finishEncrypt = r; }); return encrypt(...args); };
+  });
+  await button(page, "Prepare sealed file").click(); await expect.poll(() => page.evaluate(() => typeof (window as any).__finishEncrypt)).toBe("function");
+  await visibility(page, "hidden"); await expect(region(page)).toHaveAttribute("data-operation", "sealing");
+  await page.evaluate(() => (window as any).__finishEncrypt());
+  await expect(region(page).getByLabel("Opening key", { exact: true })).toHaveAttribute("type", "password");
+  await visibility(page, "visible"); await expect(region(page)).toHaveAttribute("data-mode", "private");
+  await expect(region(page)).toHaveAttribute("data-operation", "idle"); await expect(region(page).getByLabel("I have saved the opening key")).not.toBeChecked();
 });
 
 for (const failure of ["rng", "encrypt", "unsupported"] as const) test(`private ${failure} failure keeps draft/history and never prepares plaintext fallback`, async ({ page }) => {
@@ -337,6 +443,7 @@ for (const outcome of ["success", "rejected", "unsupported"] as const) test(`pri
   if (outcome === "success") {
     await button(page, "Create a new seal").click(); await button(page, "Copy opening key").click();
     await expect(region(page).getByRole("status").first()).toContainText("Opening key copied");
+    await expect(region(page).getByLabel("Opening key", { exact: true })).toHaveAttribute("type", "password");
     expect(await region(page).getByLabel("Opening key", { exact: true }).evaluate((n: HTMLInputElement) => { const same = n.value === (window as any).__publicCopiedKey; delete (window as any).__publicCopiedKey; return same; })).toBe(true);
     await expect(region(page).getByLabel("I have saved the opening key")).not.toBeChecked(); await expect(button(page, "Download sealed file")).toBeDisabled();
   }

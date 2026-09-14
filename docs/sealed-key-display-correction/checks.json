@@ -1,0 +1,174 @@
+{
+  "scope": "Key-display correction only; historical execution logs are unchanged",
+  "commands": [
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:test:browser",
+        "--",
+        "--max-failures=1"
+      ],
+      "exitCode": 0,
+      "seconds": 53.161,
+      "log": "checks/browser-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:test:browser",
+        "--",
+        "--max-failures=1"
+      ],
+      "exitCode": 0,
+      "seconds": 51.804,
+      "log": "checks/browser.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 9.464,
+      "log": "checks/build.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 0.532,
+      "log": "checks/lint-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 0.393,
+      "log": "checks/lint.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "python3",
+        "docs/sealed-key-display-correction/verify-preservation.py"
+      ],
+      "exitCode": 0,
+      "seconds": 0.552,
+      "log": "checks/preservation-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "python3",
+        "docs/sealed-key-display-correction/verify-preservation.py"
+      ],
+      "exitCode": 0,
+      "seconds": 0.571,
+      "log": "checks/preservation.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "sealed:test"
+      ],
+      "exitCode": 0,
+      "seconds": 0.711,
+      "log": "checks/sealed-tests.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "node",
+        "--experimental-strip-types",
+        "docs/sealed-coda-v1/check-served.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 0.26,
+      "log": "checks/served-build.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 8.517,
+      "log": "checks/typecheck-final.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 4.323,
+      "log": "checks/typecheck.txt",
+      "openingCodesRedacted": 0
+    },
+    {
+      "command": [
+        "env",
+        "-u",
+        "OPENAI_API_KEY",
+        "npm",
+        "test"
+      ],
+      "exitCode": 0,
+      "seconds": 5.221,
+      "log": "checks/unit-tests.txt",
+      "openingCodesRedacted": 0
+    }
+  ]
+}
