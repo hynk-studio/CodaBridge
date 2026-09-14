@@ -1,0 +1,6 @@
+{
+  "identity": "TEST ONLY fixed fixture, encoded and hashed independently by Python stdlib",
+  "fileSha256": "9f20419decd26e333c05544bb4d3c038142f401218954b1a68fdb50c5dfde8f2",
+  "payloadSha256": "dc16607b7cb14dffd73f516143586ec826b87d75b06f260e36dfbac2bd3b4f49",
+  "turnSha256": "d601ea714dbc24ba10f40a8e32d034d87bc56100b77ff61b91971380c508906c"
+}

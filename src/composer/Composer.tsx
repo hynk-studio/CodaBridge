@@ -46,103 +46,14 @@ import type { ComposerRequest, ComposerResult } from "./contract.ts";
 import Notice, { useNotice } from "../Notice.tsx";
 import "./composer.css";
 import ObservedReference from "../atlas/ObservedReference.tsx";
+import { Pattern, NumberEdit } from "./TimingControls.tsx";
+import { copyComposerTiming, type Phrase } from "../exchange/model.ts";
 
 export interface ComposerHandle {
   makeVersion(sourceId: string): void;
   leave(): void;
-}
-function Pattern({ block, label }: { block: Block; label: string }) {
-  return (
-    <svg
-      viewBox="0 0 640 100"
-      role="img"
-      aria-label={label}
-      className="block-pattern"
-    >
-      <line
-        x1="18"
-        x2="622"
-        y1="58"
-        y2="58"
-        stroke="currentColor"
-        opacity="0.3"
-      />
-      {block.times.map((t, i) => (
-        <g key={i}>
-          <line
-            x1={18 + (t / span(block)) * 604}
-            x2={18 + (t / span(block)) * 604}
-            y1="36"
-            y2="79"
-            stroke="currentColor"
-            strokeWidth="3"
-          />
-          <circle
-            cx={18 + (t / span(block)) * 604}
-            cy="58"
-            r="6"
-            fill="currentColor"
-          />
-          <text
-            x={18 + (t / span(block)) * 604}
-            y="20"
-            textAnchor="middle"
-            fill="currentColor"
-            fontSize="15"
-          >
-            {i + 1}
-          </text>
-        </g>
-      ))}
-    </svg>
-  );
-}
-function NumberEdit({
-  label,
-  value,
-  min,
-  max,
-  onCommit,
-  button = "Set",
-  hint,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  onCommit: (value: number) => void;
-  button?: string;
-  hint?: (value: number) => string;
-}) {
-  const [text, setText] = useState(String(Number(value.toFixed(6))));
-  useEffect(() => setText(String(Number(value.toFixed(6)))), [value]);
-  return (
-    <form
-      className="number-edit"
-      onSubmit={(e) => {
-        e.preventDefault();
-        onCommit(text.trim() ? Number(text) : NaN);
-      }}
-    >
-      <label>
-        {label}
-        <input
-          aria-label={label}
-          type="number"
-          required
-          min={min}
-          max={max}
-          step="any"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-      </label>
-      <button type="submit">{button}</button>
-      {hint && (
-        <p className="number-hint">{hint(text.trim() ? Number(text) : NaN)}</p>
-      )}
-    </form>
-  );
+  hasDraft(): boolean;
+  copyTiming(scope: "selected" | "phrase"): Phrase | null;
 }
 const score = (comparison: ReturnType<typeof compareTiming>) =>
   comparison.status === "comparable"
@@ -164,13 +75,15 @@ function initialProject() {
 const Composer = forwardRef<
   ComposerHandle,
   {
+    onTransmission: (phrase: Phrase) => void;
     onExample: (id: string) => void;
     stopField: () => void;
     fieldSelection: string;
     workspaceActive: boolean;
     onExploreAtlas: (clickCount: number, sourceLine?: number) => void;
   }
->(function Composer({ onExample, stopField, fieldSelection, workspaceActive, onExploreAtlas }, ref) {
+>(function Composer({ onTransmission, onExample, stopField, fieldSelection, workspaceActive, onExploreAtlas }, ref) {
+  const [transmitWhole, setTransmitWhole] = useState(false);
   const [panel, setPanel] = useState<"edit" | "compare" | "save">("edit");
   const [initial] = useState(initialProject);
   const [history, setHistory] = useState<History | null>(
@@ -340,6 +253,8 @@ const Composer = forwardRef<
   }
   useImperativeHandle(ref, () => ({
     makeVersion,
+    hasDraft: () => Boolean(historyRef.current),
+    copyTiming: scope => historyRef.current ? copyComposerTiming(historyRef.current.present, activeId, scope) : null,
     leave: () => {
       finishText();
       cancel();
@@ -1290,6 +1205,13 @@ const Composer = forwardRef<
                 <button onClick={() => void exportFile("json")}>
                   Download project JSON
                 </button>
+              </div>
+              <div className="transmission-entry">
+                <h4>Send a personal coda</h4>
+                <p>Copy the selected timing into Exchange, then write a separate message.</p>
+                <label><input type="checkbox" checked={transmitWhole} onChange={e => setTransmitWhole(e.target.checked)} /> Include the whole phrase</label>
+                <button onClick={() => attempt(() => onTransmission(copyComposerTiming(draft, active.id, transmitWhole ? "phrase" : "selected")))}>Make a transmission</button>
+                <small>Creator text, codebook and saved analysis stay in Composer.</small>
               </div>
               <div className="coda-card" data-testid="coda-card">
                 <span className="eyebrow">CodaBridge / Coda Card</span>

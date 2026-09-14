@@ -1,0 +1,377 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test
+
+
+Running 126 tests using 1 worker
+
+(node:4198) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [desktop-chromium] › tests/browser/atlas.spec.ts:32:1 › full Atlas journey: current comparison, actual downloads, whole reconstruction and preserved private work (6.6s)
+  ✓    2 [desktop-chromium] › tests/browser/atlas.spec.ts:126:1 › Atlas keyboard, 320px enlarged text, actual sorting, sparse and numeric alternatives (5.0s)
+  ✓    3 [desktop-chromium] › tests/browser/atlas.spec.ts:155:1 › TEST ONLY failed loading/hash/size responses show no results and support explicit retry (2.9s)
+  ✓    4 [desktop-chromium] › tests/browser/atlas.spec.ts:173:1 › TEST ONLY delayed archive cannot bind a comparison to an old selected block (2.2s)
+  ✓    5 [desktop-chromium] › tests/browser/atlas.spec.ts:189:1 › TEST ONLY unavailable audio leaves sourced inspection and downloads usable (1.3s)
+  ✓    6 [desktop-chromium] › tests/browser/atlas.spec.ts:197:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals (3.4s)
+  ✓    7 [desktop-chromium] › tests/browser/exchange.spec.ts:88:1 › actual isolated A1/B1/A2 file round trip preserves both private Composer histories; cold reopen and seed reply (13.8s)
+  ✓    8 [desktop-chromium] › tests/browser/exchange.spec.ts:203:1 › full phrase copying, saved analysis, outgoing cancel and navigation preserve personal work (1.2s)
+  ✓    9 [desktop-chromium] › tests/browser/exchange.spec.ts:224:1 › imports are atomic, duplicate snapshots preserve unfinished text, alternatives require explicit replacement (898ms)
+  ✓   10 [desktop-chromium] › tests/browser/exchange.spec.ts:259:1 › late file reads, hashes and resumed audio cannot resurrect obsolete work after replacement/navigation (964ms)
+  ✓   11 [desktop-chromium] › tests/browser/exchange.spec.ts:303:1 › TEST ONLY native-share bridge checks the actual File; cancellation/rejection never download or duplicate turns (716ms)
+  ✓   12 [desktop-chromium] › tests/browser/exchange.spec.ts:333:1 › 320px/enlarged-text/keyboard controls and audio failure keep messages, timing and downloads usable (806ms)
+  ✓   13 [desktop-chromium] › tests/browser/exchange.spec.ts:359:1 › Exchange shares the exclusive sound owner and preserves Atlas comparison and both Prediction Reveal resets (3.2s)
+  ✓   14 [desktop-chromium] › tests/browser/exchange.spec.ts:399:1 › eight-turn files remain readable and downloadable at the reply limit (553ms)
+  ✓   15 [desktop-chromium] › tests/browser/investigation.spec.ts:69:1 › mixed provider commentary remains pending until the grounded final answer arrives (620ms)
+  ✓   16 [desktop-chromium] › tests/browser/investigation.spec.ts:121:1 › grounded UI completes via mock provider transport and exports actual tool evidence (1.0s)
+  ✓   17 [desktop-chromium] › tests/browser/investigation.spec.ts:203:1 › selection change while pending obsoletes the result even if transport completes late (690ms)
+  ✓   18 [desktop-chromium] › tests/browser/investigation.spec.ts:243:1 › failure and timeout stay explicit and listening remains available (658ms)
+  ✓   19 [desktop-chromium] › tests/browser/investigation.spec.ts:273:1 › private HTTP diagnostic stays outside the public UI, response and downloaded evidence (TEST ONLY transport) (571ms)
+  ✓   20 [desktop-chromium] › tests/browser/investigation.spec.ts:327:1 › no comparable alternative is visible and changing a completed selection clears export (844ms)
+  ✓   21 [desktop-chromium] › tests/browser/listening.spec.ts:53:1 › key-free listening pack delivers all six exact WAVs and a restorable project; playback is exclusive (1.3s)
+  ✓   22 [desktop-chromium] › tests/browser/prediction.spec.ts:18:1 › actual offline Prediction journey: cutoff, compare, Reveal, lagged results, delivered JSON and preserved Composer (2.6s)
+  ✓   23 [desktop-chromium] › tests/browser/prediction.spec.ts:111:1 › Prediction remains usable at 320 px and 200% text enlargement (738ms)
+  ✓   24 [desktop-chromium] › tests/browser/prediction.spec.ts:127:1 › TEST ONLY failed, insufficient, signed, zero and missing-uncertainty headlines are explicit (3.9s)
+  ✓   25 [desktop-chromium] › tests/browser/prediction.spec.ts:169:1 › TEST ONLY loading and report failures do not fabricate successful delivery (718ms)
+  ✓   26 [desktop-chromium] › tests/browser/research-prediction.spec.ts:21:1 › actual v0.2: all endpoints, Reveal/reset, controls, delivered JSON and Composer/descriptive preservation (4.1s)
+  ✓   27 [desktop-chromium] › tests/browser/research-prediction.spec.ts:132:1 › v0.2 remains usable at 320 px with 200% text, including all result units and scrolling root tables (1.0s)
+  ✓   28 [desktop-chromium] › tests/browser/research-prediction.spec.ts:153:1 › TEST ONLY failed endpoints and loading/download failures never fabricate a score or successful delivery (807ms)
+  ✓   29 [desktop-chromium] › tests/browser/workspace.spec.ts:5:1 › real audio decodes, plays exclusively, pauses, and comparison/export follow selection (1.4s)
+  ✓   30 [desktop-chromium] › tests/browser/workspace.spec.ts:178:1 › missing audio is explicit, retry recovers, and the other recording remains usable (524ms)
+  ✓   31 [desktop-chromium] › tests/browser/workspace.spec.ts:209:1 › wrong audio bytes fail integrity checks instead of displaying a mismatched waveform (287ms)
+  ✓   32 [desktop-chromium] › tests/browser/workspace.spec.ts:227:1 › an unsupported decoder produces a usable error state (420ms)
+  ✓   33 [desktop-chromium] › tests/browser/workspace.spec.ts:250:1 › 320 px layout and enlarged text keep controls reachable without page overflow (338ms)
+(node:11950) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   34 [desktop-chromium] › tests/browser/composer.spec.ts:72:1 › focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo (3.3s)
+  ✓   35 [desktop-chromium] › tests/browser/composer.spec.ts:206:3 › TEST ONLY numeric Composer prose supported: tool loop, unverified UI and separate downloaded evidence (2.9s)
+  ✓   36 [desktop-chromium] › tests/browser/composer.spec.ts:206:3 › TEST ONLY numeric Composer prose incorrect-limitation: tool loop, unverified UI and separate downloaded evidence (2.7s)
+  ✓   37 [desktop-chromium] › tests/browser/composer.spec.ts:311:1 › late TEST ONLY numeric Composer investigation cannot describe or enter the export of a changed draft (2.6s)
+  ✓   38 [desktop-chromium] › tests/browser/composer.spec.ts:377:3 › sequential Phrase title typing is one undo transaction and rejects a pending TEST ONLY proposal (2.8s)
+  ✓   39 [desktop-chromium] › tests/browser/composer.spec.ts:377:3 › sequential My intention typing is one undo transaction and rejects a pending TEST ONLY investigation (2.7s)
+  ✓   40 [desktop-chromium] › tests/browser/composer.spec.ts:377:3 › sequential Meaning I assign typing is one undo transaction and rejects a pending TEST ONLY proposal (2.7s)
+  ✓   41 [desktop-chromium] › tests/browser/composer.spec.ts:450:1 › entry navigation preserves a draft and the secondary download is explicitly A/B evidence (1.8s)
+  ✓   42 [desktop-chromium] › tests/browser/composer.spec.ts:496:1 › selected-block audition uses its own schedule, coordinates playback, and quick edits explain the timing (2.9s)
+  ✓   43 [desktop-chromium] › tests/browser/composer.spec.ts:593:1 › local complete journey: field audio, independent edits, playback, comparison, codebook and real downloads (4.9s)
+  ✓   44 [desktop-chromium] › tests/browser/composer.spec.ts:873:1 › TEST ONLY running-app co-edit and model-requested retrieval demonstration (18.1s)
+  ✓   45 [desktop-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after edit (1.7s)
+  ✓   46 [desktop-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after undo (1.9s)
+  ✓   47 [desktop-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after block selection (1.6s)
+  ✓   48 [desktop-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after field selection (1.4s)
+  ✓   49 [desktop-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after import (1.6s)
+  ✓   50 [desktop-chromium] › tests/browser/composer.spec.ts:1082:1 › invalid TEST ONLY proposal and untrusted imports cannot alter the current draft or execute text (1.6s)
+  ✓   51 [desktop-chromium] › tests/browser/composer.spec.ts:1144:1 › audio and storage failure leave a keyboard-editable, exportable phrase (1.2s)
+  ✓   52 [desktop-chromium] › tests/browser/composer.spec.ts:1171:1 › editing stops scheduled synthetic audio and field playback coordinates in both directions (2.1s)
+  ✓   53 [desktop-chromium] › tests/browser/composer.spec.ts:1208:1 › mobile, enlarged text and unequal-count seed keep accessible controls and explicit limits (985ms)
+(node:12152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   54 [desktop-chromium] › tests/browser/context.spec.ts:56:1 › focused follow-up: Lab answer opens once without moving focus or scroll, and failure preserves the comparison (2.2s)
+  ✓   55 [desktop-chromium] › tests/browser/context.spec.ts:130:1 › TEST ONLY connected journey: preserve Composer, hear annotation timing, compare controls, real tool dispatch and delivered investigation (12.1s)
+  ✓   56 [desktop-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after offset (1.0s)
+  ✓   57 [desktop-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after row (1.1s)
+  ✓   58 [desktop-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after question (1.0s)
+  ✓   59 [desktop-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after navigation (1.1s)
+  ✓   60 [desktop-chromium] › tests/browser/context.spec.ts:414:1 › ordinary disabled Lab: no model requests/autoplay, untrusted question is plain text, audio failure still permits downloads (1.2s)
+(node:12231) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   61 [desktop-chromium] › tests/browser/polish.spec.ts:11:1 › visible local journey: separate workspaces, all scores, saved evidence and continuous editing (1.2m)
+  ✓   62 [desktop-chromium] › tests/browser/polish.spec.ts:129:1 › progression stops hidden playback, retains keyboard focus, and fits narrow enlarged layouts (2.0s)
+  ✘   63 [desktop-chromium] › tests/browser/polish.spec.ts:165:1 › responsive navigation keeps complete labels, focus, creation and playback context at enlarged text (782ms)
+(node:12874) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   64 [mobile-chromium] › tests/browser/atlas.spec.ts:32:1 › full Atlas journey: current comparison, actual downloads, whole reconstruction and preserved private work (2.7s)
+  ✓   65 [mobile-chromium] › tests/browser/atlas.spec.ts:126:1 › Atlas keyboard, 320px enlarged text, actual sorting, sparse and numeric alternatives (1.9s)
+  ✓   66 [mobile-chromium] › tests/browser/atlas.spec.ts:155:1 › TEST ONLY failed loading/hash/size responses show no results and support explicit retry (1.4s)
+  ✓   67 [mobile-chromium] › tests/browser/atlas.spec.ts:173:1 › TEST ONLY delayed archive cannot bind a comparison to an old selected block (1.2s)
+  ✓   68 [mobile-chromium] › tests/browser/atlas.spec.ts:189:1 › TEST ONLY unavailable audio leaves sourced inspection and downloads usable (834ms)
+  ✓   69 [mobile-chromium] › tests/browser/atlas.spec.ts:197:1 › Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals (2.2s)
+  ✓   70 [mobile-chromium] › tests/browser/exchange.spec.ts:88:1 › actual isolated A1/B1/A2 file round trip preserves both private Composer histories; cold reopen and seed reply (11.8s)
+  ✓   71 [mobile-chromium] › tests/browser/exchange.spec.ts:203:1 › full phrase copying, saved analysis, outgoing cancel and navigation preserve personal work (869ms)
+  ✓   72 [mobile-chromium] › tests/browser/exchange.spec.ts:224:1 › imports are atomic, duplicate snapshots preserve unfinished text, alternatives require explicit replacement (649ms)
+  ✓   73 [mobile-chromium] › tests/browser/exchange.spec.ts:259:1 › late file reads, hashes and resumed audio cannot resurrect obsolete work after replacement/navigation (586ms)
+  ✓   74 [mobile-chromium] › tests/browser/exchange.spec.ts:303:1 › TEST ONLY native-share bridge checks the actual File; cancellation/rejection never download or duplicate turns (601ms)
+  ✓   75 [mobile-chromium] › tests/browser/exchange.spec.ts:333:1 › 320px/enlarged-text/keyboard controls and audio failure keep messages, timing and downloads usable (703ms)
+  ✓   76 [mobile-chromium] › tests/browser/exchange.spec.ts:359:1 › Exchange shares the exclusive sound owner and preserves Atlas comparison and both Prediction Reveal resets (2.1s)
+  ✓   77 [mobile-chromium] › tests/browser/exchange.spec.ts:399:1 › eight-turn files remain readable and downloadable at the reply limit (379ms)
+  ✓   78 [mobile-chromium] › tests/browser/investigation.spec.ts:69:1 › mixed provider commentary remains pending until the grounded final answer arrives (555ms)
+  ✓   79 [mobile-chromium] › tests/browser/investigation.spec.ts:121:1 › grounded UI completes via mock provider transport and exports actual tool evidence (853ms)
+  ✓   80 [mobile-chromium] › tests/browser/investigation.spec.ts:203:1 › selection change while pending obsoletes the result even if transport completes late (640ms)
+  ✓   81 [mobile-chromium] › tests/browser/investigation.spec.ts:243:1 › failure and timeout stay explicit and listening remains available (566ms)
+  ✓   82 [mobile-chromium] › tests/browser/investigation.spec.ts:273:1 › private HTTP diagnostic stays outside the public UI, response and downloaded evidence (TEST ONLY transport) (405ms)
+  ✓   83 [mobile-chromium] › tests/browser/investigation.spec.ts:327:1 › no comparable alternative is visible and changing a completed selection clears export (653ms)
+  ✓   84 [mobile-chromium] › tests/browser/listening.spec.ts:53:1 › key-free listening pack delivers all six exact WAVs and a restorable project; playback is exclusive (1.2s)
+  ✓   85 [mobile-chromium] › tests/browser/prediction.spec.ts:18:1 › actual offline Prediction journey: cutoff, compare, Reveal, lagged results, delivered JSON and preserved Composer (1.7s)
+  ✓   86 [mobile-chromium] › tests/browser/prediction.spec.ts:111:1 › Prediction remains usable at 320 px and 200% text enlargement (595ms)
+  ✓   87 [mobile-chromium] › tests/browser/prediction.spec.ts:127:1 › TEST ONLY failed, insufficient, signed, zero and missing-uncertainty headlines are explicit (2.7s)
+  ✓   88 [mobile-chromium] › tests/browser/prediction.spec.ts:169:1 › TEST ONLY loading and report failures do not fabricate successful delivery (566ms)
+  ✓   89 [mobile-chromium] › tests/browser/research-prediction.spec.ts:21:1 › actual v0.2: all endpoints, Reveal/reset, controls, delivered JSON and Composer/descriptive preservation (3.1s)
+  ✓   90 [mobile-chromium] › tests/browser/research-prediction.spec.ts:132:1 › v0.2 remains usable at 320 px with 200% text, including all result units and scrolling root tables (894ms)
+  ✓   91 [mobile-chromium] › tests/browser/research-prediction.spec.ts:153:1 › TEST ONLY failed endpoints and loading/download failures never fabricate a score or successful delivery (617ms)
+  ✓   92 [mobile-chromium] › tests/browser/workspace.spec.ts:5:1 › real audio decodes, plays exclusively, pauses, and comparison/export follow selection (1.2s)
+  ✓   93 [mobile-chromium] › tests/browser/workspace.spec.ts:178:1 › missing audio is explicit, retry recovers, and the other recording remains usable (484ms)
+  ✓   94 [mobile-chromium] › tests/browser/workspace.spec.ts:209:1 › wrong audio bytes fail integrity checks instead of displaying a mismatched waveform (235ms)
+  ✓   95 [mobile-chromium] › tests/browser/workspace.spec.ts:227:1 › an unsupported decoder produces a usable error state (300ms)
+  ✓   96 [mobile-chromium] › tests/browser/workspace.spec.ts:250:1 › 320 px layout and enlarged text keep controls reachable without page overflow (338ms)
+(node:12979) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   97 [mobile-chromium] › tests/browser/composer.spec.ts:72:1 › focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo (31.3s)
+(node:13011) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   98 [mobile-chromium] › tests/browser/composer.spec.ts:206:3 › TEST ONLY numeric Composer prose supported: tool loop, unverified UI and separate downloaded evidence (2.1s)
+  ✓   99 [mobile-chromium] › tests/browser/composer.spec.ts:206:3 › TEST ONLY numeric Composer prose incorrect-limitation: tool loop, unverified UI and separate downloaded evidence (1.9s)
+  ✓  100 [mobile-chromium] › tests/browser/composer.spec.ts:311:1 › late TEST ONLY numeric Composer investigation cannot describe or enter the export of a changed draft (1.9s)
+  ✓  101 [mobile-chromium] › tests/browser/composer.spec.ts:377:3 › sequential Phrase title typing is one undo transaction and rejects a pending TEST ONLY proposal (1.8s)
+  ✓  102 [mobile-chromium] › tests/browser/composer.spec.ts:377:3 › sequential My intention typing is one undo transaction and rejects a pending TEST ONLY investigation (2.0s)
+  ✓  103 [mobile-chromium] › tests/browser/composer.spec.ts:377:3 › sequential Meaning I assign typing is one undo transaction and rejects a pending TEST ONLY proposal (1.8s)
+  ✘  104 [mobile-chromium] › tests/browser/composer.spec.ts:450:1 › entry navigation preserves a draft and the secondary download is explicitly A/B evidence (33.5s)
+(node:13070) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  105 [mobile-chromium] › tests/browser/composer.spec.ts:496:1 › selected-block audition uses its own schedule, coordinates playback, and quick edits explain the timing (1.7s)
+  ✓  106 [mobile-chromium] › tests/browser/composer.spec.ts:593:1 › local complete journey: field audio, independent edits, playback, comparison, codebook and real downloads (3.0s)
+  ✓  107 [mobile-chromium] › tests/browser/composer.spec.ts:873:1 › TEST ONLY running-app co-edit and model-requested retrieval demonstration (2.7s)
+  ✓  108 [mobile-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after edit (1.3s)
+  ✓  109 [mobile-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after undo (1.3s)
+  ✓  110 [mobile-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after block selection (1.1s)
+  ✓  111 [mobile-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after field selection (876ms)
+  ✓  112 [mobile-chromium] › tests/browser/composer.spec.ts:1029:3 › late TEST ONLY proposal is discarded after import (1.2s)
+  ✓  113 [mobile-chromium] › tests/browser/composer.spec.ts:1082:1 › invalid TEST ONLY proposal and untrusted imports cannot alter the current draft or execute text (1.2s)
+  ✓  114 [mobile-chromium] › tests/browser/composer.spec.ts:1144:1 › audio and storage failure leave a keyboard-editable, exportable phrase (893ms)
+  ✓  115 [mobile-chromium] › tests/browser/composer.spec.ts:1171:1 › editing stops scheduled synthetic audio and field playback coordinates in both directions (1.3s)
+  ✓  116 [mobile-chromium] › tests/browser/composer.spec.ts:1208:1 › mobile, enlarged text and unequal-count seed keep accessible controls and explicit limits (851ms)
+(node:13116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  117 [mobile-chromium] › tests/browser/context.spec.ts:56:1 › focused follow-up: Lab answer opens once without moving focus or scroll, and failure preserves the comparison (1.7s)
+  ✘  118 [mobile-chromium] › tests/browser/context.spec.ts:130:1 › TEST ONLY connected journey: preserve Composer, hear annotation timing, compare controls, real tool dispatch and delivered investigation (33.3s)
+(node:13222) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  119 [mobile-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after offset (32.8s)
+(node:13283) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  120 [mobile-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after row (30.3s)
+
+
+  1) [desktop-chromium] › tests/browser/polish.spec.ts:165:1 › responsive navigation keeps complete labels, focus, creation and playback context at enlarged text
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Array [
+        "Listen",
+        "Composer",
+        "Context Lab",
+    +   "Exchange",
+      ]
+
+      180 |   await expect(switcher).toBeFocused();
+      181 |   await expect(switcher).toHaveValue("composer");
+    > 182 |   expect(await switcher.locator("option").allTextContents()).toEqual(["Listen", "Composer", "Context Lab"]);
+          |                                                              ^
+      183 |   // The native control is keyboard operable; changing layout alone did not navigate.
+      184 |   expect((await stored()).draft).toEqual(creation.draft);
+      185 |   // macOS headless Chromium does not expose its native arrow-key popup to
+        at /Users/hynk/code/CodaBridge/tests/browser/polish.spec.ts:182:62
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/polish-responsive-navigati-43297-ck-context-at-enlarged-text-desktop-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/polish-responsive-navigati-43297-ck-context-at-enlarged-text-desktop-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/polish-responsive-navigati-43297-ck-context-at-enlarged-text-desktop-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/polish-responsive-navigati-43297-ck-context-at-enlarged-text-desktop-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/polish-responsive-navigati-43297-ck-context-at-enlarged-text-desktop-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile-chromium] › tests/browser/composer.spec.ts:72:1 › focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Context Lab', exact: true })
+
+
+      160 |   hold();
+      161 |   await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+    > 162 |   await page.getByRole("button", { name: "Context Lab", exact: true }).click();
+          |                                                                        ^
+      163 |   release();
+      164 |   await composerView(page, "compare");
+      165 |   await expect(result).toHaveCount(0);
+        at /Users/hynk/code/CodaBridge/tests/browser/composer.spec.ts:162:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/composer-focused-follow-up-63ef9-ly-returns-to-audition-Undo-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/composer-focused-follow-up-63ef9-ly-returns-to-audition-Undo-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/composer-focused-follow-up-63ef9-ly-returns-to-audition-Undo-mobile-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/composer-focused-follow-up-63ef9-ly-returns-to-audition-Undo-mobile-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/composer-focused-follow-up-63ef9-ly-returns-to-audition-Undo-mobile-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile-chromium] › tests/browser/composer.spec.ts:450:1 › entry navigation preserves a draft and the secondary download is explicitly A/B evidence
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Listen', exact: true })
+
+
+      466 |   await page
+      467 |     .getByRole("button", { name: "Listen", exact: true })
+    > 468 |     .click();
+          |      ^
+      469 |   await page
+      470 |     .getByRole("button", { name: "Open my Composer →", exact: true })
+      471 |     .click();
+        at /Users/hynk/code/CodaBridge/tests/browser/composer.spec.ts:468:6
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/composer-entry-navigation--1adeb--is-explicitly-A-B-evidence-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/composer-entry-navigation--1adeb--is-explicitly-A-B-evidence-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/composer-entry-navigation--1adeb--is-explicitly-A-B-evidence-mobile-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/composer-entry-navigation--1adeb--is-explicitly-A-B-evidence-mobile-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/composer-entry-navigation--1adeb--is-explicitly-A-B-evidence-mobile-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [mobile-chromium] › tests/browser/context.spec.ts:130:1 › TEST ONLY connected journey: preserve Composer, hear annotation timing, compare controls, real tool dispatch and delivered investigation
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Context Lab', exact: true })
+
+
+      179 |     "Playing",
+      180 |   );
+    > 181 |   await page.getByRole("button", { name: "Context Lab", exact: true }).click();
+          |                                                                        ^
+      182 |   const lab = page.locator(".context-lab");
+      183 |   await expect(lab).toBeVisible();
+      184 |   expect(await stored(page)).toEqual(before);
+        at /Users/hynk/code/CodaBridge/tests/browser/context.spec.ts:181:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/context-TEST-ONLY-connecte-c88ec-and-delivered-investigation-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/context-TEST-ONLY-connecte-c88ec-and-delivered-investigation-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/context-TEST-ONLY-connecte-c88ec-and-delivered-investigation-mobile-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/context-TEST-ONLY-connecte-c88ec-and-delivered-investigation-mobile-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/context-TEST-ONLY-connecte-c88ec-and-delivered-investigation-mobile-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [mobile-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after offset
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Context Lab', exact: true })
+
+
+      378 |     await page
+      379 |       .getByRole("button", { name: "Context Lab", exact: true })
+    > 380 |       .click();
+          |        ^
+      381 |     await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
+      382 |     await (await labView(page, "compare"))
+      383 |       .getByRole("button", {
+        at /Users/hynk/code/CodaBridge/tests/browser/context.spec.ts:380:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-offset-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-offset-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-offset-mobile-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-offset-mobile-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-offset-mobile-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [mobile-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after row
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Context Lab', exact: true })
+
+
+      378 |     await page
+      379 |       .getByRole("button", { name: "Context Lab", exact: true })
+    > 380 |       .click();
+          |        ^
+      381 |     await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
+      382 |     await (await labView(page, "compare"))
+      383 |       .getByRole("button", {
+        at /Users/hynk/code/CodaBridge/tests/browser/context.spec.ts:380:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-row-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-row-mobile-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-row-mobile-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/context-TEST-ONLY-late-Lab-response-is-obsolete-after-row-mobile-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    [desktop-chromium] › tests/browser/polish.spec.ts:165:1 › responsive navigation keeps complete labels, focus, creation and playback context at enlarged text
+    [mobile-chromium] › tests/browser/composer.spec.ts:72:1 › focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo
+    [mobile-chromium] › tests/browser/composer.spec.ts:450:1 › entry navigation preserves a draft and the secondary download is explicitly A/B evidence
+    [mobile-chromium] › tests/browser/context.spec.ts:130:1 › TEST ONLY connected journey: preserve Composer, hear annotation timing, compare controls, real tool dispatch and delivered investigation
+    [mobile-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after offset
+    [mobile-chromium] › tests/browser/context.spec.ts:365:3 › TEST ONLY late Lab response is obsolete after row
+  6 did not run
+  114 passed (7.8m)

@@ -1,4 +1,4 @@
-import { composerView, labView, disclosure } from "./navigation.ts";
+import { composerView, workspaceView, labView, disclosure } from "./navigation.ts";
 import { test, expect, type Page } from "@playwright/test";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { createWorker } from "../../server/worker.ts";
@@ -178,7 +178,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
   await expect(page.getByLabel("Synthetic playback status")).toContainText(
     "Playing",
   );
-  await page.getByRole("button", { name: "Context Lab", exact: true }).click();
+  await workspaceView(page, "Context Lab");
   const lab = page.locator(".context-lab");
   await expect(lab).toBeVisible();
   expect(await stored(page)).toEqual(before);
@@ -375,9 +375,7 @@ for (const change of ["offset", "row", "question", "navigation"])
       await gate;
     });
     await page.goto("/");
-    await page
-      .getByRole("button", { name: "Context Lab", exact: true })
-      .click();
+    await workspaceView(page, "Context Lab");
     await (await labView(page, "compare")).getByLabel("Duration assignment", { exact: true }).selectOption("1");
     await (await labView(page, "compare"))
       .getByRole("button", {
@@ -399,12 +397,10 @@ for (const change of ["offset", "row", "question", "navigation"])
         .getByLabel("Context question", { exact: true })
         .fill("An updated question");
     if (change === "navigation")
-      await page.getByRole("button", { name: "Composer", exact: true }).click();
+      await workspaceView(page, "Composer");
     release();
     if (change === "navigation")
-      await page
-        .getByRole("button", { name: "Context Lab", exact: true })
-        .click();
+      await workspaceView(page, "Context Lab");
     await expect(page.getByTestId("lab-result")).toHaveCount(0);
     const json = await download(page, "Download investigation JSON");
     expect(JSON.parse(json.bytes.toString()).generated).toBeNull();
@@ -425,7 +421,7 @@ test("ordinary disabled Lab: no model requests/autoplay, untrusted question is p
     });
   });
   await page.goto("/");
-  await page.getByRole("button", { name: "Context Lab", exact: true }).click();
+  await workspaceView(page, "Context Lab");
   await labView(page, "compare");
   await expect(
     page.getByRole("button", {

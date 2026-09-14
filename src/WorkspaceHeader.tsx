@@ -4,6 +4,7 @@ const workspaces = [
   ["listen", "Listen"],
   ["composer", "Composer"],
   ["lab", "Context Lab"],
+  ["exchange", "Exchange"],
 ] as const;
 export type Workspace = (typeof workspaces)[number][0];
 

@@ -1,0 +1,25 @@
+$ env -u OPENAI_API_KEY node --experimental-strip-types --test tests/exchange.test.ts
+✔ Exchange projection copies only chosen timing/current source, never private work or removed ancestry (10.632833ms)
+✔ Outgoing editing reuses atomic Composer operations and undo/redo without mutating its source (1.472041ms)
+✔ A1/B1/A2 snapshots are immutable, independently sourced, parent-linked and stable across downloads (22.600959ms)
+✔ Canonical encoding ignores object order/whitespace, retains Unicode and normalizes negative zero only (3.843833ms)
+✔ TEST ONLY fixed encoding fixture has independently recorded bytes and hashes (2.666875ms)
+✔ Checksums bind text, ordered blocks, arrangement and exact source references (24.079083ms)
+✔ Exact duplicate IDs, broken parents, cycles, reordering and role/exchange mismatches fail (15.551375ms)
+✔ Consistently rewritten labels/tied timestamps are not authentication or ordering authority (7.509041ms)
+✔ Arrangement edits change envelope identity without rewriting immutable turns (14.42375ms)
+✔ Malformed/version/protection/unknown/deep/prototype/duplicate-key/nonfinite input fails boundedly (2.958375ms)
+✔ Input byte cap applies before reading and to actual UTF-8 bytes; invalid UTF-8 fails (16.672667ms)
+✔ Text uses strict UTF-16 bounds, preserves whitespace and rejects controls/unpaired Unicode (0.674666ms)
+✔ Phrase dimensions/gaps/source and <=8 turn / <=120 second arrangement limits stay enforced (29.84925ms)
+✔ Independent hand-computable schedule/WAV checks use one lead/tail and no message metadata (30.803917ms)
+✔ All four pinned source credits fit the bounded WAV without being dropped (19.649916ms)
+✔ Generation cancellation prevents late reads/hashes from installing an obsolete snapshot (0.370083ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 444.866333
