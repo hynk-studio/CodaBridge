@@ -1,0 +1,12 @@
+$ env -u OPENAI_API_KEY npm run audit:metadata:history
+
+> codabridge@0.2.0 audit:metadata:history
+> node --experimental-strip-types scripts/check-metadata-history.ts
+
+{
+  "status": "Historical preservation verified from recorded Git objects; current application files are not checked",
+  "base": "b3fb7daaa6d851baf35b8224648c25d743ea466f",
+  "auditSnapshot": "821b0cd43d710c0f5f710cbece25257c5ae794fb",
+  "unchangedFiles": 462,
+  "checkedSnapshots": 2
+}

@@ -22,6 +22,9 @@ test("visible local journey: separate workspaces, all scores, saved evidence and
   // with no fixture, provider requests, or claim of human listening.
   const hold = async (ms = 1800) => { if (desktop) await page.waitForTimeout(ms); };
   const click = async (name: string, ms = 1800) => {
+    if (name === "Listen" || name === "Composer" || name === "Context Lab" || name === "Exchange") {
+      await workspaceView(page, name); await hold(ms); return;
+    }
     const target = page.getByRole("button", { name, exact: true });
     await target.scrollIntoViewIfNeeded();
     await hold(400);
@@ -55,7 +58,7 @@ test("visible local journey: separate workspaces, all scores, saved evidence and
   const edited = await stored();
   expect(edited.draft.blocks[0]).toEqual(seed.draft.blocks[0]);
   expect(edited.draft.blocks).toHaveLength(2);
-  await page.getByRole("button", { name: "Composer", exact: true }).click();
+  await workspaceView(page, "Composer");
   if (!desktop) await capture("composer");
   await click("Play whole phrase", 3200);
   await click("Stop", 1000);
@@ -179,17 +182,18 @@ test("responsive navigation keeps complete labels, focus, creation and playback 
   await expect(switcher).toBeVisible();
   await expect(switcher).toBeFocused();
   await expect(switcher).toHaveValue("composer");
-  expect(await switcher.locator("option").allTextContents()).toEqual(["Listen", "Composer", "Context Lab"]);
+  expect(await switcher.locator("option").allTextContents()).toEqual(["Listen", "Composer", "Context Lab", "Exchange"]);
   // The native control is keyboard operable; changing layout alone did not navigate.
   expect((await stored()).draft).toEqual(creation.draft);
   // macOS headless Chromium does not expose its native arrow-key popup to
-  // browser automation. Native typeahead exercises all three destinations.
-  for (const [key, value] of [["l", "listen"], ["c", "composer"], ["c", "lab"]]) {
+  // browser automation. Native typeahead exercises all four destinations.
+  for (const [key, value] of [["l", "listen"], ["c", "composer"], ["c", "lab"], ["e", "exchange"]]) {
     await switcher.press(key);
     await expect(switcher).toHaveValue(value);
     await expect(page.locator("#workspace")).toBeFocused();
   }
   await expect(page.locator("#workspace")).toBeFocused();
+  await workspaceView(page, "Context Lab");
   await expect(page.locator(".context-lab")).toBeVisible();
   await switcher.selectOption("composer");
   await switcher.focus();

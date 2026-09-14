@@ -1,0 +1,152 @@
+[
+  {
+    "command": "env -u OPENAI_API_KEY npm run typecheck",
+    "exitCode": 0,
+    "seconds": 6.128,
+    "log": "checks/typecheck.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm test",
+    "exitCode": 0,
+    "seconds": 7.672,
+    "log": "checks/unit-tests.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY node --experimental-strip-types --test tests/exchange.test.ts",
+    "exitCode": 0,
+    "seconds": 0.604,
+    "log": "checks/exchange-tests.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run data:verify",
+    "exitCode": 0,
+    "seconds": 0.96,
+    "log": "checks/data-verify.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run atlas:check",
+    "exitCode": 0,
+    "seconds": 1.02,
+    "log": "checks/atlas-check.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run atlas:verify",
+    "exitCode": 0,
+    "seconds": 2.391,
+    "log": "checks/atlas-verify.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run audit:metadata:history",
+    "exitCode": 0,
+    "seconds": 12.803,
+    "log": "checks/metadata-history.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run lint",
+    "exitCode": 0,
+    "seconds": 0.292,
+    "log": "checks/lint.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run test:server-build",
+    "exitCode": 0,
+    "seconds": 1.183,
+    "log": "checks/server-build-tests.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm test",
+    "exitCode": 0,
+    "seconds": 5.215,
+    "log": "checks/unit-tests-final.txt",
+    "phase": "after layout and navigation corrections"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY node --experimental-strip-types --test tests/exchange.test.ts",
+    "exitCode": 0,
+    "seconds": 0.391,
+    "log": "checks/exchange-tests-final.txt",
+    "phase": "after layout and navigation corrections"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run test:server-build",
+    "exitCode": 0,
+    "seconds": 2.362,
+    "log": "checks/server-build-tests-final.txt",
+    "phase": "after layout and navigation corrections"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run typecheck",
+    "log": "checks/typecheck-final.txt",
+    "exitCode": 0
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run lint",
+    "log": "checks/lint-final.txt",
+    "exitCode": 0
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run build",
+    "log": "checks/build.txt",
+    "exitCode": 0
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run test:browser",
+    "log": "checks/browser-initial.txt",
+    "exitCode": 130
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run test:browser -- tests/browser/exchange.spec.ts tests/browser/composer.spec.ts tests/browser/context.spec.ts tests/browser/polish.spec.ts --max-failures=1",
+    "log": "checks/browser-final.txt",
+    "exitCode": 0
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run test:browser -- tests/browser/exchange.spec.ts",
+    "log": "checks/exchange-browser-final.txt",
+    "exitCode": 0
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run exchange:verify -- docs/coda-exchange-v1/desktop/A1.coda.json docs/coda-exchange-v1/desktop/A1-B1.coda.json docs/coda-exchange-v1/desktop/A1-B1-A2.coda.json --wav docs/coda-exchange-v1/desktop/A1-B1-A2.wav",
+    "exitCode": 0,
+    "log": "checks/independent-desktop-python-3.9.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY analysis/dialogue-transfer/.venv/bin/python3 scripts/verify-exchange.py docs/coda-exchange-v1/desktop/A1.coda.json docs/coda-exchange-v1/desktop/A1-B1.coda.json docs/coda-exchange-v1/desktop/A1-B1-A2.coda.json --wav docs/coda-exchange-v1/desktop/A1-B1-A2.wav",
+    "exitCode": 0,
+    "log": "checks/independent-desktop-python-3.12.json"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY python3 scripts/verify-exchange.py docs/coda-exchange-v1/desktop/A1-B1-A2.coda.json docs/coda-exchange-v1/desktop/cold-reply.coda.json",
+    "exitCode": 0,
+    "log": "checks/cold-desktop.json"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY npm run exchange:verify -- docs/coda-exchange-v1/phone/A1.coda.json docs/coda-exchange-v1/phone/A1-B1.coda.json docs/coda-exchange-v1/phone/A1-B1-A2.coda.json --wav docs/coda-exchange-v1/phone/A1-B1-A2.wav",
+    "exitCode": 0,
+    "log": "checks/independent-phone-python-3.9.txt"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY analysis/dialogue-transfer/.venv/bin/python3 scripts/verify-exchange.py docs/coda-exchange-v1/phone/A1.coda.json docs/coda-exchange-v1/phone/A1-B1.coda.json docs/coda-exchange-v1/phone/A1-B1-A2.coda.json --wav docs/coda-exchange-v1/phone/A1-B1-A2.wav",
+    "exitCode": 0,
+    "log": "checks/independent-phone-python-3.12.json"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY python3 scripts/verify-exchange.py docs/coda-exchange-v1/phone/A1-B1-A2.coda.json docs/coda-exchange-v1/phone/cold-reply.coda.json",
+    "exitCode": 0,
+    "log": "checks/cold-phone.json"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY python3 scripts/verify-exchange.py tests/fixtures/exchange-canonical.json",
+    "exitCode": 0,
+    "log": "checks/canonical-python-3.9.json"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY analysis/dialogue-transfer/.venv/bin/python3 scripts/verify-exchange.py tests/fixtures/exchange-canonical.json",
+    "exitCode": 0,
+    "log": "checks/canonical-python-3.12.json"
+  },
+  {
+    "command": "env -u OPENAI_API_KEY node --experimental-strip-types --input-type=module -e 'import { checkFrozenArtifacts } from \"./analysis/metadata-linkage-v1/preservation-checks.ts\"; console.log(JSON.stringify(checkFrozenArtifacts(), null, 2));'",
+    "exitCode": 0,
+    "log": "checks/metadata-current-guard.txt"
+  }
+]

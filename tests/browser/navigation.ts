@@ -2,10 +2,10 @@ import { type Page } from "@playwright/test";
 
 // Real visible navigation, shared by the pre-polish regression journeys.
 // Reads and semantic assertions still inspect the same underlying evidence.
-export async function workspaceView(page: Page, name: "Listen" | "Composer" | "Context Lab") {
+export async function workspaceView(page: Page, name: "Listen" | "Composer" | "Context Lab" | "Exchange") {
   const switcher = page.getByRole("combobox", { name: "Workspace", exact: true });
   if (await switcher.isVisible()) {
-    const id = { Listen: "listen", Composer: "composer", "Context Lab": "lab" }[name];
+    const id = { Listen: "listen", Composer: "composer", "Context Lab": "lab", Exchange: "exchange" }[name];
     if (await switcher.inputValue() !== id) await switcher.selectOption(id);
   } else {
     const button = page.getByRole("button", { name, exact: true });

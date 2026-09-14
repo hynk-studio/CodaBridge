@@ -2,9 +2,11 @@
 
 Hear a real recording. Shape a personal synthetic phrase. Compare its timing and keep your coda.
 
+**Personal Coda / Exchange** adds a local file conversation: Composer → **Save & codebook → Make a transmission**, write a separate human note, then pass the downloaded `.coda.json` file to another browser. Replies carry the complete A1/B1/A2 history with independent timing copies; opening or replying preserves personal Composer work. Messages are **plaintext, not encrypted**. Save a file before refresh. [Demo route, format and verification](docs/MVP_07.md).
+
 **Composer, Context Lab #8, UI polish #9, corrected Dialogue Transfer v0.1 #11 and executed v0.2 research #13 are integrated.** Four attributed originals connect to the phrase editor, synthetic playback, source-aware comparison, personal codebook and WAV/card/project downloads. Enter Context Lab without losing the creation: explore a real annotated exchange, compare descriptive pairings, or choose **Dialogue Transfer / Prediction** to compare held-out predictions, reveal the next recorded coda and download the sourced experiment. [v0.2 results and decision note](docs/MVP_05B.md) · [original prediction](docs/MVP_05.md) · [descriptive Lab](docs/MVP_04.md) · [listening pack](docs/RELEASE_HANDOFF.md).
 
-The separate [metadata linkage audit](docs/METADATA_LINKAGE_AUDIT.md) is executed for Draft review. It compares the complete pinned external files with all original rows and both research cohorts, retaining inferred links, missing identities, annotation/date conflicts and dependence risks. It changes no historical study, public artifact or application identity. [Audit commands and cached-source retrieval](analysis/metadata-linkage-v1/README.md).
+The separate [metadata linkage audit](docs/METADATA_LINKAGE_AUDIT.md) is integrated. It compares the complete pinned external files with all original rows and both research cohorts, retaining inferred links, missing identities, annotation/date conflicts and dependence risks. It changes no historical study, public artifact or application identity. [Audit commands and cached-source retrieval](analysis/metadata-linkage-v1/README.md).
 
 **Default live access remains disabled on the server.** Earlier separately authorized Composer trials accepted a compound edit and, after a prose correction, an investigation of the restored modified creation; their historical failure and acceptance evidence is preserved. The [first separately authorized live Lab investigation](docs/trials/2026-09-13-live-context-lab/README.md) accepted an actual model-initiated control lookup and explanation, with independent answer checks passing for that case. Broader live reliability, human listening and hosted Sites operation remain unverified.
 
@@ -54,6 +56,7 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 
 ## Review and compatibility
 
+- [MVP-07 Personal Coda / file-based Exchange, format and browser round trip](docs/MVP_07.md)
 - [MVP-06 observed Timing / Style Atlas and read-only Composer reference](docs/MVP_06.md) · [generate/check/independent verification](analysis/style-atlas-v1/README.md)
 - [Full-file metadata linkage audit, coverage and decision note](docs/METADATA_LINKAGE_AUDIT.md)
 - [MVP-05B executed v0.2 research, numerical verification and decision note](docs/MVP_05B.md)

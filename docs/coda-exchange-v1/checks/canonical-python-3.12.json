@@ -1,0 +1,44 @@
+{
+  "status": "Independent source/hash/parent/timing verification passed",
+  "files": [
+    {
+      "path": "tests/fixtures/exchange-canonical.json",
+      "bytes": 1720,
+      "sha256": "9f20419decd26e333c05544bb4d3c038142f401218954b1a68fdb50c5dfde8f2",
+      "payloadSha256": "dc16607b7cb14dffd73f516143586ec826b87d75b06f260e36dfbac2bd3b4f49",
+      "turns": 1,
+      "messages": [
+        "TEST ONLY 🌊 안녕 é\n\"quoted\""
+      ],
+      "sources": [
+        "dswp-1"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.175
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.55
+        }
+      ],
+      "phraseSpans": [
+        0.5
+      ],
+      "span": 0.5,
+      "duration": 0.5900000000000001
+    }
+  ],
+  "wav": null
+}

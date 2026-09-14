@@ -1,0 +1,23 @@
+{
+  "identity": "Fresh local preview after the final completed build",
+  "indexMatchesFinalBuild": true,
+  "assets": [
+    {
+      "path": "/assets/index-CflMqIXT.js",
+      "bytes": 468228,
+      "sha256": "7896858bc0a5f356994cc9dcda739f7c88cf909e281fd3ebc0d9a58c00f5c7fa",
+      "matchesFinalBuild": true
+    },
+    {
+      "path": "/assets/index-DmGLlHMm.css",
+      "bytes": 54050,
+      "sha256": "5a69384f3f7233f399587590ca55e35aa4f70dc7ba9babb7e23af75551da3a65",
+      "matchesFinalBuild": true
+    }
+  ],
+  "investigationStatus": {
+    "status": "unavailable",
+    "code": "NOT_CONFIGURED",
+    "message": "Astra investigation is unavailable. Server access has not been enabled for this workspace."
+  }
+}

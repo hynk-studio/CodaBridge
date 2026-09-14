@@ -1,0 +1,311 @@
+{
+  "status": "Independent source/hash/parent/timing verification passed",
+  "files": [
+    {
+      "path": "docs/coda-exchange-v1/phone/A1-B1-A2.coda.json",
+      "bytes": 5198,
+      "sha256": "ce150f3487436afbdbef023497246f1d52f8473bded92e85584725244fd72b05",
+      "payloadSha256": "79d7191fa14c74611ea47bd7981e0b182aa99624e7f4f0b5095a74813e221fde",
+      "turns": 3,
+      "messages": [
+        "TEST ONLY A1: A small signal across the water. 🌊",
+        "TEST ONLY B1: Received as a local file. Here is a different rhythm. 안녕",
+        "TEST ONLY A2: Keeping your reply with mine. This is a human exchange, not whale translation."
+      ],
+      "sources": [
+        "dswp-1",
+        "dswp-2"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.25
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.8994118480725625
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 3,
+          "seconds": 1.8445649092970522
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 4,
+          "seconds": 2.129322562358277
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 5,
+          "seconds": 2.5309311224489797
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 0,
+          "seconds": 3.2809311224489797
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 1,
+          "seconds": 3.7887769274376417
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 2,
+          "seconds": 4.165851757369614
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 3,
+          "seconds": 4.329434523809524
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 4,
+          "seconds": 4.515829081632653
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 5,
+          "seconds": 4.815058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 0,
+          "seconds": 5.315058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 1,
+          "seconds": 5.475058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 2,
+          "seconds": 5.994587585034013
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 3,
+          "seconds": 6.750710034013606
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 4,
+          "seconds": 6.978516156462586
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 5,
+          "seconds": 7.299803004535148
+        }
+      ],
+      "phraseSpans": [
+        2.48093112244898,
+        1.534126984126984,
+        1.984744897959184
+      ],
+      "span": 7.249803004535147,
+      "duration": 7.339803004535148
+    },
+    {
+      "path": "docs/coda-exchange-v1/phone/cold-reply.coda.json",
+      "bytes": 6839,
+      "sha256": "ee396350519c60891a516e89de8f288d1ed111e9cd3f4cb0a3cd2f98c2e8b5f2",
+      "payloadSha256": "a5a86d1c89a0d07a0fe64e50b3b37b1c620555214f7987d2e2b5fbe9a7ef4e5e",
+      "turns": 4,
+      "messages": [
+        "TEST ONLY A1: A small signal across the water. 🌊",
+        "TEST ONLY B1: Received as a local file. Here is a different rhythm. 안녕",
+        "TEST ONLY A2: Keeping your reply with mine. This is a human exchange, not whale translation.",
+        "TEST ONLY cold-profile reply from a supported catalog seed."
+      ],
+      "sources": [
+        "dswp-1",
+        "dswp-11",
+        "dswp-2"
+      ],
+      "events": [
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 0,
+          "seconds": 0.05
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 1,
+          "seconds": 0.25
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 2,
+          "seconds": 0.8994118480725625
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 3,
+          "seconds": 1.8445649092970522
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 4,
+          "seconds": 2.129322562358277
+        },
+        {
+          "turn": 1,
+          "block": 1,
+          "marker": 5,
+          "seconds": 2.5309311224489797
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 0,
+          "seconds": 3.2809311224489797
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 1,
+          "seconds": 3.7887769274376417
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 2,
+          "seconds": 4.165851757369614
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 3,
+          "seconds": 4.329434523809524
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 4,
+          "seconds": 4.515829081632653
+        },
+        {
+          "turn": 2,
+          "block": 1,
+          "marker": 5,
+          "seconds": 4.815058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 0,
+          "seconds": 5.315058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 1,
+          "seconds": 5.475058106575964
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 2,
+          "seconds": 5.994587585034013
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 3,
+          "seconds": 6.750710034013606
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 4,
+          "seconds": 6.978516156462586
+        },
+        {
+          "turn": 3,
+          "block": 1,
+          "marker": 5,
+          "seconds": 7.299803004535148
+        },
+        {
+          "turn": 4,
+          "block": 1,
+          "marker": 0,
+          "seconds": 7.799803004535148
+        },
+        {
+          "turn": 4,
+          "block": 1,
+          "marker": 1,
+          "seconds": 7.999803004535148
+        },
+        {
+          "turn": 4,
+          "block": 1,
+          "marker": 2,
+          "seconds": 8.333703231292517
+        },
+        {
+          "turn": 4,
+          "block": 1,
+          "marker": 3,
+          "seconds": 8.480800736961452
+        },
+        {
+          "turn": 4,
+          "block": 1,
+          "marker": 4,
+          "seconds": 8.660982142857144
+        },
+        {
+          "turn": 4,
+          "block": 1,
+          "marker": 5,
+          "seconds": 8.870755385487529
+        }
+      ],
+      "phraseSpans": [
+        2.48093112244898,
+        1.534126984126984,
+        1.984744897959184,
+        1.0709523809523809
+      ],
+      "span": 8.820755385487528,
+      "duration": 8.910755385487528
+    }
+  ],
+  "wav": null
+}

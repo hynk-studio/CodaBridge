@@ -1,4 +1,4 @@
-import { composerView, listenView, disclosure } from "./navigation.ts";
+import { composerView, workspaceView, listenView, disclosure } from "./navigation.ts";
 import { test, expect, type Page } from "@playwright/test";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { createWorker } from "../../server/worker.ts";
@@ -159,7 +159,7 @@ test("focused follow-up: current answers open once, failures stay by the request
   await page.getByLabel("Request type", { exact: true }).selectOption("investigate");
   hold();
   await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
-  await page.getByRole("button", { name: "Context Lab", exact: true }).click();
+  await workspaceView(page, "Context Lab");
   release();
   await composerView(page, "compare");
   await expect(result).toHaveCount(0);
@@ -463,9 +463,7 @@ test("entry navigation preserves a draft and the secondary download is explicitl
     .click();
   const saved = await storedDraft(page);
   await page.reload();
-  await page
-    .getByRole("button", { name: "Listen", exact: true })
-    .click();
+  await workspaceView(page, "Listen");
   await page
     .getByRole("button", { name: "Open my Composer →", exact: true })
     .click();

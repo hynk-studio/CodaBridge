@@ -1,0 +1,4 @@
+$ env -u OPENAI_API_KEY npm run lint
+
+> codabridge@0.2.0 lint
+> oxlint

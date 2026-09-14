@@ -8,6 +8,8 @@ For Context Lab work, also read issues #6/#7/#10/#12, docs/MVP_04.md, docs/MVP_0
 
 For Timing / Style Atlas work, read issue #15, docs/MVP_06.md and analysis/style-atlas-v1/README.md. This full-source descriptive reference and read-only Composer comparison do not authorize new fitting or atlas-to-Composer imports.
 
+For Personal Coda / Exchange work, read issue #17 and docs/MVP_07.md. Keep plaintext messages and copied timing separate from Composer storage and provider requests. Packet/Exchange is authorized by #17; encryption, inference enablement and new research are separate work.
+
 ## Working style
 
 - ChatGPT plans and reviews; Codex implements and tests. Continue the assigned implementation branch/PR rather than creating a competing version.

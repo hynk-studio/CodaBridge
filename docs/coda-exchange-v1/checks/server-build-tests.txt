@@ -1,0 +1,30 @@
+$ env -u OPENAI_API_KEY npm run test:server-build
+
+> codabridge@0.2.0 test:server-build
+> node --experimental-strip-types --test tests/artifact/*.test.ts
+
+✔ TEST ONLY native workerd accepts unverified numeric Composer prose after actual edited-copy retrieval; URLs still reject (266.852417ms)
+✔ TEST ONLY native workerd artifact constructs manual Composer requests, dispatches tools and accepts validated final output (184.474417ms)
+✔ TEST ONLY built native workerd Lab performs bounded tool replay with manual redirects; default direct routes refuse (268.463083ms)
+✔ built Worker default fetch serves disabled API and delegates local assets (48.786125ms)
+✔ built provider adapter completes the real tool loop against a mock transport (15.186708ms)
+✔ client artifact contains no server config, provider adapter or test fixture; Workers metadata is present (126.098125ms)
+✔ built factory observes its default fetch without a transport override (global fetch is TEST ONLY stubbed) (3.804875ms)
+✔ built adapter accepts mixed commentary/tool output and supplied numeric source labels (2.5855ms)
+✔ native workerd Request constructor matrix needs no fetch or credential (185.121958ms)
+ℹ {"url_only":true,"post":true,"post_content_type":true,"post_content_type_body":true,"full_manual":true,"full_error":false,"full_manual_signal":true,"full_default_signal":true}
+▶ built adapter in native workerd rejects synthetic redirects without following or forwarding Authorization
+  ✔ HTTP 301 is a generic failure; no second fetch (22.238208ms)
+  ✔ HTTP 302 is a generic failure; no second fetch (7.954875ms)
+  ✔ HTTP 303 is a generic failure; no second fetch (7.105375ms)
+  ✔ HTTP 307 is a generic failure; no second fetch (5.197292ms)
+  ✔ HTTP 308 is a generic failure; no second fetch (5.584833ms)
+✔ built adapter in native workerd rejects synthetic redirects without following or forwarding Authorization (229.220834ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 912.655333

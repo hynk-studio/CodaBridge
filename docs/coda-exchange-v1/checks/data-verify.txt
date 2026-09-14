@@ -1,0 +1,7 @@
+$ env -u OPENAI_API_KEY npm run data:verify
+
+> codabridge@0.2.0 data:verify
+> node --experimental-strip-types scripts/prepare-data.ts --check && node --experimental-strip-types scripts/prepare-context.ts --check
+
+PASS: 4 original byte hashes, PCM metadata, source-card hash, and deterministic annotations reproduce.
+{"sourceRows":3840,"validRows":3790,"exclusions":{"AUTHOR_FLAGGED_SHORT_ICI":9,"DURATION_DISAGREEMENT":33,"INVALID_CLICK_COUNT":8,"INVALID_DURATION":8},"selected":{"id":"sw061b001_124-from-row-2-60s-v1","rec":"sw061b001_124","start":126.0372,"end":186.03719999999998,"callers":["1","2"],"sourceLines":[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],"clickCounts":[4,5,17,20],"boundaryExcludedLines":[25],"positiveOverlapPairs":7}}

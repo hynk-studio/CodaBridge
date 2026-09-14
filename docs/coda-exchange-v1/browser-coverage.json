@@ -1,0 +1,654 @@
+{
+  "initial": {
+    "passed": 114,
+    "failed": 6,
+    "notRun": 6,
+    "exitCode": 130,
+    "reason": "Stopped repeated obsolete button-locator failures after the fourth workspace activated the compact selector."
+  },
+  "finalAffected": {
+    "passed": 76,
+    "failed": 0,
+    "exitCode": 0
+  },
+  "retainedUnaffectedPasses": 50,
+  "distinctPassingCases": 126,
+  "cases": [
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "full Atlas journey: current comparison, actual downloads, whole reconstruction and preserved private work"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "Atlas keyboard, 320px enlarged text, actual sorting, sparse and numeric alternatives"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "TEST ONLY failed loading/hash/size responses show no results and support explicit retry"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "TEST ONLY delayed archive cannot bind a comparison to an old selected block"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "TEST ONLY unavailable audio leaves sourced inspection and downloads usable"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "mixed provider commentary remains pending until the grounded final answer arrives"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "grounded UI completes via mock provider transport and exports actual tool evidence"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "selection change while pending obsoletes the result even if transport completes late"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "failure and timeout stay explicit and listening remains available"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "private HTTP diagnostic stays outside the public UI, response and downloaded evidence (TEST ONLY transport)"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "no comparable alternative is visible and changing a completed selection clears export"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/listening.spec.ts",
+      "test": "key-free listening pack delivers all six exact WAVs and a restorable project; playback is exclusive"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/prediction.spec.ts",
+      "test": "actual offline Prediction journey: cutoff, compare, Reveal, lagged results, delivered JSON and preserved Composer"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/prediction.spec.ts",
+      "test": "Prediction remains usable at 320 px and 200% text enlargement"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/prediction.spec.ts",
+      "test": "TEST ONLY failed, insufficient, signed, zero and missing-uncertainty headlines are explicit"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/prediction.spec.ts",
+      "test": "TEST ONLY loading and report failures do not fabricate successful delivery"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/research-prediction.spec.ts",
+      "test": "actual v0.2: all endpoints, Reveal/reset, controls, delivered JSON and Composer/descriptive preservation"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/research-prediction.spec.ts",
+      "test": "v0.2 remains usable at 320 px with 200% text, including all result units and scrolling root tables"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/research-prediction.spec.ts",
+      "test": "TEST ONLY failed endpoints and loading/download failures never fabricate a score or successful delivery"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "real audio decodes, plays exclusively, pauses, and comparison/export follow selection"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "missing audio is explicit, retry recovers, and the other recording remains usable"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "wrong audio bytes fail integrity checks instead of displaying a mismatched waveform"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "an unsupported decoder produces a usable error state"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "320 px layout and enlarged text keep controls reachable without page overflow"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "full Atlas journey: current comparison, actual downloads, whole reconstruction and preserved private work"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "Atlas keyboard, 320px enlarged text, actual sorting, sparse and numeric alternatives"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "TEST ONLY failed loading/hash/size responses show no results and support explicit retry"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "TEST ONLY delayed archive cannot bind a comparison to an old selected block"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "TEST ONLY unavailable audio leaves sourced inspection and downloads usable"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/atlas.spec.ts",
+      "test": "Atlas keeps field, Composer and descriptive sound exclusive and resets both Prediction Reveals"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "mixed provider commentary remains pending until the grounded final answer arrives"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "grounded UI completes via mock provider transport and exports actual tool evidence"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "selection change while pending obsoletes the result even if transport completes late"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "failure and timeout stay explicit and listening remains available"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "private HTTP diagnostic stays outside the public UI, response and downloaded evidence (TEST ONLY transport)"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/investigation.spec.ts",
+      "test": "no comparable alternative is visible and changing a completed selection clears export"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/listening.spec.ts",
+      "test": "key-free listening pack delivers all six exact WAVs and a restorable project; playback is exclusive"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/prediction.spec.ts",
+      "test": "actual offline Prediction journey: cutoff, compare, Reveal, lagged results, delivered JSON and preserved Composer"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/prediction.spec.ts",
+      "test": "Prediction remains usable at 320 px and 200% text enlargement"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/prediction.spec.ts",
+      "test": "TEST ONLY failed, insufficient, signed, zero and missing-uncertainty headlines are explicit"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/prediction.spec.ts",
+      "test": "TEST ONLY loading and report failures do not fabricate successful delivery"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/research-prediction.spec.ts",
+      "test": "actual v0.2: all endpoints, Reveal/reset, controls, delivered JSON and Composer/descriptive preservation"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/research-prediction.spec.ts",
+      "test": "v0.2 remains usable at 320 px with 200% text, including all result units and scrolling root tables"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/research-prediction.spec.ts",
+      "test": "TEST ONLY failed endpoints and loading/download failures never fabricate a score or successful delivery"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "real audio decodes, plays exclusively, pauses, and comparison/export follow selection"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "missing audio is explicit, retry recovers, and the other recording remains usable"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "wrong audio bytes fail integrity checks instead of displaying a mismatched waveform"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "an unsupported decoder produces a usable error state"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/workspace.spec.ts",
+      "test": "320 px layout and enlarged text keep controls reachable without page overflow"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "TEST ONLY numeric Composer prose supported: tool loop, unverified UI and separate downloaded evidence"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "TEST ONLY numeric Composer prose incorrect-limitation: tool loop, unverified UI and separate downloaded evidence"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY numeric Composer investigation cannot describe or enter the export of a changed draft"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "sequential Phrase title typing is one undo transaction and rejects a pending TEST ONLY proposal"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "sequential My intention typing is one undo transaction and rejects a pending TEST ONLY investigation"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "sequential Meaning I assign typing is one undo transaction and rejects a pending TEST ONLY proposal"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "entry navigation preserves a draft and the secondary download is explicitly A/B evidence"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "selected-block audition uses its own schedule, coordinates playback, and quick edits explain the timing"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "local complete journey: field audio, independent edits, playback, comparison, codebook and real downloads"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "TEST ONLY running-app co-edit and model-requested retrieval demonstration"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after edit"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after undo"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after block selection"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after field selection"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after import"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "invalid TEST ONLY proposal and untrusted imports cannot alter the current draft or execute text"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "audio and storage failure leave a keyboard-editable, exportable phrase"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "editing stops scheduled synthetic audio and field playback coordinates in both directions"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "mobile, enlarged text and unequal-count seed keep accessible controls and explicit limits"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "focused follow-up: Lab answer opens once without moving focus or scroll, and failure preserves the comparison"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY connected journey: preserve Composer, hear annotation timing, compare controls, real tool dispatch and delivered investigation"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY late Lab response is obsolete after offset"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY late Lab response is obsolete after row"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY late Lab response is obsolete after question"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY late Lab response is obsolete after navigation"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "ordinary disabled Lab: no model requests/autoplay, untrusted question is plain text, audio failure still permits downloads"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "actual isolated A1/B1/A2 file round trip preserves both private Composer histories; cold reopen and seed reply"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "full phrase copying, saved analysis, outgoing cancel and navigation preserve personal work"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "imports are atomic, duplicate snapshots preserve unfinished text, alternatives require explicit replacement"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "late file reads, hashes and resumed audio cannot resurrect obsolete work after replacement/navigation"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "TEST ONLY native-share bridge checks the actual File; cancellation/rejection never download or duplicate turns"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "320px/enlarged-text/keyboard controls and audio failure keep messages, timing and downloads usable"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "Exchange shares the exclusive sound owner and preserves Atlas comparison and both Prediction Reveal resets"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "eight-turn files remain readable and downloadable at the reply limit"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/polish.spec.ts",
+      "test": "visible local journey: separate workspaces, all scores, saved evidence and continuous editing"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/polish.spec.ts",
+      "test": "progression stops hidden playback, retains keyboard focus, and fits narrow enlarged layouts"
+    },
+    {
+      "project": "desktop-chromium",
+      "file": "tests/browser/polish.spec.ts",
+      "test": "responsive navigation keeps complete labels, focus, creation and playback context at enlarged text"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "TEST ONLY numeric Composer prose supported: tool loop, unverified UI and separate downloaded evidence"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "TEST ONLY numeric Composer prose incorrect-limitation: tool loop, unverified UI and separate downloaded evidence"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY numeric Composer investigation cannot describe or enter the export of a changed draft"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "sequential Phrase title typing is one undo transaction and rejects a pending TEST ONLY proposal"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "sequential My intention typing is one undo transaction and rejects a pending TEST ONLY investigation"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "sequential Meaning I assign typing is one undo transaction and rejects a pending TEST ONLY proposal"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "entry navigation preserves a draft and the secondary download is explicitly A/B evidence"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "selected-block audition uses its own schedule, coordinates playback, and quick edits explain the timing"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "local complete journey: field audio, independent edits, playback, comparison, codebook and real downloads"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "TEST ONLY running-app co-edit and model-requested retrieval demonstration"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after edit"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after undo"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after block selection"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after field selection"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "late TEST ONLY proposal is discarded after import"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "invalid TEST ONLY proposal and untrusted imports cannot alter the current draft or execute text"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "audio and storage failure leave a keyboard-editable, exportable phrase"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "editing stops scheduled synthetic audio and field playback coordinates in both directions"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/composer.spec.ts",
+      "test": "mobile, enlarged text and unequal-count seed keep accessible controls and explicit limits"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "focused follow-up: Lab answer opens once without moving focus or scroll, and failure preserves the comparison"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY connected journey: preserve Composer, hear annotation timing, compare controls, real tool dispatch and delivered investigation"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY late Lab response is obsolete after offset"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY late Lab response is obsolete after row"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY late Lab response is obsolete after question"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "TEST ONLY late Lab response is obsolete after navigation"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/context.spec.ts",
+      "test": "ordinary disabled Lab: no model requests/autoplay, untrusted question is plain text, audio failure still permits downloads"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "actual isolated A1/B1/A2 file round trip preserves both private Composer histories; cold reopen and seed reply"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "full phrase copying, saved analysis, outgoing cancel and navigation preserve personal work"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "imports are atomic, duplicate snapshots preserve unfinished text, alternatives require explicit replacement"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "late file reads, hashes and resumed audio cannot resurrect obsolete work after replacement/navigation"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "TEST ONLY native-share bridge checks the actual File; cancellation/rejection never download or duplicate turns"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "320px/enlarged-text/keyboard controls and audio failure keep messages, timing and downloads usable"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "Exchange shares the exclusive sound owner and preserves Atlas comparison and both Prediction Reveal resets"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/exchange.spec.ts",
+      "test": "eight-turn files remain readable and downloadable at the reply limit"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/polish.spec.ts",
+      "test": "visible local journey: separate workspaces, all scores, saved evidence and continuous editing"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/polish.spec.ts",
+      "test": "progression stops hidden playback, retains keyboard focus, and fits narrow enlarged layouts"
+    },
+    {
+      "project": "mobile-chromium",
+      "file": "tests/browser/polish.spec.ts",
+      "test": "responsive navigation keeps complete labels, focus, creation and playback context at enlarged text"
+    }
+  ],
+  "finalExchangeRecheck": {
+    "passed": 16,
+    "failed": 0,
+    "exitCode": 0,
+    "reason": "Rechecked compatible earlier-turn choices, role advance and explicit snapshot replacement."
+  }
+}

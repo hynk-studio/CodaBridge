@@ -17,7 +17,8 @@ import { measuredObservation } from "./domain/observation.ts";
 import Composer, { type ComposerHandle } from "./composer/Composer.tsx";
 import { stopSynthetic } from "./composer/sound.ts";
 import ContextLab from "./lab/ContextLab.tsx";
-import WorkspaceHeader from "./WorkspaceHeader.tsx";
+import WorkspaceHeader, { type Workspace } from "./WorkspaceHeader.tsx";
+import Exchange, { type ExchangeHandle } from "./exchange/Exchange.tsx";
 import Notice, { useNotice } from "./Notice.tsx";
 import type { AtlasEntry } from "./atlas/Atlas.tsx";
 
@@ -129,7 +130,7 @@ function TimingPlot({
 }
 
 export default function App() {
-  const [section, setSection] = useState<"listen" | "composer" | "lab">(() => location.hash === "#composer" ? "composer" : location.hash === "#context-lab" ? "lab" : "listen");
+  const [section, setSection] = useState<Workspace>(() => location.hash === "#exchange" ? "exchange" : location.hash === "#composer" ? "composer" : location.hash === "#context-lab" ? "lab" : "listen");
   const [selection, setSelection] = useState({
     A: recordings[0].id,
     B: recordings[1].id,
@@ -138,6 +139,7 @@ export default function App() {
   const [downloadStatus, setDownloadStatus] = useNotice();
   const [revealed, setRevealed] = useState(false);
   const composer = useRef<ComposerHandle>(null);
+  const exchange = useRef<ExchangeHandle>(null);
   const [atlasEntry, setAtlasEntry] = useState<AtlasEntry>();
   const audioElements = useRef(new Map<Side, HTMLAudioElement>());
   const registerAudio = useCallback(
@@ -165,7 +167,7 @@ export default function App() {
   const a = recordings.find((recording) => recording.id === selection.A)!;
   const b = recordings.find((recording) => recording.id === selection.B)!;
   const investigation = useInvestigation(a, b);
-  function navigate(next: "listen" | "composer" | "lab") {
+  function navigate(next: Workspace) {
     stopAudio();
     stopSynthetic();
     if (next !== section) {
@@ -490,6 +492,7 @@ export default function App() {
         <div hidden={section !== "composer"}>
           <Composer
             ref={composer}
+            onTransmission={phrase => { exchange.current?.start(phrase); navigate("exchange"); }}
             workspaceActive={section === "composer"}
             onExploreAtlas={(clickCount, sourceLine) => {
               setAtlasEntry(previous => ({ clickCount, sourceLine, request: (previous?.request ?? 0) + 1 }));
@@ -500,6 +503,9 @@ export default function App() {
             onExample={(id) => { select("B", id); navigate("listen"); }}
           />
         </div>
+        <Exchange ref={exchange} active={section === "exchange"} stopField={stopAudio}
+          hasComposer={() => composer.current?.hasDraft() ?? false}
+          copyComposer={scope => composer.current?.copyTiming(scope) ?? null} />
         <ContextLab
           active={section === "lab"}
           atlasEntry={atlasEntry}
