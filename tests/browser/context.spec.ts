@@ -85,7 +85,7 @@ test("focused follow-up: Lab answer opens once without moving focus or scroll, a
   await expect(question).toBeFocused();
   expect(await page.evaluate(() => scrollY)).toBe(scrollBefore);
   const received = JSON.parse((await result.locator(".supporting-evidence > pre").textContent())!) as LabResult;
-  expect(await answer.locator("p").allTextContents()).toEqual([
+  expect(await answer.locator("p").evaluateAll(elements => elements.map(e => e.firstChild?.textContent))).toEqual([
     ...received.explanation.possibleInterpretations, ...received.explanation.limitations,
   ].map(row => row.text));
   expect(received.comparison).toEqual(comparePairing(contextSegment, 1));
@@ -99,7 +99,7 @@ test("focused follow-up: Lab answer opens once without moving focus or scroll, a
   await expect(answer).toHaveAttribute("open");
   fail = true;
   await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
-  await expect(page.locator(".lab-ask .lab-notice")).toContainText("The measured comparison is unchanged");
+  await expect(page.locator(".lab-ask .lab-notice")).toContainText("Astra couldn't complete this request. Your work is unchanged.");
   await expect(page.locator(".lab-ask .lab-notice")).toHaveAttribute("data-tone", "warning");
   await expect(result).toHaveCount(0);
   expect(await page.locator(".lab-statistics").innerText()).toBe(measured);

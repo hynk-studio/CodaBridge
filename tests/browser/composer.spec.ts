@@ -107,7 +107,7 @@ test("focused follow-up: current answers open once, failures stay by the request
   const received = responses.at(-1)!;
   const rows = [...received.explanation!.possibleInterpretations, ...received.explanation!.limitations];
   expect(await answer.locator("p:has(.citation)").evaluateAll(elements => elements.map(e => e.firstChild?.textContent))).toEqual(rows.map(r => r.text));
-  expect(await answer.locator(".citation").allTextContents()).toEqual(rows.map(r => `Evidence: ${r.evidenceIds.join(", ")}`));
+  expect(await answer.locator(".citation").allTextContents()).toEqual(rows.map(r => r.evidenceIds.map(() => "Retrieval evidence").join("")));
   await expect(result.locator("details").last()).not.toHaveAttribute("open");
   await answer.locator("summary").click();
   await composerView(page, "save");
@@ -121,7 +121,7 @@ test("focused follow-up: current answers open once, failures stay by the request
   await expect(answer).toHaveAttribute("open");
   fail = true;
   await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
-  await expect(page.locator(".composer-astra .composer-notice")).toContainText("Your draft is unchanged");
+  await expect(page.locator(".composer-astra .composer-notice")).toContainText("Astra couldn't complete this request. Your work is unchanged.");
   await expect(page.locator(".composer-astra .composer-notice")).toHaveAttribute("data-tone", "warning");
   await expect(page.locator(".composer-astra .composer-notice")).toHaveAttribute("role", "alert");
   await expect(result).toHaveCount(0);
@@ -1091,7 +1091,7 @@ test("invalid TEST ONLY proposal and untrusted imports cannot alter the current 
     .getByRole("button", { name: "Ask Astra", exact: true })
     .click();
   await expect(page.locator(".composer-notice")).toContainText(
-    "could not be accepted",
+    "Astra couldn't complete this request. Your work is unchanged.",
   );
   expect(await storedDraft(page)).toEqual(original);
   const draft = createDraft("dswp-1");

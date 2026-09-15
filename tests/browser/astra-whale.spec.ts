@@ -270,7 +270,7 @@ for (const surface of ["edit", "lab", "pair"] as const) {
     await open(page, surface);
     const indicator = whale(page, surface);
     await expect(indicator).toHaveAttribute("data-state", "unavailable");
-    await expect(indicator).toContainText(/unavailable/i);
+    await expect(indicator).toContainText("Astra isn't enabled for this deployment. Listening, creation, and local analysis still work.");
     await expect(ask(page, surface)).toBeDisabled();
     expect(await animations(indicator)).toEqual(["none", "none", "none"]);
     expect(f.state.posts).toEqual([]);
@@ -343,7 +343,7 @@ for (const surface of surfaces) {
     await expect(whale(page, surface)).toHaveAttribute("data-state", "pending");
     f.release();
     await expect(whale(page, surface)).toHaveAttribute("data-state", "failed");
-    await expect(area(page, surface)).toContainText(surface === "pair" ? "The investigation could not be validated" : "result could not be accepted");
+    await expect(area(page, surface)).toContainText("Astra couldn't complete this request. Your work is unchanged.");
     expect(await animations(whale(page, surface))).toEqual(["none", "none", "none"]);
     await expect(area(page, surface).locator(".astra-actions")).toHaveCount(0);
     await expect(area(page, surface)).not.toContainText(/Answer ready|Proposal ready/);

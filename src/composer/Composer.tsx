@@ -45,7 +45,8 @@ import { durationHint, operationLabels, timingChange } from "./presentation.ts";
 import type { ComposerRequest, ComposerResult } from "./contract.ts";
 import Notice, { useNotice } from "../Notice.tsx";
 import AstraActivity from "../astra/AstraActivity.tsx";
-import AstraEvidence from "../astra/AstraEvidence.tsx";
+import AstraEvidence, { AstraCitations, type AstraEvidenceHandle } from "../astra/AstraEvidence.tsx";
+import { ASTRA_REQUEST_FAILED, astraUnavailableCopy } from "../astra/copy.ts";
 import "./composer.css";
 import ObservedReference from "../atlas/ObservedReference.tsx";
 import { Pattern, NumberEdit } from "./TimingControls.tsx";
@@ -114,6 +115,7 @@ const Composer = forwardRef<
   );
   const [mode, setMode] = useState<ComposerRequest["mode"]>("edit");
   const [result, setResult] = useState<ComposerResult | null>(null);
+  const evidence = useRef<AstraEvidenceHandle>(null);
   const [pending, setPending] = useState(false);
   const [requestFeedback, setRequestFeedback] = useState<"ready" | "failed" | "cancelled">("ready");
   const [soundStatus, setSoundStatus] = useState("Synthetic playback stopped");
@@ -185,13 +187,13 @@ const Composer = forwardRef<
         setAvailability(
           v.status === "available"
             ? "Asking sends your whole phrase, creator text and question, plus any previous timing for this block."
-            : "Astra is unavailable here. All creative tools work locally.",
+            : astraUnavailableCopy(v),
         );
       })
       .catch(() => {
         if (!controller.signal.aborted)
           setAvailability(
-            "Astra is unavailable here. All creative tools work locally.",
+            astraUnavailableCopy(),
           );
       });
     return () => controller.abort();
@@ -322,6 +324,7 @@ const Composer = forwardRef<
     requestRef.current = controller;
     setPending(true);
     setNotice("");
+    let failureMessage = ASTRA_REQUEST_FAILED;
     try {
       const input: ComposerRequest = {
         mode,
@@ -349,12 +352,10 @@ const Composer = forwardRef<
         output.status !== "completed" ||
         output.binding !== requestKey ||
         output.mode !== mode
-      )
-        throw new Error(
-          output.status === "unavailable"
-            ? "Astra is unavailable. Your draft is unchanged."
-            : "Astra's result could not be accepted. Your draft is unchanged.",
-        );
+      ) {
+        if (output.status === "unavailable") failureMessage = astraUnavailableCopy(output);
+        throw new Error("Rejected");
+      }
       // Recompute any proposed temporary draft locally before offering Apply.
       if (
         output.proposal &&
@@ -363,13 +364,13 @@ const Composer = forwardRef<
       )
         throw new Error("The edit preview does not match its operations.");
       setResult(output as ComposerResult);
-    } catch (e) {
+    } catch {
       if (
         generation.current === currentGeneration &&
         !controller.signal.aborted
       ) {
         setRequestFeedback("failed");
-        setNotice(e instanceof Error ? e.message : "Astra request failed.", "warning");
+        setNotice(failureMessage, "warning");
       }
     } finally {
       if (generation.current === currentGeneration) {
@@ -1195,14 +1196,13 @@ const Composer = forwardRef<
                     ].map((row, i) => (
                       <p key={i}>
                         {row.text}
-                        <small className="citation">
-                          Evidence: {row.evidenceIds.join(", ")}
-                        </small>
+                        <AstraCitations ids={row.evidenceIds} evidence={result.evidence}
+                          onInspect={index => evidence.current?.inspect(index)} />
                       </p>
                     ))}
                   </details>
                 )}
-                <AstraEvidence actions={result.actions} evidence={result.evidence}
+                <AstraEvidence ref={evidence} actions={result.actions} evidence={result.evidence}
                   summary="Deterministic evidence, citations & returned receipts">
                   <pre>{JSON.stringify({
                     execution: result.execution,
