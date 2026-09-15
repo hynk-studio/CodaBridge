@@ -127,13 +127,15 @@ export function createWorker(
           },
           405,
         );
+      const routeCap =
+        path === "/api/lab" ? LIMITS.labDeadlineMs : LIMITS.deadlineMs;
       const controller = new AbortController();
       const stop = () => controller.abort();
       request.signal.addEventListener("abort", stop, { once: true });
       if (request.signal.aborted) controller.abort();
       const timer = setTimeout(
         stop,
-        Math.min(options.deadlineMs ?? LIMITS.deadlineMs, LIMITS.deadlineMs),
+        Math.min(options.deadlineMs ?? routeCap, routeCap),
       );
       try {
         const origin = request.headers.get("origin");

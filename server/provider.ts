@@ -27,6 +27,7 @@ export const LIMITS = Object.freeze({
   contextBytes: 98304,
   resultBytes: 131072,
   deadlineMs: 20000,
+  labDeadlineMs: 60000,
   rounds: 4,
   toolCalls: 4,
   outputTokens: 1800,
