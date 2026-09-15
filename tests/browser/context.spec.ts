@@ -23,6 +23,7 @@ async function fixture(
   hold?: () => Promise<void>,
 ) {
   const worker = createWorker(mock);
+  const responses: LabResult[] = [];
   await page.route("**/api/**", async (route) => {
     const req = route.request();
     const response = await worker.fetch(
@@ -33,14 +34,17 @@ async function fixture(
       }),
       TEST_ENV,
     );
-    if (req.url().endsWith("/api/lab")) await hold?.();
+    if (req.url().endsWith("/api/lab")) {
+      if (response.ok) responses.push(await response.clone().json() as LabResult);
+      await hold?.();
+    }
     await route.fulfill({
       status: response.status,
       headers: Object.fromEntries(response.headers),
       body: await response.text(),
     });
   });
-  return mock;
+  return { ...mock, responses };
 }
 async function seed(page: Page) {
   await page.goto("/");
@@ -72,7 +76,7 @@ test("focused follow-up: Lab answer opens once without moving focus or scroll, a
   const question = page.getByRole("textbox", { name: "Context question", exact: true });
   await question.fill("Does the observed pairing look different from reassigned durations, and what remains uncertain?");
   await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Investigating this comparison…", exact: true })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Waiting for Astra…", exact: true })).toBeDisabled();
   await question.click();
   const scrollBefore = await page.evaluate(() => scrollY);
   release();
@@ -283,9 +287,7 @@ test("TEST ONLY connected journey: preserve Composer, hear annotation timing, co
     "Exact generated answer · unverified",
   );
   expect(mock.calls).toHaveLength(2);
-  const result = JSON.parse(
-    (await resultBox.locator("pre").textContent())!,
-  ) as LabResult;
+  const result = mock.responses.at(-1)!;
   expect(result.binding).toBe(labBinding(1, "row-12"));
   expect(result.comparison).toEqual(comparison);
   expect(result.actions.at(-1)).toMatchObject({

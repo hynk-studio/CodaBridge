@@ -50,6 +50,7 @@ async function routeFixture(
   onResult?: (response: Response) => void,
 ) {
   const worker = createWorker({ transport });
+  const responses: ComposerResult[] = [];
   await page.route("**/api/**", async (route) => {
     const input = route.request();
     const response = await worker.fetch(
@@ -60,20 +61,24 @@ async function routeFixture(
       }),
       TEST_ENV,
     );
-    if (input.url().endsWith("/api/composer")) onResult?.(response);
+    if (input.url().endsWith("/api/composer")) {
+      onResult?.(response);
+      if (response.ok) responses.push(await response.clone().json() as ComposerResult);
+    }
     await route.fulfill({
       status: response.status,
       headers: Object.fromEntries(response.headers),
       body: await response.text(),
     });
   });
+  return responses;
 }
 
 test("focused follow-up: current answers open once, failures stay by the request, and Apply returns to audition/Undo", async ({ page }) => {
   const mock = composerTransport();
   let gate = Promise.resolve(), release = () => {}, fail = false;
   const hold = () => { gate = new Promise<void>(resolve => { release = resolve; }); };
-  await routeFixture(page, async (url, init) => {
+  const responses = await routeFixture(page, async (url, init) => {
     await gate;
     if (fail) throw new Error("TEST ONLY controlled transport failure");
     return mock.transport(url, init);
@@ -91,7 +96,7 @@ test("focused follow-up: current answers open once, failures stay by the request
   await request.fill("Which real examples have similar spacing, and what can that tell me?");
   hold();
   await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Working with this revision…", exact: true })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Waiting for Astra…", exact: true })).toBeDisabled();
   await request.click();
   const scrollBefore = await page.evaluate(() => scrollY);
   release();
@@ -99,7 +104,7 @@ test("focused follow-up: current answers open once, failures stay by the request
   await expect(answer).toHaveAttribute("open");
   await expect(request).toBeFocused();
   expect(await page.evaluate(() => scrollY)).toBe(scrollBefore);
-  const received = JSON.parse((await result.locator("pre").textContent())!) as ComposerResult;
+  const received = responses.at(-1)!;
   const rows = [...received.explanation!.possibleInterpretations, ...received.explanation!.limitations];
   expect(await answer.locator("p:has(.citation)").evaluateAll(elements => elements.map(e => e.firstChild?.textContent))).toEqual(rows.map(r => r.text));
   expect(await answer.locator(".citation").allTextContents()).toEqual(rows.map(r => `Evidence: ${r.evidenceIds.join(", ")}`));
@@ -127,10 +132,10 @@ test("focused follow-up: current answers open once, failures stay by the request
   await expect(page.getByLabel("Request type", { exact: true })).toHaveValue("edit");
   hold();
   await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Working with this revision…", exact: true })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Waiting for Astra…", exact: true })).toBeDisabled();
   release();
   await expect(result).toContainText("Proposed edit · your draft is unchanged");
-  const proposal = JSON.parse((await result.locator("pre").textContent())!) as ComposerResult;
+  const proposal = responses.at(-1)!;
   await page.getByRole("button", { name: "Play synthetic proposal", exact: true }).click();
   expect(await storedDraft(page)).toEqual(before);
   await page.getByRole("button", { name: "Apply & return to editor", exact: true }).click();
@@ -210,7 +215,7 @@ for (const [label, prose] of [
       catalogBefore = structuredClone(recordings);
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await routeFixture(page, mock.transport);
+    const responses = await routeFixture(page, mock.transport);
     const before = await modifiedCopy(page),
       activeId = before.blocks[1].id;
     const facts = creationEvidence(before, activeId);
@@ -235,9 +240,7 @@ for (const [label, prose] of [
     await expect(visible.locator(".exact-answer summary")).not.toContainText(
       /fact.?verified/i,
     );
-    const result = JSON.parse(
-      (await visible.locator("pre").textContent())!,
-    ) as ComposerResult;
+    const result = responses.at(-1)!;
     expect(result.proposal).toBeNull();
     expect(result.analysis.blockId).toBe(activeId);
     expect(result.analysis.matches).toEqual(facts.analysis.matches);
@@ -416,7 +419,7 @@ for (const field of ["Phrase title", "My intention", "Meaning I assign"]) {
     // Key-by-key input (not fill), with an assertion before blur / transaction close.
     await input.pressSequentially(text[0]);
     await expect(
-      page.getByRole("button", { name: "Working with this revision…" }),
+      page.getByRole("button", { name: "Waiting for Astra…" }),
     ).toHaveCount(0);
     await expect(input).toBeFocused();
     await input.pressSequentially(text.slice(1));
@@ -872,7 +875,7 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
   page,
 }, info) => {
   const mock = composerTransport("duplicate-scale");
-  await routeFixture(page, mock.transport);
+  const responses = await routeFixture(page, mock.transport);
   // Capture-only pacing and overlay. Neither is shipped or changes app behavior.
   const holdForCapture = async (milliseconds = 1200) => {
     if (info.project.name === "desktop-chromium")
@@ -920,9 +923,7 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
   );
   await expect(steps).toContainText("Scale New block 2 (position 2) ×1.25");
   await expect(steps).not.toContainText(/block 0/i);
-  const proposal = JSON.parse(
-    (await page.getByTestId("composer-result").locator("pre").textContent())!,
-  ).proposal;
+  const proposal = responses.at(-1)!.proposal!;
   expect(proposal.preview.blocks[0]).toEqual(before.blocks[0]);
   expect(proposal.preview.blocks[1].times.at(-1)).toBeCloseTo(
     before.blocks[0].times.at(-1)! * 1.25,
@@ -970,10 +971,7 @@ test("TEST ONLY running-app co-edit and model-requested retrieval demonstration"
   );
   expect(mock.calls).toHaveLength(3);
   await holdForCapture(2400);
-  const result = JSON.parse(
-    (await page.getByTestId("composer-result").locator("pre").textContent()) ??
-      "{}",
-  );
+  const result = responses.at(-1)!;
   expect(
     result.actions.map((a: { initiatedBy: string }) => a.initiatedBy),
   ).toEqual(["server", "model"]);

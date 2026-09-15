@@ -1,4 +1,6 @@
 import { useState } from "react";
+import AstraActivity from "./astra/AstraActivity.tsx";
+import AstraActions from "./astra/AstraActions.tsx";
 import {
   GUIDED_QUESTIONS,
   QUESTION_LIMIT,
@@ -141,7 +143,10 @@ export default function InvestigationPanel({
               : ""
           }
           onChange={(event) => {
-            if (event.target.value) setQuestion(event.target.value);
+            if (event.target.value) {
+              investigation.cancel("Question changed. Previous investigation is obsolete; ask again.");
+              setQuestion(event.target.value);
+            }
           }}
         >
           <option value="" disabled>
@@ -159,7 +164,10 @@ export default function InvestigationPanel({
           value={question}
           maxLength={QUESTION_LIMIT}
           rows={3}
-          onChange={(event) => setQuestion(event.target.value)}
+          onChange={(event) => {
+            investigation.cancel("Question changed. Previous investigation is obsolete; ask again.");
+            setQuestion(event.target.value);
+          }}
           aria-describedby="question-help"
         />
         <span id="question-help" className="subtle">
@@ -182,13 +190,17 @@ export default function InvestigationPanel({
           )}
         </div>
       </form>
+      <AstraActivity state={state.status === "idle"
+        ? availability === "available" ? "ready" : "unavailable"
+        : state.status}>
       <div role="status" className="investigation-status">
         {availability === "unavailable" && state.status === "idle"
           ? "Astra investigation is unavailable. Server access has not been enabled for this workspace. Listening and comparison remain available."
           : state.status === "completed"
-            ? "Investigation completed for the current selection."
+            ? "Answer ready"
             : state.message}
       </div>
+      </AstraActivity>
       {result && (
         <div
           className="investigation-result"
@@ -250,20 +262,9 @@ export default function InvestigationPanel({
             rows={result.explanation.limitations}
           />
           </details>
+          <AstraActions actions={result.actions} />
           <details className="supporting-evidence">
-          <summary>Tool actions & supporting evidence</summary>
-          <ol className="tool-actions">
-            {result.actions.map((action, index) => (
-              <li key={index}>
-                {action.name.replaceAll("_", " ")}{" "}
-                <span className="subtle">({action.initiatedBy})</span>
-                {" → "}
-                <a href={`#evidence-${action.evidenceId}`}>
-                  {action.evidenceId}
-                </a>
-              </li>
-            ))}
-          </ol>
+          <summary>Supporting evidence</summary>
           {result.evidence.map((item) => (
             <EvidenceItem item={item} key={item.id} />
           ))}

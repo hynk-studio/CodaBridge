@@ -1,0 +1,27 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test tests/browser/astra-whale.spec.ts --grep unavailable|disclosures exclude|stay outside|visual evidence|reduced motion keeps
+
+
+Running 14 tests using 1 worker
+
+(node:37428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop-chromium] › tests/browser/astra-whale.spec.ts:94:3 › whale edit: unavailable is static and rendering sends no model request (2.1s)
+  ✓   2 [desktop-chromium] › tests/browser/astra-whale.spec.ts:94:3 › whale lab: unavailable is static and rendering sends no model request (1.2s)
+  ✓   3 [desktop-chromium] › tests/browser/astra-whale.spec.ts:94:3 › whale pair: unavailable is static and rendering sends no model request (1.3s)
+  ✓   4 [desktop-chromium] › tests/browser/astra-whale.spec.ts:258:1 › whale: result disclosures exclude private draft text, bindings and raw tool arguments (1.9s)
+  ✓   5 [desktop-chromium] › tests/browser/astra-whale.spec.ts:277:1 › whale: ordinary editing, Atlas, Prediction and Exchange stay outside Astra status presentation (1.9s)
+  ✓   6 [desktop-chromium] › tests/browser/astra-whale.spec.ts:294:3 › whale visual evidence › dark UI, pending to completed, reduced motion and 320px enlarged text (4.0s)
+  ✓   7 [desktop-chromium] › tests/browser/astra-whale.spec.ts:326:1 › whale: reduced motion keeps pending text and disables all animation (1.2s)
+(node:37634) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [mobile-chromium] › tests/browser/astra-whale.spec.ts:94:3 › whale edit: unavailable is static and rendering sends no model request (1.6s)
+  ✓   9 [mobile-chromium] › tests/browser/astra-whale.spec.ts:94:3 › whale lab: unavailable is static and rendering sends no model request (1.0s)
+  ✓  10 [mobile-chromium] › tests/browser/astra-whale.spec.ts:94:3 › whale pair: unavailable is static and rendering sends no model request (1.0s)
+  ✓  11 [mobile-chromium] › tests/browser/astra-whale.spec.ts:258:1 › whale: result disclosures exclude private draft text, bindings and raw tool arguments (1.7s)
+  ✓  12 [mobile-chromium] › tests/browser/astra-whale.spec.ts:277:1 › whale: ordinary editing, Atlas, Prediction and Exchange stay outside Astra status presentation (1.8s)
+  ✓  13 [mobile-chromium] › tests/browser/astra-whale.spec.ts:294:3 › whale visual evidence › dark UI, pending to completed, reduced motion and 320px enlarged text (3.8s)
+  ✓  14 [mobile-chromium] › tests/browser/astra-whale.spec.ts:326:1 › whale: reduced motion keeps pending text and disables all animation (1.1s)
+
+  14 passed (27.2s)
