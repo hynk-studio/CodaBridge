@@ -44,6 +44,8 @@ import { SyntheticPlayer, wavBytes } from "./sound.ts";
 import { durationHint, operationLabels, timingChange } from "./presentation.ts";
 import type { ComposerRequest, ComposerResult } from "./contract.ts";
 import Notice, { useNotice } from "../Notice.tsx";
+import AstraActivity from "../astra/AstraActivity.tsx";
+import AstraEvidence from "../astra/AstraEvidence.tsx";
 import "./composer.css";
 import ObservedReference from "../atlas/ObservedReference.tsx";
 import { Pattern, NumberEdit } from "./TimingControls.tsx";
@@ -113,6 +115,7 @@ const Composer = forwardRef<
   const [mode, setMode] = useState<ComposerRequest["mode"]>("edit");
   const [result, setResult] = useState<ComposerResult | null>(null);
   const [pending, setPending] = useState(false);
+  const [requestFeedback, setRequestFeedback] = useState<"ready" | "failed" | "cancelled">("ready");
   const [soundStatus, setSoundStatus] = useState("Synthetic playback stopped");
   const [exampleId, setExampleId] = useState("");
   const [includeAnalysis, setIncludeAnalysis] = useState(false);
@@ -142,6 +145,7 @@ const Composer = forwardRef<
     requestRef.current = null;
     setPending(false);
     setResult(null);
+    setRequestFeedback("ready");
     player.current?.stop();
   }, []);
   const install = (next: History, selected = activeId) => {
@@ -363,8 +367,10 @@ const Composer = forwardRef<
       if (
         generation.current === currentGeneration &&
         !controller.signal.aborted
-      )
+      ) {
+        setRequestFeedback("failed");
         setNotice(e instanceof Error ? e.message : "Astra request failed.", "warning");
+      }
     } finally {
       if (generation.current === currentGeneration) {
         setPending(false);
@@ -1036,7 +1042,7 @@ const Composer = forwardRef<
             <div>
               <p className="eyebrow">Ask Astra · optional</p>
               <h3 id="composer-astra-title">Ask about your creation</h3>
-              <p>{availability}</p>
+              {available && <p>{availability}</p>}
             </div>
             <form
               ref={requestForm}
@@ -1075,7 +1081,7 @@ const Composer = forwardRef<
                   disabled={!available || pending || !question.trim()}
                 >
                   {pending
-                    ? "Working with this revision…"
+                    ? "Waiting for Astra…"
                     : "Ask Astra"}
                 </button>
                 {pending && (
@@ -1083,6 +1089,7 @@ const Composer = forwardRef<
                     type="button"
                     onClick={() => {
                       cancel();
+                      setRequestFeedback("cancelled");
                       setNotice(
                         "Request canceled. No result will apply to your draft.",
                       );
@@ -1093,11 +1100,20 @@ const Composer = forwardRef<
                 )}
               </div>
             </form>
-            {panel === "compare" && <Notice className="composer-notice" message={notice} />}
+            <AstraActivity
+              state={pending ? "pending" : result ? "completed" : !available ? "unavailable" : requestFeedback}
+              active={workspaceActive && panel === "compare"}
+            >
+              <p role="status">{pending ? "Astra request in progress…" : result
+                ? result.proposal ? "Proposal ready — review before applying" : "Answer ready"
+                : ""}</p>
+              {!pending && !result && requestFeedback === "ready" &&
+                <p>{available ? "Ready when you are." : availability}</p>}
+              {panel === "compare" && <Notice className="composer-notice" message={notice} />}
+            </AstraActivity>
             {result && (
               <div className="composer-result" data-testid="composer-result">
-                <p className="result-label" role="status">
-                  {result.proposal ? "Edit proposal ready. " : "Answer ready. "}
+                <p className="result-label">
                   {result.execution === "mock-transport-test"
                     ? "TEST ONLY · model transport fixture · no live Astra call"
                     : "Generated with Astra · unverified"}
@@ -1186,12 +1202,15 @@ const Composer = forwardRef<
                     ))}
                   </details>
                 )}
-                <details>
-                  <summary>
-                    Tool actions, deterministic evidence & returned receipts
-                  </summary>
-                  <pre>{JSON.stringify(result, null, 2)}</pre>
-                </details>
+                <AstraEvidence actions={result.actions} evidence={result.evidence}
+                  summary="Deterministic evidence, citations & returned receipts">
+                  <pre>{JSON.stringify({
+                    execution: result.execution,
+                    explanation: result.explanation,
+                    analysis: result.analysis,
+                    providerResponses: result.providerResponses,
+                  }, null, 2)}</pre>
+                </AstraEvidence>
               </div>
             )}
           </section>

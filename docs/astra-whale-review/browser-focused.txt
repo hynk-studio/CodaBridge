@@ -1,0 +1,24 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test tests/browser/astra-whale.spec.ts --project=desktop-chromium --grep connected body|action evidence --max-failures=3
+
+
+Running 13 tests using 1 worker
+
+(node:19838) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop-chromium] › tests/browser/astra-whale.spec.ts:123:1 › whale: connected body and eye match the authoritative SVG at stable desktop and narrow sizes (1.7s)
+  ✓   2 [desktop-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale edit: action evidence is exact, keyboard accessible and preserves the current workspace (2.3s)
+  ✓   3 [desktop-chromium] › tests/browser/astra-whale.spec.ts:249:5 › whale edit: missing action evidence has no invented target (1.6s)
+  ✓   4 [desktop-chromium] › tests/browser/astra-whale.spec.ts:249:5 › whale edit: unresolved action evidence has no invented target (1.6s)
+  ✓   5 [desktop-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale composer: action evidence is exact, keyboard accessible and preserves the current workspace (2.2s)
+  ✓   6 [desktop-chromium] › tests/browser/astra-whale.spec.ts:249:5 › whale composer: missing action evidence has no invented target (1.5s)
+  ✓   7 [desktop-chromium] › tests/browser/astra-whale.spec.ts:249:5 › whale composer: unresolved action evidence has no invented target (1.6s)
+  ✓   8 [desktop-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale lab: action evidence is exact, keyboard accessible and preserves the current workspace (1.5s)
+  ✓   9 [desktop-chromium] › tests/browser/astra-whale.spec.ts:249:5 › whale lab: missing action evidence has no invented target (1.2s)
+  ✓  10 [desktop-chromium] › tests/browser/astra-whale.spec.ts:249:5 › whale lab: unresolved action evidence has no invented target (1.2s)
+  ✓  11 [desktop-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale pair: action evidence is exact, keyboard accessible and preserves the current workspace (1.5s)
+  ✓  12 [desktop-chromium] › tests/browser/astra-whale.spec.ts:249:5 › whale pair: missing action evidence has no invented target (1.1s)
+  ✓  13 [desktop-chromium] › tests/browser/astra-whale.spec.ts:249:5 › whale pair: unresolved action evidence has no invented target (1.1s)
+
+  13 passed (21.0s)

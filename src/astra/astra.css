@@ -1,0 +1,46 @@
+.astra-activity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 65ch;
+  min-height: 88px;
+}
+.astra-whale { width: 88px; height: 88px; flex: 0 0 88px; overflow: hidden; }
+.astra-activity-copy { min-width: 0; overflow-wrap: anywhere; }
+.astra-activity .astra-activity-copy > p { margin: 0; font-size: var(--type-small); line-height: 1.6; }
+.astra-activity .astra-activity-copy > p + p { margin-top: 8px; }
+.astra-activity-copy > p:empty { display: none; }
+.astra-activity[data-state="unavailable"] .astra-whale { opacity: .5; }
+.astra-whale-effects, .astra-whale-completion { opacity: 0; }
+.astra-activity[data-state="pending"] .astra-whale-body { animation: astra-float 2.4s ease-in-out infinite; }
+.astra-activity[data-state="pending"] .astra-whale-effects { animation: astra-shimmer 2.4s ease-in-out infinite; }
+.astra-activity[data-state="completed"] .astra-whale-completion { opacity: .65; animation: astra-settle .6s ease-out; }
+.astra-activity[data-motion="false"] .astra-whale > g { animation-play-state: paused; }
+@keyframes astra-float { 50% { transform: translateY(-.4px); } }
+@keyframes astra-shimmer { 0%, 100% { opacity: .25; } 50% { opacity: .7; } }
+@keyframes astra-settle { from { opacity: .25; transform: translateY(.5px); } to { opacity: .65; transform: none; } }
+.astra-actions li > span { display: block; color: var(--muted); font-size: var(--type-small); }
+.astra-actions ol { padding-left: 1.25rem; }
+.astra-actions .astra-evidence-link {
+  display: block;
+  max-width: 100%;
+  margin: .35rem 0;
+  padding: .3rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--b);
+  font-size: var(--type-small);
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 620px) {
+  .astra-activity { min-height: 72px; gap: 8px; }
+  .astra-whale { width: 72px; height: 72px; flex-basis: 72px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .astra-activity .astra-whale > g { animation: none; transform: none; }
+  .astra-activity[data-state="pending"] .astra-whale-effects { opacity: .5; }
+}

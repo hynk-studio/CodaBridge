@@ -66,7 +66,7 @@ export function useInvestigation(a: Recording, b: Recording) {
     active.current = { controller, sequence: runSequence };
     setState({
       status: "pending",
-      message: "Checking the selected recordings and their evidence…",
+      message: "Astra request in progress…",
       key,
     });
     try {

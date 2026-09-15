@@ -1,4 +1,6 @@
 import Notice, { useNotice } from "../Notice.tsx";
+import AstraActivity from "../astra/AstraActivity.tsx";
+import AstraEvidence from "../astra/AstraEvidence.tsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import {
@@ -65,6 +67,7 @@ export default function ContextLab({
   const [pending, setPending] = useState(false),
     [result, setResult] = useState<LabResult | null>(null),
     [notice, setNotice] = useNotice();
+  const [requestFeedback, setRequestFeedback] = useState<"ready" | "failed" | "cancelled">("ready");
   const player = useRef<SyntheticPlayer | null>(null),
     controller = useRef<AbortController | null>(null),
     generation = useRef(0);
@@ -77,6 +80,7 @@ export default function ContextLab({
     controller.current = null;
     setPending(false);
     setResult(null);
+    setRequestFeedback("ready");
   }, []);
   useEffect(() => {
     player.current = new SyntheticPlayer(setPlayback);
@@ -173,10 +177,12 @@ export default function ContextLab({
         throw new Error("Rejected");
       setResult(value as LabResult);
     } catch {
-      if (token === generation.current && !ac.signal.aborted)
+      if (token === generation.current && !ac.signal.aborted) {
+        setRequestFeedback("failed");
         setNotice(
           "Astra's result could not be accepted. The measured comparison is unchanged.", "warning",
         );
+      }
     } finally {
       if (token === generation.current) setPending(false);
     }
@@ -706,11 +712,7 @@ export default function ContextLab({
       <section hidden={panel !== "compare"} className="lab-panel lab-ask" aria-labelledby="lab-ask-title">
         <p className="eyebrow">03 Ask about the evidence · optional</p>
         <h2 id="lab-ask-title">What else could explain this?</h2>
-        <p>
-          {available
-            ? "Ask about this exchange and its duration comparison. The answer is generated and unverified."
-            : "Astra is unavailable here. Exploring, comparing, listening and saving work locally."}
-        </p>
+        {available && <p>Ask about this exchange and its duration comparison. The answer is generated and unverified.</p>}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -734,20 +736,32 @@ export default function ContextLab({
             disabled={!available || pending || !question.trim()}
           >
             {pending
-              ? "Investigating this comparison…"
+              ? "Waiting for Astra…"
               : "Ask Astra"}
           </button>
           {pending && (
-            <button type="button" onClick={cancel}>
+            <button type="button" onClick={() => {
+              cancel();
+              setRequestFeedback("cancelled");
+              setNotice("Request canceled. No answer was accepted.");
+            }}>
               Cancel Context request
             </button>
           )}
         </form>
-        {panel === "compare" && <Notice className="lab-notice" message={notice} />}
+        <AstraActivity
+          state={pending ? "pending" : result ? "completed" : !available ? "unavailable" : requestFeedback}
+          active={active && panel === "compare"}
+        >
+          <p role="status">{pending ? "Astra request in progress…" : result ? "Answer ready" : ""}</p>
+          {!pending && !result && requestFeedback === "ready" && <p>{available
+            ? "Ready when you are."
+            : "Astra is unavailable here. Exploring, comparing, listening and saving work locally."}</p>}
+          {panel === "compare" && <Notice className="lab-notice" message={notice} />}
+        </AstraActivity>
         {result && (
           <div className="lab-result" data-testid="lab-result">
-            <p className="result-label" role="status">
-              Answer ready.{" "}
+            <p className="result-label">
               {result.execution === "mock-transport-test"
                 ? "TEST ONLY · provider transport fixture · no live Astra call"
                 : "Astra provider result · generated and unverified"}
@@ -761,12 +775,15 @@ export default function ContextLab({
               <p key={i}>{r.text}</p>
             ))}
             </details>
-            <details>
-              <summary>
-                Exact generated answer, citations, tool evidence and receipts
-              </summary>
-              <pre>{JSON.stringify(result, null, 2)}</pre>
-            </details>
+            <AstraEvidence actions={result.actions} evidence={result.evidence}
+              summary="Exact generated answer, citations, evidence and receipts">
+              <pre>{JSON.stringify({
+                execution: result.execution,
+                explanation: result.explanation,
+                comparison: result.comparison,
+                providerResponses: result.providerResponses,
+              }, null, 2)}</pre>
+            </AstraEvidence>
           </div>
         )}
         <button className="lab-next" onClick={() => showPanel("save")}>Save this investigation →</button>

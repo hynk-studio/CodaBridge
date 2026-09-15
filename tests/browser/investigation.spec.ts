@@ -91,13 +91,13 @@ test("mixed provider commentary remains pending until the grounded final answer 
     await expect(panel.getByText("Pending", { exact: true })).toBeVisible();
     await expect(panel.getByText(INTERMEDIATE_TEXT)).toHaveCount(0);
     await expect(
-      panel.getByText("Investigation completed for the current selection."),
+      panel.getByText("Answer ready"),
     ).toHaveCount(0);
   } finally {
     release();
   }
   await expect(
-    panel.getByText("Investigation completed for the current selection."),
+    panel.getByText("Answer ready"),
   ).toBeVisible();
   await disclosure(page, ".investigation-result .exact-answer");
   await expect(
@@ -152,7 +152,7 @@ test("grounded UI completes via mock provider transport and exports actual tool 
   await page.getByRole("button", { name: "Investigate selection" }).click();
   const panel = page.getByRole("region", { name: "Ask about this pair." });
   await expect(
-    panel.getByText("Investigation completed for the current selection."),
+    panel.getByText("Answer ready"),
   ).toBeVisible();
   await expect(
     panel.getByText(
@@ -231,7 +231,7 @@ test("selection change while pending obsoletes the result even if transport comp
   release();
   await expect.poll(() => finished).toBe(true);
   await expect(
-    page.getByText("Investigation completed for the current selection."),
+    page.getByText("Answer ready"),
   ).toHaveCount(0);
   expect((await exportPacket(page)).investigation).toBeNull();
   await page
