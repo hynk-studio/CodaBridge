@@ -1,0 +1,27 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test tests/browser/astra-whale.spec.ts --grep action evidence is exact|unavailable is static
+
+
+Running 14 tests using 1 worker
+
+(node:24946) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale edit: action evidence is exact, keyboard accessible and preserves the current workspace (2.6s)
+  ✓   2 [desktop-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale composer: action evidence is exact, keyboard accessible and preserves the current workspace (2.1s)
+  ✓   3 [desktop-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale lab: action evidence is exact, keyboard accessible and preserves the current workspace (1.4s)
+  ✓   4 [desktop-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale pair: action evidence is exact, keyboard accessible and preserves the current workspace (1.4s)
+  ✓   5 [desktop-chromium] › tests/browser/astra-whale.spec.ts:268:3 › whale edit: unavailable is static and rendering sends no model request (1.6s)
+  ✓   6 [desktop-chromium] › tests/browser/astra-whale.spec.ts:268:3 › whale lab: unavailable is static and rendering sends no model request (1.2s)
+  ✓   7 [desktop-chromium] › tests/browser/astra-whale.spec.ts:268:3 › whale pair: unavailable is static and rendering sends no model request (1.1s)
+(node:25104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [mobile-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale edit: action evidence is exact, keyboard accessible and preserves the current workspace (2.3s)
+  ✓   9 [mobile-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale composer: action evidence is exact, keyboard accessible and preserves the current workspace (2.1s)
+  ✓  10 [mobile-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale lab: action evidence is exact, keyboard accessible and preserves the current workspace (1.3s)
+  ✓  11 [mobile-chromium] › tests/browser/astra-whale.spec.ts:173:3 › whale pair: action evidence is exact, keyboard accessible and preserves the current workspace (1.4s)
+  ✓  12 [mobile-chromium] › tests/browser/astra-whale.spec.ts:268:3 › whale edit: unavailable is static and rendering sends no model request (1.4s)
+  ✓  13 [mobile-chromium] › tests/browser/astra-whale.spec.ts:268:3 › whale lab: unavailable is static and rendering sends no model request (1.0s)
+  ✓  14 [mobile-chromium] › tests/browser/astra-whale.spec.ts:268:3 › whale pair: unavailable is static and rendering sends no model request (1.0s)
+
+  14 passed (23.5s)

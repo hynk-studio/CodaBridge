@@ -84,7 +84,7 @@ test("focused follow-up: Lab answer opens once without moving focus or scroll, a
   await expect(answer).toHaveAttribute("open");
   await expect(question).toBeFocused();
   expect(await page.evaluate(() => scrollY)).toBe(scrollBefore);
-  const received = JSON.parse((await result.locator("pre").textContent())!) as LabResult;
+  const received = JSON.parse((await result.locator(".supporting-evidence > pre").textContent())!) as LabResult;
   expect(await answer.locator("p").allTextContents()).toEqual([
     ...received.explanation.possibleInterpretations, ...received.explanation.limitations,
   ].map(row => row.text));

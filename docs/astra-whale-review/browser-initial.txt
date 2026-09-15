@@ -1,0 +1,146 @@
+
+> codabridge@0.2.0 test:browser
+> playwright test tests/browser/astra-whale.spec.ts --project=desktop-chromium --grep connected body|action evidence --max-failures=3
+
+
+Running 13 tests using 1 worker
+
+(node:18322) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop-chromium] › tests/browser/astra-whale.spec.ts:117:1 › whale: connected body and eye match the authoritative SVG at stable desktop and narrow sizes (1.7s)
+  ✘   2 [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale edit: action evidence is exact, keyboard accessible and preserves the current workspace (34.7s)
+(node:18759) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [desktop-chromium] › tests/browser/astra-whale.spec.ts:243:5 › whale edit: missing action evidence has no invented target (1.8s)
+  ✓   4 [desktop-chromium] › tests/browser/astra-whale.spec.ts:243:5 › whale edit: unresolved action evidence has no invented target (1.6s)
+  ✘   5 [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale composer: action evidence is exact, keyboard accessible and preserves the current workspace (34.7s)
+(node:19210) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [desktop-chromium] › tests/browser/astra-whale.spec.ts:243:5 › whale composer: missing action evidence has no invented target (1.8s)
+  ✓   7 [desktop-chromium] › tests/browser/astra-whale.spec.ts:243:5 › whale composer: unresolved action evidence has no invented target (1.6s)
+  ✘   8 [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale lab: action evidence is exact, keyboard accessible and preserves the current workspace (7.1s)
+Testing stopped early after 3 maximum allowed failures.
+
+
+  1) [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale edit: action evidence is exact, keyboard accessible and preserves the current workspace
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.isEnabled: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Undo', exact: true })
+
+
+      178 |     const selected = await page.locator(".phrase-block[aria-pressed=true]").allTextContents();
+      179 |     const isComposer = surface === "edit" || surface === "composer";
+    > 180 |     const undo = isComposer && await page.getByRole("button", { name: "Undo", exact: true }).isEnabled();
+          |                                                                                              ^
+      181 |     const redo = isComposer && await page.getByRole("button", { name: "Redo", exact: true }).isEnabled();
+      182 |     const response = page.waitForResponse(`**${endpoint(surface)}`);
+      183 |     f.release();
+        at /Users/hynk/code/CodaBridge/tests/browser/astra-whale.spec.ts:180:94
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-edit-act-4d6a7-erves-the-current-workspace-desktop-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-edit-act-4d6a7-erves-the-current-workspace-desktop-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/astra-whale-whale-edit-act-4d6a7-erves-the-current-workspace-desktop-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-edit-act-4d6a7-erves-the-current-workspace-desktop-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/astra-whale-whale-edit-act-4d6a7-erves-the-current-workspace-desktop-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale composer: action evidence is exact, keyboard accessible and preserves the current workspace
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.isEnabled: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Undo', exact: true })
+
+
+      178 |     const selected = await page.locator(".phrase-block[aria-pressed=true]").allTextContents();
+      179 |     const isComposer = surface === "edit" || surface === "composer";
+    > 180 |     const undo = isComposer && await page.getByRole("button", { name: "Undo", exact: true }).isEnabled();
+          |                                                                                              ^
+      181 |     const redo = isComposer && await page.getByRole("button", { name: "Redo", exact: true }).isEnabled();
+      182 |     const response = page.waitForResponse(`**${endpoint(surface)}`);
+      183 |     f.release();
+        at /Users/hynk/code/CodaBridge/tests/browser/astra-whale.spec.ts:180:94
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-composer-1c685-erves-the-current-workspace-desktop-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-composer-1c685-erves-the-current-workspace-desktop-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/astra-whale-whale-composer-1c685-erves-the-current-workspace-desktop-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-composer-1c685-erves-the-current-workspace-desktop-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/astra-whale-whale-composer-1c685-erves-the-current-workspace-desktop-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale lab: action evidence is exact, keyboard accessible and preserves the current workspace
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('.lab-ask').locator('.astra-activity')
+    Expected: "completed"
+    Received: "failed"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('.lab-ask').locator('.astra-activity') with timeout 5000ms
+      - waiting for locator('.lab-ask').locator('.astra-activity')
+        14 × locator resolved to <div data-motion="true" data-state="failed" class="astra-activity">…</div>
+           - unexpected value "failed"
+
+
+      184 |     await ask(page, surface).click();
+      185 |     const accepted = await (await response).json();
+    > 186 |     await expect(whale(page, surface)).toHaveAttribute("data-state", "completed");
+          |                                        ^
+      187 |     const result = area(page, surface).locator(".composer-result, .lab-result, .investigation-result");
+      188 |     const before = await result.textContent();
+      189 |     const traffic = [...f.state.requests];
+        at /Users/hynk/code/CodaBridge/tests/browser/astra-whale.spec.ts:186:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-lab-acti-34d33-erves-the-current-workspace-desktop-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-lab-acti-34d33-erves-the-current-workspace-desktop-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/astra-whale-whale-lab-acti-34d33-erves-the-current-workspace-desktop-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/astra-whale-whale-lab-acti-34d33-erves-the-current-workspace-desktop-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/astra-whale-whale-lab-acti-34d33-erves-the-current-workspace-desktop-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale edit: action evidence is exact, keyboard accessible and preserves the current workspace
+    [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale composer: action evidence is exact, keyboard accessible and preserves the current workspace
+    [desktop-chromium] › tests/browser/astra-whale.spec.ts:167:3 › whale lab: action evidence is exact, keyboard accessible and preserves the current workspace
+  5 did not run
+  5 passed (1.5m)
+  1 error was not a part of any test, see above for details

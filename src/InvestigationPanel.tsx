@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AstraActivity from "./astra/AstraActivity.tsx";
-import AstraActions from "./astra/AstraActions.tsx";
+import AstraEvidence from "./astra/AstraEvidence.tsx";
 import {
   GUIDED_QUESTIONS,
   QUESTION_LIMIT,
@@ -9,25 +9,6 @@ import {
 } from "./investigation.ts";
 import type { useInvestigation } from "./useInvestigation.ts";
 
-function EvidenceItem({ item }: { item: ToolEvidence }) {
-  return (
-    <details className="tool-evidence" id={`evidence-${item.id}`}>
-      <summary>{item.id}</summary>
-      {item.kind === "recording" && (
-        <p>
-          <a href={item.recording.source.url}>
-            {item.recording.label} · original source
-          </a>
-          {" · "}
-          {item.recording.source.license}
-          {" · "}machine-estimated markers
-        </p>
-      )}
-
-      <pre>{JSON.stringify(item, null, 2)}</pre>
-    </details>
-  );
-}
 function RetrievalSummary({
   item,
   evidence,
@@ -262,12 +243,7 @@ export default function InvestigationPanel({
             rows={result.explanation.limitations}
           />
           </details>
-          <AstraActions actions={result.actions} />
-          <details className="supporting-evidence">
-          <summary>Supporting evidence</summary>
-          {result.evidence.map((item) => (
-            <EvidenceItem item={item} key={item.id} />
-          ))}
+          <AstraEvidence actions={result.actions} evidence={result.evidence} anchorPrefix="evidence-">
           <details className="tool-evidence">
             <summary>Provider receipt & request binding</summary>
             <pre>
@@ -284,7 +260,7 @@ export default function InvestigationPanel({
               )}
             </pre>
           </details>
-          </details>
+          </AstraEvidence>
         </div>
       )}
     </section>

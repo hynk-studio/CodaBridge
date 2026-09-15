@@ -45,7 +45,7 @@ import { durationHint, operationLabels, timingChange } from "./presentation.ts";
 import type { ComposerRequest, ComposerResult } from "./contract.ts";
 import Notice, { useNotice } from "../Notice.tsx";
 import AstraActivity from "../astra/AstraActivity.tsx";
-import AstraActions from "../astra/AstraActions.tsx";
+import AstraEvidence from "../astra/AstraEvidence.tsx";
 import "./composer.css";
 import ObservedReference from "../atlas/ObservedReference.tsx";
 import { Pattern, NumberEdit } from "./TimingControls.tsx";
@@ -1202,19 +1202,15 @@ const Composer = forwardRef<
                     ))}
                   </details>
                 )}
-                <AstraActions actions={result.actions} />
-                <details>
-                  <summary>
-                    Deterministic evidence, citations & returned receipts
-                  </summary>
+                <AstraEvidence actions={result.actions} evidence={result.evidence}
+                  summary="Deterministic evidence, citations & returned receipts">
                   <pre>{JSON.stringify({
                     execution: result.execution,
-                    evidence: result.evidence,
                     explanation: result.explanation,
                     analysis: result.analysis,
                     providerResponses: result.providerResponses,
                   }, null, 2)}</pre>
-                </details>
+                </AstraEvidence>
               </div>
             )}
           </section>

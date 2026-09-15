@@ -22,6 +22,20 @@
 @keyframes astra-settle { from { opacity: .25; transform: translateY(.5px); } to { opacity: .65; transform: none; } }
 .astra-actions li > span { display: block; color: var(--muted); font-size: var(--type-small); }
 .astra-actions ol { padding-left: 1.25rem; }
+.astra-actions .astra-evidence-link {
+  display: block;
+  max-width: 100%;
+  margin: .35rem 0;
+  padding: .3rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--b);
+  font-size: var(--type-small);
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
 @media (max-width: 620px) {
   .astra-activity { min-height: 72px; gap: 8px; }
   .astra-whale { width: 72px; height: 72px; flex-basis: 72px; }

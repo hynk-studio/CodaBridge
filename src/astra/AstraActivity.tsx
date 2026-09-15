@@ -9,24 +9,23 @@ export type AstraActivityState =
   | "failed"
   | "cancelled";
 
-// One body for every lifecycle state, transcribed from the approved reference.
-// Each occupied cell is a square; D is the muted blue eye.
+// Connected whale cells from docs/astra-whale/astra-whale-approved-silhouette.svg.
+// The reference's detached effect cells are not part of the shared body.
 const body = [
-  ".A..........",
-  "BBB.....ACC.",
-  "..B....AACC.",
-  "..BBBAAACDEE",
-  "...BBBAACCEE",
-  "....BBAACCE.",
-  ".....BAACC..",
-  ".......AA...",
-  ".......A....",
+  "...A.....ACCC.",
+  "CCAA....AAACCC",
+  "CCAA...AAAACCC",
+  ".CA....AAAACCC",
+  "..AA..AAAAACC.",
+  "...AAAAAACCC..",
+  "....CCAAAAC...",
+  ".......CC.....",
 ];
 const colors: Record<string, string> = {
-  A: "#0c8f7f", B: "#0b6f67", C: "#11aa8e", D: "#3978c6", E: "#2cdab4",
+  A: "#0c8f7f", C: "#11aa8e",
 };
 const cells = body.flatMap((row, y) => [...row].flatMap((cell, x) =>
-  cell === "." ? [] : [{ x: x + 3, y: y + 5, color: colors[cell] }],
+  cell === "." ? [] : [{ x: x + 2, y: y + 6, color: colors[cell] }],
 ));
 
 /** Decorative only: request owners supply both lifecycle state and status text. */
@@ -54,7 +53,8 @@ export default function AstraActivity({
       aria-hidden="true" focusable="false" shapeRendering="crispEdges">
       <g className="astra-whale-body">
         {cells.map(cell => <rect key={`${cell.x}:${cell.y}`} x={cell.x} y={cell.y}
-          width="1" height="1" fill={cell.color} />)}
+          width=".875" height=".875" fill={cell.color} />)}
+        <rect className="astra-whale-eye" x="13.25" y="9.25" width=".5" height=".5" fill="#3978c6" />
       </g>
       <g className="astra-whale-effects" fill="#11aa8e">
         <rect x="2" y="9" width=".7" height=".7" />

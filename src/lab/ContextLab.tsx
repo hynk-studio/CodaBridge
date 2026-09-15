@@ -1,6 +1,6 @@
 import Notice, { useNotice } from "../Notice.tsx";
 import AstraActivity from "../astra/AstraActivity.tsx";
-import AstraActions from "../astra/AstraActions.tsx";
+import AstraEvidence from "../astra/AstraEvidence.tsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import {
@@ -775,19 +775,15 @@ export default function ContextLab({
               <p key={i}>{r.text}</p>
             ))}
             </details>
-            <AstraActions actions={result.actions} />
-            <details>
-              <summary>
-                Exact generated answer, citations, evidence and receipts
-              </summary>
+            <AstraEvidence actions={result.actions} evidence={result.evidence}
+              summary="Exact generated answer, citations, evidence and receipts">
               <pre>{JSON.stringify({
                 execution: result.execution,
                 explanation: result.explanation,
                 comparison: result.comparison,
-                evidence: result.evidence,
                 providerResponses: result.providerResponses,
               }, null, 2)}</pre>
-            </details>
+            </AstraEvidence>
           </div>
         )}
         <button className="lab-next" onClick={() => showPanel("save")}>Save this investigation →</button>

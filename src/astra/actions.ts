@@ -13,6 +13,15 @@ const labels = {
 export interface RecordedAction {
   name: string;
   initiatedBy: "model" | "server";
+  evidenceId?: string;
+}
+
+// Exact, unambiguous matches in this result only; no normalization or fallback.
+export function actionEvidenceIndex(action: RecordedAction, evidence: readonly { id: string }[]): number | null {
+  if (typeof action.evidenceId !== "string" || !action.evidenceId) return null;
+  const index = evidence.findIndex(item => item.id === action.evidenceId);
+  return index >= 0 && !evidence.slice(index + 1).some(item => item.id === action.evidenceId)
+    ? index : null;
 }
 
 // Do not render unknown tool names or inspect arguments/private request content.
