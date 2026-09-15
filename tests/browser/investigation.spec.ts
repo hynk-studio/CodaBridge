@@ -255,7 +255,7 @@ test("failure and timeout stay explicit and listening remains available", async 
   await page.getByRole("button", { name: "Investigate selection" }).click();
   await expect(page.getByText("Failed", { exact: true })).toBeVisible();
   await expect(
-    page.getByText(/The investigation could not be validated/),
+    page.getByText("Astra couldn't complete this request. Your work is unchanged."),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Play recording A" }),
@@ -264,7 +264,7 @@ test("failure and timeout stay explicit and listening remains available", async 
   await page.unroute("**/api/**");
   await connectMockTransport(page, async () => new Promise(() => {}), 25);
   await page.getByRole("button", { name: "Investigate selection" }).click();
-  await expect(page.getByText(/The investigation timed out/)).toBeVisible();
+  await expect(page.getByText("Astra couldn't complete this request. Your work is unchanged.")).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Play recording B" }),
   ).toBeEnabled();
@@ -290,7 +290,7 @@ test("private HTTP diagnostic stays outside the public UI, response and download
   expect(result.code).toBe("PROVIDER_FAILURE");
   await expect(page.getByText("Failed", { exact: true })).toBeVisible();
   await expect(
-    page.getByText(/The investigation could not be validated/),
+    page.getByText("Astra couldn't complete this request. Your work is unchanged."),
   ).toBeVisible();
   const packet = await exportPacket(page);
   expect(packet.investigation).toBeNull();

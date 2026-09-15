@@ -999,6 +999,18 @@ footer {
   font-size: var(--type-small);
   margin-top: 4px;
 }
+.citation-links button {
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--a);
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
 .interpretation-notice,
 .test-notice {
   border-left: 2px solid #b9cf89;

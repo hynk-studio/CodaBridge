@@ -154,7 +154,7 @@ test("real audio decodes, plays exclusively, pauses, and comparison/export follo
     page
       .getByRole("region", { name: "Ask about this pair." })
       .getByText(
-        "Astra investigation is unavailable. Server access has not been enabled for this workspace. Listening and comparison remain available.",
+        "Astra isn't enabled for this deployment. Listening, creation, and local analysis still work.",
         {
           exact: true,
         },

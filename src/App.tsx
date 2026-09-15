@@ -16,7 +16,7 @@ import { useInvestigation } from "./useInvestigation.ts";
 import { measuredObservation } from "./domain/observation.ts";
 import Composer, { type ComposerHandle } from "./composer/Composer.tsx";
 import { stopSynthetic } from "./composer/sound.ts";
-import ContextLab from "./lab/ContextLab.tsx";
+import ContextLab, { type ContextLabHandle } from "./lab/ContextLab.tsx";
 import WorkspaceHeader, { type Workspace } from "./WorkspaceHeader.tsx";
 import Exchange, { type ExchangeHandle } from "./exchange/Exchange.tsx";
 import Notice, { useNotice } from "./Notice.tsx";
@@ -149,6 +149,7 @@ export default function App() {
   const [downloadStatus, setDownloadStatus] = useNotice();
   const [revealed, setRevealed] = useState(false);
   const composer = useRef<ComposerHandle>(null);
+  const lab = useRef<ContextLabHandle>(null);
   const exchange = useRef<ExchangeHandle>(null);
   const [atlasEntry, setAtlasEntry] = useState<AtlasEntry>();
   const audioElements = useRef(new Map<Side, HTMLAudioElement>());
@@ -282,7 +283,8 @@ export default function App() {
           <section className="quick-start" aria-label="Make and exchange a coda">
             <p><strong>The file carries the conversation.</strong> Send it to the other person; they open it in CodaBridge and send back a new file with their reply.</p>
             <ol><li>Make a rhythm</li><li>Put it in a message file</li><li>Pass it back and forth</li></ol>
-            <div className="composer-actions"><button className="primary" onClick={() => { navigate("composer"); if (composer.current?.hasDraft()) composer.current.resume(); else composer.current?.makeVersion(a.id); }}>Make my coda</button><button onClick={() => { navigate("exchange"); exchange.current?.receive(); }}>Open a coda file</button></div>
+            <div className="composer-actions"><button className="primary" onClick={() => { navigate("composer"); if (composer.current?.hasDraft()) composer.current.resume(); else composer.current?.makeVersion(a.id); }}>Make my coda</button><button onClick={() => { navigate("exchange"); exchange.current?.receive(); }}>Open a coda file</button><button aria-describedby="home-astra-help" onClick={() => { navigate("lab"); lab.current?.investigate(); }}>Investigate with Astra</button></div>
+            <p className="composer-meta" id="home-astra-help">Compare evidence and controls with Astra.</p>
             <p className="composer-meta">Open a received file or your own saved copy. Making a coda resumes your editable Composer draft if you have one.</p>
           </section>
           <div className="workspace-label" id="listen">
@@ -536,6 +538,7 @@ export default function App() {
           hasComposer={() => composer.current?.hasDraft() ?? false}
           copyComposer={scope => composer.current?.copyTiming(scope) ?? null} />
         <ContextLab
+          ref={lab}
           active={section === "lab"}
           atlasEntry={atlasEntry}
           onReturn={() => navigate("composer")}

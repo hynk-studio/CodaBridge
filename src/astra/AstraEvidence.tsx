@@ -1,18 +1,35 @@
-import { useId, useRef, type ReactNode } from "react";
+import { useId, useImperativeHandle, useRef, type ReactNode, type Ref } from "react";
 import type { ToolEvidence } from "../investigation.ts";
 import AstraActions from "./AstraActions.tsx";
 import type { RecordedAction } from "./actions.ts";
+import { citationPresentation } from "./citations.ts";
 
 type Evidence = ToolEvidence | { id: string; kind: string; data: unknown };
+export type AstraEvidenceHandle = { inspect: (index: number) => void };
+
+export function AstraCitations({ ids, evidence, onInspect }: {
+  ids: readonly string[];
+  evidence: readonly Evidence[];
+  onInspect: (index: number) => void;
+}) {
+  return <span className="citation citation-links">
+    {ids.map((id, order) => {
+      const { index, label } = citationPresentation(id, evidence);
+      return index === null ? <span key={order}>{label}</span>
+        : <button type="button" key={order} onClick={() => onInspect(index)}>{label}</button>;
+    })}
+  </span>;
+}
 
 /** Shares the existing deterministic disclosure, scoped to one accepted result. */
-export default function AstraEvidence({ actions, evidence, summary = "Supporting evidence", anchorPrefix, children }: {
+export default function AstraEvidence({ actions, evidence, summary = "Supporting evidence", anchorPrefix, children, ref }: {
   actions: readonly RecordedAction[];
   evidence: readonly Evidence[];
   summary?: string;
   // A/B keeps its existing citation anchors; other results have instance-local IDs.
   anchorPrefix?: string;
   children?: ReactNode;
+  ref?: Ref<AstraEvidenceHandle>;
 }) {
   const prefix = useId();
   const targets = useRef(new Map<number, HTMLDetailsElement>());
@@ -29,6 +46,7 @@ export default function AstraEvidence({ actions, evidence, summary = "Supporting
     target.querySelector("summary")?.focus({ preventScroll: true });
     target.scrollIntoView({ block: "nearest", behavior: "instant" });
   }
+  useImperativeHandle(ref, () => ({ inspect }));
   return <>
     <AstraActions actions={actions} evidence={evidence} targetId={targetId} onInspect={inspect} />
     <details className="supporting-evidence">

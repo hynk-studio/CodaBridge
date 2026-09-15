@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { selectionKey } from "./domain/catalog.ts";
 import type { Recording } from "./domain/types.ts";
 import { investigate, type CompletedInvestigation } from "./investigation.ts";
+import { ASTRA_REQUEST_FAILED, astraUnavailableCopy } from "./astra/copy.ts";
 
 type State =
   | {
@@ -16,6 +17,7 @@ export function useInvestigation(a: Recording, b: Recording) {
   const [availability, setAvailability] = useState<
     "checking" | "available" | "unavailable"
   >("checking");
+  const [unavailableMessage, setUnavailableMessage] = useState(astraUnavailableCopy());
   const [state, setState] = useState<State>({
     status: "idle",
     message: "Choose a question about the current selection.",
@@ -30,13 +32,15 @@ export function useInvestigation(a: Recording, b: Recording) {
     const controller = new AbortController();
     void fetch("/api/investigation/status", { signal: controller.signal })
       .then(async (response) => {
-        const result = (await response.json()) as { status?: string };
-        if (!controller.signal.aborted)
+        const result = (await response.json()) as { status?: string; code?: string };
+        if (!controller.signal.aborted) {
+          setUnavailableMessage(astraUnavailableCopy(result));
           setAvailability(
             response.ok && result.status === "available"
               ? "available"
               : "unavailable",
           );
+        }
       })
       .catch(() => {
         if (!controller.signal.aborted) setAvailability("unavailable");
@@ -80,15 +84,14 @@ export function useInvestigation(a: Recording, b: Recording) {
       else
         setState({
           status: result.status,
-          message: result.message,
+          message: result.status === "unavailable" ? astraUnavailableCopy(result) : ASTRA_REQUEST_FAILED,
           key,
         });
     } catch {
       if (controller.signal.aborted || sequence.current !== runSequence) return;
       setState({
         status: "failed",
-        message:
-          "The investigation could not be completed. Try again when the server is available.",
+        message: ASTRA_REQUEST_FAILED,
         key,
       });
     } finally {
@@ -107,6 +110,7 @@ export function useInvestigation(a: Recording, b: Recording) {
         };
   return {
     availability,
+    unavailableMessage,
     state: current,
     run,
     cancel,

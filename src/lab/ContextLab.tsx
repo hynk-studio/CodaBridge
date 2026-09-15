@@ -1,7 +1,8 @@
 import Notice, { useNotice } from "../Notice.tsx";
 import AstraActivity from "../astra/AstraActivity.tsx";
-import AstraEvidence from "../astra/AstraEvidence.tsx";
-import { useCallback, useEffect, useRef, useState } from "react";
+import AstraEvidence, { AstraCitations, type AstraEvidenceHandle } from "../astra/AstraEvidence.tsx";
+import { ASTRA_REQUEST_FAILED, astraUnavailableCopy } from "../astra/copy.ts";
+import { useCallback, useEffect, useImperativeHandle, useRef, useState, type Ref } from "react";
 import { flushSync } from "react-dom";
 import {
   contextSegment as segment,
@@ -41,16 +42,20 @@ const label = (id: string) => {
   return `${c.caller === segment.callers[0] ? "A" : "B"} · row ${c.sourceLine}`;
 };
 
+export type ContextLabHandle = { investigate: () => void };
+
 export default function ContextLab({
   active,
   onReturn,
   stopField,
   atlasEntry,
+  ref,
 }: {
   active: boolean;
   onReturn: () => void;
   stopField: () => void;
   atlasEntry?: AtlasEntry;
+  ref?: Ref<ContextLabHandle>;
 }) {
   const [panel, setPanel] = useState<"explore" | "compare" | "save">("explore");
   const [mode, setMode] = useState<"descriptive" | "prediction" | "atlas">("descriptive");
@@ -68,6 +73,8 @@ export default function ContextLab({
     [result, setResult] = useState<LabResult | null>(null),
     [notice, setNotice] = useNotice();
   const [requestFeedback, setRequestFeedback] = useState<"ready" | "failed" | "cancelled">("ready");
+  const [unavailableMessage, setUnavailableMessage] = useState(astraUnavailableCopy());
+  const evidence = useRef<AstraEvidenceHandle>(null);
   const player = useRef<SyntheticPlayer | null>(null),
     controller = useRef<AbortController | null>(null),
     generation = useRef(0);
@@ -100,7 +107,10 @@ export default function ContextLab({
     fetch("/api/investigation/status", { signal: ac.signal })
       .then((r) => r.json())
       .then((r) => {
-        if (!ac.signal.aborted) setAvailable(r.status === "available");
+        if (!ac.signal.aborted) {
+          setAvailable(r.status === "available");
+          setUnavailableMessage(astraUnavailableCopy(r));
+        }
       })
       .catch(() => {});
     return () => ac.abort();
@@ -146,6 +156,7 @@ export default function ContextLab({
       ac = new AbortController();
     controller.current = ac;
     setPending(true);
+    let failureMessage = ASTRA_REQUEST_FAILED;
     const input: LabRequest = {
       datasetId: DATASET_ID,
       segmentId: segment.id,
@@ -173,14 +184,16 @@ export default function ContextLab({
         !response.ok ||
         value.status !== "completed" ||
         value.binding !== bound
-      )
+      ) {
+        if (value.status === "unavailable") failureMessage = astraUnavailableCopy(value);
         throw new Error("Rejected");
+      }
       setResult(value as LabResult);
     } catch {
       if (token === generation.current && !ac.signal.aborted) {
         setRequestFeedback("failed");
         setNotice(
-          "Astra's result could not be accepted. The measured comparison is unchanged.", "warning",
+          failureMessage, "warning",
         );
       }
     } finally {
@@ -213,6 +226,15 @@ export default function ContextLab({
     region.current?.scrollIntoView({ block: "start" });
     region.current?.focus({ preventScroll: true });
   }
+  useImperativeHandle(ref, () => ({
+    investigate() {
+      change(() => {
+        flushSync(() => { setMode("descriptive"); setPanel("compare"); });
+        region.current?.scrollIntoView({ block: "start" });
+        region.current?.focus({ preventScroll: true });
+      });
+    },
+  }));
   const modeButtons = <nav className="lab-modes" aria-label="Context Lab mode">
     <button aria-pressed={mode === "descriptive"} onClick={() => change(() => { stopField(); setMode("descriptive"); })}>Descriptive pairing</button>
     <button aria-pressed={mode === "prediction"} onClick={() => change(() => { stopField(); setMode("prediction"); })}>Dialogue Transfer / Prediction</button>
@@ -756,7 +778,7 @@ export default function ContextLab({
           <p role="status">{pending ? "Astra request in progress…" : result ? "Answer ready" : ""}</p>
           {!pending && !result && requestFeedback === "ready" && <p>{available
             ? "Ready when you are."
-            : "Astra is unavailable here. Exploring, comparing, listening and saving work locally."}</p>}
+            : unavailableMessage}</p>}
           {panel === "compare" && <Notice className="lab-notice" message={notice} />}
         </AstraActivity>
         {result && (
@@ -772,10 +794,11 @@ export default function ContextLab({
               ...result.explanation.possibleInterpretations,
               ...result.explanation.limitations,
             ].map((r, i) => (
-              <p key={i}>{r.text}</p>
+              <p key={i}>{r.text}<AstraCitations ids={r.evidenceIds} evidence={result.evidence}
+                onInspect={index => evidence.current?.inspect(index)} /></p>
             ))}
             </details>
-            <AstraEvidence actions={result.actions} evidence={result.evidence}
+            <AstraEvidence ref={evidence} actions={result.actions} evidence={result.evidence}
               summary="Exact generated answer, citations, evidence and receipts">
               <pre>{JSON.stringify({
                 execution: result.execution,

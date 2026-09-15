@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AstraActivity from "./astra/AstraActivity.tsx";
-import AstraEvidence from "./astra/AstraEvidence.tsx";
+import AstraEvidence, { AstraCitations, type AstraEvidenceHandle } from "./astra/AstraEvidence.tsx";
 import {
   GUIDED_QUESTIONS,
   QUESTION_LIMIT,
@@ -52,7 +52,9 @@ function RetrievalSummary({
     </div>
   );
 }
-function CitedSection({ title, rows }: { title: string; rows: CitedText[] }) {
+function CitedSection({ title, rows, evidence, onInspect }: {
+  title: string; rows: CitedText[]; evidence: ToolEvidence[]; onInspect: (index: number) => void;
+}) {
   return (
     <div className="generated-section">
       <h3>{title}</h3>
@@ -60,13 +62,7 @@ function CitedSection({ title, rows }: { title: string; rows: CitedText[] }) {
         {rows.map((row, index) => (
           <li key={index}>
             {row.text}
-            <span className="citation-links">
-              {row.evidenceIds.map((id) => (
-                <a key={id} href={`#evidence-${id}`}>
-                  {id}
-                </a>
-              ))}
-            </span>
+            <AstraCitations ids={row.evidenceIds} evidence={evidence} onInspect={onInspect} />
           </li>
         ))}
       </ul>
@@ -80,6 +76,8 @@ export default function InvestigationPanel({
   investigation: ReturnType<typeof useInvestigation>;
 }) {
   const [question, setQuestion] = useState<string>(GUIDED_QUESTIONS[0]);
+  const evidence = useRef<AstraEvidenceHandle>(null);
+  const inspect = (index: number) => evidence.current?.inspect(index);
   const { state, availability, result } = investigation;
   const pending = state.status === "pending";
   const label = pending
@@ -176,7 +174,7 @@ export default function InvestigationPanel({
         : state.status}>
       <div role="status" className="investigation-status">
         {availability === "unavailable" && state.status === "idle"
-          ? "Astra investigation is unavailable. Server access has not been enabled for this workspace. Listening and comparison remain available."
+          ? investigation.unavailableMessage
           : state.status === "completed"
             ? "Answer ready"
             : state.message}
@@ -237,13 +235,15 @@ export default function InvestigationPanel({
           <CitedSection
             title="Possible interpretations · generated"
             rows={result.explanation.possibleInterpretations}
+            evidence={result.evidence} onInspect={inspect}
           />
           <CitedSection
             title="Limitations · generated"
             rows={result.explanation.limitations}
+            evidence={result.evidence} onInspect={inspect}
           />
           </details>
-          <AstraEvidence actions={result.actions} evidence={result.evidence} anchorPrefix="evidence-">
+          <AstraEvidence ref={evidence} actions={result.actions} evidence={result.evidence} anchorPrefix="evidence-">
           <details className="tool-evidence">
             <summary>Provider receipt & request binding</summary>
             <pre>
