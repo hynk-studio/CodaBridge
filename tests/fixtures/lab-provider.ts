@@ -14,6 +14,18 @@ import {
 } from "../../server/provider.ts";
 import { assistantMessage, functionOutput, finalOutput } from "./provider.ts";
 
+// Exact saved v5 output, reused only as a rejection fixture (not a new live run).
+export const HOSTED_INCOMPLETE_EXPLANATION = {
+  possibleInterpretations: [{
+    text: "Measured duration similarity varies with reassignment, but the observed pairing is not uniquely closest. Across seven fixed positive-overlap pairs, the observed mean absolute duration gap is 0.13286695714285718 seconds; selected offset 1 gives 0.1438996285714286 seconds (a larger gap means less similar durations). The eight distinct nonzero controls, with no equivalent controls, range from 0.08378658571428575 to 0.19408779999999992 seconds, with median 0.16526225714285714. Two controls have smaller gaps than observed. Tentatively, this shows sensitivity to duration assignment, not evidence by—",
+    evidenceIds: ["compare_observed_pairing:sw061b001_124-from-row-2-60s-v1"],
+  }],
+  limitations: [{
+    text: "The selected control was inspected, but the interpretation above is incomplete; no causal or semantic conclusion follows.",
+    evidenceIds: ["control_result:sw061b001_124-from-row-2-60s-v1:1"],
+  }],
+};
+
 export function labInput(offset = 1) {
   const selectedRowId = contextSegment.calls[0].id;
   return {
@@ -38,17 +50,23 @@ export function labExplanation(offset = 1, prose?: string) {
     observedId = `compare_observed_pairing:${contextSegment.id}`,
     controlId = `control_result:${contextSegment.id}:${offset}`;
   return {
-    possibleInterpretations: [
-      {
-        text:
-          prose ??
-          `The observed mean absolute duration gap is ${result.observed.valueSeconds!.toFixed(6)} seconds across ${result.pairCount} fixed overlap pairs. Control ${offset} gives ${result.selected.valueSeconds!.toFixed(6)} seconds. The ${result.distinctControlCount} controls range from ${result.controlSummary!.minSeconds.toFixed(6)} to ${result.controlSummary!.maxSeconds.toFixed(6)} seconds, so the observed value lies within that range. This one segment does not show that the observed pairing is uniquely close.`,
-        evidenceIds: [observedId, controlId],
-      },
-    ],
+    comparisonInterpretation: {
+      text:
+        prose ??
+        `The observed mean absolute duration gap is ${result.observed.valueSeconds!.toFixed(6)} seconds across ${result.pairCount} fixed overlap pairs. Control ${offset} gives ${result.selected.valueSeconds!.toFixed(6)} seconds. The ${result.distinctControlCount} controls range from ${result.controlSummary!.minSeconds.toFixed(6)} to ${result.controlSummary!.maxSeconds.toFixed(6)} seconds, so the observed value lies within that range. This one segment does not show that the observed pairing is uniquely close.`,
+      evidenceIds: [observedId, controlId],
+    },
+    alternativeAccounts: [{
+      text: "Own persistence, shared setting, coda-type composition and selection offer alternative accounts of similar durations.",
+      evidenceIds: [controlId, observedId],
+    }],
+    annotationUncertainty: {
+      text: "Source annotations and reconstructed timing retain uncertainty; they are not original audio. A/B labels are local, not verified animal identities.",
+      evidenceIds: [observedId],
+    },
     limitations: [
       {
-        text: "Timing reconstruction is not original audio. A/B labels are local; duration accepts unequal click counts. Own persistence, shared setting, coda-type composition and selection offer other accounts. Rotation has a seam and may reuse calls. This is a descriptive control, not the paper's permutation test or evidence of causality, independence or whale meaning.",
+        text: "Duration accepts unequal click counts. Rotation has a seam and may reuse calls. This is a descriptive control, not the paper's permutation test or evidence of causality, independence or whale meaning.",
         evidenceIds: [observedId, controlId],
       },
     ],

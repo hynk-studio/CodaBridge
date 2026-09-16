@@ -2,8 +2,8 @@ import { composerView, workspaceView, labView, disclosure } from "./navigation.t
 import { test, expect, type Page } from "@playwright/test";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { createWorker } from "../../server/worker.ts";
-import { TEST_ENV } from "../fixtures/provider.ts";
-import { labTransport } from "../fixtures/lab-provider.ts";
+import { TEST_ENV, finalOutput, functionOutput, scriptedTransport } from "../fixtures/provider.ts";
+import { HOSTED_INCOMPLETE_EXPLANATION, labExplanation, labInput, labTransport } from "../fixtures/lab-provider.ts";
 import { comparePairing } from "../../src/lab/model.ts";
 import { contextSegment, labBinding } from "../../src/lab/catalog.ts";
 import { parseProject, STORAGE_KEY } from "../../src/composer/project.ts";
@@ -55,6 +55,60 @@ async function seed(page: Page) {
   await expect(page.getByLabel("Phrase title", { exact: true })).toHaveValue(
     "My first coda",
   );
+}
+
+for (const [name, output] of [
+  ["hosted comparison-only shape", HOSTED_INCOMPLETE_EXPLANATION],
+  ["unfinished comparison in the new shape", labExplanation(1, HOSTED_INCOMPLETE_EXPLANATION.possibleInterpretations[0].text)],
+] as const) {
+  test(`TEST ONLY Lab rejects ${name} with the existing failed whale and copy, without retry`, async ({ page }) => {
+    const input = labInput(), posts: string[] = [], errors: string[] = [], external: string[] = [];
+    const mock = scriptedTransport([
+      functionOutput("control_result", { segmentId: input.segmentId, offset: 1 }),
+      finalOutput(output),
+      finalOutput(labExplanation()), // Would expose an unintended retry as success.
+    ]);
+    page.on("pageerror", error => errors.push(error.message));
+    page.on("request", request => {
+      if (request.method() === "POST") posts.push(new URL(request.url()).pathname);
+    });
+    await page.route("**/*", async route => {
+      if (new URL(route.request().url()).origin !== "http://127.0.0.1:4173") {
+        external.push(route.request().url());
+        await route.abort();
+      } else await route.fallback();
+    });
+    let release = () => {};
+    const gate = new Promise<void>(resolve => { release = resolve; });
+    await fixture(page, mock, () => gate);
+    await page.goto("/");
+    await labView(page, "compare");
+    await page.getByLabel("Duration assignment", { exact: true }).selectOption("1");
+    const question = page.getByRole("textbox", { name: "Context question", exact: true });
+    await question.fill(input.question);
+    const measured = await page.locator(".lab-statistics").innerText();
+    const indicator = page.locator(".lab-ask .astra-activity");
+    const response = page.waitForResponse("**/api/lab");
+    await page.getByRole("button", { name: "Ask Astra", exact: true }).click();
+    await expect(indicator).toHaveAttribute("data-state", "pending");
+    await expect(indicator).toContainText("Astra request in progress…");
+    release();
+    expect((await response).status()).toBeGreaterThanOrEqual(400);
+    await expect(indicator).toHaveAttribute("data-state", "failed");
+    await expect(indicator).toContainText("Astra couldn't complete this request. Your work is unchanged.");
+    expect(await indicator.locator("svg > g").evaluateAll(groups => groups.map(group => getComputedStyle(group).animationName)))
+      .toEqual(["none", "none", "none"]);
+    await expect(page.getByTestId("lab-result")).toHaveCount(0);
+    await expect(question).toHaveValue(input.question);
+    expect(await page.locator(".lab-statistics").innerText()).toBe(measured);
+    const packet = JSON.parse((await download(page, "Download investigation JSON")).bytes.toString());
+    expect(packet.generated).toBeNull();
+    expect(packet.comparison).toEqual(comparePairing(contextSegment, 1));
+    expect(mock.calls).toHaveLength(2);
+    expect(posts).toEqual(["/api/lab"]);
+    expect(external).toEqual([]);
+    expect(errors).toEqual([]);
+  });
 }
 
 test("focused follow-up: Lab answer opens once without moving focus or scroll, and failure preserves the comparison", async ({ page }) => {

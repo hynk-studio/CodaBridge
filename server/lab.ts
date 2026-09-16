@@ -17,13 +17,56 @@ import {
   readBoundedJson,
 } from "./validation.ts";
 import {
-  explanationSchema,
   LIMITS,
   requestResponse,
   type ProviderTransport,
 } from "./provider.ts";
 import type { PrivateProviderObserver } from "./provider-diagnostics.ts";
 import type { ServerEnv } from "./worker.ts";
+
+const LAB_TEXT_LIMIT = 800;
+const citedSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["text", "evidenceIds"],
+  properties: {
+    text: { type: "string", minLength: 1, maxLength: LAB_TEXT_LIMIT },
+    evidenceIds: {
+      type: "array",
+      minItems: 1,
+      maxItems: 6,
+      items: { type: "string" },
+    },
+  },
+};
+// Provider-only structure. LabResult and historical exports keep the shared
+// GeneratedExplanation arrays after validation below.
+export const labExplanationSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "comparisonInterpretation",
+    "alternativeAccounts",
+    "annotationUncertainty",
+    "limitations",
+  ],
+  properties: {
+    comparisonInterpretation: citedSchema,
+    alternativeAccounts: {
+      type: "array",
+      minItems: 1,
+      maxItems: 3,
+      items: citedSchema,
+    },
+    annotationUncertainty: citedSchema,
+    limitations: {
+      type: "array",
+      minItems: 1,
+      maxItems: 3,
+      items: citedSchema,
+    },
+  },
+};
 const names = [
   "exchange_info",
   "compare_observed_pairing",
@@ -64,7 +107,8 @@ const INSTRUCTIONS = `Explain this bounded Context Lab question using the suppli
 Use control_result to inspect the selected control when comparing pairings. Exchange timing is reconstructed from annotated ICIs, not original audio, and is unrelated to the visitor's synthetic Composer or the four field WAVs. A/B caller labels are local to the selected REC group, not verified global animal identities.
 paired-duration-gap-v1 freezes all original positive-overlap A/B pairs; touching endpoints do not pair. Its mean absolute duration difference is in seconds and can include unequal click counts. It is distinct from the unchanged equal-count normalized-rhythm metric.
 Nonzero offsets circularly reassign B durations over the SAME pair slots, preserving the inventory/circular order with a seam. Original timing/audio never changes. Controls are not recordings, time-shifted behavior, causal interventions or independent samples. Reused calls, type composition, own persistence, shared setting, selection and annotation uncertainty offer alternative accounts. Do not infer whale meaning, identity, intention, translation or semantic confidence. No p-values, bits/coda, causal or independence claims. This is not the paper's type-conditioned permutation test or the future predictive Dialogue Transfer experiment.
-State observed measurements separately from tentative interpretation; describe the selected control and control range/median/count honestly. Handle insufficient data or equivalent controls without inventing zero effects. Quantitative prose may summarize supplied evidence but cannot replace deterministic values or mappings. Use actual evidence IDs in every item. Reference resolution does not fact-check prose. No URLs, invented sources, measurements or confidence. Return concise possibleInterpretations and limitations with the exact structured schema; generated interpretation remains unverified.`;
+State observed measurements separately from tentative interpretation; describe the selected control and control range/median/count honestly. Handle insufficient data or equivalent controls without inventing zero effects. Quantitative prose may summarize supplied evidence but cannot replace deterministic values or mappings. Use actual evidence IDs in every item. Reference resolution does not fact-check prose. No URLs, invented sources, measurements or confidence.
+Return the exact structured schema in short, separate cited items, not one maximal paragraph. Every text must contain complete sentences and end with sentence punctuation (. ! or ?); the 800-character limit is a ceiling, not a target. comparisonInterpretation directly interprets the observed pairing versus the selected reassigned-duration control. alternativeAccounts contains 1–3 separate plausible alternative accounts, distinct from that comparison. annotationUncertainty explicitly explains uncertainty in the source annotations and reconstructed timing, without claiming verified speaker identity. limitations contains 1–3 additional limitations and states that this control cannot establish causality, independence or whale meaning. Generated interpretation remains unverified.`;
 function offset(value: unknown) {
   if (
     !Number.isInteger(value) ||
@@ -195,31 +239,43 @@ export function labTools(input: LabRequest) {
 export function validateLabExplanation(
   value: unknown,
   evidence: Map<string, LabEvidence>,
-) {
-  const v = exact(value, ["possibleInterpretations", "limitations"]);
-  function section(rows: unknown) {
-    if (!Array.isArray(rows) || rows.length < 1 || rows.length > 4)
+): LabResult["explanation"] {
+  const v = exact(value, [
+    "comparisonInterpretation",
+    "alternativeAccounts",
+    "annotationUncertainty",
+    "limitations",
+  ]);
+  function item(value: unknown) {
+    const r = exact(value, ["text", "evidenceIds"]),
+      text = boundedText(r.text, LAB_TEXT_LIMIT);
+    // A conservative completeness boundary, not a factual or semantic judge.
+    if (!/[.!?]$/.test(text))
       throw new BoundaryError("INVALID_EXPLANATION", 502);
-    return rows.map((row) => {
-      const r = exact(row, ["text", "evidenceIds"]),
-        text = boundedText(r.text, 600);
-      if (/https?:\/\//i.test(text))
-        throw new BoundaryError("UNSUPPORTED_GENERATED_CONTENT", 502);
-      if (
-        !Array.isArray(r.evidenceIds) ||
-        r.evidenceIds.length < 1 ||
-        r.evidenceIds.length > 6
-      )
-        throw new BoundaryError("INVALID_REFERENCES", 502);
-      const evidenceIds = r.evidenceIds.map((id) => boundedText(id, 160));
-      if (evidenceIds.some((id) => !evidence.has(id)))
-        throw new BoundaryError("INVENTED_REFERENCE", 502);
-      return { text, evidenceIds: [...new Set(evidenceIds)] };
-    });
+    if (/https?:\/\//i.test(text))
+      throw new BoundaryError("UNSUPPORTED_GENERATED_CONTENT", 502);
+    if (
+      !Array.isArray(r.evidenceIds) ||
+      r.evidenceIds.length < 1 ||
+      r.evidenceIds.length > 6
+    )
+      throw new BoundaryError("INVALID_REFERENCES", 502);
+    const evidenceIds = r.evidenceIds.map((id) => boundedText(id, 160));
+    if (evidenceIds.some((id) => !evidence.has(id)))
+      throw new BoundaryError("INVENTED_REFERENCE", 502);
+    return { text, evidenceIds: [...new Set(evidenceIds)] };
+  }
+  function section(rows: unknown) {
+    if (!Array.isArray(rows) || rows.length < 1 || rows.length > 3)
+      throw new BoundaryError("INVALID_EXPLANATION", 502);
+    return rows.map(item);
   }
   return {
-    possibleInterpretations: section(v.possibleInterpretations),
-    limitations: section(v.limitations),
+    possibleInterpretations: [
+      item(v.comparisonInterpretation),
+      ...section(v.alternativeAccounts),
+    ],
+    limitations: [item(v.annotationUncertainty), ...section(v.limitations)],
   };
 }
 export async function runLab(
@@ -274,7 +330,7 @@ export async function runLab(
         instructions: INSTRUCTIONS,
         tools: LAB_TOOLS,
         name: "context_lab_investigation",
-        schema: explanationSchema,
+        schema: labExplanationSchema,
       },
     );
     receipts.push(output.receipt);

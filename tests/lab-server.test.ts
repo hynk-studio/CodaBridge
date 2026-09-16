@@ -65,7 +65,11 @@ it("TEST ONLY Lab dispatches selected control, replays actual evidence and accep
     segmentId: input.segmentId,
     offset: 1,
   });
-  assert.deepEqual(result.explanation, labExplanation());
+  const expected = labExplanation();
+  assert.deepEqual(result.explanation, {
+    possibleInterpretations: [expected.comparisonInterpretation, ...expected.alternativeAccounts],
+    limitations: [expected.annotationUncertainty, ...expected.limitations],
+  });
   assert.ok(
     result.explanation.possibleInterpretations.every((item) =>
       item.evidenceIds.every((id) => result.evidence.some((e) => e.id === id)),
@@ -159,7 +163,15 @@ it("Lab validates shape, structured citations, refusals, URLs and secrets; prose
   const input = labInput(),
     reference = `compare_observed_pairing:${contextSegment.id}`;
   const simple = (text: string, ref = reference) => ({
-    possibleInterpretations: [{ text, evidenceIds: [ref] }],
+    comparisonInterpretation: { text, evidenceIds: [ref] },
+    alternativeAccounts: [{
+      text: "Reused calls and coda-type composition offer alternative accounts.",
+      evidenceIds: [reference],
+    }],
+    annotationUncertainty: {
+      text: "The source annotations retain uncertainty.",
+      evidenceIds: [reference],
+    },
     limitations: [
       {
         text: "A descriptive control does not establish meaning.",
@@ -168,13 +180,13 @@ it("Lab validates shape, structured citations, refusals, URLs and secrets; prose
     ],
   });
   for (const final of [
-    simple("Invented reference", "missing"),
-    simple("See https://example.invalid"),
-    simple(TEST_ENV.OPENAI_API_KEY),
-    { ...simple("hello"), score: 0 },
+    simple("Invented reference.", "missing"),
+    simple("See https://example.invalid."),
+    simple(`${TEST_ENV.OPENAI_API_KEY}.`),
+    { ...simple("Hello."), score: 0 },
     { possibleInterpretations: [], limitations: [] },
     { operations: [{ op: "delete_source" }] },
-    simple("x".repeat(601)),
+    simple("x".repeat(800) + "."),
   ]) {
     const response = await createWorker(
       scriptedTransport([finalOutput(final)]),
