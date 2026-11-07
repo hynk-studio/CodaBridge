@@ -56,6 +56,7 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 
 ## Review and compatibility
 
+- [Research upgrade plan · November 2026](docs/RESEARCH_UPGRADE_PLAN_2026-11-07.md): planned source integration, spectral comparison, event simulations and Astra evaluation.
 - [MVP-08 Sealed Coda, local lock and independent encrypted-file verification](docs/MVP_08.md)
 - [MVP-07 Personal Coda / file-based Exchange, format and browser round trip](docs/MVP_07.md)
 - [MVP-06 observed Timing / Style Atlas and read-only Composer reference](docs/MVP_06.md) · [generate/check/independent verification](analysis/style-atlas-v1/README.md)
