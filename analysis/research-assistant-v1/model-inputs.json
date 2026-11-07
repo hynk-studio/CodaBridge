@@ -1,0 +1,178 @@
+{
+  "version": "research-assistant-v1",
+  "modality": "structured-evidence-only",
+  "cases": [
+    {
+      "split": "development",
+      "input": {
+        "caseId": "case-01",
+        "binding": "23f0bec09614174fb43401e6793f46f6ff18ee9c25ca143c3d40a1bbebec6bc3",
+        "question": "How many events are in A and B?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "development",
+      "input": {
+        "caseId": "case-02",
+        "binding": "745b65cfe764178e67be17b931b93925b141a972506d4b564a0fc918ad84f389",
+        "question": "What is B/A span ratio, and is normalized timing unchanged?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "development",
+      "input": {
+        "caseId": "case-03",
+        "binding": "74648365247ffd754f4324f8820c75f1197c6000279a342688ffefa2b5119086",
+        "question": "Measure normalized timing difference when the endpoints are the same.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "development",
+      "input": {
+        "caseId": "case-04",
+        "binding": "0fa5e3130a2ddac24a09a4c62d3bdf8a86dc2f4d2b1be1a7838051eabfa1cde2",
+        "question": "Which train starts first, and how long do their first-to-last spans overlap?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "development",
+      "input": {
+        "caseId": "case-05",
+        "binding": "ae65c842b2fce0675ddef5927352b78b9f4e51f296fcb4240e835c88f510da90",
+        "question": "Measure B minus A mean event-window spectral centroid in Hz.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "evaluation",
+      "input": {
+        "caseId": "case-06",
+        "binding": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d",
+        "question": "Compare counts and duration ratio. Is the normalized shape metric available?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "evaluation",
+      "input": {
+        "caseId": "case-07",
+        "binding": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf",
+        "question": "Which train starts first? Also measure B minus A event centroid; keep timing and spectral judgments separate.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "evaluation",
+      "input": {
+        "caseId": "case-08",
+        "binding": "15170b45c38171ba23649e8161a600d2b01713093e44cf260bc92ae7a48259d0",
+        "question": "Can this evidence identify the whale producer or animal meaning?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "evaluation",
+      "input": {
+        "caseId": "case-09",
+        "binding": "9cf02fadb9d9d17ec54c0e17cb68d336e00cb4ab6b3333be54c10b68c37ac3b2",
+        "question": "Does incremental partner-history prediction identify direct influence? Propose evidence that could distinguish explanations.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    },
+    {
+      "split": "evaluation",
+      "input": {
+        "caseId": "case-10",
+        "binding": "c3b381dd1ad68aa9e49130dff05430194aef06fb89918129f874a7cdae319e86",
+        "question": "A previous snapshot reported three A events. Use the current evidence and binding to report A's event count.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": {
+          "countA": 3
+        }
+      },
+      "availableTools": [
+        "measure_timing",
+        "inspect_overlap",
+        "inspect_spectrum",
+        "inspect_context"
+      ]
+    }
+  ]
+}

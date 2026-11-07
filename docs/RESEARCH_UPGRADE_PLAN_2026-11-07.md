@@ -1,6 +1,6 @@
 # CodaBridge research upgrade plan — 2026-11-07
 
-**Status: planned implementation slices, not executed research.** Reviewed baseline: [main at 9de9469](https://github.com/hynk-studio/CodaBridge/tree/9de946988020125218a9496ca49e3f8769577497). This document turns the November research review into bounded follow-up work. It adds no implementation, new fitted result or biological claim.
+**Status: U1–U4 implementation and Cloud validation complete; integration history is tracked in PRs [#31](https://github.com/hynk-studio/CodaBridge/pull/31)–[#34](https://github.com/hynk-studio/CodaBridge/pull/34). Actual model evaluation remains outside this fixture-only stage.** Planning baseline: [main at 9de9469](https://github.com/hynk-studio/CodaBridge/tree/9de946988020125218a9496ca49e3f8769577497). The plan was merged in PR #30 before implementation. The original empirical studies remain unchanged; new fitted results below are synthetic diagnostics only.
 
 ## Goal and sequence
 
@@ -13,7 +13,22 @@ Extend CodaBridge so a visitor can compare timing, spectral properties and avail
 | **U3 — Event simulation** | Extend existing diagnostics through the full event-selection and prediction pipeline | Existing parser/cohort/model owners; no new field data |
 | **U4 — Research-assistant evaluation** | Composer-derived cases, task-specific scores and next-evidence suggestions | Deterministic measurements; U2/U3 evidence where relevant; waveform evaluation only with a verified audio-capable route |
 
-**Next implementation assignment: U1.** U2's native-audio measurements and U3 can progress independently if external metadata or reuse questions delay U1. U4 begins with structured evidence and provider-free fixtures; actual model evaluations are separately bounded runs. Each package should produce one focused, reviewable PR; split only when a real dependency warrants it.
+U2's native-audio measurements and U3 can progress independently if external metadata or reuse questions delay U1. U4 begins with structured evidence and provider-free fixtures; actual model evaluations are separately bounded runs. Each package has its own focused PR in dependency order.
+
+## Execution status — 2026-11-07
+
+| Package | Delivered evidence | Remaining acceptance or conditional work |
+| --- | --- | --- |
+| U1 | [Importer and local-file explorer](../analysis/spectral-context-v1/README.md); independently verified 1,375 one-to-one joins, zero disagreements across 13 shared fields; raw special codes and unknown values retained | External-row redistribution remains unresolved, so no rows are bundled. Eight desktop/mobile browser checks pass, including actual downloads and 320px table scrolling. |
+| U2 | [Native-spectrum comparison](../analysis/native-spectrum-v1/README.md); original/32/16 kHz reports for all four existing clips; independent recomputation of 75 marker windows and spectral rankings | Eight desktop/mobile browser checks pass, including selection, real downloads, corruption/unavailable states and stale loads. Four clips establish engineering behavior only. |
+| U3 | [Frozen event study and results](../analysis/event-simulation-v1/RESULTS.md); 600 realizations and 6,000 fits, zero fit failures; separate mechanism and observation-variant summaries | No empirical replication or interval-coverage claim. Common-driver flags (30/100 clean runs) cannot identify direct influence. The README identifies the verifiable freeze/result commits and archives the recovered local parent payload, whose source tree matches the published U2 parent. |
+| U4 | [Structured evaluation harness](../analysis/research-assistant-v1/README.md); 10 fixed cases, five development/five evaluation families; real adapter/tool dispatch with TEST ONLY transport; deterministic scores and review rubric | Actual model runs: zero. Audio perception and interpretation/next-check usefulness remain unscored. |
+
+Cloud follow-up validation: all 294 unit tests, 15 built-artifact tests, typecheck, lint, production client/Worker build, original data verification, history audit and all requested U1–U4 source/numerical/fixture checks pass. The v0.2 replay assertion now permits machine precision only for its two log-target outputs; mutation checks retain strict structure, source values, IDs, counts, groups and splits. Frozen scientific artifacts are unchanged.
+
+All 16 new-feature desktop/mobile browser cases and 58 existing Context Lab/Composer regression cases pass against the real Wrangler/workerd preview. Actual JSON downloads and rendered screens were inspected. The earlier Work executor errors (`socket(): Operation not permitted`, `uv_interface_addresses`) remain historical observations; they did not recur in Cloud. The bundled Chromium download is blocked, so validation used the installed Chromium through Playwright's explicit executable override. Human listening, deployment and live model evaluation are not claimed.
+
+[Validation commands, review findings and GitHub closeout](RESEARCH_UPGRADE_VALIDATION_2026-11-07.md). The Cloud worker's direct GitHub API requests were blocked by a proxy CONNECT 403. Follow-up review uses the connected GitHub integration, which can perform PR updates and merges. Existing branches were updated without force-push; stage-specific diffs and U3's freeze ancestry are preserved. Current merge outcomes and commit identities are recorded in the linked PRs.
 
 ## Existing foundation and limits
 
@@ -204,7 +219,7 @@ For each package:
 4. Keep document validation separate from implementation, numerical reproduction, real-device listening, deployed behavior and live-model evidence.
 5. Report delivered behavior, sources, actual commands/results, limitations and the next unblocked package. Record unsuccessful comparisons; do not search until a favorable result appears.
 
-This planning change requires document/link/scope checks only. The commands and acceptance criteria above apply to future implementations; they are not claims that those implementations or evaluations have run. Application deployment, model enablement and empirical-study execution remain separate assignments under the existing repository workflow.
+The original plan-only change required document/link/scope checks. Actual implementation evidence and remaining gaps are now recorded in the execution table and package READMEs. Application deployment, model enablement and new empirical-study execution remain separate assignments under the existing repository workflow.
 
 [dcce]: https://dcase.community/documents/workshop2026/proceedings/DCASE2026Workshop_Quintanilha_70.pdf
 [phonology]: https://doi.org/10.1098/rspb.2025.2994

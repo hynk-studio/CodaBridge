@@ -45,7 +45,10 @@
     "spectrum:verify": "python3 analysis/native-spectrum-v1/verify.py",
     "simulation:test": "node --experimental-strip-types --test tests/event-simulation.test.ts",
     "simulation:run": "python3 analysis/event-simulation-v1/run.py",
-    "simulation:verify": "python3 analysis/event-simulation-v1/verify.py"
+    "simulation:verify": "python3 analysis/event-simulation-v1/verify.py",
+    "assistant:eval": "node --experimental-strip-types analysis/research-assistant-v1/run.ts",
+    "assistant:check": "node --experimental-strip-types analysis/research-assistant-v1/run.ts --check",
+    "assistant:test": "node --experimental-strip-types --test tests/research-assistant.test.ts"
   },
   "dependencies": {
     "react": "^19.2.8",

@@ -1,0 +1,913 @@
+{
+  "version": "research-assistant-v1",
+  "execution": "fixture-only",
+  "actualModelRuns": 0,
+  "actualAudioInputs": 0,
+  "modelQualityScore": null,
+  "perceptionScore": null,
+  "results": [
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-01",
+      "split": "development",
+      "measurableAccuracy": {
+        "correct": 2,
+        "total": 2
+      },
+      "evidenceBinding": {
+        "correct": 2,
+        "total": 2,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 0,
+        "total": 0
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-01",
+        "binding": "23f0bec09614174fb43401e6793f46f6ff18ee9c25ca143c3d40a1bbebec6bc3",
+        "question": "How many events are in A and B?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "23f0bec09614174fb43401e6793f46f6ff18ee9c25ca143c3d40a1bbebec6bc3",
+        "measurements": [
+          {
+            "name": "countA",
+            "value": 3,
+            "evidenceId": "23f0bec09614174fb43401e6793f46f6ff18ee9c25ca143c3d40a1bbebec6bc3:measure_timing"
+          },
+          {
+            "name": "countB",
+            "value": 4,
+            "evidenceId": "23f0bec09614174fb43401e6793f46f6ff18ee9c25ca143c3d40a1bbebec6bc3:measure_timing"
+          }
+        ],
+        "abstentions": [],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "23f0bec09614174fb43401e6793f46f6ff18ee9c25ca143c3d40a1bbebec6bc3:measure_timing",
+          "binding": "23f0bec09614174fb43401e6793f46f6ff18ee9c25ca143c3d40a1bbebec6bc3",
+          "tool": "measure_timing",
+          "sourceClass": "synthetic",
+          "data": {
+            "countA": 3,
+            "countB": 4,
+            "spanASeconds": 0.6,
+            "spanBSeconds": 0.6,
+            "durationRatio": 1,
+            "shapeDistance": null,
+            "shapeStatus": "not-comparable",
+            "normalizedA": [
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "normalizedB": [
+              0.16666666666666669,
+              0.16666666666666663,
+              0.6666666666666666
+            ]
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-02",
+      "split": "development",
+      "measurableAccuracy": {
+        "correct": 2,
+        "total": 2
+      },
+      "evidenceBinding": {
+        "correct": 2,
+        "total": 2,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 0,
+        "total": 0
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-02",
+        "binding": "745b65cfe764178e67be17b931b93925b141a972506d4b564a0fc918ad84f389",
+        "question": "What is B/A span ratio, and is normalized timing unchanged?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "745b65cfe764178e67be17b931b93925b141a972506d4b564a0fc918ad84f389",
+        "measurements": [
+          {
+            "name": "durationRatio",
+            "value": 1.9999999999999998,
+            "evidenceId": "745b65cfe764178e67be17b931b93925b141a972506d4b564a0fc918ad84f389:measure_timing"
+          },
+          {
+            "name": "shapeDistance",
+            "value": 3.700743415417188e-17,
+            "evidenceId": "745b65cfe764178e67be17b931b93925b141a972506d4b564a0fc918ad84f389:measure_timing"
+          }
+        ],
+        "abstentions": [],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "745b65cfe764178e67be17b931b93925b141a972506d4b564a0fc918ad84f389:measure_timing",
+          "binding": "745b65cfe764178e67be17b931b93925b141a972506d4b564a0fc918ad84f389",
+          "tool": "measure_timing",
+          "sourceClass": "synthetic",
+          "data": {
+            "countA": 4,
+            "countB": 4,
+            "spanASeconds": 0.7000000000000001,
+            "spanBSeconds": 1.4,
+            "durationRatio": 1.9999999999999998,
+            "shapeDistance": 3.700743415417188e-17,
+            "shapeStatus": "comparable",
+            "normalizedA": [
+              0.14285714285714285,
+              0.2857142857142857,
+              0.5714285714285714
+            ],
+            "normalizedB": [
+              0.14285714285714285,
+              0.2857142857142857,
+              0.5714285714285715
+            ]
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-03",
+      "split": "development",
+      "measurableAccuracy": {
+        "correct": 2,
+        "total": 2
+      },
+      "evidenceBinding": {
+        "correct": 2,
+        "total": 2,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 0,
+        "total": 0
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-03",
+        "binding": "74648365247ffd754f4324f8820c75f1197c6000279a342688ffefa2b5119086",
+        "question": "Measure normalized timing difference when the endpoints are the same.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "74648365247ffd754f4324f8820c75f1197c6000279a342688ffefa2b5119086",
+        "measurements": [
+          {
+            "name": "durationRatio",
+            "value": 1,
+            "evidenceId": "74648365247ffd754f4324f8820c75f1197c6000279a342688ffefa2b5119086:measure_timing"
+          },
+          {
+            "name": "shapeDistance",
+            "value": 0.28571428571428564,
+            "evidenceId": "74648365247ffd754f4324f8820c75f1197c6000279a342688ffefa2b5119086:measure_timing"
+          }
+        ],
+        "abstentions": [],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "74648365247ffd754f4324f8820c75f1197c6000279a342688ffefa2b5119086:measure_timing",
+          "binding": "74648365247ffd754f4324f8820c75f1197c6000279a342688ffefa2b5119086",
+          "tool": "measure_timing",
+          "sourceClass": "synthetic",
+          "data": {
+            "countA": 4,
+            "countB": 4,
+            "spanASeconds": 0.7000000000000001,
+            "spanBSeconds": 0.7000000000000001,
+            "durationRatio": 1,
+            "shapeDistance": 0.28571428571428564,
+            "shapeStatus": "comparable",
+            "normalizedA": [
+              0.14285714285714285,
+              0.2857142857142857,
+              0.5714285714285714
+            ],
+            "normalizedB": [
+              0.5714285714285714,
+              0.14285714285714282,
+              0.2857142857142858
+            ]
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-04",
+      "split": "development",
+      "measurableAccuracy": {
+        "correct": 2,
+        "total": 2
+      },
+      "evidenceBinding": {
+        "correct": 2,
+        "total": 2,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 0,
+        "total": 0
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-04",
+        "binding": "0fa5e3130a2ddac24a09a4c62d3bdf8a86dc2f4d2b1be1a7838051eabfa1cde2",
+        "question": "Which train starts first, and how long do their first-to-last spans overlap?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "0fa5e3130a2ddac24a09a4c62d3bdf8a86dc2f4d2b1be1a7838051eabfa1cde2",
+        "measurements": [
+          {
+            "name": "earlier",
+            "value": "A",
+            "evidenceId": "0fa5e3130a2ddac24a09a4c62d3bdf8a86dc2f4d2b1be1a7838051eabfa1cde2:inspect_overlap"
+          },
+          {
+            "name": "overlapSeconds",
+            "value": 0.2,
+            "evidenceId": "0fa5e3130a2ddac24a09a4c62d3bdf8a86dc2f4d2b1be1a7838051eabfa1cde2:inspect_overlap"
+          }
+        ],
+        "abstentions": [],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "0fa5e3130a2ddac24a09a4c62d3bdf8a86dc2f4d2b1be1a7838051eabfa1cde2:inspect_overlap",
+          "binding": "0fa5e3130a2ddac24a09a4c62d3bdf8a86dc2f4d2b1be1a7838051eabfa1cde2",
+          "tool": "inspect_overlap",
+          "sourceClass": "synthetic",
+          "data": {
+            "earlier": "A",
+            "overlapSeconds": 0.2
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-05",
+      "split": "development",
+      "measurableAccuracy": {
+        "correct": 1,
+        "total": 1
+      },
+      "evidenceBinding": {
+        "correct": 1,
+        "total": 1,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 0,
+        "total": 0
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-05",
+        "binding": "ae65c842b2fce0675ddef5927352b78b9f4e51f296fcb4240e835c88f510da90",
+        "question": "Measure B minus A mean event-window spectral centroid in Hz.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "ae65c842b2fce0675ddef5927352b78b9f4e51f296fcb4240e835c88f510da90",
+        "measurements": [
+          {
+            "name": "centroidDeltaHz",
+            "value": 4600.000020036317,
+            "evidenceId": "ae65c842b2fce0675ddef5927352b78b9f4e51f296fcb4240e835c88f510da90:inspect_spectrum"
+          }
+        ],
+        "abstentions": [],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "ae65c842b2fce0675ddef5927352b78b9f4e51f296fcb4240e835c88f510da90:inspect_spectrum",
+          "binding": "ae65c842b2fce0675ddef5927352b78b9f4e51f296fcb4240e835c88f510da90",
+          "tool": "inspect_spectrum",
+          "sourceClass": "synthetic",
+          "data": {
+            "centroidAHz": 1399.9999800869289,
+            "centroidBHz": 6000.0000001232465,
+            "centroidDeltaHz": 4600.000020036317,
+            "method": "native-spectrum-v1 fixed pulse windows; synthetic click-pulse-1 or eval-pulse-6000-v1; not original whale audio"
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-06",
+      "split": "evaluation",
+      "measurableAccuracy": {
+        "correct": 4,
+        "total": 4
+      },
+      "evidenceBinding": {
+        "correct": 4,
+        "total": 4,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 1,
+        "total": 1
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-06",
+        "binding": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d",
+        "question": "Compare counts and duration ratio. Is the normalized shape metric available?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d",
+        "measurements": [
+          {
+            "name": "countA",
+            "value": 3,
+            "evidenceId": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d:measure_timing"
+          },
+          {
+            "name": "countB",
+            "value": 4,
+            "evidenceId": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d:measure_timing"
+          },
+          {
+            "name": "durationRatio",
+            "value": 2,
+            "evidenceId": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d:measure_timing"
+          },
+          {
+            "name": "shapeDistance",
+            "value": null,
+            "evidenceId": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d:measure_timing"
+          }
+        ],
+        "abstentions": [
+          "unequal-count-shape"
+        ],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d:measure_timing",
+          "binding": "e7c536868ff19beab9df25ddb29bc445599c348a3debf23bab05b95cca52244d",
+          "tool": "measure_timing",
+          "sourceClass": "synthetic",
+          "data": {
+            "countA": 3,
+            "countB": 4,
+            "spanASeconds": 0.6,
+            "spanBSeconds": 1.2,
+            "durationRatio": 2,
+            "shapeDistance": null,
+            "shapeStatus": "not-comparable",
+            "normalizedA": [
+              0.3333333333333333,
+              0.6666666666666666
+            ],
+            "normalizedB": [
+              0.33333333333333337,
+              0.33333333333333337,
+              0.33333333333333337
+            ]
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-07",
+      "split": "evaluation",
+      "measurableAccuracy": {
+        "correct": 2,
+        "total": 2
+      },
+      "evidenceBinding": {
+        "correct": 2,
+        "total": 2,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 2,
+        "total": 2
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 0,
+        "total": 0
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-07",
+        "binding": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf",
+        "question": "Which train starts first? Also measure B minus A event centroid; keep timing and spectral judgments separate.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf",
+        "measurements": [
+          {
+            "name": "earlier",
+            "value": "B",
+            "evidenceId": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf:inspect_overlap"
+          },
+          {
+            "name": "centroidDeltaHz",
+            "value": 2483.8493021524973,
+            "evidenceId": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf:inspect_spectrum"
+          }
+        ],
+        "abstentions": [],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf:inspect_overlap",
+          "binding": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf",
+          "tool": "inspect_overlap",
+          "sourceClass": "synthetic",
+          "data": {
+            "earlier": "B",
+            "overlapSeconds": 0.29999999999999993
+          }
+        },
+        {
+          "id": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf:inspect_spectrum",
+          "binding": "91f52f3855ddcba57ec06e8aacedd5e88822f2beadb61c6251a607c44127a7bf",
+          "tool": "inspect_spectrum",
+          "sourceClass": "synthetic",
+          "data": {
+            "centroidAHz": 1399.9999800869289,
+            "centroidBHz": 3883.849282239426,
+            "centroidDeltaHz": 2483.8493021524973,
+            "method": "native-spectrum-v1 fixed pulse windows; synthetic click-pulse-1 or eval-pulse-6000-v1; not original whale audio"
+          }
+        }
+      ],
+      "fixtureTransportRounds": 3
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-08",
+      "split": "evaluation",
+      "measurableAccuracy": {
+        "correct": 2,
+        "total": 2
+      },
+      "evidenceBinding": {
+        "correct": 2,
+        "total": 2,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 2,
+        "total": 2
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-08",
+        "binding": "15170b45c38171ba23649e8161a600d2b01713093e44cf260bc92ae7a48259d0",
+        "question": "Can this evidence identify the whale producer or animal meaning?",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "15170b45c38171ba23649e8161a600d2b01713093e44cf260bc92ae7a48259d0",
+        "measurements": [
+          {
+            "name": "producer",
+            "value": "unknown",
+            "evidenceId": "15170b45c38171ba23649e8161a600d2b01713093e44cf260bc92ae7a48259d0:inspect_context"
+          },
+          {
+            "name": "meaning",
+            "value": "unknown",
+            "evidenceId": "15170b45c38171ba23649e8161a600d2b01713093e44cf260bc92ae7a48259d0:inspect_context"
+          }
+        ],
+        "abstentions": [
+          "identity",
+          "meaning"
+        ],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "15170b45c38171ba23649e8161a600d2b01713093e44cf260bc92ae7a48259d0:inspect_context",
+          "binding": "15170b45c38171ba23649e8161a600d2b01713093e44cf260bc92ae7a48259d0",
+          "tool": "inspect_context",
+          "sourceClass": "synthetic",
+          "data": {
+            "producer": "unknown",
+            "meaning": "unknown",
+            "directInfluence": "unidentified",
+            "behavior": null,
+            "environmentMeasured": false,
+            "association": "A positive partner-history predictive gain can also occur under a shared driver. This observation does not identify direct coupling.",
+            "sourceClass": "synthetic",
+            "waveformSuppliedToModel": false
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-09",
+      "split": "evaluation",
+      "measurableAccuracy": {
+        "correct": 1,
+        "total": 1
+      },
+      "evidenceBinding": {
+        "correct": 1,
+        "total": 1,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 1,
+        "total": 1
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-09",
+        "binding": "9cf02fadb9d9d17ec54c0e17cb68d336e00cb4ab6b3333be54c10b68c37ac3b2",
+        "question": "Does incremental partner-history prediction identify direct influence? Propose evidence that could distinguish explanations.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": null
+      },
+      "output": {
+        "binding": "9cf02fadb9d9d17ec54c0e17cb68d336e00cb4ab6b3333be54c10b68c37ac3b2",
+        "measurements": [
+          {
+            "name": "directInfluence",
+            "value": "unidentified",
+            "evidenceId": "9cf02fadb9d9d17ec54c0e17cb68d336e00cb4ab6b3333be54c10b68c37ac3b2:inspect_context"
+          }
+        ],
+        "abstentions": [
+          "causal-identification"
+        ],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "9cf02fadb9d9d17ec54c0e17cb68d336e00cb4ab6b3333be54c10b68c37ac3b2:inspect_context",
+          "binding": "9cf02fadb9d9d17ec54c0e17cb68d336e00cb4ab6b3333be54c10b68c37ac3b2",
+          "tool": "inspect_context",
+          "sourceClass": "synthetic",
+          "data": {
+            "producer": "unknown",
+            "meaning": "unknown",
+            "directInfluence": "unidentified",
+            "behavior": null,
+            "environmentMeasured": false,
+            "association": "A positive partner-history predictive gain can also occur under a shared driver. This observation does not identify direct coupling.",
+            "sourceClass": "synthetic",
+            "waveformSuppliedToModel": false
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    },
+    {
+      "execution": "fixture-only; no model invocation",
+      "caseId": "case-10",
+      "split": "evaluation",
+      "measurableAccuracy": {
+        "correct": 1,
+        "total": 1
+      },
+      "evidenceBinding": {
+        "correct": 1,
+        "total": 1,
+        "unknownCitations": 0,
+        "unsupportedMeasurements": 0
+      },
+      "toolChoice": {
+        "correct": 1,
+        "total": 1
+      },
+      "unsupportedBiologicalDeclarations": 0,
+      "appropriateAbstention": {
+        "correct": 0,
+        "total": 0
+      },
+      "nextCheckStructure": true,
+      "interpretationReview": {
+        "unsupportedProseClaims": null,
+        "nextCheckUsefulness": null,
+        "status": "requires rubric review; schema and labels alone are insufficient"
+      },
+      "input": {
+        "caseId": "case-10",
+        "binding": "c3b381dd1ad68aa9e49130dff05430194aef06fb89918129f874a7cdae319e86",
+        "question": "A previous snapshot reported three A events. Use the current evidence and binding to report A's event count.",
+        "sourceClass": "synthetic",
+        "modality": "structured-evidence-only",
+        "previous": {
+          "countA": 3
+        }
+      },
+      "output": {
+        "binding": "c3b381dd1ad68aa9e49130dff05430194aef06fb89918129f874a7cdae319e86",
+        "measurements": [
+          {
+            "name": "countA",
+            "value": 5,
+            "evidenceId": "c3b381dd1ad68aa9e49130dff05430194aef06fb89918129f874a7cdae319e86:measure_timing"
+          }
+        ],
+        "abstentions": [],
+        "biologicalClaim": "none",
+        "nextCheck": {
+          "alternatives": [
+            "Direct response to a partner",
+            "Shared context or measurement effects"
+          ],
+          "observation": "Compare repeated observations within measured environmental and producer groups, then test arrival-time and missing-event sensitivity.",
+          "availability": "new-observation",
+          "outcomes": [
+            "A remaining association after controls would narrow the explanations without proving causality.",
+            "A disappearing association would weaken the direct-response account."
+          ]
+        }
+      },
+      "issued": [
+        {
+          "id": "c3b381dd1ad68aa9e49130dff05430194aef06fb89918129f874a7cdae319e86:measure_timing",
+          "binding": "c3b381dd1ad68aa9e49130dff05430194aef06fb89918129f874a7cdae319e86",
+          "tool": "measure_timing",
+          "sourceClass": "synthetic",
+          "data": {
+            "countA": 5,
+            "countB": 3,
+            "spanASeconds": 0.6,
+            "spanBSeconds": 0.6,
+            "durationRatio": 1,
+            "shapeDistance": null,
+            "shapeStatus": "not-comparable",
+            "normalizedA": [
+              0.16666666666666669,
+              0.16666666666666663,
+              0.33333333333333337,
+              0.33333333333333326
+            ],
+            "normalizedB": [
+              0.3333333333333333,
+              0.6666666666666666
+            ]
+          }
+        }
+      ],
+      "fixtureTransportRounds": 2
+    }
+  ]
+}
