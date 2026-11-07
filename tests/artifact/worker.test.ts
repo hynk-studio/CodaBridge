@@ -79,8 +79,14 @@ it("client artifact contains no server config, provider adapter or test fixture;
       "utf8",
     ),
   );
+  const sourceManifest = JSON.parse(
+    await readFile(
+      new URL("../../.openai/hosting.json", import.meta.url),
+      "utf8",
+    ),
+  );
   assert.equal(manifest.static, undefined);
-  assert.equal(manifest.project_id, undefined);
+  assert.deepEqual(manifest, sourceManifest);
   assert.ok(
     (await readFile(artifact, "utf8")).includes(
       "https://api.openai.com/v1/responses",
