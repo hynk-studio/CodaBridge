@@ -39,7 +39,10 @@
     "sealed:test:browser": "playwright test tests/browser/sealed.spec.ts",
     "spectral:fetch": "node --experimental-strip-types analysis/spectral-context-v1/run.ts --fetch",
     "spectral:check": "node --experimental-strip-types analysis/spectral-context-v1/run.ts --check",
-    "spectral:verify": "python3 analysis/spectral-context-v1/verify.py"
+    "spectral:verify": "python3 analysis/spectral-context-v1/verify.py",
+    "spectrum:generate": "node --experimental-strip-types analysis/native-spectrum-v1/generate.ts",
+    "spectrum:check": "node --experimental-strip-types analysis/native-spectrum-v1/generate.ts --check",
+    "spectrum:verify": "python3 analysis/native-spectrum-v1/verify.py"
   },
   "dependencies": {
     "react": "^19.2.8",

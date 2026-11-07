@@ -1,12 +1,9 @@
+import { downloadJson } from "./download.ts";
 import { useEffect, useRef, useState } from "react";
 import { FIELDS, REUSE, SOURCES, sourceUrl } from "./contract.ts";
 import { summarize, verifiedJoin, type JoinReport } from "./model.ts";
 import "./spectral.css";
-export function downloadJson(value: unknown, name: string) {
-  const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2) + "\n"], { type: "application/json" }));
-  const a = document.createElement("a"); a.href = url; a.download = name; a.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
+import NativeSpectrum from "./NativeSpectrum.tsx";
 export default function SpectralContext({ active }: { active: boolean }) {
   const [report, setReport] = useState<JoinReport | null>(null), [message, setMessage] = useState("External rows unavailable until you select the pinned source files.");
   const [type, setType] = useState(""), [urn, setURN] = useState("");
@@ -23,6 +20,8 @@ export default function SpectralContext({ active }: { active: boolean }) {
   const rows = report?.rows.filter(r => (!type || r.raw.codatype === type) && (!urn || r.raw.URN === urn)) ?? [];
   const summary = summarize(rows);
   return <div className="spectral-context">
+    <NativeSpectrum active={active} />
+    <h2>Published CETI spectrum and environmental annotations</h2>
     <p>Compare published spectral annotations and environmental codes from the same CETI codas. These records have no verified mapping to the four field recordings or the timing archive.</p>
     <p>{REUSE.distribution} Files stay in this browser; no upload or model request occurs. No audio is available for these rows.</p>
     <ul>{SOURCES.map(s => <li key={s.id}><a href={sourceUrl(s)} target="_blank" rel="noreferrer">{s.path}</a> · {s.bytes.toLocaleString()} bytes · revision {s.revision.slice(0, 7)}</li>)}</ul>
