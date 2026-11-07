@@ -1,0 +1,215 @@
+{
+  "version": "spectral-context-v1",
+  "status": "verified",
+  "sources": [
+    {
+      "id": "ceti-spectral",
+      "repo": "Project-CETI/coda-vowel-phonology",
+      "revision": "be751b8761c87813754dba10ad7068a9e71367c0",
+      "path": "codasp.csv",
+      "bytes": 81709,
+      "sha256": "770af6f8057d6b88ccbf18b815015955795cbd7b20ae65733153d28cf117cb5b",
+      "gitBlob": "d3713078091116066a15f91c906abff9b9efef33"
+    },
+    {
+      "id": "ceti-environment",
+      "repo": "Project-CETI/Database-for-ship-noise",
+      "revision": "3c0fe9dc49c08c315995ae92e4de9045e07f2b82",
+      "path": "codasp_w_urn.csv",
+      "bytes": 100946,
+      "sha256": "7da160c79c1ce76984fddc12e499163bdbf60920612a7372ff4cb4943219f55a",
+      "gitBlob": "a134cc79555c96450f05692585d5c394afc74dc9"
+    }
+  ],
+  "reuse": {
+    "status": "unresolved",
+    "distribution": "External rows are not bundled. Select your locally held pinned files for inspection.",
+    "evidence": [
+      "Neither pinned GitHub source has a license file.",
+      "The phonology README points to OSF 9t6qu; its license could not be retrieved on 2026-11-07.",
+      "The shipping article is open access; a CSV-specific redistribution grant has not been established."
+    ],
+    "attribution": "Project CETI / Dominica Sperm Whale Project; Beguš et al. (2026), doi:10.1098/rspb.2025.2994; Diamant et al. (2026), doi:10.1016/j.ecoinf.2026.103881"
+  },
+  "idNamespace": "CETI codanum; not timing archive row IDs",
+  "fields": {
+    "codanum": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "label",
+      "kind": "published measurement or identifier"
+    },
+    "autovpkcodastr": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "label",
+      "kind": "published measurement or identifier"
+    },
+    "autovbycoda": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "label",
+      "kind": "published measurement or identifier"
+    },
+    "mismatchN": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "clicks",
+      "kind": "published measurement or identifier"
+    },
+    "mismatchpct": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "percent",
+      "kind": "published measurement or identifier"
+    },
+    "meandist_pk1": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "Hz",
+      "kind": "published measurement or identifier"
+    },
+    "meandist_pk2": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "Hz",
+      "kind": "published measurement or identifier"
+    },
+    "meandiff_pk1": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "Hz",
+      "kind": "published measurement or identifier"
+    },
+    "meandiff_pk2": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "Hz",
+      "kind": "published measurement or identifier"
+    },
+    "focal": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "label",
+      "kind": "published annotation"
+    },
+    "whale": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "label",
+      "kind": "published annotation"
+    },
+    "codatype": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "label",
+      "kind": "published annotation"
+    },
+    "handv": {
+      "source": "ceti-spectral",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "label",
+      "kind": "published annotation"
+    },
+    "Duration": {
+      "source": "ceti-environment",
+      "definition": "https://github.com/Project-CETI/coda-vowel-phonology/blob/be751b8761c87813754dba10ad7068a9e71367c0/README.9t6qu.md",
+      "unit": "seconds",
+      "kind": "published measurement or identifier"
+    },
+    "URN": {
+      "source": "ceti-environment",
+      "definition": "unresolved; raw code only",
+      "unit": "label",
+      "kind": "unresolved environmental annotation"
+    },
+    "AIS_Data": {
+      "source": "ceti-environment",
+      "definition": "unresolved; raw code only",
+      "unit": "label",
+      "kind": "unresolved environmental annotation"
+    }
+  },
+  "waveformMapping": "unavailable",
+  "timingArchiveMapping": "unresolved; prior candidate links are not promoted",
+  "counts": {
+    "spectral": 1375,
+    "environment": 1375,
+    "uniqueSpectral": 1375,
+    "uniqueEnvironment": 1375,
+    "agreeingPairs": 1375,
+    "sharedFieldDifferences": 0
+  },
+  "issues": [],
+  "summary": {
+    "denominator": 1375,
+    "unknownProducer": 108,
+    "knownProducerGroups": 13,
+    "missing": {
+      "codanum": 0,
+      "autovpkcodastr": 0,
+      "autovbycoda": 0,
+      "mismatchN": 0,
+      "mismatchpct": 0,
+      "meandist_pk1": 4,
+      "meandist_pk2": 1065,
+      "meandiff_pk1": 4,
+      "meandiff_pk2": 1065,
+      "focal": 0,
+      "whale": 108,
+      "codatype": 0,
+      "handv": 233,
+      "Duration": 0,
+      "URN": 0,
+      "AIS_Data": 0
+    },
+    "codaTypes": {
+      "1+1+3": 823,
+      "1-NOISE": 2,
+      "10-NOISE": 1,
+      "10R": 6,
+      "10i": 4,
+      "2+3": 2,
+      "2-NOISE": 4,
+      "3-NOISE": 4,
+      "3D": 7,
+      "3R": 2,
+      "4-NOISE": 7,
+      "4R2": 33,
+      "5-NOISE": 18,
+      "5R1": 245,
+      "5R2": 45,
+      "5R3": 30,
+      "6-NOISE": 34,
+      "6R": 2,
+      "6i": 24,
+      "7-NOISE": 1,
+      "7D2": 8,
+      "7i": 9,
+      "8-NOISE": 1,
+      "8D": 6,
+      "8R": 1,
+      "8i": 20,
+      "9-NOISE": 7,
+      "9R": 4,
+      "9i": 25
+    },
+    "manualVowels": {
+      "(missing)": 233,
+      "a": 745,
+      "i": 397
+    },
+    "rawURN": {
+      "0": 873,
+      "1": 471,
+      "-1": 31
+    },
+    "rawAIS": {
+      "0": 388,
+      "1": 306,
+      "-1": 670,
+      "1*": 11
+    },
+    "groupingLimit": "Known producer names describe repeated records; no independent encounter count is available."
+  }
+}

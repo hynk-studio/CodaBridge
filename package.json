@@ -36,7 +36,10 @@
     "exchange:verify": "python3 scripts/verify-exchange.py",
     "sealed:test": "node --experimental-strip-types --test tests/sealed*.test.ts",
     "sealed:verify": "node scripts/verify-sealed.mjs",
-    "sealed:test:browser": "playwright test tests/browser/sealed.spec.ts"
+    "sealed:test:browser": "playwright test tests/browser/sealed.spec.ts",
+    "spectral:fetch": "node --experimental-strip-types analysis/spectral-context-v1/run.ts --fetch",
+    "spectral:check": "node --experimental-strip-types analysis/spectral-context-v1/run.ts --check",
+    "spectral:verify": "python3 analysis/spectral-context-v1/verify.py"
   },
   "dependencies": {
     "react": "^19.2.8",

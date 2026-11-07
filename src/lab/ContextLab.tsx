@@ -26,6 +26,7 @@ import ScoreChart from "./ScoreChart.tsx";
 import Prediction from "./Prediction.tsx";
 import { pairingFinding } from "./presentation.ts";
 import "./lab.css";
+import SpectralContext from "../spectral/SpectralContext.tsx";
 import Atlas, { type AtlasEntry } from "../atlas/Atlas.tsx";
 
 const seconds = (n: number | null, precision = 4) =>
@@ -58,7 +59,7 @@ export default function ContextLab({
   ref?: Ref<ContextLabHandle>;
 }) {
   const [panel, setPanel] = useState<"explore" | "compare" | "save">("explore");
-  const [mode, setMode] = useState<"descriptive" | "prediction" | "atlas">("descriptive");
+  const [mode, setMode] = useState<"descriptive" | "prediction" | "atlas" | "spectral">("descriptive");
   useEffect(() => { if (atlasEntry) setMode("atlas"); }, [atlasEntry]);
   const region = useRef<HTMLElement>(null);
   const [selectedId, setSelectedId] = useState(initialRow),
@@ -239,7 +240,12 @@ export default function ContextLab({
     <button aria-pressed={mode === "descriptive"} onClick={() => change(() => { stopField(); setMode("descriptive"); })}>Descriptive pairing</button>
     <button aria-pressed={mode === "prediction"} onClick={() => change(() => { stopField(); setMode("prediction"); })}>Dialogue Transfer / Prediction</button>
     <button aria-pressed={mode === "atlas"} onClick={() => change(() => { stopField(); setMode("atlas"); })}>Timing / Style Atlas</button>
+    <button aria-pressed={mode === "spectral"} onClick={() => change(() => { stopField(); setMode("spectral"); })}>Spectrum / Environment</button>
   </nav>;
+  if (mode === "spectral") return <section ref={region} tabIndex={-1} className="context-lab" hidden={!active} aria-labelledby="lab-title">
+    <div className="lab-heading"><div><p className="eyebrow">Context Lab / Published annotations</p><h1 id="lab-title">Spectrum / <em>Environment</em></h1></div><button onClick={onReturn}>← Return to my Composer</button></div>
+    {modeButtons}<SpectralContext active={active} />
+  </section>;
   if (mode === "atlas") return <section ref={region} tabIndex={-1} className="context-lab" hidden={!active} aria-labelledby="lab-title">
     <div className="lab-heading"><div><p className="eyebrow">Context Lab / Observed timing</p><h1 id="lab-title">Timing / <em>Style Atlas</em></h1></div><button onClick={onReturn}>← Return to my Composer</button></div>
     {modeButtons}<Atlas active={active} entry={atlasEntry} stopField={stopField} />
