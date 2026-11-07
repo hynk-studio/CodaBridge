@@ -15,10 +15,51 @@ function row(onset: number, caller: number, duration = 1, rec = "testAA001_1", c
 const build = (rows: string[]) => buildResearchCohorts(`${header}\n${rows.join("\n")}\n`);
 const history = () => Array.from({ length: 20 }, (_, i) => row(i * 3, i % 2 + 1));
 
+type Examples = ReturnType<typeof buildResearchCohorts>["core"];
+function assertFrozenExamples(actual: Examples, expected: Examples) {
+  assert.equal(actual.length, expected.length);
+  const normalized = actual.map((example, i) => {
+    for (const key of ["duration", "gap"] as const) {
+      const a = example.targets[key], b = expected[i].targets[key];
+      // Math.log may round differently across engines/platforms. Only its two
+      // outputs get this bound; every other value and key stays strictly equal.
+      assert.ok(Number.isFinite(a) && Number.isFinite(b));
+      assert.ok(Math.abs(a - b) <= Number.EPSILON * Math.max(1, Math.abs(b)), `${example.id}: ${key} log target changed`);
+    }
+    return { ...example, targets: { ...example.targets, duration: expected[i].targets.duration, gap: expected[i].targets.gap } };
+  });
+  assert.deepEqual(normalized, expected);
+}
+
+test("frozen replay accepts only machine-precision log changes and rejects structural/numeric mutations", () => {
+  const expected: Examples = read("analysis/dialogue-transfer-v02/inputs/core.json").slice(0, 2);
+  const roundoff = structuredClone(expected);
+  roundoff[0].targets.duration += Number.EPSILON / 2;
+  roundoff[0].targets.gap += Number.EPSILON / 2;
+  assertFrozenExamples(roundoff, expected);
+  const mutations: ((rows: Examples) => void)[] = [
+    rows => { rows[0].targets.duration += 1e-12; },
+    rows => { rows[0].targets.gap += 1e-12; },
+    rows => { rows[0].targets.duration = NaN; },
+    rows => { rows[0].targets.gap = Infinity; },
+    rows => { rows[0].targets.count++; },
+    rows => { rows[0].id += "-changed"; },
+    rows => { rows[0].parentGroup += "-changed"; },
+    rows => { rows[0].features.M1[0]! += Number.EPSILON; },
+    rows => { rows[0].sourceBindings.target.duration += Number.EPSILON; },
+    rows => { rows.reverse(); },
+    rows => { rows.pop(); },
+  ];
+  for (const mutate of mutations) {
+    const changed = structuredClone(expected); mutate(changed);
+    assert.throws(() => assertFrozenExamples(changed, expected));
+  }
+});
+
 test("v0.2 reproduces frozen core/coverage from full source and preserves common endpoint support", () => {
   const actual = buildResearchCohorts(source);
   for (const key of ["core", "coverage"] as const) {
-    assert.deepEqual(actual[key], read(`analysis/dialogue-transfer-v02/inputs/${key}.json`));
+    assertFrozenExamples(actual[key], read(`analysis/dialogue-transfer-v02/inputs/${key}.json`));
     assert.deepEqual(actual[`${key}Split`], read(`analysis/dialogue-transfer-v02/${key}-split.json`));
     for (const example of actual[key]) {
       assert.ok(Object.values(example.targets).every(Number.isFinite));
