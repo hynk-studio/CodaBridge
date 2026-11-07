@@ -44,6 +44,8 @@ Install Playwright Chromium with `npx playwright install chromium` if absent. Br
 
 Context Lab → **Timing / Style Atlas** now browses all 3,790 retained annotated timing rows. Composer → **Compare & ask → Observed timing reference** compares only the selected block, offers actual same-count source rows, and downloads a private-text-free comparison. Atlas navigation preserves the draft and Undo/Redo. Sparse groups and dependent archive support are explicit; the Atlas does not supply whale-response rules. [Methods, measured coverage and verification](docs/MVP_06.md).
 
+Context Lab → **Spectrum / Environment** verifies the two pinned CETI tables from locally selected files and exposes source-bound annotations, missingness and raw environmental codes. External rows are not bundled while reuse remains unresolved. [U1 importer, verified counts and limitations](analysis/spectral-context-v1/README.md).
+
 ## Data and limits
 
 Originals `1.wav`, `2.wav`, `11.wav` and `7.wav` come from [orrp/DSWP](https://huggingface.co/datasets/orrp/DSWP), pinned revision `a2e5d6dd02fc60343e1288c33314e14e8b7aa5be`, under **CC BY 4.0**. Credit: Dominica Sperm Whale Project; Orr Paradise and colleagues, *Towards A Translative Model of Sperm Whale Vocalization*, NeurIPS 2025. [Attribution and methods](docs/DATA_METHODS.md) includes full credit, hashes and selection/annotation provenance.

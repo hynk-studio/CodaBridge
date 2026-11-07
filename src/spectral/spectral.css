@@ -1,0 +1,8 @@
+.spectral-context { min-width: 0; }
+.spectral-context p { max-width: 80ch; }
+.spectral-context input[type=file] { display: block; max-width: 100%; margin-block: .6rem; }
+.spectral-context pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .85rem; }
+.spectral-context td, .spectral-context th { padding: .7rem; text-align: left; }
+.spectral-filters { display: flex; flex-wrap: wrap; gap: 1rem; margin-block: 1rem; }
+.spectral-filters label { display: grid; gap: .4rem; }
+.spectral-context a { overflow-wrap: anywhere; }
