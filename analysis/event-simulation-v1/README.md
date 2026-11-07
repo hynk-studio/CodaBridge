@@ -18,4 +18,8 @@ Installed Python 3.12.14 and the exact `requirements.txt` numerical dependencies
 
 The fetched Git history preserves the pre-score freeze at `a4723dab73239b7924ba6d06085fe022e1b6444a` (parent `c4934b6f0516945a359cdc80cac384c6a514ca51`) followed by the first results at `3fd0fd8a013c7e34abde443056f330b1c6f4f5f2`. The results file is absent from the freeze commit. All frozen file hashes match their recorded values. These are the verifiable remote identities for review.
 
-`freeze.json` retains a recorded `parentCommit` of `d47286b9cb6c014aa27acf7406bba195548b1089`. That object is absent from the fetched history and the remote rejects fetching it (`not our ref`). Its provenance is unresolved; it is not substituted for the verifiable commit chain above. The original freeze/result bytes remain unchanged. This metadata limitation does not establish a new experiment or alter any result.
+`freeze.json` retains a recorded `parentCommit` of `d47286b9cb6c014aa27acf7406bba195548b1089`. The Cloud worker could not fetch it (`not our ref`) because it was a commit in the original Work checkout, rather than a published GitHub commit. Follow-up review recovered its exact 256-byte payload from that checkout and preserves it in [local-parent-commit.txt](local-parent-commit.txt). Recompute its identity with:
+
+    git hash-object -t commit analysis/event-simulation-v1/local-parent-commit.txt
+
+The output must be `d47286b9cb6c014aa27acf7406bba195548b1089`. Its tree is `91bed7a7472e512c161857e6919a2e458fdb4c24`, exactly the tree of the [published U2 parent c4934b6f](https://github.com/hynk-studio/CodaBridge/commit/c4934b6f0516945a359cdc80cac384c6a514ca51). This verifies identical source trees, not identical commit metadata or ancestry. The local commit remains unavailable as a remote ref; the archived payload resolves the source-tree provenance. The original freeze/result bytes and fitted results remain unchanged.
