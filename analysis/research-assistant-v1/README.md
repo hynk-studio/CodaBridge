@@ -14,8 +14,14 @@ Scores separate measurable accuracy, evidence binding, tool choice, declared uns
 
 `fixture-results.json` reports orchestration only. Expected answers drive TEST ONLY transport; its perfect numeric checks are not Astra performance. Actual model runs and waveform runs remain zero. A future bounded model evaluation must record model/config, exact inputs/tool trace, outputs, budgets, failures and reviewed rubric; waveform evaluation additionally requires a verified audio-capable route. No live model, external collection, author contact, Exchange text or credentials were used.
 
-## Executed verification (2026-11-07)
+## Initial Work executor verification (2026-11-07, historical)
 
 Three focused tests passed, including all ten adapter/tool round trips, hand-computable count/ratio targets, wrong-value/invented-citation/unsupported-declaration mutants, hidden-input checks, stale binding, canceled invocation, altered evidence/input, duplicate names and oversized strings. Generated artifacts reproduce with `npm run assistant:check`. Typecheck, lint, production client/Worker build and all 15 built-artifact tests passed on Node 24.22.1 / Linux.
 
-The assembled U1–U4 suite has 292 passes out of 293 tests; its sole failure also reproduces on unchanged main at machine-precision differences in a frozen v0.2 log-target replay. No old test, study input or result was changed. Browser acceptance remains blocked by this executor's socket restrictions; it is independent of this offline fixture result. See the [execution status](../../docs/RESEARCH_UPGRADE_PLAN_2026-11-07.md#execution-status--2026-11-07) for all remaining gaps.
+The initial assembled U1–U4 suite had 292 passes out of 293 tests; its sole failure also reproduces on unchanged main at machine-precision differences in a frozen v0.2 log-target replay. No old test, study input or result was changed. Browser acceptance was blocked by that executor's socket restrictions; it is independent of this offline fixture result. See the [execution status](../../docs/RESEARCH_UPGRADE_PLAN_2026-11-07.md#execution-status--2026-11-07) for all remaining gaps.
+
+## Cloud follow-up verification (2026-11-07)
+
+All 294 assembled unit tests now pass, including a narrow machine-precision correction to the frozen log-target replay assertion and mutation checks against broader changes. The three U4 tests and all ten fixture orchestrations pass; `assistant:check` reproduces the committed artifacts exactly. No evaluation case, answer key, fixture result or score was changed. Typecheck, lint, production client/Worker build and all 15 built-artifact tests pass.
+
+The Cloud executor also completed 16 U1/U2 desktop/mobile browser acceptance cases and 58 Context Lab/Composer regression cases against the actual Worker preview, with real downloads and screen inspection. These results resolve the earlier browser socket/interface blocker, not the explicitly separate question of model quality. Actual model/audio-input runs remain zero and interpretation/usefulness scores remain null. See the [validation report](../../docs/RESEARCH_UPGRADE_VALIDATION_2026-11-07.md) for commands and the outstanding GitHub API access restriction.

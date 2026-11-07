@@ -40,13 +40,15 @@ npm run test:server-build
 npm run test:browser
 ```
 
-Install Playwright Chromium with `npx playwright install chromium` if absent. Browser tests start and stop their own local production preview. Tests inject a mock **provider transport** through the actual handler; fixtures never ship to visitors. Screenshots of that path are labeled **TEST ONLY**, not live Astra evidence.
+Install Playwright Chromium with `npx playwright install chromium` if absent. To use an already installed Chromium, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable path. Browser tests start and stop their own local production preview. Tests inject a mock **provider transport** through the actual handler; fixtures never ship to visitors. Screenshots of that path are labeled **TEST ONLY**, not live Astra evidence.
 
 Context Lab → **Timing / Style Atlas** now browses all 3,790 retained annotated timing rows. Composer → **Compare & ask → Observed timing reference** compares only the selected block, offers actual same-count source rows, and downloads a private-text-free comparison. Atlas navigation preserves the draft and Undo/Redo. Sparse groups and dependent archive support are explicit; the Atlas does not supply whale-response rules. [Methods, measured coverage and verification](docs/MVP_06.md).
 
 Context Lab → **Spectrum / Environment** verifies the two pinned CETI tables from locally selected files and exposes source-bound annotations, missingness and raw environmental codes. External rows are not bundled while reuse remains unresolved. [U1 importer, verified counts and limitations](analysis/spectral-context-v1/README.md).
 
 The same view compares timing and spectrum for the four original clips at 44.1/32/16 kHz, with separate metrics and source-bound exports. [U2 measurements](analysis/native-spectrum-v1/README.md). Offline [event simulations](analysis/event-simulation-v1/RESULTS.md) test the existing analysis under known mechanisms; the [research-assistant harness](analysis/research-assistant-v1/README.md) verifies ten synthetic structured-evidence cases using fixtures. Actual model performance and browser acceptance are not yet established.
+
+Cloud validation of the research-upgrade stack passes 294 unit tests, 15 Worker artifact tests, 16 new browser cases and 58 Context Lab/Composer regression cases. [Observed results and remaining PR access blocker](docs/RESEARCH_UPGRADE_VALIDATION_2026-11-07.md).
 
 ## Data and limits
 
