@@ -28,7 +28,7 @@ export default function SpectralContext({ active }: { active: boolean }) {
     <ul>{SOURCES.map(s => <li key={s.id}><a href={sourceUrl(s)} target="_blank" rel="noreferrer">{s.path}</a> · {s.bytes.toLocaleString()} bytes · revision {s.revision.slice(0, 7)}</li>)}</ul>
     <label>Open both pinned CSV files<input type="file" accept=".csv" multiple onChange={e => { void load(Array.from(e.target.files ?? [])); e.target.value = ""; }} /></label>
     <p role="status">{message}</p>
-    {report && <button onClick={() => downloadJson({ ...report, summary: summarize(report.rows) }, "codabridge-spectral-context-v1.json")}>Download source-bound join report</button>}
+    {report && <button onClick={() => downloadJson({ ...report, summary: summarize(report.rows), selection: { codaType: type || null, rawURN: urn || null }, filteredSummary: summary }, "codabridge-spectral-context-v1.json")}>Download source-bound join report</button>}
     {report?.status === "verified" && <>
       <div className="spectral-filters"><label>Coda type<select value={type} onChange={e => setType(e.target.value)}><option value="">All types</option>{[...new Set(report.rows.map(r => r.raw.codatype))].sort().map(t => <option key={t}>{t}</option>)}</select></label>
       <label>Raw URN code<select value={urn} onChange={e => setURN(e.target.value)}><option value="">All codes</option>{[...new Set(report.rows.map(r => r.raw.URN))].sort().map(t => <option key={t}>{t}</option>)}</select></label></div>
