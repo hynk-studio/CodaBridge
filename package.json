@@ -42,7 +42,10 @@
     "spectral:verify": "python3 analysis/spectral-context-v1/verify.py",
     "spectrum:generate": "node --experimental-strip-types analysis/native-spectrum-v1/generate.ts",
     "spectrum:check": "node --experimental-strip-types analysis/native-spectrum-v1/generate.ts --check",
-    "spectrum:verify": "python3 analysis/native-spectrum-v1/verify.py"
+    "spectrum:verify": "python3 analysis/native-spectrum-v1/verify.py",
+    "simulation:test": "node --experimental-strip-types --test tests/event-simulation.test.ts",
+    "simulation:run": "python3 analysis/event-simulation-v1/run.py",
+    "simulation:verify": "python3 analysis/event-simulation-v1/verify.py"
   },
   "dependencies": {
     "react": "^19.2.8",

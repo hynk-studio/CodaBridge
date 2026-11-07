@@ -1,0 +1,18 @@
+{
+  "version": "event-simulation-v1-freeze",
+  "parentCommit": "d47286b9cb6c014aa27acf7406bba195548b1089",
+  "files": {
+    "analysis/event-simulation-v1/protocol.json": "5562a61cd3251afe6609d579bef7db3c33c16548b06279540c320ce9e11566ec",
+    "analysis/event-simulation-v1/generator.ts": "5a6404c4e2ca70ae3226ee6b87451d6a49ab7e053d729a80672bb919bfd38690",
+    "analysis/event-simulation-v1/stream.ts": "616071ea547fbac1530f081ca93fa15805eb7ba613b4b9be63a0e5438a72cda5",
+    "analysis/event-simulation-v1/run.py": "28244fb4c7eae2e48e4da64907b65949b5fd450e8a653b3b690309249dfaa3b0",
+    "src/lab/parse.ts": "158d44893d8496057f2e350b09724d3871ab4c113db7ef35565b00c3b181c875",
+    "src/lab/model.ts": "85d55953d49d07a4569d09360ad5c469684bfc73d555b13e304cdf3b017a9ca8",
+    "analysis/dialogue-transfer/cohort.ts": "eacc10fa385f9184890e2d68680a2193bf178af87804a0a03fa84030856f5b88",
+    "analysis/dialogue-transfer-v02/cohort.ts": "4a2f353aeab7da88a135a681c65a50d5d800a2611a8a3dc5d84ecb9adc9a4b6f",
+    "analysis/dialogue-transfer-v02/experiment.py": "894c48c06ae3ac1cfc8db6ad7382d1ac4cf95026cb6e605bc490da34fecbb6dd",
+    "analysis/dialogue-transfer-v02/numerics.py": "96c4e25c4600951d5680e63aa11650396cb1e7b73d360b7ad226384ce0dfece3",
+    "analysis/dialogue-transfer-v02/protocol.json": "ecc7f197fe6423376e1cdb609e3d5837b66348691b116ad40e71772b9e5fc84f"
+  },
+  "status": "frozen before scoring"
+}
