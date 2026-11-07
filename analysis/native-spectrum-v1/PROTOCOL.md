@@ -1,0 +1,11 @@
+# Native spectrum v1 measurement contract
+
+Fixed before generation on 2026-11-07. Use all four unchanged licensed DSWP originals; verify bytes, hashes and 44.1 kHz mono PCM16. Preserve every original and annotation. No fitted model or external waveform join.
+
+Window: 20 ms centered on each ORIGINAL machine-estimated transient, in each derived sample rate. Exclude edge-crossing or mutually overlapping windows; retain exclusions and absolute sample indices. These are transient windows, not certified isolated clicks. Remove the window mean, apply symmetric Hann, zero-pad to next power of two, use a one-sided FFT power spectrum (double interior bins, divide by FFT size and Hann sum of squares). Report power centroid (Hz), full-scale mean square and power fractions [0,4), [4,8), [8,16), [16,Nyquist] kHz. Exact boundary bins belong to the upper band; silent windows return missing. Average event features equally, separate from whole-clip Welch power (same windows, 10 ms hop, equal frame weights, discard partial tail).
+
+Downsample to 32 and 16 kHz using a zero-phase Hann-windowed sinc, radius 48 SOURCE samples and cutoff 0.45 × target/source cycles per source sample. Evaluate at output positions i × source/target, normalize the full kernel weights and use zero extension. Output length is round(input frames × ratio); no amplitude normalization, upsampling or original-file mutation. This finite filter is a reproducible engineering reference, not an ideal brick wall.
+
+Rerun the existing detector independently on each variant. Compare count and nearest original-marker displacement, without asserting event identity when counts differ. Rank same-count timing with the unchanged normalized-interval MAD. Rank spectral candidates separately using L1 distance of the four mean-event band fractions among clips at the SAME rate. Ties use recording ID. No cross-rate distance ranking, combined percent similarity, or biological identity.
+
+Verification: tones with known centroids, independent NumPy FFT, original-source byte checks, silence/edge/overlap failure, attenuation above downsampled Nyquist, uniform timing scale, interval permutation at constant span, pulse shape and background perturbations. Four clips can reveal engineering sensitivity, not general model accuracy. No favorable result is required.

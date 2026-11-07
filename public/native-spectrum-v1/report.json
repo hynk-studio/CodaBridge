@@ -1,0 +1,3077 @@
+{
+  "version": "native-spectrum-v1",
+  "method": {
+    "version": "native-spectrum-v1",
+    "windowSeconds": 0.02,
+    "hopSeconds": 0.01,
+    "meanRemoval": "per window",
+    "window": "symmetric Hann",
+    "spectrum": "one-sided power, zero-padded radix-2 FFT",
+    "bandsHz": [
+      0,
+      4000,
+      8000,
+      16000,
+      24000
+    ],
+    "resampler": "zero-phase Hann-windowed sinc; radius 48 input samples; zero extension; DC weight normalization",
+    "resampleRadius": 48,
+    "cutoffFraction": 0.45,
+    "amplitude": "original PCM full-scale units; no peak normalization",
+    "markerWindows": "fixed original machine-estimated markers in every rate; overlapping and edge windows excluded"
+  },
+  "clips": [
+    {
+      "id": "dswp-1",
+      "source": {
+        "dataset": "orrp/DSWP",
+        "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "filename": "1.wav",
+        "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/1.wav",
+        "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+        "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+        "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+        "paperUrl": "https://arxiv.org/abs/2512.02206",
+        "acquiredOn": "2026-09-12"
+      },
+      "original": {
+        "path": "/audio/dswp-1.wav",
+        "sha256": "8d2ff688c55f4fa77ac4ecde320b71dbdc8d409db899bbcf80ed235ecc009057",
+        "bytes": 193192,
+        "durationSeconds": 2.1898866213151926,
+        "sampleRateHz": 44100,
+        "channels": 1,
+        "frames": 96574,
+        "encoding": "WAV / PCM signed 16-bit little-endian",
+        "transformations": []
+      },
+      "annotation": {
+        "status": "machine-estimated",
+        "method": "relative-peak-transient-groups",
+        "version": "1.0.0",
+        "parameters": {
+          "envelopeWindowSeconds": 0.002,
+          "relativeThreshold": 0.18,
+          "groupGapSeconds": 0.07
+        },
+        "timestampOrigin": "original-file-start",
+        "selectedIntervalSeconds": {
+          "start": 0,
+          "end": 2.1898866213151926
+        },
+        "clickSampleIndices": [
+          16881,
+          22112,
+          40441,
+          67117,
+          75154,
+          86489
+        ],
+        "clickTimesSeconds": [
+          0.3827891156462585,
+          0.50140589569161,
+          0.9170294784580499,
+          1.5219274376417233,
+          1.704172335600907,
+          1.9612018140589569
+        ],
+        "sourceAnnotations": "not-provided",
+        "humanReview": "not-performed",
+        "corrections": [],
+        "limitations": [
+          "Whole-file candidate sequence; biological coda boundaries are unverified.",
+          "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+          "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+        ]
+      },
+      "variants": [
+        {
+          "rate": 44100,
+          "frames": 96574,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.3827891156462585,
+            0.50140589569161,
+            0.9170294784580499,
+            1.5219274376417233,
+            1.704172335600907,
+            1.9612018140589569
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 2.1898866213151926,
+              "clickSpanSeconds": 1.5784126984126985,
+              "intervalsSeconds": [
+                0.11861678004535148,
+                0.41562358276643996,
+                0.6048979591836734,
+                0.18224489795918375,
+                0.2570294784580498
+              ],
+              "normalizedIntervals": [
+                0.07514940811400989,
+                0.26331743477761177,
+                0.3832318124353522,
+                0.1154608665670613,
+                0.16284047810596478
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.07514940811400989,
+                0.33846684289162166,
+                0.721698655326974,
+                0.8371595218940352,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.3827891156462585,
+              0.50140589569161,
+              0.9170294784580499,
+              1.5219274376417233,
+              1.704172335600907,
+              1.9612018140589569
+            ],
+            "durationSeconds": 2.1898866213151926,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.1898866213151926
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.3827891156462585,
+              "startSample": 16440,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 8656.25385990542,
+                "meanSquare": 0.0003960628777332394,
+                "bandFractions": [
+                  0.34512048046917204,
+                  0.16105478954764466,
+                  0.36225675062868484,
+                  0.13156797935450032
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.50140589569161,
+              "startSample": 21671,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 8064.827354378541,
+                "meanSquare": 0.0000974244078412171,
+                "bandFractions": [
+                  0.06280586410470392,
+                  0.3834035322235246,
+                  0.5342773882442421,
+                  0.019513215427527496
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.9170294784580499,
+              "startSample": 40000,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 9443.817340627907,
+                "meanSquare": 0.00036087326907139407,
+                "bandFractions": [
+                  0.2798600617633829,
+                  0.13673267151374366,
+                  0.48495731550207577,
+                  0.09844995122079661
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 1.5219274376417233,
+              "startSample": 66676,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6491.923075217666,
+                "meanSquare": 0.0007847957983612204,
+                "bandFractions": [
+                  0.006496315358896178,
+                  0.9296984318898814,
+                  0.060990173522527565,
+                  0.0028150792286939425
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.704172335600907,
+              "startSample": 74713,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7014.174044204688,
+                "meanSquare": 0.0008599227151098358,
+                "bandFractions": [
+                  0.007725957798239636,
+                  0.8936439825317941,
+                  0.09608361955988025,
+                  0.002546440110084988
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.9612018140589569,
+              "startSample": 86048,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 9390.230647218368,
+                "meanSquare": 0.0002150650828703456,
+                "bandFractions": [
+                  0.3116736537979692,
+                  0.1870217566420982,
+                  0.2649749041254309,
+                  0.2363296854345019
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 8176.871053592098,
+            "bandFractions": [
+              0.16894705554872727,
+              0.4485925273914478,
+              0.3005900252638069,
+              0.08187039179601753
+            ]
+          },
+          "wholeClip": {
+            "windows": 217,
+            "summary": {
+              "centroidHz": 8144.163306992314,
+              "meanSquare": 0.0000365414780664581,
+              "bandFractions": [
+                0.13981971073178617,
+                0.5417229380664698,
+                0.23025859530089293,
+                0.0881987559008526
+              ]
+            }
+          }
+        },
+        {
+          "rate": 32000,
+          "frames": 70076,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.38278125,
+            0.5140625,
+            0.94234375,
+            1.34921875,
+            1.70415625,
+            1.98396875
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0.000007865646258486958,
+            0.012656604308389996,
+            0.025314271541950095,
+            0.17270868764172342,
+            0.00001608560090704536,
+            0.022766935941043176
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 2.189875,
+              "clickSpanSeconds": 1.6011875,
+              "intervalsSeconds": [
+                0.13128124999999996,
+                0.42828125000000006,
+                0.4068749999999999,
+                0.35493750000000013,
+                0.2798125
+              ],
+              "normalizedIntervals": [
+                0.08198992934931103,
+                0.2674772629688903,
+                0.25410827901167093,
+                0.221671415746126,
+                0.17475311292400172
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.08198992934931103,
+                0.34946719231820134,
+                0.6035754713298722,
+                0.8252468870759982,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.38278125,
+              0.5140625,
+              0.94234375,
+              1.34921875,
+              1.70415625,
+              1.98396875
+            ],
+            "durationSeconds": 2.189875,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.189875
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.3827891156462585,
+              "startSample": 11929,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6553.083383077315,
+                "meanSquare": 0.00031728281543059187,
+                "bandFractions": [
+                  0.43077832529214793,
+                  0.2007630196450584,
+                  0.3684586550615265,
+                  1.2677900257012006e-12
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.50140589569161,
+              "startSample": 15725,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7785.504704844573,
+                "meanSquare": 0.00009462885839753743,
+                "bandFractions": [
+                  0.06473114074690874,
+                  0.3930965055887786,
+                  0.5421723536369478,
+                  2.736571749267448e-11
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.9170294784580499,
+              "startSample": 29025,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7263.402539173389,
+                "meanSquare": 0.00027391654411382607,
+                "bandFractions": [
+                  0.36902952229816044,
+                  0.17997752495031505,
+                  0.4509929506163362,
+                  2.135189050598026e-9
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 1.5219274376417233,
+              "startSample": 48382,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6442.885863890932,
+                "meanSquare": 0.0007818387502530628,
+                "bandFractions": [
+                  0.006526446643616188,
+                  0.9335815956561629,
+                  0.05989195770021098,
+                  1.0593189128768155e-14
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.704172335600907,
+              "startSample": 54214,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6968.922780933665,
+                "meanSquare": 0.0008569321839471272,
+                "bandFractions": [
+                  0.007760264126512695,
+                  0.8957379526185058,
+                  0.09650178325335516,
+                  1.6261397905547831e-12
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.9612018140589569,
+              "startSample": 62438,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 5803.421108871701,
+                "meanSquare": 0.0001511468561229617,
+                "bandFractions": [
+                  0.44574820910562724,
+                  0.2666731354524447,
+                  0.28757865543632166,
+                  5.607326380074292e-12
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 6802.870063465262,
+            "bandFractions": [
+              0.22076231803549554,
+              0.47830495565187764,
+              0.3009327259507831,
+              3.6184443624602664e-10
+            ]
+          },
+          "wholeClip": {
+            "windows": 217,
+            "summary": {
+              "centroidHz": 6760.582346180557,
+              "meanSquare": 0.000031848772827889375,
+              "bandFractions": [
+                0.1604661617244296,
+                0.6207677543740356,
+                0.21876608372822973,
+                1.7330440945525306e-10
+              ]
+            }
+          }
+        },
+        {
+          "rate": 16000,
+          "frames": 35038,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.3828125,
+            0.5140625,
+            0.9421875,
+            1.349125,
+            1.522,
+            1.7040625,
+            1.95775
+          ],
+          "countDelta": 1,
+          "nearestMarkerDisplacementSeconds": [
+            0.000023384353741495723,
+            0.012656604308389996,
+            0.025158021541950015,
+            0.00007256235827668434,
+            0.00010983560090704891,
+            0.0034518140589567814
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 7,
+              "recordingDurationSeconds": 2.189875,
+              "clickSpanSeconds": 1.5749375,
+              "intervalsSeconds": [
+                0.13124999999999998,
+                0.428125,
+                0.40693749999999995,
+                0.1728750000000001,
+                0.18206250000000002,
+                0.25368750000000007
+              ],
+              "normalizedIntervals": [
+                0.08333664034287074,
+                0.27183618397555454,
+                0.2583832691773483,
+                0.10976626056589553,
+                0.11559982538989642,
+                0.1610778205484345
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.08333664034287074,
+                0.3551728243184253,
+                0.6135560934957736,
+                0.7233223540616691,
+                0.8389221794515656,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.3828125,
+              0.5140625,
+              0.9421875,
+              1.349125,
+              1.522,
+              1.7040625,
+              1.95775
+            ],
+            "durationSeconds": 2.189875,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.189875
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.3827891156462585,
+              "startSample": 5965,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 3338.9069800704365,
+                "meanSquare": 0.00018782946063473718,
+                "bandFractions": [
+                  0.7293077893427677,
+                  0.27069220914966213,
+                  1.5075699537474814e-9,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.50140589569161,
+              "startSample": 7862,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 4623.245516167149,
+                "meanSquare": 0.000027359597977039277,
+                "bandFractions": [
+                  0.22419084224135352,
+                  0.775809157323932,
+                  4.347140382469418e-10,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.9170294784580499,
+              "startSample": 14512,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 3376.0759918616072,
+                "meanSquare": 0.00014315891715033785,
+                "bandFractions": [
+                  0.7120158077406937,
+                  0.28798417481520805,
+                  1.7444098602724077e-8,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 1.5219274376417233,
+              "startSample": 24191,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6122.959076648929,
+                "meanSquare": 0.0006368410454294056,
+                "bandFractions": [
+                  0.008052333790097066,
+                  0.9919476654065369,
+                  8.033659102611275e-10,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.704172335600907,
+              "startSample": 27107,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 5898.044491289608,
+                "meanSquare": 0.0003445404138127656,
+                "bandFractions": [
+                  0.019319563023083883,
+                  0.9806804369402004,
+                  3.671608373351831e-11,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.9612018140589569,
+              "startSample": 31219,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 3446.4770294603786,
+                "meanSquare": 0.00010386084363352049,
+                "bandFractions": [
+                  0.6513800721627447,
+                  0.3486199058483343,
+                  2.1988920861007433e-8,
+                  0
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 4467.618180916351,
+            "bandFractions": [
+              0.3907110680501235,
+              0.6092889249139789,
+              7.03589757495343e-9,
+              0
+            ]
+          },
+          "wholeClip": {
+            "windows": 217,
+            "summary": {
+              "centroidHz": 4858.888765975801,
+              "meanSquare": 0.000016859736349442276,
+              "bandFractions": [
+                0.3030646302484646,
+                0.6969353251065604,
+                4.464497482206773e-8,
+                0
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dswp-2",
+      "source": {
+        "dataset": "orrp/DSWP",
+        "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "filename": "2.wav",
+        "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/2.wav",
+        "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+        "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+        "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+        "paperUrl": "https://arxiv.org/abs/2512.02206",
+        "acquiredOn": "2026-09-12"
+      },
+      "original": {
+        "path": "/audio/dswp-2.wav",
+        "sha256": "fc1847c125ebf0f5329ee0d421fa191d89a7ff40443372de944ef1df8e051417",
+        "bytes": 189798,
+        "durationSeconds": 2.15140589569161,
+        "sampleRateHz": 44100,
+        "channels": 1,
+        "frames": 94877,
+        "encoding": "WAV / PCM signed 16-bit little-endian",
+        "transformations": []
+      },
+      "annotation": {
+        "status": "machine-estimated",
+        "method": "relative-peak-transient-groups",
+        "version": "1.0.0",
+        "parameters": {
+          "envelopeWindowSeconds": 0.002,
+          "relativeThreshold": 0.18,
+          "groupGapSeconds": 0.07
+        },
+        "timestampOrigin": "original-file-start",
+        "selectedIntervalSeconds": {
+          "start": 0,
+          "end": 2.15140589569161
+        },
+        "clickSampleIndices": [
+          19502,
+          41898,
+          58527,
+          65741,
+          73961,
+          87157
+        ],
+        "clickTimesSeconds": [
+          0.44222222222222224,
+          0.9500680272108843,
+          1.3271428571428572,
+          1.4907256235827664,
+          1.6771201814058956,
+          1.9763492063492063
+        ],
+        "sourceAnnotations": "not-provided",
+        "humanReview": "not-performed",
+        "corrections": [],
+        "limitations": [
+          "Whole-file candidate sequence; biological coda boundaries are unverified.",
+          "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+          "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+        ]
+      },
+      "variants": [
+        {
+          "rate": 44100,
+          "frames": 94877,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.44222222222222224,
+            0.9500680272108843,
+            1.3271428571428572,
+            1.4907256235827664,
+            1.6771201814058956,
+            1.9763492063492063
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 2.15140589569161,
+              "clickSpanSeconds": 1.534126984126984,
+              "intervalsSeconds": [
+                0.507845804988662,
+                0.37707482993197283,
+                0.1635827664399092,
+                0.1863945578231292,
+                0.2992290249433107
+              ],
+              "normalizedIntervals": [
+                0.3310324440174414,
+                0.2457911462567438,
+                0.10662922178700757,
+                0.12149878057793213,
+                0.1950484073608751
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.3310324440174414,
+                0.5768235902741852,
+                0.6834528120611928,
+                0.804951592639125,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.44222222222222224,
+              0.9500680272108843,
+              1.3271428571428572,
+              1.4907256235827664,
+              1.6771201814058956,
+              1.9763492063492063
+            ],
+            "durationSeconds": 2.15140589569161,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.15140589569161
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.44222222222222224,
+              "startSample": 19061,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 9634.156966068456,
+                "meanSquare": 0.0003108430902568893,
+                "bandFractions": [
+                  0.31744034011219435,
+                  0.18359471019666962,
+                  0.2606756021784686,
+                  0.23828934751266664
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.9500680272108843,
+              "startSample": 41457,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 9605.004351181231,
+                "meanSquare": 0.000324441521199828,
+                "bandFractions": [
+                  0.33915360610081374,
+                  0.14802969994060514,
+                  0.2878390632630495,
+                  0.22497763069553112
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 1.3271428571428572,
+              "startSample": 58086,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6894.907294910308,
+                "meanSquare": 0.00037965214149015826,
+                "bandFractions": [
+                  0.015511158810639183,
+                  0.9347493730660124,
+                  0.042462844026272664,
+                  0.007276624097075509
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 1.4907256235827664,
+              "startSample": 65300,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7641.482038614937,
+                "meanSquare": 0.0006999018441961562,
+                "bandFractions": [
+                  0.10588082865843672,
+                  0.6951205542575467,
+                  0.14598604852082156,
+                  0.05301256856319454
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.6771201814058956,
+              "startSample": 73520,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7133.681046024672,
+                "meanSquare": 0.0003846051410683698,
+                "bandFractions": [
+                  0.015424975119651099,
+                  0.8849438714138823,
+                  0.08980225151071602,
+                  0.009828901955751397
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.9763492063492063,
+              "startSample": 86716,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 9861.903327239459,
+                "meanSquare": 0.0003223169188241962,
+                "bandFractions": [
+                  0.3214680848282117,
+                  0.12569044702871315,
+                  0.3464688237802801,
+                  0.20637264436279631
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 8461.855837339843,
+            "bandFractions": [
+              0.18581316560499114,
+              0.4953547759839049,
+              0.19553910554660137,
+              0.12329295286450259
+            ]
+          },
+          "wholeClip": {
+            "windows": 214,
+            "summary": {
+              "centroidHz": 8586.460336106169,
+              "meanSquare": 0.00003119827891030756,
+              "bandFractions": [
+                0.16461908418422447,
+                0.46573067756377234,
+                0.2505298596085857,
+                0.11912037864341621
+              ]
+            }
+          }
+        },
+        {
+          "rate": 32000,
+          "frames": 68845,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.51475,
+            0.921625,
+            1.32721875,
+            1.49075,
+            1.6771875,
+            1.97628125
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0.0725277777777778,
+            0.02844302721088432,
+            0.00007589285714271199,
+            0.000024376417233629155,
+            0.00006731859410447072,
+            0.00006795634920631066
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 2.15140625,
+              "clickSpanSeconds": 1.46153125,
+              "intervalsSeconds": [
+                0.406875,
+                0.40559374999999986,
+                0.16353125000000013,
+                0.18643750000000003,
+                0.29909374999999994
+              ],
+              "normalizedIntervals": [
+                0.27838953152729373,
+                0.2775128824648805,
+                0.1118903547221451,
+                0.127563129423336,
+                0.2046441018623447
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.27838953152729373,
+                0.5559024139921742,
+                0.6677927687143194,
+                0.7953558981376553,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.51475,
+              0.921625,
+              1.32721875,
+              1.49075,
+              1.6771875,
+              1.97628125
+            ],
+            "durationSeconds": 2.15140625,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.15140625
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.44222222222222224,
+              "startSample": 13831,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 5605.950337797628,
+                "meanSquare": 0.00020378381996431452,
+                "bandFractions": [
+                  0.484226554968046,
+                  0.2799615430003899,
+                  0.23581190005947844,
+                  1.9720854830565363e-9
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.9500680272108843,
+              "startSample": 30082,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 5627.258315759976,
+                "meanSquare": 0.00021219261709566715,
+                "bandFractions": [
+                  0.5185343341221097,
+                  0.22610006771414487,
+                  0.25536559737123815,
+                  7.925072482903852e-10
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 1.3271428571428572,
+              "startSample": 42149,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6769.030539909092,
+                "meanSquare": 0.00037548052029275303,
+                "bandFractions": [
+                  0.015697396988553176,
+                  0.9461000367674283,
+                  0.03820256624382146,
+                  1.9884460544771599e-13
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 1.4907256235827664,
+              "startSample": 47383,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6584.678113383877,
+                "meanSquare": 0.0006226446190562014,
+                "bandFractions": [
+                  0.11908277195689752,
+                  0.7805069678764889,
+                  0.10041025954001563,
+                  6.265987110739354e-10
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.6771201814058956,
+              "startSample": 53348,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6995.553631544744,
+                "meanSquare": 0.0003799167274867352,
+                "bandFractions": [
+                  0.015630737062936155,
+                  0.8960092920888817,
+                  0.08835997084075746,
+                  7.424884911807812e-12
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.9763492063492063,
+              "startSample": 62923,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6053.880514735199,
+                "meanSquare": 0.00020961346946014498,
+                "bandFractions": [
+                  0.49428825222530676,
+                  0.1931927469583611,
+                  0.31251900004720007,
+                  7.691314470185057e-10
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 6272.725242188419,
+            "bandFractions": [
+              0.27457667455397483,
+              0.5536451090676158,
+              0.17177821568375184,
+              6.94657769826103e-10
+            ]
+          },
+          "wholeClip": {
+            "windows": 214,
+            "summary": {
+              "centroidHz": 6676.433271423959,
+              "meanSquare": 0.00002565035919431861,
+              "bandFractions": [
+                0.20026558185279097,
+                0.566134050025632,
+                0.23360036780051938,
+                3.2105891324955684e-10
+              ]
+            }
+          }
+        },
+        {
+          "rate": 16000,
+          "frames": 34422,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.4425,
+            0.921625,
+            1.3270625,
+            1.49075,
+            1.6771875,
+            1.9765625
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0.0002777777777777657,
+            0.02844302721088432,
+            0.0000803571428571459,
+            0.000024376417233629155,
+            0.00006731859410447072,
+            0.0002132936507937
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 2.151375,
+              "clickSpanSeconds": 1.5340625,
+              "intervalsSeconds": [
+                0.479125,
+                0.4054375,
+                0.16368749999999999,
+                0.18643750000000003,
+                0.29937499999999995
+              ],
+              "normalizedIntervals": [
+                0.31232430230189445,
+                0.26429007944591565,
+                0.1067019759625178,
+                0.1215318802200041,
+                0.19515176206966792
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.31232430230189445,
+                0.5766143817478101,
+                0.6833163577103278,
+                0.8048482379303321,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.4425,
+              0.921625,
+              1.3270625,
+              1.49075,
+              1.6771875,
+              1.9765625
+            ],
+            "durationSeconds": 2.151375,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.151375
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.44222222222222224,
+              "startSample": 6916,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 3571.2807253744904,
+                "meanSquare": 0.00014960300084179768,
+                "bandFractions": [
+                  0.6611752973132763,
+                  0.338824702667921,
+                  1.880223845325297e-11,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.9500680272108843,
+              "startSample": 15041,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 3409.2861173221595,
+                "meanSquare": 0.000152458003088095,
+                "bandFractions": [
+                  0.722024130181561,
+                  0.2779758681834116,
+                  1.6350267757720136e-9,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 1.3271428571428572,
+              "startSample": 21074,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6302.910616228912,
+                "meanSquare": 0.00023969824382084263,
+                "bandFractions": [
+                  0.02470363642617014,
+                  0.975296357420078,
+                  6.153752285739349e-9,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 1.4907256235827664,
+              "startSample": 23692,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 5505.51986997929,
+                "meanSquare": 0.00038673624395049933,
+                "bandFractions": [
+                  0.19200012746498454,
+                  0.8079998675223198,
+                  5.012695855468611e-9,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.6771201814058956,
+              "startSample": 26674,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6079.816305348627,
+                "meanSquare": 0.00018168671839191258,
+                "bandFractions": [
+                  0.032734216849507614,
+                  0.9672657830287031,
+                  1.2178986315608824e-10,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.9763492063492063,
+              "startSample": 31462,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 3269.5006271307147,
+                "meanSquare": 0.00013969675750379499,
+                "bandFractions": [
+                  0.7433623087428576,
+                  0.2566376905387622,
+                  7.183798607473133e-10,
+                  0
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 4689.719043564032,
+            "bandFractions": [
+              0.39599995282972617,
+              0.6040000448935327,
+              2.2767411465561048e-9,
+              0
+            ]
+          },
+          "wholeClip": {
+            "windows": 214,
+            "summary": {
+              "centroidHz": 4717.668558724795,
+              "meanSquare": 0.000014653874911559735,
+              "bandFractions": [
+                0.3505412687756597,
+                0.6494587102121315,
+                2.101220865755744e-8,
+                0
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dswp-11",
+      "source": {
+        "dataset": "orrp/DSWP",
+        "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "filename": "11.wav",
+        "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/11.wav",
+        "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+        "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+        "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+        "paperUrl": "https://arxiv.org/abs/2512.02206",
+        "acquiredOn": "2026-09-12"
+      },
+      "original": {
+        "path": "/audio/dswp-11.wav",
+        "sha256": "6e4cc5f55a2ec915b23e05ebfd3bc9e4f13d87956139dc8ac36ea3f1e05a97a3",
+        "bytes": 146562,
+        "durationSeconds": 1.6612018140589568,
+        "sampleRateHz": 44100,
+        "channels": 1,
+        "frames": 73259,
+        "encoding": "WAV / PCM signed 16-bit little-endian",
+        "transformations": []
+      },
+      "annotation": {
+        "status": "machine-estimated",
+        "method": "relative-peak-transient-groups",
+        "version": "1.0.0",
+        "parameters": {
+          "envelopeWindowSeconds": 0.002,
+          "relativeThreshold": 0.18,
+          "groupGapSeconds": 0.07
+        },
+        "timestampOrigin": "original-file-start",
+        "selectedIntervalSeconds": {
+          "start": 0,
+          "end": 1.6612018140589568
+        },
+        "clickSampleIndices": [
+          13288,
+          22108,
+          36833,
+          43320,
+          51266,
+          60517
+        ],
+        "clickTimesSeconds": [
+          0.30131519274376417,
+          0.5013151927437641,
+          0.8352154195011338,
+          0.9823129251700681,
+          1.1624943310657596,
+          1.3722675736961452
+        ],
+        "sourceAnnotations": "not-provided",
+        "humanReview": "not-performed",
+        "corrections": [],
+        "limitations": [
+          "Whole-file candidate sequence; biological coda boundaries are unverified.",
+          "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+          "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+        ]
+      },
+      "variants": [
+        {
+          "rate": 44100,
+          "frames": 73259,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.30131519274376417,
+            0.5013151927437641,
+            0.8352154195011338,
+            0.9823129251700681,
+            1.1624943310657596,
+            1.3722675736961452
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 1.6612018140589568,
+              "clickSpanSeconds": 1.0709523809523809,
+              "intervalsSeconds": [
+                0.19999999999999996,
+                0.33390022675736963,
+                0.14709750566893431,
+                0.18018140589569154,
+                0.20977324263038555
+              ],
+              "normalizedIntervals": [
+                0.18674966651845262,
+                0.31177877998687253,
+                0.1373520506468484,
+                0.16824408731923177,
+                0.19587541552859478
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.18674966651845262,
+                0.49852844650532513,
+                0.6358804971521735,
+                0.8041245844714053,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.30131519274376417,
+              0.5013151927437641,
+              0.8352154195011338,
+              0.9823129251700681,
+              1.1624943310657596,
+              1.3722675736961452
+            ],
+            "durationSeconds": 1.6612018140589568,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 1.6612018140589568
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.30131519274376417,
+              "startSample": 12847,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 10244.1351670853,
+                "meanSquare": 0.00048813875087460744,
+                "bandFractions": [
+                  0.16038673071477064,
+                  0.204867409284959,
+                  0.4413445072765861,
+                  0.19340135272368417
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.5013151927437641,
+              "startSample": 21667,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 9188.626837491456,
+                "meanSquare": 0.0008938406131655293,
+                "bandFractions": [
+                  0.007509215966420383,
+                  0.194127390899702,
+                  0.7553194772059811,
+                  0.04304391592789619
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.8352154195011338,
+              "startSample": 36392,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 10380.398778845944,
+                "meanSquare": 0.0006153665376504036,
+                "bandFractions": [
+                  0.15891076841653737,
+                  0.20864041932791882,
+                  0.4298125277470413,
+                  0.20263628450850402
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 0.9823129251700681,
+              "startSample": 42879,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 8148.734377567172,
+                "meanSquare": 0.0009202255883085603,
+                "bandFractions": [
+                  0.0050912081327033325,
+                  0.7330538077158085,
+                  0.21298060602137037,
+                  0.04887437813011788
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.1624943310657596,
+              "startSample": 50825,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7976.178908489328,
+                "meanSquare": 0.00044893546494280916,
+                "bandFractions": [
+                  0.01242526786374085,
+                  0.7397419469491029,
+                  0.20727187364330765,
+                  0.04056091154384795
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.3722675736961452,
+              "startSample": 60076,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 9794.62670350337,
+                "meanSquare": 0.0004251634371701026,
+                "bandFractions": [
+                  0.19956596361214077,
+                  0.22313128941332422,
+                  0.3884598994722597,
+                  0.1888428475022744
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 9288.78346216376,
+            "bandFractions": [
+              0.09064819245105223,
+              0.3839270439318026,
+              0.4058648152277577,
+              0.11955994838938744
+            ]
+          },
+          "wholeClip": {
+            "windows": 165,
+            "summary": {
+              "centroidHz": 9002.347179519376,
+              "meanSquare": 0.000045950100235173296,
+              "bandFractions": [
+                0.11376901946114047,
+                0.40523314289536805,
+                0.36249903984469845,
+                0.1184987977987935
+              ]
+            }
+          }
+        },
+        {
+          "rate": 32000,
+          "frames": 53158,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.3013125,
+            0.5013125,
+            0.83521875,
+            0.9823125,
+            1.1625,
+            1.40253125
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0.0000026927437641877106,
+            0.0000026927437640766883,
+            0.000003330498866249698,
+            4.2517006804132507e-7,
+            0.000005668934240476986,
+            0.030263676303854847
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 1.6611875,
+              "clickSpanSeconds": 1.1012187500000001,
+              "intervalsSeconds": [
+                0.20000000000000007,
+                0.33390624999999996,
+                0.14709375000000002,
+                0.18018750000000006,
+                0.24003124999999992
+              ],
+              "normalizedIntervals": [
+                0.18161695848349843,
+                0.3032151877181531,
+                0.13357359743466046,
+                0.16362552853372686,
+                0.21796872782996102
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.18161695848349843,
+                0.48483214620165155,
+                0.618405743636312,
+                0.7820312721700389,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.3013125,
+              0.5013125,
+              0.83521875,
+              0.9823125,
+              1.1625,
+              1.40253125
+            ],
+            "durationSeconds": 1.6611875,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 1.6611875
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.30131519274376417,
+              "startSample": 9322,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7767.599322757969,
+                "meanSquare": 0.0003627226897863382,
+                "bandFractions": [
+                  0.21585774558220333,
+                  0.2755724014836121,
+                  0.5085698518799462,
+                  1.054239814755647e-9
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.5013151927437641,
+              "startSample": 15722,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 8673.500443545101,
+                "meanSquare": 0.0008464791691938391,
+                "bandFractions": [
+                  0.007931849407029607,
+                  0.20208463875896243,
+                  0.7899835116676397,
+                  1.6636848643933024e-10
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.8352154195011338,
+              "startSample": 26407,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7918.3489808322365,
+                "meanSquare": 0.000454100334257939,
+                "bandFractions": [
+                  0.21543181030315248,
+                  0.28267412344386256,
+                  0.5018940657881484,
+                  4.648359792281035e-10
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 0.9823129251700681,
+              "startSample": 31114,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7525.450144510516,
+                "meanSquare": 0.000872457954604886,
+                "bandFractions": [
+                  0.005374689352622736,
+                  0.7705545563683485,
+                  0.22407075427806722,
+                  9.628890627969437e-13
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.1624943310657596,
+              "startSample": 36880,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7415.073899410935,
+                "meanSquare": 0.0004274308385402478,
+                "bandFractions": [
+                  0.013059947535219276,
+                  0.7755454927125923,
+                  0.2113945597337618,
+                  1.8426826520145746e-11
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.3722675736961452,
+              "startSample": 43593,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7169.865813154168,
+                "meanSquare": 0.000313459963750672,
+                "bandFractions": [
+                  0.2709523935832673,
+                  0.30252234380654786,
+                  0.4265252625713007,
+                  3.888325820697483e-11
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 7744.973100701821,
+            "bandFractions": [
+              0.1214347392939158,
+              0.43482559276232097,
+              0.443739667653144,
+              2.9061954236883304e-10
+            ]
+          },
+          "wholeClip": {
+            "windows": 165,
+            "summary": {
+              "centroidHz": 7391.857256170753,
+              "meanSquare": 0.00003890281476184292,
+              "bandFractions": [
+                0.13434232149590888,
+                0.4772073281451124,
+                0.3884503500407104,
+                3.1826838829955364e-10
+              ]
+            }
+          }
+        },
+        {
+          "rate": 16000,
+          "frames": 26579,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.3013125,
+            0.549375,
+            0.8655,
+            0.9826875,
+            1.1625,
+            1.4025625
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0.0000026927437641877106,
+            0.04805980725623582,
+            0.030284580498866287,
+            0.0003745748299319729,
+            0.000005668934240476986,
+            0.030294926303854774
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 6,
+              "recordingDurationSeconds": 1.6611875,
+              "clickSpanSeconds": 1.1012499999999998,
+              "intervalsSeconds": [
+                0.24806249999999996,
+                0.3161250000000001,
+                0.1171875,
+                0.17981250000000004,
+                0.24006249999999985
+              ],
+              "normalizedIntervals": [
+                0.22525539160045402,
+                0.2870601589103293,
+                0.10641316685584565,
+                0.1632803632236096,
+                0.21799091940976154
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.22525539160045402,
+                0.5123155505107834,
+                0.6187287173666289,
+                0.7820090805902385,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.3013125,
+              0.549375,
+              0.8655,
+              0.9826875,
+              1.1625,
+              1.4025625
+            ],
+            "durationSeconds": 1.6611875,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 1.6611875
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.30131519274376417,
+              "startSample": 4661,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 4103.884502186083,
+                "meanSquare": 0.00015559798169369543,
+                "bandFractions": [
+                  0.5034039591785845,
+                  0.4965960059860263,
+                  3.4835389945411326e-8,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.5013151927437641,
+              "startSample": 7861,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 5943.893264189662,
+                "meanSquare": 0.00005373664624394341,
+                "bandFractions": [
+                  0.12496014092360441,
+                  0.8750386301660311,
+                  0.0000012289103645076725,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.8352154195011338,
+              "startSample": 13203,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 4295.641456584851,
+                "meanSquare": 0.0002020077566978119,
+                "bandFractions": [
+                  0.48400935403905976,
+                  0.5159906399123897,
+                  6.048550168011781e-9,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 0.9823129251700681,
+              "startSample": 15557,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6656.2225111475145,
+                "meanSquare": 0.00021904042358794013,
+                "bandFractions": [
+                  0.021413238554952915,
+                  0.9785867421103909,
+                  1.9334656409854312e-8,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.1624943310657596,
+              "startSample": 18440,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6457.786729652235,
+                "meanSquare": 0.00016753973535233441,
+                "bandFractions": [
+                  0.03333804866982035,
+                  0.9666619426421195,
+                  8.688059985399533e-9,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.3722675736961452,
+              "startSample": 21796,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 4087.975357165131,
+                "meanSquare": 0.00016774954665711958,
+                "bandFractions": [
+                  0.5057951839223012,
+                  0.494204787121627,
+                  2.8956071250966615e-8,
+                  0
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 6,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 5257.567303487579,
+            "bandFractions": [
+              0.2788199875480538,
+              0.7211797913230975,
+              2.2112884871121937e-7,
+              0
+            ]
+          },
+          "wholeClip": {
+            "windows": 165,
+            "summary": {
+              "centroidHz": 4779.406913834561,
+              "meanSquare": 0.000015071257263165493,
+              "bandFractions": [
+                0.3462864625341414,
+                0.6537134297639795,
+                1.0770187894611669e-7,
+                0
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dswp-7",
+      "source": {
+        "dataset": "orrp/DSWP",
+        "revision": "a2e5d6dd02fc60343e1288c33314e14e8b7aa5be",
+        "filename": "7.wav",
+        "url": "https://huggingface.co/datasets/orrp/DSWP/resolve/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/7.wav",
+        "datasetCardUrl": "https://huggingface.co/datasets/orrp/DSWP/blob/a2e5d6dd02fc60343e1288c33314e14e8b7aa5be/README.md",
+        "datasetCardSha256": "8c54b9f2ba60fc4d7ffede0590552a89fd234de676783a248cd4635730227f7d",
+        "attribution": "Dominica Sperm Whale Project; DSWP dataset distributed by Orr Paradise and colleagues.",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "citation": "Orr Paradise, Pranav Muralikrishnan, Liangyuan Chen, Hugo Flores Garcia, Bryan Pardo, Roee Diamant, David F. Gruber, Shane Gero, Shafi Goldwasser. Towards A Translative Model of Sperm Whale Vocalization. NeurIPS 2025.",
+        "paperUrl": "https://arxiv.org/abs/2512.02206",
+        "acquiredOn": "2026-09-12"
+      },
+      "original": {
+        "path": "/audio/dswp-7.wav",
+        "sha256": "9af722759e0d1125e161b87cb71e01adc026d35b6500d0d62504d2bbe978ce60",
+        "bytes": 180826,
+        "durationSeconds": 2.0496825396825398,
+        "sampleRateHz": 44100,
+        "channels": 1,
+        "frames": 90391,
+        "encoding": "WAV / PCM signed 16-bit little-endian",
+        "transformations": []
+      },
+      "annotation": {
+        "status": "machine-estimated",
+        "method": "relative-peak-transient-groups",
+        "version": "1.0.0",
+        "parameters": {
+          "envelopeWindowSeconds": 0.002,
+          "relativeThreshold": 0.18,
+          "groupGapSeconds": 0.07
+        },
+        "timestampOrigin": "original-file-start",
+        "selectedIntervalSeconds": {
+          "start": 0,
+          "end": 2.0496825396825398
+        },
+        "clickSampleIndices": [
+          10997,
+          22103,
+          33223,
+          39276,
+          55173,
+          61681,
+          69011
+        ],
+        "clickTimesSeconds": [
+          0.24936507936507937,
+          0.5012018140589569,
+          0.7533560090702948,
+          0.8906122448979592,
+          1.2510884353741496,
+          1.3986621315192744,
+          1.5648752834467121
+        ],
+        "sourceAnnotations": "not-provided",
+        "humanReview": "not-performed",
+        "corrections": [],
+        "limitations": [
+          "Whole-file candidate sequence; biological coda boundaries are unverified.",
+          "Amplitude threshold and grouping can miss clicks, merge nearby events, or count echoes/noise.",
+          "Timestamps locate amplitude peaks, not biological click onsets; sample resolution is not annotation accuracy."
+        ]
+      },
+      "variants": [
+        {
+          "rate": 44100,
+          "frames": 90391,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.24936507936507937,
+            0.5012018140589569,
+            0.7533560090702948,
+            0.8906122448979592,
+            1.2510884353741496,
+            1.3986621315192744,
+            1.5648752834467121
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 7,
+              "recordingDurationSeconds": 2.0496825396825398,
+              "clickSpanSeconds": 1.3155102040816327,
+              "intervalsSeconds": [
+                0.2518367346938776,
+                0.25215419501133784,
+                0.13725623582766444,
+                0.3604761904761904,
+                0.14757369614512483,
+                0.16621315192743769
+              ],
+              "normalizedIntervals": [
+                0.19143654979832456,
+                0.1916778708587582,
+                0.10433688420036547,
+                0.2740200641224531,
+                0.11217981866446039,
+                0.12634881235563833
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.19143654979832456,
+                0.3831144206570828,
+                0.48745130485744825,
+                0.7614713689799013,
+                0.8736511876443617,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.24936507936507937,
+              0.5012018140589569,
+              0.7533560090702948,
+              0.8906122448979592,
+              1.2510884353741496,
+              1.3986621315192744,
+              1.5648752834467121
+            ],
+            "durationSeconds": 2.0496825396825398,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.0496825396825398
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.24936507936507937,
+              "startSample": 10556,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7474.753169864632,
+                "meanSquare": 0.00023077656427525678,
+                "bandFractions": [
+                  0.44976973949128635,
+                  0.11371313092591885,
+                  0.3825467818040023,
+                  0.05397034777879228
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.5012018140589569,
+              "startSample": 21662,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7859.389551710589,
+                "meanSquare": 0.0004565744839114899,
+                "bandFractions": [
+                  0.03467047886482616,
+                  0.6772911019292124,
+                  0.2513443614648524,
+                  0.03669405774110937
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.7533560090702948,
+              "startSample": 32782,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 8819.892405516986,
+                "meanSquare": 0.0002735391321805054,
+                "bandFractions": [
+                  0.3143197942093935,
+                  0.15125053651449008,
+                  0.4061317296883061,
+                  0.12829793958780958
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 0.8906122448979592,
+              "startSample": 38835,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7317.896749356882,
+                "meanSquare": 0.0005219843720844456,
+                "bandFractions": [
+                  0.024866236348687166,
+                  0.8597732963641881,
+                  0.10130844832228453,
+                  0.014052018964839808
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.2510884353741496,
+              "startSample": 54732,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7201.2909602262935,
+                "meanSquare": 0.0010975759620897843,
+                "bandFractions": [
+                  0.014565961494897941,
+                  0.9158118249827188,
+                  0.05601288688493559,
+                  0.013609326637446602
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.3986621315192744,
+              "startSample": 61240,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7005.870453487165,
+                "meanSquare": 0.0011531459744126087,
+                "bandFractions": [
+                  0.01431512891554143,
+                  0.9435718027013855,
+                  0.03605030816212758,
+                  0.006062760220944338
+                ]
+              }
+            },
+            {
+              "index": 6,
+              "markerSeconds": 1.5648752834467121,
+              "startSample": 68570,
+              "samples": 882,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7139.477598539668,
+                "meanSquare": 0.0006362257713433247,
+                "bandFractions": [
+                  0.03551749474127245,
+                  0.8775489214598833,
+                  0.059698400785680714,
+                  0.027235183013164136
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 7,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 7545.51012695746,
+            "bandFractions": [
+              0.12686069058084357,
+              0.6484229449825424,
+              0.1847275595874556,
+              0.03998880484915802
+            ]
+          },
+          "wholeClip": {
+            "windows": 203,
+            "summary": {
+              "centroidHz": 7939.172828670897,
+              "meanSquare": 0.000046704075677865584,
+              "bandFractions": [
+                0.10093943148982802,
+                0.6339749227813902,
+                0.19783028428723112,
+                0.06725536144155016
+              ]
+            }
+          }
+        },
+        {
+          "rate": 32000,
+          "frames": 65590,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.22203125,
+            0.50121875,
+            0.75334375,
+            0.876625,
+            1.25109375,
+            1.39865625,
+            1.564875
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0.02733382936507936,
+            0.00001693594104312801,
+            0.000012259070294784458,
+            0.013987244897959217,
+            0.000005314625850294519,
+            0.0000058815192744976486,
+            2.834467121015649e-7
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 7,
+              "recordingDurationSeconds": 2.0496875,
+              "clickSpanSeconds": 1.3428437500000001,
+              "intervalsSeconds": [
+                0.27918750000000003,
+                0.25212499999999993,
+                0.12328125000000001,
+                0.3744687499999999,
+                0.14756250000000004,
+                0.16621875000000008
+              ],
+              "normalizedIntervals": [
+                0.20790765865351052,
+                0.18775453212631768,
+                0.09180610178957901,
+                0.2788624886551394,
+                0.10988806404319194,
+                0.12378115473226134
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.20790765865351052,
+                0.39566219077982817,
+                0.4874682925694072,
+                0.7663307812245466,
+                0.8762188452677386,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.22203125,
+              0.50121875,
+              0.75334375,
+              0.876625,
+              1.25109375,
+              1.39865625,
+              1.564875
+            ],
+            "durationSeconds": 2.0496875,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.0496875
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.24936507936507937,
+              "startSample": 7660,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6495.688226070279,
+                "meanSquare": 0.00020855263187986305,
+                "bandFractions": [
+                  0.4982423998681002,
+                  0.12575347862966338,
+                  0.3760041215004841,
+                  1.7515841389588906e-12
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.5012018140589569,
+              "startSample": 15718,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7214.124936925149,
+                "meanSquare": 0.00042736511573958976,
+                "bandFractions": [
+                  0.03700740544775896,
+                  0.7183795171598617,
+                  0.2446130773867288,
+                  5.649610408601803e-12
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.7533560090702948,
+              "startSample": 23787,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7060.394929038228,
+                "meanSquare": 0.00022855536344821645,
+                "bandFractions": [
+                  0.37603649784144166,
+                  0.18057757992853093,
+                  0.44338592217399064,
+                  5.603774145082838e-11
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 0.8906122448979592,
+              "startSample": 28180,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6974.146366974873,
+                "meanSquare": 0.0005039160307551037,
+                "bandFractions": [
+                  0.025781984914528915,
+                  0.8901244692045631,
+                  0.0840935458769494,
+                  3.9596384261120795e-12
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.2510884353741496,
+              "startSample": 39715,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 7008.786298296832,
+                "meanSquare": 0.0010799332098137863,
+                "bandFractions": [
+                  0.014814938963845127,
+                  0.930120474365411,
+                  0.05506458663676045,
+                  3.3982925177336554e-11
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.3986621315192744,
+              "startSample": 44437,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6901.868754038375,
+                "meanSquare": 0.0011416078248003571,
+                "bandFractions": [
+                  0.014470528998599843,
+                  0.9518963818187044,
+                  0.03363308918255677,
+                  1.396450223586849e-13
+                ]
+              }
+            },
+            {
+              "index": 6,
+              "markerSeconds": 1.5648752834467121,
+              "startSample": 49756,
+              "samples": 640,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6720.143005892799,
+                "meanSquare": 0.0006118126284084171,
+                "bandFractions": [
+                  0.03697706118925385,
+                  0.9121266438603455,
+                  0.05089629494681449,
+                  3.5863104832056112e-12
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 7,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 6910.736073890934,
+            "bandFractions": [
+              0.14333297388907548,
+              0.6727112207095828,
+              0.1839558053863264,
+              1.5015350729628855e-11
+            ]
+          },
+          "wholeClip": {
+            "windows": 203,
+            "summary": {
+              "centroidHz": 6924.1946143180785,
+              "meanSquare": 0.000042336297092873736,
+              "bandFractions": [
+                0.11136500847819059,
+                0.6985896814602295,
+                0.19004530997432906,
+                8.725212840694613e-11
+              ]
+            }
+          }
+        },
+        {
+          "rate": 16000,
+          "frames": 32795,
+          "detector": {
+            "envelopeWindowSeconds": 0.002,
+            "relativeThreshold": 0.18,
+            "groupGapSeconds": 0.07
+          },
+          "detectedSeconds": [
+            0.2495,
+            0.5150625,
+            0.7808125,
+            0.8906875,
+            1.250875,
+            1.39875,
+            1.5510625
+          ],
+          "countDelta": 0,
+          "nearestMarkerDisplacementSeconds": [
+            0.00013492063492062667,
+            0.01386068594104306,
+            0.027456490929705257,
+            0.00007525510204076102,
+            0.00021343537414963976,
+            0.0000878684807255059,
+            0.013812783446712107
+          ],
+          "timing": {
+            "status": "valid",
+            "measurements": {
+              "clickCount": 7,
+              "recordingDurationSeconds": 2.0496875,
+              "clickSpanSeconds": 1.3015625,
+              "intervalsSeconds": [
+                0.2655625,
+                0.26575000000000004,
+                0.10987499999999994,
+                0.3601875,
+                0.14787499999999998,
+                0.15231250000000007
+              ],
+              "normalizedIntervals": [
+                0.20403361344537815,
+                0.2041776710684274,
+                0.08441776710684269,
+                0.276734693877551,
+                0.11361344537815125,
+                0.11702280912364953
+              ],
+              "normalizedClickPositions": [
+                0,
+                0.20403361344537815,
+                0.4082112845138056,
+                0.4926290516206483,
+                0.7693637454981992,
+                0.8829771908763505,
+                1
+              ]
+            }
+          },
+          "input": {
+            "clickTimesSeconds": [
+              0.2495,
+              0.5150625,
+              0.7808125,
+              0.8906875,
+              1.250875,
+              1.39875,
+              1.5510625
+            ],
+            "durationSeconds": 2.0496875,
+            "selectedIntervalSeconds": {
+              "start": 0,
+              "end": 2.0496875
+            }
+          },
+          "events": [
+            {
+              "index": 0,
+              "markerSeconds": 0.24936507936507937,
+              "startSample": 3830,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 3099.900266785471,
+                "meanSquare": 0.00012358584722809576,
+                "bandFractions": [
+                  0.841026472287392,
+                  0.15897352744070467,
+                  2.719036172817826e-10,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 1,
+              "markerSeconds": 0.5012018140589569,
+              "startSample": 7859,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 5727.054609192107,
+                "meanSquare": 0.0002041161606274286,
+                "bandFractions": [
+                  0.07747468656938071,
+                  0.9225251917777723,
+                  1.2165284699846175e-7,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "markerSeconds": 0.7533560090702948,
+              "startSample": 11894,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 3402.385068997077,
+                "meanSquare": 0.00011880984859495469,
+                "bandFractions": [
+                  0.7250669783618812,
+                  0.27493302163145134,
+                  6.667406635048092e-12,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "markerSeconds": 0.8906122448979592,
+              "startSample": 14090,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6194.181821551857,
+                "meanSquare": 0.00029638543987321053,
+                "bandFractions": [
+                  0.04389300949045342,
+                  0.9561069542730657,
+                  3.6236481304267654e-8,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "markerSeconds": 1.2510884353741496,
+              "startSample": 19857,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6389.280647939934,
+                "meanSquare": 0.000509202533617103,
+                "bandFractions": [
+                  0.0313658699782194,
+                  0.9686340848351006,
+                  4.51866805356922e-8,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 5,
+              "markerSeconds": 1.3986621315192744,
+              "startSample": 22219,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6407.543603421122,
+                "meanSquare": 0.0005980879659708185,
+                "bandFractions": [
+                  0.02765242527123156,
+                  0.9723475647568516,
+                  9.971916761724045e-9,
+                  0
+                ]
+              }
+            },
+            {
+              "index": 6,
+              "markerSeconds": 1.5648752834467121,
+              "startSample": 24878,
+              "samples": 320,
+              "status": "measured",
+              "summary": {
+                "centroidHz": 6126.943486254448,
+                "meanSquare": 0.00038001102132404103,
+                "bandFractions": [
+                  0.05951301116431076,
+                  0.9404869888283468,
+                  7.342298684059929e-12,
+                  0
+                ]
+              }
+            }
+          ],
+          "eligibleWindows": 7,
+          "excludedWindows": 0,
+          "meanEvent": {
+            "centroidHz": 5335.327072020287,
+            "bandFractions": [
+              0.2579989218746956,
+              0.742001047649042,
+              3.0476262703249507e-8,
+              0
+            ]
+          },
+          "wholeClip": {
+            "windows": 203,
+            "summary": {
+              "centroidHz": 5411.779845382453,
+              "meanSquare": 0.000023479109790282463,
+              "bandFractions": [
+                0.20072794119769738,
+                0.7992720130133597,
+                4.578894242506658e-8,
+                0
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rankings": [
+    {
+      "id": "dswp-1",
+      "rate": 44100,
+      "timing": [
+        {
+          "id": "dswp-11",
+          "distance": 0.09835190471540153
+        },
+        {
+          "id": "dswp-2",
+          "distance": 0.11765155166768507
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-2",
+          "distance": 0.21010183943441163
+        },
+        {
+          "id": "dswp-11",
+          "distance": 0.2859286931146409
+        },
+        {
+          "id": "dswp-7",
+          "distance": 0.3996608351821891
+        }
+      ]
+    },
+    {
+      "id": "dswp-1",
+      "rate": 32000,
+      "timing": [
+        {
+          "id": "dswp-11",
+          "distance": 0.07143222751576381
+        },
+        {
+          "id": "dswp-2",
+          "distance": 0.09453048424492634
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-2",
+          "distance": 0.258309020534062
+        },
+        {
+          "id": "dswp-11",
+          "distance": 0.28561388340472227
+        },
+        {
+          "id": "dswp-7",
+          "distance": 0.38881253011541095
+        }
+      ]
+    },
+    {
+      "id": "dswp-1",
+      "rate": 16000,
+      "timing": [
+        {
+          "id": "dswp-7",
+          "distance": 0.09588846880472096
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-2",
+          "distance": 0.010577769559205334
+        },
+        {
+          "id": "dswp-11",
+          "distance": 0.22378216100413945
+        },
+        {
+          "id": "dswp-7",
+          "distance": 0.26542429235085613
+        }
+      ]
+    },
+    {
+      "id": "dswp-2",
+      "rate": 44100,
+      "timing": [
+        {
+          "id": "dswp-11",
+          "distance": 0.05771311099959554
+        },
+        {
+          "id": "dswp-1",
+          "distance": 0.11765155166768507
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-1",
+          "distance": 0.21010183943441163
+        },
+        {
+          "id": "dswp-7",
+          "distance": 0.30613633799727535
+        },
+        {
+          "id": "dswp-11",
+          "distance": 0.4206514193623127
+        }
+      ]
+    },
+    {
+      "id": "dswp-2",
+      "rate": 32000,
+      "timing": [
+        {
+          "id": "dswp-11",
+          "distance": 0.038709029217518086
+        },
+        {
+          "id": "dswp-1",
+          "distance": 0.09453048424492634
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-1",
+          "distance": 0.258309020534062
+        },
+        {
+          "id": "dswp-7",
+          "distance": 0.26248740268908327
+        },
+        {
+          "id": "dswp-11",
+          "distance": 0.5439229039387842
+        }
+      ]
+    },
+    {
+      "id": "dswp-2",
+      "rate": 16000,
+      "timing": [
+        {
+          "id": "dswp-11",
+          "distance": 0.034943087923245075
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-1",
+          "distance": 0.010577769559205334
+        },
+        {
+          "id": "dswp-11",
+          "distance": 0.23435993056334478
+        },
+        {
+          "id": "dswp-7",
+          "distance": 0.27600206191006144
+        }
+      ]
+    },
+    {
+      "id": "dswp-11",
+      "rate": 44100,
+      "timing": [
+        {
+          "id": "dswp-2",
+          "distance": 0.05771311099959554
+        },
+        {
+          "id": "dswp-1",
+          "distance": 0.09835190471540153
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-1",
+          "distance": 0.2859286931146409
+        },
+        {
+          "id": "dswp-2",
+          "distance": 0.4206514193623127
+        },
+        {
+          "id": "dswp-7",
+          "distance": 0.6014167983610627
+        }
+      ]
+    },
+    {
+      "id": "dswp-11",
+      "rate": 32000,
+      "timing": [
+        {
+          "id": "dswp-2",
+          "distance": 0.038709029217518086
+        },
+        {
+          "id": "dswp-1",
+          "distance": 0.07143222751576381
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-1",
+          "distance": 0.28561388340472227
+        },
+        {
+          "id": "dswp-7",
+          "distance": 0.5195677250848433
+        },
+        {
+          "id": "dswp-2",
+          "distance": 0.5439229039387842
+        }
+      ]
+    },
+    {
+      "id": "dswp-11",
+      "rate": 16000,
+      "timing": [
+        {
+          "id": "dswp-2",
+          "distance": 0.034943087923245075
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-7",
+          "distance": 0.04164251265188869
+        },
+        {
+          "id": "dswp-1",
+          "distance": 0.22378216100413945
+        },
+        {
+          "id": "dswp-2",
+          "distance": 0.23435993056334478
+        }
+      ]
+    },
+    {
+      "id": "dswp-7",
+      "rate": 44100,
+      "timing": [],
+      "spectrum": [
+        {
+          "id": "dswp-2",
+          "distance": 0.30613633799727535
+        },
+        {
+          "id": "dswp-1",
+          "distance": 0.3996608351821891
+        },
+        {
+          "id": "dswp-11",
+          "distance": 0.6014167983610627
+        }
+      ]
+    },
+    {
+      "id": "dswp-7",
+      "rate": 32000,
+      "timing": [],
+      "spectrum": [
+        {
+          "id": "dswp-2",
+          "distance": 0.26248740268908327
+        },
+        {
+          "id": "dswp-1",
+          "distance": 0.38881253011541095
+        },
+        {
+          "id": "dswp-11",
+          "distance": 0.5195677250848433
+        }
+      ]
+    },
+    {
+      "id": "dswp-7",
+      "rate": 16000,
+      "timing": [
+        {
+          "id": "dswp-1",
+          "distance": 0.09588846880472096
+        }
+      ],
+      "spectrum": [
+        {
+          "id": "dswp-11",
+          "distance": 0.04164251265188869
+        },
+        {
+          "id": "dswp-1",
+          "distance": 0.26542429235085613
+        },
+        {
+          "id": "dswp-2",
+          "distance": 0.27600206191006144
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Four clips are engineering checks, not a generalization benchmark.",
+    "Markers are machine-estimated transients; window overlap checks cannot certify isolated biological clicks.",
+    "Whole-clip spectra also depend on rhythm and background. Event summaries use fixed original marker windows.",
+    "Sample rate sets a representable ceiling, not a measured recording bandwidth. Resampling cannot restore absent information.",
+    "Timing uses equal-count normalized interval MAD; spectrum uses L1 distance of four mean event band-energy fractions within each rate. No combined score.",
+    "Nearest marker displacement is an engineering diagnostic, not verified event correspondence."
+  ]
+}
