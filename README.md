@@ -46,6 +46,8 @@ Context Lab → **Timing / Style Atlas** now browses all 3,790 retained annotate
 
 Context Lab → **Spectrum / Environment** verifies the two pinned CETI tables from locally selected files and exposes source-bound annotations, missingness and raw environmental codes. External rows are not bundled while reuse remains unresolved. [U1 importer, verified counts and limitations](analysis/spectral-context-v1/README.md).
 
+The same view compares timing and spectrum for the four original clips at 44.1/32/16 kHz, with separate metrics and source-bound exports. [U2 measurements](analysis/native-spectrum-v1/README.md). Offline [event simulations](analysis/event-simulation-v1/RESULTS.md) test the existing analysis under known mechanisms; the [research-assistant harness](analysis/research-assistant-v1/README.md) verifies ten synthetic structured-evidence cases using fixtures. Actual model performance and browser acceptance are not yet established.
+
 ## Data and limits
 
 Originals `1.wav`, `2.wav`, `11.wav` and `7.wav` come from [orrp/DSWP](https://huggingface.co/datasets/orrp/DSWP), pinned revision `a2e5d6dd02fc60343e1288c33314e14e8b7aa5be`, under **CC BY 4.0**. Credit: Dominica Sperm Whale Project; Orr Paradise and colleagues, *Towards A Translative Model of Sperm Whale Vocalization*, NeurIPS 2025. [Attribution and methods](docs/DATA_METHODS.md) includes full credit, hashes and selection/annotation provenance.
@@ -58,7 +60,7 @@ Context Lab uses the CC BY 4.0 [paper-cited archive](https://zenodo.org/records/
 
 ## Review and compatibility
 
-- [Research upgrade plan · November 2026](docs/RESEARCH_UPGRADE_PLAN_2026-11-07.md): planned source integration, spectral comparison, event simulations and Astra evaluation.
+- [Research upgrade plan and execution status · November 2026](docs/RESEARCH_UPGRADE_PLAN_2026-11-07.md): source integration, spectral comparison, event simulations and the provider-free evaluation stage.
 - [MVP-08 Sealed Coda, local lock and independent encrypted-file verification](docs/MVP_08.md)
 - [MVP-07 Personal Coda / file-based Exchange, format and browser round trip](docs/MVP_07.md)
 - [MVP-06 observed Timing / Style Atlas and read-only Composer reference](docs/MVP_06.md) · [generate/check/independent verification](analysis/style-atlas-v1/README.md)
