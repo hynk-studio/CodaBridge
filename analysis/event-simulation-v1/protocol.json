@@ -1,0 +1,21 @@
+{
+  "version": "event-simulation-v1",
+  "seedStart": 202611070,
+  "primaryRealizations": 100,
+  "observationRealizations": 25,
+  "groups": 10,
+  "cycles": 30,
+  "families": ["independent", "common-driver", "directed"],
+  "variants": ["clean", "missed-clicks", "missed-codas", "arrival-jitter", "boundaries"],
+  "maxRealizations": 600,
+  "maxLearnedFits": 6000,
+  "intervalResamples": 2000,
+  "decisionRule": "flag if lower endpoint of the existing conditional 95% group-bootstrap interval for M2 vs M1 gain is greater than zero",
+  "estimand": "Expected out-of-group loss(self) minus loss(self+partner) for this fixed training procedure under each complete synthetic observation process, in squared natural-log duration units.",
+  "null": "Independent generated caller processes have no partner information given complete self history. Empirical false-trigger rate calibrates the frozen heuristic under this generator; nominal bootstrap coverage is not assumed.",
+  "causalInterpretation": "Common-driver predictive flags are not false positives for predictive information. Counting them as direct influence would be unsupported attribution. This study cannot distinguish such mechanisms from flags alone.",
+  "coverage": "Not estimated; no known finite-training reference gain is supplied.",
+  "monteCarlo": "Wilson 95% interval for flag proportions; across-seed mean and sample SD/sqrt(n) for gain. Variants share seeds and are paired; do not pool them as independent runs.",
+  "observation": { "clickLossProbability": 0.15, "codaLossProbability": 0.10, "arrivalJitterSeconds": 0.1, "windowSeconds": [5.5, 168.5], "splitSeconds": 91 },
+  "generator": { "innovationScale": 0.12, "independentAR": 0.7, "driverAR": 0.8, "driverInnovation": 0.2, "commonSelfAR": 0.55, "driverCoefficient": 0.45, "directedSelfAR": 0.35, "directedPartnerCoefficient": 0.65, "directedEmissionLagSeconds": 9, "cycleSeconds": 6, "callerBOffsetSeconds": 3, "noise": "seeded xorshift32 symmetric uniform [-1,1); two caller innovations and one shared-driver innovation every cycle" }
+}
