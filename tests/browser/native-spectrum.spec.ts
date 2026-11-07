@@ -8,13 +8,29 @@ test("native source/rate selection and actual complete comparison download", asy
   await expect(page.getByText("6 detected transient groups", { exact: false })).toBeVisible();
   await page.getByLabel("Measurement sample rate").selectOption("16000");
   await expect(page.getByText("7 detected transient groups", { exact: false })).toBeVisible();
-  await page.getByLabel("Field recording", { exact: true }).selectOption("2");
+  await page.getByRole("combobox", { name: "Field recording", exact: true }).selectOption("2");
   await expect(page.getByText("6 detected transient groups", { exact: false })).toBeVisible();
+  await page.getByRole("combobox", { name: "Field recording", exact: true }).selectOption("0");
+  await page.getByLabel("Measurement sample rate").selectOption("32000");
+  await page.getByRole("combobox", { name: "Field recording", exact: true }).selectOption("2");
+  await page.getByLabel("Measurement sample rate").selectOption("16000");
+  const rankings = page.getByRole("region", { name: "Separate similarity rankings" });
+  await expect(rankings.getByRole("cell", { name: "Normalized interval MAD · same count", exact: true })).toBeVisible();
+  await expect(rankings.getByRole("cell", { name: "Event band-fraction L1 · same sample rate", exact: true })).toBeVisible();
   const pending = page.waitForEvent("download"); await page.getByRole("button", { name: "Download native spectrum comparison" }).click();
   const download = await pending; const path = info.outputPath("native.json"); await download.saveAs(path);
   const data = JSON.parse(await readFile(path, "utf8")); expect(data.selection).toEqual({ id: "dswp-11", rate: 16000 }); expect(data.clips).toHaveLength(4);
+  const expected = JSON.parse(await readFile("public/native-spectrum-v1/report.json", "utf8"));
+  expect(data).toEqual({ ...expected, selection: { id: "dswp-11", rate: 16000 } });
+  expect(data.rankings.find((r: { id: string; rate: number }) => r.id === "dswp-11" && r.rate === 16000).spectrum[0].id).toBe("dswp-7");
   if (info.project.name === "mobile-chromium") await page.setViewportSize({ width: 320, height: 844 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  if (info.project.name === "mobile-chromium") {
+    await rankings.focus(); await rankings.press("ArrowRight");
+    await expect.poll(() => rankings.evaluate(e => e.scrollLeft)).toBeGreaterThan(0);
+    await rankings.evaluate(e => { e.scrollLeft = e.scrollWidth; });
+    await rankings.screenshot({ path: info.outputPath("native-table-right.png") });
+  }
   await page.screenshot({ path: info.outputPath("native.png"), fullPage: true });
   expect(posts).toEqual([]);
 });
@@ -22,5 +38,35 @@ test("native missing asset has an explicit unavailable state", async ({ page }) 
   await page.route("**/native-spectrum-v1/report.json", route => route.fulfill({ status: 404, body: "missing" }));
   await page.goto("/#context-lab"); await page.getByRole("button", { name: "Spectrum / Environment", exact: true }).click();
   await expect(page.getByText("Native spectral measurements are unavailable.")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Download native spectrum comparison" })).toHaveCount(0);
+});
+
+
+test("corrupt native report bytes are unavailable and cannot be downloaded", async ({ page }) => {
+  const corrupt = Buffer.from(await readFile("public/native-spectrum-v1/report.json")); corrupt[corrupt.length - 2] ^= 1;
+  await page.route("**/native-spectrum-v1/report.json", route => route.fulfill({ body: corrupt }));
+  await page.goto("/#context-lab");
+  await page.getByRole("button", { name: "Spectrum / Environment", exact: true }).click();
+  await expect(page.getByRole("status").filter({ hasText: "checksum mismatch" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Download native spectrum comparison" })).toHaveCount(0);
+});
+
+test("late native load cannot overwrite a new workspace load", async ({ page }) => {
+  let release: () => void = () => {}, requested = false, requestCount = 0;
+  await page.route("**/native-spectrum-v1/report.json", async route => {
+    requestCount++;
+    if (requestCount === 1) {
+      requested = true;
+      await new Promise<void>(resolve => { release = resolve; });
+      await route.fulfill({ body: await readFile("public/native-spectrum-v1/report.json") }).catch(() => {});
+    } else await route.fulfill({ status: 404, body: "missing" });
+  });
+  await page.goto("/#context-lab");
+  await page.getByRole("button", { name: "Spectrum / Environment", exact: true }).click();
+  await expect.poll(() => requested).toBe(true);
+  await workspaceView(page, "Composer");
+  await workspaceView(page, "Context Lab");
+  await expect(page.getByText("Native spectral measurements are unavailable.")).toBeVisible();
+  release();
   await expect(page.getByRole("button", { name: "Download native spectrum comparison" })).toHaveCount(0);
 });

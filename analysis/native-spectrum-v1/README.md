@@ -20,8 +20,16 @@ U2 of the research upgrade plan. In Context Lab → **Spectrum / Environment**, 
 
 All 25 original-marker windows were eligible under the mechanical edge/overlap rule at all three rates. This does not certify biological click isolation. For 11.wav, the closest spectral candidate changes from 1.wav to 7.wav at 16 kHz; for 7.wav it changes from 2.wav to 11.wav. The 1.wav count change also changes the same-count timing candidate set. 1.wav and 2.wav retain each other as their closest spectral candidate at all rates. Centroid reductions are expected under low-pass conversion; neither changed nor unchanged ranking establishes higher-band biological usefulness.
 
-## Executed verification (2026-11-07)
+## Initial Work executor verification (2026-11-07, historical)
 
 Nine focused U1/U2 tests passed, including hand-computable timing, tone centroids, anti-alias attenuation, silence, invalid values, edge/overlap windows, Composer pulses/background perturbation, checksum rejection and aborted loads. Independent NumPy implementation recomputed all 75 native/resampled marker spectra, all four source byte bindings and every spectral rank. Deterministic regeneration, typecheck, production client/Worker build and lint passed. NumPy is used only by the independent offline verifier.
 
-Actual browser download, responsive layout, listening and hosted behavior remain unverified because this executor denies browser sockets and Wrangler network-interface enumeration (see U1). Desktop/phone selection, export and unavailable-data tests are committed. No deployment or model request occurred. The known unchanged-main v0.2 exact-log replay test failure remains documented in U1; no historical study was altered.
+At that stage, actual browser download and responsive layout were unverified because the Work executor denied browser sockets and Wrangler network-interface enumeration (see U1). Listening and hosted behavior were also unverified. Desktop/phone selection, export and unavailable-data tests are committed. No deployment or model request occurred. The known unchanged-main v0.2 exact-log replay test failure remains documented in U1; no historical study was altered.
+
+## Cloud follow-up verification (2026-11-07)
+
+The actual local Wrangler/workerd Worker runs in Cloud. Playwright 1.63.0 uses installed Chromium 156.0.8078.79 via `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium`; the bundled Chromium download remains restricted by environment network policy. See the [U1 Cloud commands](../spectral-context-v1/README.md#cloud-follow-up-verification-2026-11-07) for writable cache/config settings.
+
+Desktop and mobile browser checks pass for source/rate changes, separate timing/spectral rankings, actual JSON downloads (deep equality with the independently verified complete report and the selected clip/rate), 320px table scrolling, missing/corrupt report rejection and delayed-load cancellation across workspace changes. Selection uses the combobox's accessible role/name, correcting the former exact-label test locator. Screenshots and actual downloaded files were inspected. The source and report bytes remain unchanged; all 75 spectral windows and rankings still pass independent NumPy verification. Human listening, hosted behavior and live model quality remain outside this validation.
+
+The inherited v0.2 replay test now tolerates machine precision only in its two log-target outputs; source bindings, features, IDs/groups, integer targets and splits stay strict. No empirical data, fitted model, spectrum artifact or result was regenerated.
